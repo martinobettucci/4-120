@@ -1,0 +1,14 @@
+numpy>=1.26
+matplotlib>=3.8
+
+[complet]
+torch>=2.2
+ortools>=9.10
+scipy>=1.11
+plotly>=5.20
+ipywidgets>=8.1
+pandas>=2.1
+scikit-learn>=1.4
+
+[dev]
+pytest>=8

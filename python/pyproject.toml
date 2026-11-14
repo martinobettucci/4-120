@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ascent-agents"
+version = "1.0.0"
+description = "Bibliotheque pedagogique de la formation ASCENT 4-130 : agents autonomes et aide a la decision"
+requires-python = ">=3.10"
+authors = [{ name = "Martino Bettucci, P2Enjoy SAS" }]
+dependencies = ["numpy>=1.26", "matplotlib>=3.8"]
+
+[project.optional-dependencies]
+complet = ["torch>=2.2", "ortools>=9.10", "scipy>=1.11", "plotly>=5.20", "ipywidgets>=8.1", "pandas>=2.1", "scikit-learn>=1.4"]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+include = ["ascent_agents*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
