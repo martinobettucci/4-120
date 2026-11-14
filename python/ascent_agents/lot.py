@@ -7,6 +7,8 @@ campagnes de validation. Tout fonctionne aussi sur CPU, plus lentement.
 
 from __future__ import annotations
 
+import contextlib
+import os
 import time
 
 import numpy as np
@@ -15,6 +17,25 @@ import torch
 from .monde import ACTIONS, Entrepot
 
 NOMS_ACTIONS = ["N", "E", "S", "O", "ATTENDRE"]
+
+
+@contextlib.contextmanager
+def fils_limites(appareil):
+    """Limite PyTorch a un fil d'execution sur CPU pendant un calcul par lots.
+
+    Les tenseurs manipules ici sont petits : le parallelisme interne de PyTorch n'apporte
+    presque rien, et sur une machine deja chargee il peut ralentir le calcul d'un facteur 50.
+    La variable d'environnement ASCENT_FILS_CPU permet de choisir une autre valeur.
+    """
+    if torch.device(appareil).type != "cpu":
+        yield
+        return
+    avant = torch.get_num_threads()
+    torch.set_num_threads(max(1, int(os.environ.get("ASCENT_FILS_CPU", "1"))))
+    try:
+        yield
+    finally:
+        torch.set_num_threads(avant)
 
 
 def _deltas(appareil) -> torch.Tensor:
@@ -67,9 +88,12 @@ class SimulationLot:
             return torch.zeros(cellules.shape[:2], dtype=torch.bool, device=self.appareil)
         return (cellules[:, :, None, :] == obstacles[:, None, :, :]).all(-1).any(-1)
 
-    @torch.no_grad()
     def executer(self, max_etapes: int = 150, enregistrer: int = 0) -> dict:
         """Lance la campagne. `enregistrer` conserve l'historique des premiers environnements."""
+        with fils_limites(self.appareil), torch.no_grad():
+            return self._executer(max_etapes, enregistrer)
+
+    def _executer(self, max_etapes: int, enregistrer: int) -> dict:
         B, K = self.B, self.K
         debut = time.perf_counter()
         robot = torch.tensor(self.monde.depart, device=self.appareil).repeat(B, 1)
@@ -136,7 +160,13 @@ class SimulationLot:
         return resultat
 
 
-def q_learning_lot(
+def q_learning_lot(monde: Entrepot, *, appareil="cpu", **parametres) -> dict:
+    """Q-learning tabulaire vectorise (voir `_q_learning_lot` pour les parametres)."""
+    with fils_limites(appareil):
+        return _q_learning_lot(monde, appareil=appareil, **parametres)
+
+
+def _q_learning_lot(
     monde: Entrepot,
     *,
     episodes: int = 300,
@@ -230,8 +260,8 @@ class AgentAppris:
                 garde = k != ordre[0]
                 return action, {
                     "couche": "reactive" if garde else "apprise",
-                    "raison": (f"Action preferee bloquee, repli sur {action}" if garde else f"Politique apprise : {action}"),
+                    "raison": (f"Action préférée bloquée, repli sur {action}" if garde else f"Politique apprise : {action}"),
                     "valeurs_q": {NOMS_ACTIONS[i]: round(float(v), 2) for i, v in enumerate(valeurs)},
                     "plan": [],
                 }
-        return "ATTENDRE", {"couche": "reactive", "raison": "Encercle : attente", "plan": []}
+        return "ATTENDRE", {"couche": "reactive", "raison": "Encerclé : attente", "plan": []}

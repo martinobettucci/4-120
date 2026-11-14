@@ -4,8 +4,12 @@ __pycache__/
 .ipynb_checkpoints/
 node_modules/
 web/dist/
-.env.staging
-.env.prod
 *.pyc
 build/
 /python/dist/
+web/public/notebooks/
+web/public/dist/
+web/public/traces/
+web/public/data/
+.ccr-ca.crt
+docs/captures/*.webm.tmp

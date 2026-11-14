@@ -129,7 +129,7 @@ class AgentRobuste(AgentHybride):
         if entropie > self.entropie_max:
             action, infos = "ATTENDRE", {
                 "couche": "reactive",
-                "raison": f"Croyance trop dispersee ({entropie:.1f} bits) : attente pour relocalisation",
+                "raison": f"Croyance trop dispersée ({entropie:.1f} bits) : attente pour relocalisation",
                 "plan": [],
             }
         else:

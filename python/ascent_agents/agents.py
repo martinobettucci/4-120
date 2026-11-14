@@ -113,7 +113,7 @@ class AgentReactif(Agent):
             a = libres[0]
             self.derniere = a
             return a, {"couche": "reactive", "regle": "R3", "raison": f"Impasse : demi-tour par {a}"}
-        return "ATTENDRE", {"couche": "reactive", "regle": "R4", "raison": "Encercle : attente"}
+        return "ATTENDRE", {"couche": "reactive", "regle": "R4", "raison": "Encerclé : attente"}
 
 
 class AgentDeliberatif(Agent):
@@ -135,13 +135,13 @@ class AgentDeliberatif(Agent):
         if not self.plan:
             return "ATTENDRE", {"couche": "deliberative", "raison": "Aucun plan possible", "plan": []}
         if self.indice >= len(self.plan) - 1:
-            return "ATTENDRE", {"couche": "deliberative", "raison": "Plan termine", "plan": []}
+            return "ATTENDRE", {"couche": "deliberative", "raison": "Plan terminé", "plan": []}
         action = action_vers(self.plan[self.indice], self.plan[self.indice + 1])
         reste = self.plan[self.indice :]
         self.indice += 1
-        raison = f"Etape {self.indice} sur {len(self.plan) - 1} du plan initial"
+        raison = f"Étape {self.indice} sur {len(self.plan) - 1} du plan initial"
         if self.indice == 1:
-            raison = f"Plan A* calcule ({self.explores} noeuds explores), execution a l'estime"
+            raison = f"Plan A* calculé ({self.explores} nœuds explorés), exécution à l'estime"
         return action, {"couche": "deliberative", "raison": raison, "plan": reste, "noeuds_explores": self.explores}
 
 
@@ -172,7 +172,7 @@ class AgentHybride(Agent):
         t = observation["etape"]
         position = self.position(observation)
         if not self.monde.est_libre_statique(position):
-            return "ATTENDRE", {"couche": "reactive", "raison": "Position estimee incoherente : attente", "plan": []}
+            return "ATTENDRE", {"couche": "reactive", "raison": "Position estimée incohérente : attente", "plan": []}
         self.temporaires = {c: fin for c, fin in self.temporaires.items() if fin > t}
         infos: dict = {"couche": "deliberative"}
         if self.plan is None or position not in self.plan:
@@ -180,7 +180,7 @@ class AgentHybride(Agent):
             self.replanifications += 1
             infos.update(raison="Planification A* depuis la position courante", noeuds_explores=explores)
         if self.plan is None:
-            return "ATTENDRE", {"couche": "reactive", "raison": "Passage bloque : attente", "plan": []}
+            return "ATTENDRE", {"couche": "reactive", "raison": "Passage bloqué : attente", "plan": []}
         i = self.plan.index(position)
         if i >= len(self.plan) - 1:
             return "ATTENDRE", {"couche": "deliberative", "raison": "Objectif atteint", "plan": []}
@@ -194,7 +194,7 @@ class AgentHybride(Agent):
                 self.plan = None
                 return "ATTENDRE", {
                     "couche": "reactive",
-                    "raison": f"Obstacle imprevu en {action}, aucun detour : attente",
+                    "raison": f"Obstacle imprévu en {action}, aucun détour : attente",
                     "plan": [],
                     "obstacle_detecte": list(self.temporaires),
                 }
@@ -203,10 +203,10 @@ class AgentHybride(Agent):
             if observation["lidar"][action] <= 1:
                 self.temporaires[nouveau[1]] = t + self.memoire_obstacle
                 self.plan = None
-                return "ATTENDRE", {"couche": "reactive", "raison": "Detour egalement bloque : attente", "plan": []}
+                return "ATTENDRE", {"couche": "reactive", "raison": "Détour également bloqué : attente", "plan": []}
             return action, {
                 "couche": "reactive",
-                "raison": f"Obstacle imprevu : replanification, detour par {action}",
+                "raison": f"Obstacle imprévu : replanification, détour par {action}",
                 "plan": nouveau,
                 "noeuds_explores": explores,
                 "obstacle_detecte": [list(c) for c in self.temporaires],

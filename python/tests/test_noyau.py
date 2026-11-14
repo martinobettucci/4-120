@@ -45,9 +45,9 @@ def test_reactif_echoue_dans_le_piege():
 
 
 def test_hybride_gere_l_imprevu():
-    ev = [Evenement(6, (6, 3))]
+    ev = [Evenement(6, (6, 7))]
     d = simuler(creer_scenario("entrepot", evenements=ev), AgentDeliberatif()).bilan
-    h = simuler(creer_scenario("entrepot", evenements=[Evenement(6, (6, 3))]), AgentHybride()).bilan
+    h = simuler(creer_scenario("entrepot", evenements=[Evenement(6, (6, 7))]), AgentHybride()).bilan
     assert h["succes"] and h["collisions"] == 0
     assert d["collisions"] > 0
 

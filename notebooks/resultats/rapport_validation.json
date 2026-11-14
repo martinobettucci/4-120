@@ -1,0 +1,314 @@
+{
+ "date": "2026-11-14",
+ "graine": 4130,
+ "appareil": "cpu",
+ "campagne": {
+  "lot": 4000,
+  "max_etapes": 45,
+  "graine": 4130
+ },
+ "niveaux": [
+  {
+   "nom": "nominal",
+   "domaine": "nominal",
+   "glissement": 0.0,
+   "rate_perception": 0.0,
+   "n_obstacles": 0
+  },
+  {
+   "nom": "léger",
+   "domaine": "nominal",
+   "glissement": 0.05,
+   "rate_perception": 0.05,
+   "n_obstacles": 2
+  },
+  {
+   "nom": "dégradé",
+   "domaine": "dégradé",
+   "glissement": 0.15,
+   "rate_perception": 0.2,
+   "n_obstacles": 6
+  },
+  {
+   "nom": "sévère",
+   "domaine": "dégradé",
+   "glissement": 0.3,
+   "rate_perception": 0.4,
+   "n_obstacles": 10
+  },
+  {
+   "nom": "limite",
+   "domaine": "limite",
+   "glissement": 0.45,
+   "rate_perception": 0.6,
+   "n_obstacles": 16
+  }
+ ],
+ "seuils": {
+  "nominal": {
+   "succès min": 0.98,
+   "collisions max": 0.1
+  },
+  "dégradé": {
+   "succès min": 0.6,
+   "collisions max": 2.5
+  },
+  "limite": {}
+ },
+ "resultats": [
+  {
+   "niveau": "nominal",
+   "domaine": "nominal",
+   "version": "avant correction",
+   "succès": 1.0,
+   "IC bas": 0.999,
+   "IC haut": 1.0,
+   "mission sûre": 1.0,
+   "collisions": 0.0,
+   "étapes (médiane)": 26.0,
+   "étapes (p95)": 26.0,
+   "pas par seconde": 5773108
+  },
+  {
+   "niveau": "nominal",
+   "domaine": "nominal",
+   "version": "après correction",
+   "succès": 1.0,
+   "IC bas": 0.999,
+   "IC haut": 1.0,
+   "mission sûre": 1.0,
+   "collisions": 0.0,
+   "étapes (médiane)": 26.0,
+   "étapes (p95)": 26.0,
+   "pas par seconde": 6372528
+  },
+  {
+   "niveau": "léger",
+   "domaine": "nominal",
+   "version": "avant correction",
+   "succès": 0.984,
+   "IC bas": 0.9796,
+   "IC haut": 0.9874,
+   "mission sûre": 0.705,
+   "collisions": 1.722,
+   "étapes (médiane)": 28.0,
+   "étapes (p95)": 37.0,
+   "pas par seconde": 1457130
+  },
+  {
+   "niveau": "léger",
+   "domaine": "nominal",
+   "version": "après correction",
+   "succès": 0.9915,
+   "IC bas": 0.9881,
+   "IC haut": 0.9939,
+   "mission sûre": 0.949,
+   "collisions": 0.0578,
+   "étapes (médiane)": 28.0,
+   "étapes (p95)": 34.0,
+   "pas par seconde": 1418926
+  },
+  {
+   "niveau": "dégradé",
+   "domaine": "dégradé",
+   "version": "avant correction",
+   "succès": 0.8802,
+   "IC bas": 0.8698,
+   "IC haut": 0.8899,
+   "mission sûre": 0.3448,
+   "collisions": 4.5355,
+   "étapes (médiane)": 33.0,
+   "étapes (p95)": 43.0,
+   "pas par seconde": 975984
+  },
+  {
+   "niveau": "dégradé",
+   "domaine": "dégradé",
+   "version": "après correction",
+   "succès": 0.9383,
+   "IC bas": 0.9304,
+   "IC haut": 0.9453,
+   "mission sûre": 0.6525,
+   "collisions": 0.659,
+   "étapes (médiane)": 32.0,
+   "étapes (p95)": 41.0,
+   "pas par seconde": 943913
+  },
+  {
+   "niveau": "sévère",
+   "domaine": "dégradé",
+   "version": "avant correction",
+   "succès": 0.531,
+   "IC bas": 0.5155,
+   "IC haut": 0.5464,
+   "mission sûre": 0.1725,
+   "collisions": 5.925,
+   "étapes (médiane)": 39.0,
+   "étapes (p95)": 45.0,
+   "pas par seconde": 831609
+  },
+  {
+   "niveau": "sévère",
+   "domaine": "dégradé",
+   "version": "après correction",
+   "succès": 0.6647,
+   "IC bas": 0.65,
+   "IC haut": 0.6792,
+   "mission sûre": 0.3272,
+   "collisions": 1.862,
+   "étapes (médiane)": 39.0,
+   "étapes (p95)": 45.0,
+   "pas par seconde": 790774
+  },
+  {
+   "niveau": "limite",
+   "domaine": "limite",
+   "version": "avant correction",
+   "succès": 0.065,
+   "IC bas": 0.0578,
+   "IC haut": 0.0731,
+   "mission sûre": 0.0255,
+   "collisions": 6.1325,
+   "étapes (médiane)": 43.0,
+   "étapes (p95)": 45.0,
+   "pas par seconde": 543663
+  },
+  {
+   "niveau": "limite",
+   "domaine": "limite",
+   "version": "après correction",
+   "succès": 0.096,
+   "IC bas": 0.0873,
+   "IC haut": 0.1055,
+   "mission sûre": 0.0445,
+   "collisions": 3.0835,
+   "étapes (médiane)": 43.0,
+   "étapes (p95)": 45.0,
+   "pas par seconde": 616704
+  }
+ ],
+ "verdicts": [
+  {
+   "niveau": "nominal",
+   "domaine": "nominal",
+   "version": "avant correction",
+   "verdict": "conforme",
+   "écarts": ""
+  },
+  {
+   "niveau": "nominal",
+   "domaine": "nominal",
+   "version": "après correction",
+   "verdict": "conforme",
+   "écarts": ""
+  },
+  {
+   "niveau": "léger",
+   "domaine": "nominal",
+   "version": "avant correction",
+   "verdict": "NON CONFORME",
+   "écarts": "succès (borne basse 98.0 %) sous le seuil de 98 % ; collisions (1.72) au dessus du seuil de 0.1"
+  },
+  {
+   "niveau": "léger",
+   "domaine": "nominal",
+   "version": "après correction",
+   "verdict": "conforme",
+   "écarts": ""
+  },
+  {
+   "niveau": "dégradé",
+   "domaine": "dégradé",
+   "version": "avant correction",
+   "verdict": "NON CONFORME",
+   "écarts": "collisions (4.54) au dessus du seuil de 2.5"
+  },
+  {
+   "niveau": "dégradé",
+   "domaine": "dégradé",
+   "version": "après correction",
+   "verdict": "conforme",
+   "écarts": ""
+  },
+  {
+   "niveau": "sévère",
+   "domaine": "dégradé",
+   "version": "avant correction",
+   "verdict": "NON CONFORME",
+   "écarts": "succès (borne basse 51.6 %) sous le seuil de 60 % ; collisions (5.93) au dessus du seuil de 2.5"
+  },
+  {
+   "niveau": "sévère",
+   "domaine": "dégradé",
+   "version": "après correction",
+   "verdict": "conforme",
+   "écarts": ""
+  },
+  {
+   "niveau": "limite",
+   "domaine": "limite",
+   "version": "avant correction",
+   "verdict": "observation",
+   "écarts": ""
+  },
+  {
+   "niveau": "limite",
+   "domaine": "limite",
+   "version": "après correction",
+   "verdict": "observation",
+   "écarts": ""
+  }
+ ],
+ "campagne_fine": {
+  "parametres": {
+   "entrepots": 30,
+   "densite": 0.14,
+   "glissement": 0.1,
+   "bruit_lidar": 0.3,
+   "max_etapes": 120
+  },
+  "synthese": [
+   {
+    "agent": "réactif",
+    "succès (%)": 83.3333,
+    "IC à 95 % (%)": "[66 ; 93]",
+    "missions sans collision (%)": 63.3333,
+    "collisions (moyenne)": 1.5333,
+    "allongement médian": 1.1071,
+    "décision moyenne (ms)": 0.0023,
+    "décision max (ms)": 0.3828
+   },
+   {
+    "agent": "délibératif",
+    "succès (%)": 0.0,
+    "IC à 95 % (%)": "[0 ; 11]",
+    "missions sans collision (%)": 3.3333,
+    "collisions (moyenne)": 8.0667,
+    "allongement médian": NaN,
+    "décision moyenne (ms)": 0.0008,
+    "décision max (ms)": 0.0275
+   },
+   {
+    "agent": "hybride",
+    "succès (%)": 100.0,
+    "IC à 95 % (%)": "[89 ; 100]",
+    "missions sans collision (%)": 96.6667,
+    "collisions (moyenne)": 0.0333,
+    "allongement médian": 1.1786,
+    "décision moyenne (ms)": 0.0226,
+    "décision max (ms)": 0.7693
+   },
+   {
+    "agent": "robuste",
+    "succès (%)": 100.0,
+    "IC à 95 % (%)": "[89 ; 100]",
+    "missions sans collision (%)": 96.6667,
+    "collisions (moyenne)": 0.0333,
+    "allongement médian": 1.1786,
+    "décision moyenne (ms)": 0.2245,
+    "décision max (ms)": 2.7493
+   }
+  ]
+ },
+ "decision": "ACCEPTÉ dans les domaines nominal et dégradé"
+}

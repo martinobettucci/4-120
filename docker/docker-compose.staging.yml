@@ -1,0 +1,13 @@
+# Staging : site statique compile, servi par nginx. Variables dans .env.staging
+# Lancement : ./runStaging.sh
+name: ascent4130-staging
+services:
+  site:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.site
+      args:
+        VITE_DEPOT: "${VITE_DEPOT}"
+        VITE_BRANCHE: "${VITE_BRANCHE}"
+    ports: ["${SITE_PORT}:80"]
+    restart: unless-stopped

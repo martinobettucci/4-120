@@ -1,0 +1,9 @@
+# Surcouche GPU pour le developpement : ./runDev.sh --gpu
+# Necessite un pilote NVIDIA et le NVIDIA Container Toolkit sur l'hote.
+services:
+  jupyter:
+    build: { args: { TORCH_INDEX: cu124 } }
+    deploy:
+      resources:
+        reservations:
+          devices: [{ driver: nvidia, count: all, capabilities: [gpu] }]
