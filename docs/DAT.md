@@ -105,13 +105,11 @@ Le routage utilise des ancres (`HashRouter`) et une base relative : le même sit
 
 ## 5. Chaîne de publication
 
-1. Tests unitaires (`pytest`).
-2. `tools/seed.py` : traces, données, notebooks exécutés, paquet Python.
-3. `npm run build` : compilation du site.
-4. `tools/e2e.cjs` : parcours Playwright sur le site compilé.
-5. Publication de `web/dist` sur GitHub Pages (uniquement depuis la branche par défaut).
+1. `tools/build_site.sh` : alimentation (`tools/seed.py`), compilation Vite, copie dans `site/` (dossier versionné).
+2. Poussée sur la branche par défaut : le job `publier` envoie `site/` sur GitHub Pages, sans recompilation.
+3. En parallèle, le job `verifier` relance les tests, exécute les notebooks et parcourt le site versionné avec Playwright. Son échec signale un problème sans bloquer la publication.
 
-Un échec à l'une des étapes 1 à 4 bloque la publication.
+Le site publié est donc exactement celui qui a été vérifié en local.
 
 ## 6. Choix d'architecture et alternatives écartées
 

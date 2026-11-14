@@ -1,0 +1,510 @@
+{
+ "decisions": [
+  "CONTINUER",
+  "RALENTIR",
+  "ARRET",
+  "MAINTENANCE"
+ ],
+ "variables": [
+  {
+   "nom": "batterie",
+   "libelle": "Batterie",
+   "unite": "%",
+   "min": 0,
+   "max": 100
+  },
+  {
+   "nom": "temperature",
+   "libelle": "Température moteur",
+   "unite": "°C",
+   "min": 30,
+   "max": 100
+  },
+  {
+   "nom": "vibration",
+   "libelle": "Vibration",
+   "unite": "mm/s",
+   "min": 0,
+   "max": 8
+  },
+  {
+   "nom": "distance_obstacle",
+   "libelle": "Distance obstacle mesurée",
+   "unite": "m",
+   "min": 0,
+   "max": 6
+  },
+  {
+   "nom": "charge",
+   "libelle": "Charge transportée",
+   "unite": "kg",
+   "min": 0,
+   "max": 100
+  },
+  {
+   "nom": "bruit_capteur",
+   "libelle": "Écart entre deux mesures lidar",
+   "unite": "m",
+   "min": 0,
+   "max": 1.5
+  }
+ ],
+ "regles": [
+  {
+   "id": "R1",
+   "condition": "distance obstacle < 0.6 m",
+   "decision": "ARRET"
+  },
+  {
+   "id": "R2",
+   "condition": "température > 85 °C",
+   "decision": "ARRET"
+  },
+  {
+   "id": "R3",
+   "condition": "vibration > 3.5 mm/s et température > 70 °C",
+   "decision": "MAINTENANCE"
+  },
+  {
+   "id": "R4",
+   "condition": "écart lidar > 0.5 m",
+   "decision": "MAINTENANCE"
+  },
+  {
+   "id": "R5",
+   "condition": "batterie < 20 %",
+   "decision": "RALENTIR"
+  },
+  {
+   "id": "R6",
+   "condition": "distance obstacle < 1.5 m",
+   "decision": "RALENTIR"
+  },
+  {
+   "id": "R7",
+   "condition": "charge > 80 kg et température > 65 °C",
+   "decision": "RALENTIR"
+  }
+ ],
+ "reseau": {
+  "noeuds": [
+   {
+    "id": "usure",
+    "libelle": "Usure mécanique",
+    "a_priori": 0.25
+   },
+   {
+    "id": "charge_lourde",
+    "libelle": "Charge lourde",
+    "a_priori": 0.2
+   },
+   {
+    "id": "encrasse",
+    "libelle": "Capteur encrassé",
+    "a_priori": 0.15
+   },
+   {
+    "id": "vibration_forte",
+    "libelle": "Vibration forte",
+    "a_priori": 0.162
+   },
+   {
+    "id": "surchauffe",
+    "libelle": "Surchauffe",
+    "a_priori": 0.247
+   },
+   {
+    "id": "bruit_capteur",
+    "libelle": "Lidar instable",
+    "a_priori": 0.154
+   },
+   {
+    "id": "panne",
+    "libelle": "Panne imminente",
+    "a_priori": 0.206
+   }
+  ],
+  "arcs": [
+   [
+    "usure",
+    "vibration_forte"
+   ],
+   [
+    "usure",
+    "surchauffe"
+   ],
+   [
+    "charge_lourde",
+    "surchauffe"
+   ],
+   [
+    "encrasse",
+    "bruit_capteur"
+   ],
+   [
+    "usure",
+    "panne"
+   ],
+   [
+    "surchauffe",
+    "panne"
+   ]
+  ]
+ },
+ "cas": [
+  {
+   "id": "nominal",
+   "libelle": "Fonctionnement nominal",
+   "entree": {
+    "batterie": 82,
+    "temperature": 54,
+    "vibration": 1.8,
+    "distance_obstacle": 4.2,
+    "charge": 30,
+    "bruit_capteur": 0.1
+   },
+   "regles": {
+    "decision": "CONTINUER",
+    "declenchees": []
+   },
+   "bayes": {
+    "decision": "CONTINUER",
+    "posterieurs": {
+     "panne": 0.032,
+     "encrasse": 0.035,
+     "usure": 0.036
+    }
+   },
+   "supervise": {
+    "decision": "CONTINUER",
+    "probabilites": {
+     "CONTINUER": 0.919,
+     "RALENTIR": 0.036,
+     "ARRET": 0.017,
+     "MAINTENANCE": 0.029
+    }
+   },
+   "reference": "CONTINUER"
+  },
+  {
+   "id": "obstacle_proche",
+   "libelle": "Obstacle à 40 cm",
+   "entree": {
+    "batterie": 75,
+    "temperature": 56,
+    "vibration": 2.0,
+    "distance_obstacle": 0.4,
+    "charge": 25,
+    "bruit_capteur": 0.12
+   },
+   "regles": {
+    "decision": "ARRET",
+    "declenchees": [
+     "R1",
+     "R6"
+    ]
+   },
+   "bayes": {
+    "decision": "ARRET",
+    "posterieurs": {
+     "panne": 0.032,
+     "encrasse": 0.035,
+     "usure": 0.036
+    }
+   },
+   "supervise": {
+    "decision": "ARRET",
+    "probabilites": {
+     "CONTINUER": 0.0,
+     "RALENTIR": 0.177,
+     "ARRET": 0.817,
+     "MAINTENANCE": 0.005
+    }
+   },
+   "reference": "ARRET"
+  },
+  {
+   "id": "batterie_faible",
+   "libelle": "Batterie faible",
+   "entree": {
+    "batterie": 12,
+    "temperature": 52,
+    "vibration": 1.9,
+    "distance_obstacle": 3.5,
+    "charge": 20,
+    "bruit_capteur": 0.09
+   },
+   "regles": {
+    "decision": "RALENTIR",
+    "declenchees": [
+     "R5"
+    ]
+   },
+   "bayes": {
+    "decision": "RALENTIR",
+    "posterieurs": {
+     "panne": 0.032,
+     "encrasse": 0.035,
+     "usure": 0.036
+    }
+   },
+   "supervise": {
+    "decision": "RALENTIR",
+    "probabilites": {
+     "CONTINUER": 0.007,
+     "RALENTIR": 0.967,
+     "ARRET": 0.005,
+     "MAINTENANCE": 0.022
+    }
+   },
+   "reference": "RALENTIR"
+  },
+  {
+   "id": "usure_franche",
+   "libelle": "Vibration forte et surchauffe",
+   "entree": {
+    "batterie": 64,
+    "temperature": 78,
+    "vibration": 4.6,
+    "distance_obstacle": 3.0,
+    "charge": 35,
+    "bruit_capteur": 0.15
+   },
+   "regles": {
+    "decision": "MAINTENANCE",
+    "declenchees": [
+     "R3"
+    ]
+   },
+   "bayes": {
+    "decision": "MAINTENANCE",
+    "posterieurs": {
+     "panne": 0.848,
+     "encrasse": 0.035,
+     "usure": 0.997
+    }
+   },
+   "supervise": {
+    "decision": "MAINTENANCE",
+    "probabilites": {
+     "CONTINUER": 0.145,
+     "RALENTIR": 0.001,
+     "ARRET": 0.004,
+     "MAINTENANCE": 0.85
+    }
+   },
+   "reference": "MAINTENANCE"
+  },
+  {
+   "id": "usure_discrete",
+   "libelle": "Vibration forte, moteur tiède",
+   "entree": {
+    "batterie": 70,
+    "temperature": 66,
+    "vibration": 4.0,
+    "distance_obstacle": 3.8,
+    "charge": 20,
+    "bruit_capteur": 0.11
+   },
+   "regles": {
+    "decision": "CONTINUER",
+    "declenchees": []
+   },
+   "bayes": {
+    "decision": "RALENTIR",
+    "posterieurs": {
+     "panne": 0.303,
+     "encrasse": 0.035,
+     "usure": 0.858
+    }
+   },
+   "supervise": {
+    "decision": "CONTINUER",
+    "probabilites": {
+     "CONTINUER": 0.693,
+     "RALENTIR": 0.002,
+     "ARRET": 0.007,
+     "MAINTENANCE": 0.298
+    }
+   },
+   "reference": "MAINTENANCE"
+  },
+  {
+   "id": "charge_lourde",
+   "libelle": "Surchauffe expliquée par la charge",
+   "entree": {
+    "batterie": 68,
+    "temperature": 73,
+    "vibration": 2.1,
+    "distance_obstacle": 3.2,
+    "charge": 92,
+    "bruit_capteur": 0.1
+   },
+   "regles": {
+    "decision": "RALENTIR",
+    "declenchees": [
+     "R7"
+    ]
+   },
+   "bayes": {
+    "decision": "RALENTIR",
+    "posterieurs": {
+     "panne": 0.407,
+     "encrasse": 0.035,
+     "usure": 0.349
+    }
+   },
+   "supervise": {
+    "decision": "RALENTIR",
+    "probabilites": {
+     "CONTINUER": 0.015,
+     "RALENTIR": 0.861,
+     "ARRET": 0.014,
+     "MAINTENANCE": 0.11
+    }
+   },
+   "reference": "RALENTIR"
+  },
+  {
+   "id": "surchauffe_inexpliquee",
+   "libelle": "Surchauffe sans charge ni vibration",
+   "entree": {
+    "batterie": 66,
+    "temperature": 76,
+    "vibration": 2.6,
+    "distance_obstacle": 3.4,
+    "charge": 15,
+    "bruit_capteur": 0.12
+   },
+   "regles": {
+    "decision": "CONTINUER",
+    "declenchees": []
+   },
+   "bayes": {
+    "decision": "MAINTENANCE",
+    "posterieurs": {
+     "panne": 0.644,
+     "encrasse": 0.035,
+     "usure": 0.697
+    }
+   },
+   "supervise": {
+    "decision": "MAINTENANCE",
+    "probabilites": {
+     "CONTINUER": 0.296,
+     "RALENTIR": 0.004,
+     "ARRET": 0.013,
+     "MAINTENANCE": 0.686
+    }
+   },
+   "reference": "MAINTENANCE"
+  },
+  {
+   "id": "capteur_encrasse",
+   "libelle": "Lidar instable",
+   "entree": {
+    "batterie": 77,
+    "temperature": 55,
+    "vibration": 2.2,
+    "distance_obstacle": 2.4,
+    "charge": 40,
+    "bruit_capteur": 0.85
+   },
+   "regles": {
+    "decision": "MAINTENANCE",
+    "declenchees": [
+     "R4"
+    ]
+   },
+   "bayes": {
+    "decision": "MAINTENANCE",
+    "posterieurs": {
+     "panne": 0.032,
+     "encrasse": 0.779,
+     "usure": 0.036
+    }
+   },
+   "supervise": {
+    "decision": "MAINTENANCE",
+    "probabilites": {
+     "CONTINUER": 0.067,
+     "RALENTIR": 0.003,
+     "ARRET": 0.0,
+     "MAINTENANCE": 0.93
+    }
+   },
+   "reference": "MAINTENANCE"
+  },
+  {
+   "id": "surchauffe_critique",
+   "libelle": "Surchauffe critique",
+   "entree": {
+    "batterie": 58,
+    "temperature": 91,
+    "vibration": 3.0,
+    "distance_obstacle": 2.8,
+    "charge": 60,
+    "bruit_capteur": 0.14
+   },
+   "regles": {
+    "decision": "ARRET",
+    "declenchees": [
+     "R2"
+    ]
+   },
+   "bayes": {
+    "decision": "ARRET",
+    "posterieurs": {
+     "panne": 0.644,
+     "encrasse": 0.035,
+     "usure": 0.697
+    }
+   },
+   "supervise": {
+    "decision": "ARRET",
+    "probabilites": {
+     "CONTINUER": 0.012,
+     "RALENTIR": 0.002,
+     "ARRET": 0.984,
+     "MAINTENANCE": 0.003
+    }
+   },
+   "reference": "ARRET"
+  }
+ ],
+ "scores": {
+  "regles": {
+   "exactitude": 0.853
+  },
+  "bayes": {
+   "exactitude": 0.802
+  },
+  "supervise": {
+   "exactitude": 0.81
+  }
+ },
+ "medical": {
+  "sensibilite": 0.95,
+  "specificite": 0.9,
+  "prevalences": [
+   0.001,
+   0.005,
+   0.01,
+   0.02,
+   0.05,
+   0.1,
+   0.2,
+   0.5
+  ],
+  "vpp": [
+   0.0094,
+   0.0456,
+   0.0876,
+   0.1624,
+   0.3333,
+   0.5135,
+   0.7037,
+   0.9048
+  ]
+ }
+}

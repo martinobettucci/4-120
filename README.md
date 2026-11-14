@@ -41,7 +41,14 @@ Instructions détaillées : [docs/DEVELOPPEMENT.md](docs/DEVELOPPEMENT.md).
 
 ## Publication sur GitHub Pages
 
-Le workflow `.github/workflows/pages.yml` exécute les tests, régénère les données, exécute les six notebooks, compile le site, lance le parcours Playwright puis publie `web/dist`.
+Le site est compilé en local puis versionné dans `site/` :
+
+```bash
+tools/build_site.sh             # reprend les notebooks exécutés du dépôt
+tools/build_site.sh --executer  # relance aussi les six notebooks
+```
+
+Le workflow `.github/workflows/pages.yml` publie ce dossier tel quel. Les vérifications (tests, exécution des notebooks, parcours Playwright) tournent en parallèle et ne bloquent pas la publication.
 
 Réglage à faire une seule fois dans le dépôt : **Settings, Pages, Build and deployment, Source : GitHub Actions**. La publication part ensuite à chaque poussée sur la branche par défaut.
 

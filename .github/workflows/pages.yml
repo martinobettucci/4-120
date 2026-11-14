@@ -1,5 +1,6 @@
-# Verifie le projet (tests, notebooks, parcours du site) puis publie le site sur GitHub Pages.
+# Publie sur GitHub Pages le site deja compile et versionne dans site/ (tools/build_site.sh).
 # Prerequis, une seule fois : Settings > Pages > Build and deployment > Source : "GitHub Actions".
+# Les verifications (tests, notebooks, parcours) tournent en parallele et ne bloquent pas la publication.
 name: Publication GitHub Pages
 
 on:
@@ -17,7 +18,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  construire:
+  publier:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploiement
+        uses: actions/deploy-pages@v4
+
+  verifier:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -40,37 +55,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: web/package-lock.json
-      - name: Compilation du site
-        run: cd web && npm ci --no-audit --no-fund && npm run
-        env:
-          VITE_DEPOT: ${{ github.repository }}
-          VITE_BRANCHE: ${{ github.ref_name }}
-      - name: Parcours de bout en bout (Playwright)
+      - name: Parcours de bout en bout du site versionne (Playwright)
         run: |
           mkdir -p /tmp/e2e && (cd /tmp/e2e && npm init -y >/dev/null && npm i --no-audit --no-fund playwright@1.63.0 && npx playwright install --with-deps chromium)
-          ls -la web/dist
-          python -m http.server 4173 --bind 127.0.0.1 --directory web/dist >/dev/null 2>&1 &
+          python -m http.server 4173 --bind 127.0.0.1 --directory site >/dev/null 2>&1 &
           for i in $(seq 1 20); do curl -sf -o /dev/null http://127.0.0.1:4173/ && break; sleep 1; done
-          curl -sI http://127.0.0.1:4173/ | head -1
           NODE_PATH=/tmp/e2e/node_modules node tools/e2e.cjs http://127.0.0.1:4173
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: captures
           path: docs/captures
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: web/dist
-
-  publier:
-    needs: construire
-    if: github.ref_name == github.event.repository.default_branch
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deploiement.outputs.page_url }}
-    steps:
-      - id: deploiement
-        uses: actions/deploy-pages@v4

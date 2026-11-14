@@ -13,5 +13,6 @@ Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémant
 - Scène 3D explicative : lecture, pause, étape par étape, retour à l'état initial, comparaison de deux exécutions, couches (capteurs, plan, trajectoire, croyance, position observée), vue éclatée du robot.
 - Six animations explicatives pilotables étape par étape, alimentées par les données des notebooks.
 - Environnements Docker de développement (autonome et auto-alimenté), de recette et de production, avec les lanceurs `runDev.sh`, `runStaging.sh` et `runProd.sh`.
-- Workflow GitHub Actions : tests, exécution des notebooks, compilation, parcours Playwright, publication sur GitHub Pages.
+- Site compilé versionné dans `site/` (`tools/build_site.sh`) et workflow GitHub Actions qui le publie sur GitHub Pages, avec vérifications non bloquantes en parallèle (tests, notebooks, parcours Playwright).
+- Message de repli lorsque WebGL est indisponible dans le navigateur.
 - Documentation : dossier d'architecture technique, guide de développement, journal de conception, syllabus et consignes de production.
