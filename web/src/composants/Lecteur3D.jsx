@@ -68,19 +68,25 @@ export default function Lecteur3D({ catalogue, initialA, initialB = '', hauteur 
   const [erreur, setErreur] = useState('');
 
   useEffect(() => {
-    scene.current = new Scene3D(conteneur.current);
-    return () => scene.current.dispose();
+    // Sans WebGL (poste sans accélération graphique), la page reste utilisable sans la scène.
+    try {
+      scene.current = new Scene3D(conteneur.current);
+    } catch (e) {
+      setErreur("La scène 3D demande WebGL, indisponible dans ce navigateur. Les animations et les notebooks restent accessibles.");
+      return undefined;
+    }
+    return () => { scene.current?.dispose(); scene.current = null; };
   }, []);
 
   useEffect(() => {
     let annule = false;
-    setErreur('');
+    if (scene.current) setErreur('');
     Promise.all([idA === '__import' ? importee : chargerTrace(idA), idB ? chargerTrace(idB) : null])
       .then(([a, b]) => {
         if (annule) return;
         setTraces([a, b]);
-        scene.current.definirTraces([a, b]);
-        scene.current.definirCouches(couches);
+        scene.current?.definirTraces([a, b]);
+        scene.current?.definirCouches(couches);
         setT(0);
         setLecture(false);
       })
@@ -152,9 +158,9 @@ export default function Lecteur3D({ catalogue, initialA, initialB = '', hauteur 
       <div className="lecteur-corps">
         <div className="vue3d" ref={conteneur} style={{ minHeight: hauteur }} data-testid="vue3d">
           <div className="vues">
-            <button onClick={() => scene.current.vue('trois-quarts')}>Vue d'ensemble</button>
-            <button onClick={() => scene.current.vue('dessus')}>Vue de dessus</button>
-            <button onClick={() => scene.current.vue('robot')}>Près du robot</button>
+            <button onClick={() => scene.current?.vue('trois-quarts')}>Vue d'ensemble</button>
+            <button onClick={() => scene.current?.vue('dessus')}>Vue de dessus</button>
+            <button onClick={() => scene.current?.vue('robot')}>Près du robot</button>
           </div>
           <div className="aide3d">Glisser pour tourner, molette pour zoomer, clic droit pour déplacer</div>
         </div>

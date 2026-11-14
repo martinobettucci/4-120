@@ -33,11 +33,11 @@ services:
   # Tests de bout en bout Playwright, avec captures JPEG et video WebM dans docs/captures.
   e2e:
     profiles: ["e2e"]
-    image: mcr.microsoft.com/playwright:v1.49.1-noble
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
     working_dir: /app
     volumes: ["..:/app"]
     environment: { NODE_PATH: /e2e/node_modules }
-    command: ["sh", "-c", "mkdir -p /e2e && cd /e2e && npm init -y >/dev/null && npm i --no-audit --no-fund playwright@1.49.1 >/dev/null && cd /app && node tools/e2e.cjs http://web:5173 --video"]
+    command: ["sh", "-c", "mkdir -p /e2e && cd /e2e && npm init -y >/dev/null && npm i --no-audit --no-fund playwright@1.63.0 >/dev/null && cd /app && node tools/e2e.cjs http://web:5173 --video"]
     depends_on: { web: { condition: service_healthy } }
 volumes:
   web_modules:
