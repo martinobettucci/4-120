@@ -34,9 +34,9 @@ Pour six modules : 4 h 30 de théorie et de démonstrations, 7 h 30 de travaux p
 
 Chaque module suit le même cycle : problème, animation explicative, décomposition visuelle 3D, algorithme et code Python, exécution en notebook, simulation, modification des paramètres, observation des résultats, synthèse.
 
-## 3 bis. Module 0, panorama des concepts
+## 3 bis. Module 0, les fondamentaux pas à pas
 
-Un prélude, hors des 12 heures du syllabus, présente les 20 notions de la formation dans l'ordre des modules. Chaque notion comporte une animation en boucle (pause et curseur pour commenter un instant précis), une explication, un exemple tiré du fil rouge, un commentaire destiné à l'animation en salle et un exercice à correction immédiate. Il se parcourt avant la session ou en ouverture de chaque demi-journée.
+Un prélude, hors des 12 heures du syllabus, enseigne les 20 notions de la formation à un public qui les découvre. Chaque notion est une leçon de 8 à 10 minutes en six temps : situer (situation, objectif, vocabulaire), prédire, observer une démonstration découpée en étapes commentées, comprendre par un exemple résolu, s'exercer (application puis transfert, avec explication de chaque réponse), retenir. Les principes appliqués et leurs sources sont décrits dans `docs/pedagogie.md`.
 
 ## 4. Jour 1, agents et décision
 

@@ -67,7 +67,7 @@
    "collisions": 0.0,
    "étapes (médiane)": 26.0,
    "étapes (p95)": 26.0,
-   "pas par seconde": 5773108
+   "pas par seconde": 3400767
   },
   {
    "niveau": "nominal",
@@ -80,7 +80,7 @@
    "collisions": 0.0,
    "étapes (médiane)": 26.0,
    "étapes (p95)": 26.0,
-   "pas par seconde": 6372528
+   "pas par seconde": 3788426
   },
   {
    "niveau": "léger",
@@ -93,7 +93,7 @@
    "collisions": 1.722,
    "étapes (médiane)": 28.0,
    "étapes (p95)": 37.0,
-   "pas par seconde": 1457130
+   "pas par seconde": 1207508
   },
   {
    "niveau": "léger",
@@ -106,7 +106,7 @@
    "collisions": 0.0578,
    "étapes (médiane)": 28.0,
    "étapes (p95)": 34.0,
-   "pas par seconde": 1418926
+   "pas par seconde": 1392832
   },
   {
    "niveau": "dégradé",
@@ -119,7 +119,7 @@
    "collisions": 4.5355,
    "étapes (médiane)": 33.0,
    "étapes (p95)": 43.0,
-   "pas par seconde": 975984
+   "pas par seconde": 1028622
   },
   {
    "niveau": "dégradé",
@@ -132,7 +132,7 @@
    "collisions": 0.659,
    "étapes (médiane)": 32.0,
    "étapes (p95)": 41.0,
-   "pas par seconde": 943913
+   "pas par seconde": 978858
   },
   {
    "niveau": "sévère",
@@ -145,7 +145,7 @@
    "collisions": 5.925,
    "étapes (médiane)": 39.0,
    "étapes (p95)": 45.0,
-   "pas par seconde": 831609
+   "pas par seconde": 876677
   },
   {
    "niveau": "sévère",
@@ -158,7 +158,7 @@
    "collisions": 1.862,
    "étapes (médiane)": 39.0,
    "étapes (p95)": 45.0,
-   "pas par seconde": 790774
+   "pas par seconde": 818829
   },
   {
    "niveau": "limite",
@@ -171,7 +171,7 @@
    "collisions": 6.1325,
    "étapes (médiane)": 43.0,
    "étapes (p95)": 45.0,
-   "pas par seconde": 543663
+   "pas par seconde": 712524
   },
   {
    "niveau": "limite",
@@ -184,7 +184,7 @@
    "collisions": 3.0835,
    "étapes (médiane)": 43.0,
    "étapes (p95)": 45.0,
-   "pas par seconde": 616704
+   "pas par seconde": 717157
   }
  ],
  "verdicts": [
@@ -275,8 +275,8 @@
     "missions sans collision (%)": 63.3333,
     "collisions (moyenne)": 1.5333,
     "allongement médian": 1.1071,
-    "décision moyenne (ms)": 0.0023,
-    "décision max (ms)": 0.3828
+    "décision moyenne (ms)": 0.0014,
+    "décision max (ms)": 0.1241
    },
    {
     "agent": "délibératif",
@@ -285,8 +285,8 @@
     "missions sans collision (%)": 3.3333,
     "collisions (moyenne)": 8.0667,
     "allongement médian": NaN,
-    "décision moyenne (ms)": 0.0008,
-    "décision max (ms)": 0.0275
+    "décision moyenne (ms)": 0.0006,
+    "décision max (ms)": 0.0388
    },
    {
     "agent": "hybride",
@@ -295,8 +295,8 @@
     "missions sans collision (%)": 96.6667,
     "collisions (moyenne)": 0.0333,
     "allongement médian": 1.1786,
-    "décision moyenne (ms)": 0.0226,
-    "décision max (ms)": 0.7693
+    "décision moyenne (ms)": 0.0148,
+    "décision max (ms)": 0.3391
    },
    {
     "agent": "robuste",
@@ -305,8 +305,8 @@
     "missions sans collision (%)": 96.6667,
     "collisions (moyenne)": 0.0333,
     "allongement médian": 1.1786,
-    "décision moyenne (ms)": 0.2245,
-    "décision max (ms)": 2.7493
+    "décision moyenne (ms)": 0.1475,
+    "décision max (ms)": 0.7214
    }
   ]
  },

@@ -18,6 +18,9 @@ import time
 from pathlib import Path
 
 import nbformat
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pedagogie_notebooks as pedagogie  # noqa: E402
 from nbclient import NotebookClient
 from nbconvert import HTMLExporter
 
@@ -50,6 +53,11 @@ def convertir(source: Path) -> nbformat.NotebookNode:
         elif type_courant is not None:
             lignes.append(ligne)
     fermer()
+    # Cellules pedagogiques communes : ouverture apres le titre, auto-evaluation a la fin.
+    numero = source.name[:2]
+    if numero in pedagogie.NOTEBOOKS:
+        cellules.insert(1, nbformat.v4.new_markdown_cell(pedagogie.ouverture(numero)))
+        cellules.append(nbformat.v4.new_markdown_cell(pedagogie.cloture(numero)))
     nb = nbformat.v4.new_notebook(cells=cellules)
     nb.metadata["kernelspec"] = {"display_name": "Python 3", "language": "python", "name": "python3"}
     nb.metadata["language_info"] = {"name": "python"}

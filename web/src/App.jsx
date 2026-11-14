@@ -3,11 +3,13 @@ import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import Accueil from './pages/Accueil.jsx';
 import Module from './pages/Module.jsx';
 import Panorama from './pages/Panorama.jsx';
+import Lecon from './pages/Lecon.jsx';
 import Atelier from './pages/Atelier.jsx';
 import Notebooks from './pages/Notebooks.jsx';
 import PageMarkdown from './pages/PageMarkdown.jsx';
 import syllabus from '../../docs/syllabus-4-130.md?raw';
 import consignes from '../../docs/consignes-production.md?raw';
+import pedagogie from '../../docs/pedagogie.md?raw';
 import { MODULES } from './modules.js';
 
 function HautDePage() {
@@ -27,7 +29,7 @@ export default function App() {
           <div className="menu-modules">
             <span>Modules</span>
             <div className="sous-menu">
-              <NavLink to="/module/0"><b>0</b> Panorama des concepts</NavLink>
+              <NavLink to="/module/0"><b>0</b> Les fondamentaux, pas à pas</NavLink>
               {MODULES.map((m) => <NavLink key={m.n} to={`/module/${m.n}`}><b>{m.n}</b> {m.titre}</NavLink>)}
             </div>
           </div>
@@ -41,7 +43,9 @@ export default function App() {
           <Route path="/" element={<Accueil />} />
           <Route path="/syllabus" element={<PageMarkdown source={syllabus} surtitre="Référentiel officiel ASCENT, Lot 4" />} />
           <Route path="/consignes" element={<PageMarkdown source={consignes} surtitre="Cahier de conception pédagogique" />} />
+          <Route path="/pedagogie" element={<PageMarkdown source={pedagogie} surtitre="Méthodes et sources" />} />
           <Route path="/module/0" element={<Panorama />} />
+          <Route path="/module/0/:id" element={<Lecon />} />
           <Route path="/module/:n" element={<Module />} />
           <Route path="/notebooks" element={<Notebooks />} />
           <Route path="/atelier" element={<Atelier />} />

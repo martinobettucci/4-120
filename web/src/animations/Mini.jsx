@@ -32,7 +32,9 @@ export function Regles(t) {
 export function Bayes(t) {
   const phase = t < 0.3 ? 0 : t < 0.6 ? 1 : 2;
   const g = alea(7);
-  const pts = Array.from({ length: 200 }, (_, i) => { const malade = i < 10; const positif = malade ? g() < 0.9 : g() < 0.1; return { malade, positif }; });
+  // Effectifs exacts de la leçon : 9 pannes détectées sur 10, 19 fausses alertes sur 190 robots sains.
+  const sains = Array.from({ length: 190 }, (_, i) => [g(), i]).sort((x, y) => x[0] - y[0]).slice(0, 19).map((x) => x[1] + 10);
+  const pts = Array.from({ length: 200 }, (_, i) => { const malade = i < 10; return { malade, positif: malade ? i < 9 : sains.includes(i) }; });
   const vp = pts.filter((p) => p.malade && p.positif).length;
   const fp = pts.filter((p) => !p.malade && p.positif).length;
   return (
@@ -51,8 +53,8 @@ export function Bayes(t) {
 
 export function Reseau(t) {
   const ev = seuil(t, 0.25, 0.3);
-  const pu = 0.25 + 0.47 * doux(seuil(t, 0.3, 0.55));
-  const ps = 0.2 + 0.36 * doux(seuil(t, 0.55, 0.8));
+  const pu = 0.25 + 0.477 * doux(seuil(t, 0.3, 0.55));
+  const ps = 0.225 + 0.235 * doux(seuil(t, 0.55, 0.8));
   const noeud = (x, y, nom, p, observe) => (
     <g>
       <rect x={x - 70} y={y - 24} width="140" height="48" rx="24" fill={observe ? COUL.jaune : 'var(--carte)'} stroke={COUL.bleu} strokeWidth="2" />
@@ -67,7 +69,7 @@ export function Reseau(t) {
       <line x1="220" y1="64" x2="120" y2="136" stroke={COUL.gris} strokeWidth="2" />
       <line x1="220" y1="64" x2="320" y2="136" stroke={COUL.gris} strokeWidth="2" />
       {noeud(220, 44, 'Usure (cause cachée)', pu, false)}
-      {noeud(110, 160, 'Vibration', ev ? 1 : 0.3, ev > 0)}
+      {noeud(110, 160, 'Vibration', ev ? 1 : 0.275, ev > 0)}
       {noeud(310, 160, 'Surchauffe', ps, false)}
       <text x="220" y="216" textAnchor="middle" {...D}>{ev ? 'Vibration observée : la probabilité de la cause remonte, puis celle de l\'autre effet' : 'Avant toute observation : probabilités a priori'}</text>
     </Cadre>

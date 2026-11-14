@@ -14,7 +14,7 @@ export default function Accueil() {
           <h1>Les agents autonomes<br />et aide à la décision</h1>
           <p className="chapo">Deux jours pour concevoir, optimiser et valider des agents intelligents, autour d'un fil rouge : un robot autonome dans un entrepôt logistique simulé. Chaque concept est expliqué par une animation, décomposé dans une scène 3D, puis expérimenté dans un notebook Python.</p>
           <div className="actions">
-            <Link className="bouton" to="/module/0">Commencer par le panorama</Link>
+            <Link className="bouton" to="/module/0">Commencer par les fondamentaux</Link>
             <Link className="bouton secondaire" to="/module/1">Jour 1</Link>
             <Link className="bouton secondaire" to="/syllabus">Lire le syllabus officiel</Link>
           </div>
@@ -37,8 +37,8 @@ export default function Accueil() {
         <h2>Programme</h2>
         <Link to="/module/0" className="carte module zero">
           <span className="numero">Module 0 · Prélude</span>
-          <h4>Panorama des concepts</h4>
-          <p>Les 20 notions de la formation en animations, avec explications, exemples, commentaires et exercices. À parcourir avant la session ou en ouverture de chaque demi-journée.</p>
+          <h4>Les fondamentaux, pas à pas</h4>
+          <p>Vingt leçons guidées pour qui découvre le sujet : une situation, une prédiction, une démonstration commentée étape par étape, un exemple résolu, des exercices corrigés. Aucun prérequis en IA.</p>
         </Link>
         {[1, 2].map((jour) => (
           <div key={jour}>

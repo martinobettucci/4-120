@@ -56,7 +56,7 @@ Réglage à faire une seule fois dans le dépôt : **Settings, Pages, Build and 
 
 | Jour | Module | Notebook |
 | --- | --- | --- |
-| Prélude | 0. Panorama des concepts (20 notions animées, avec exercices), hors des 12 heures | (page du site) |
+| Prélude | 0. Les fondamentaux, pas à pas : 20 leçons guidées (prédiction, démonstration commentée, exemple résolu, exercices corrigés), hors des 12 heures | (pages du site) |
 | 1 | 1. Solutions IA pour la prise de décision | `01_solutions_ia_decision.ipynb` |
 | 1 | 2. Concept des agents intelligents et interactions avec l'environnement | `02_agent_environnement.ipynb` |
 | 1 | 3. Architecture des agents intelligents | `03_architectures_agents.ipynb` |
@@ -68,6 +68,7 @@ Réglage à faire une seule fois dans le dépôt : **Settings, Pages, Build and 
 
 - [Syllabus officiel 4-130](docs/syllabus-4-130.md)
 - [Consignes de production pédagogique](docs/consignes-production.md)
+- [Démarche pédagogique, méthodes et sources](docs/pedagogie.md)
 - [Dossier d'architecture technique](docs/DAT.md)
 - [Développement, données de départ et tests](docs/DEVELOPPEMENT.md)
 - [Journal de conception](docs/journal.md)

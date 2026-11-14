@@ -90,6 +90,9 @@ Chaque notebook commence par une cellule d'installation (sans effet si la biblio
 | Lecteur | `web/src/composants/Lecteur3D.jsx` | Transport (lecture, pause, étape, retour), comparaison, import, panneau de décision |
 | Cadre d'animation | `web/src/composants/Animation.jsx` | Étapes, lecture automatique, navigation au clavier |
 | Animations | `web/src/animations/AnimM1.jsx` à `AnimM6.jsx` | Une séquence par module |
+| Leçons du module 0 | `web/src/lecons/notions.js`, `web/src/pages/Lecon.jsx`, `web/src/animations/Mini.jsx` | Contenu des 20 leçons, déroulé en six temps, animations segmentées |
+| Pédagogie des modules | `web/src/lecons/modules-pedagogie.js`, `web/src/composants/Qcm.jsx` | Objectifs, prérequis, missions d'observation, quiz avec retour explicatif |
+| Progression | `web/src/lecons/progression.js` | Suivi local dans le navigateur, sans envoi de données |
 | Contenu | `web/src/modules.js`, `docs/*.md` | Texte des modules, syllabus et consignes (source unique, rendue par `marked`) |
 
 Le routage utilise des ancres (`HashRouter`) et une base relative : le même site fonctionne sous `https://<compte>.github.io/<dépôt>/`, derrière nginx ou ouvert depuis un simple serveur de fichiers.

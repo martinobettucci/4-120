@@ -24,6 +24,12 @@
 
 **Un module 0.** Les modules supposaient le vocabulaire acquis. Le panorama installe les 20 notions avant d'entrer dans les algorithmes : une animation courte par notion, calculée en direct quand c'est possible (A*, retour arrière, itération de valeur), et un exercice dont la correction explique le pourquoi.
 
+**Du démonstrateur à la leçon.** Retour reçu sur le module 0 : des animations qui montrent, mais qui n'enseignent pas à quelqu'un qui découvre le sujet. Le diagnostic est juste. Une boucle d'animation suppose que l'on sait déjà quoi regarder. Après lecture des cadres de conception pédagogique (Merrill, Gagné, Mayer, charge cognitive, récupération en mémoire), chaque notion est devenue une leçon en six temps. Trois changements pèsent plus que les autres : l'animation s'arrête à chaque étape et dit où regarder, un exemple chiffré est résolu pas à pas avec les mêmes nombres que l'animation, et chaque réponse à un exercice reçoit une explication, y compris les mauvaises.
+
+**Faire prédire avant de montrer.** La démonstration ne se lance qu'après une prédiction. L'apprenant qui s'est engagé sur « 90 % » pour le test de panne regarde autrement les 28 alertes dont 9 seulement sont fondées.
+
+**Ce qui reste à valider.** Rien de cela n'a été mesuré sur de vrais apprenants. La première session dira quelles questions sont trop faciles et quelles étapes sont trop longues.
+
 ## Pistes ouvertes
 
 - Mesurer les gains GPU sur la machine de formation et les reporter dans les notebooks.

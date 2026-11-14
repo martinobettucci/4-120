@@ -41,19 +41,49 @@ const compteur = await page.locator('.compteur').first().textContent();
 if (webgl) verifier(!compteur.startsWith('Étape 0 '), `accueil : la lecture 3D avance (${compteur.trim()})`);
 else verifier((await page.textContent('main')).includes('demande WebGL'), 'accueil : message de repli sans WebGL');
 
-// Module 0 : panorama des concepts
+// Module 0 : sommaire, puis une leçon déroulée de bout en bout comme le ferait un apprenant
 await page.goto(`${base}/#/module/0`);
-await page.waitForSelector('.concept');
-verifier((await page.locator('.concept').count()) === 20, 'module 0 : vingt notions');
-verifier((await page.locator('.concept .mini svg').count()) === 20, 'module 0 : vingt animations');
-await page.locator('.concept').first().locator('.choix button').nth(2).click();
-verifier((await page.locator('[data-testid=progression] + .score').textContent()).startsWith('1'), 'module 0 : exercice corrigé et compté');
-await page.waitForTimeout(1500);
-await capture('m0-panorama-haut');
-for (const id of ['bayes', 'astar', 'contraintes', 'qlearning', 'confiance']) {
-  await page.locator(`#${id}`).scrollIntoViewIfNeeded();
-  await page.waitForTimeout(2600);
-  await page.locator(`#${id}`).screenshot({ path: `${sortie}/m0-${id}.jpg`, type: 'jpeg', quality: 82 });
+await page.waitForSelector('.lecon-carte');
+verifier((await page.locator('.lecon-carte').count()) === 20, 'module 0 : vingt leçons au sommaire');
+await capture('m0-sommaire');
+await page.goto(`${base}/#/module/0/bayes`);
+await page.waitForSelector('.accroche');
+verifier((await page.locator('.mots div').count()) >= 3, 'leçon : vocabulaire défini avant la démonstration');
+await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-1-situer.jpg`, type: 'jpeg', quality: 82 });
+await page.locator('[data-testid=continuer]').click();
+verifier(await page.locator('[data-testid=continuer]').isDisabled(), 'leçon : la démonstration attend une prédiction');
+await page.locator('[data-testid=pari]').first().click();
+await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-2-predire.jpg`, type: 'jpeg', quality: 82 });
+await page.locator('[data-testid=continuer]').click();
+const nbEtapes = await page.locator('.demo-etapes li').count();
+for (let k = 0; k < nbEtapes; k++) {
+  await page.locator(k === 0 ? '[data-testid=jouer-etape]' : '[data-testid=etape-suivante]').click();
+  await page.waitForFunction(() => !document.querySelector('[data-testid=jouer-etape]').textContent.includes('en cours'), null, { timeout: 20000 });
+  verifier((await page.locator('.narration .regard').count()) === 1, `leçon : étape ${k + 1} commentée, avec consigne d'observation`);
+  if (k === 1) await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-3-observer.jpg`, type: 'jpeg', quality: 82 });
+}
+await page.locator('[data-testid=continuer]').click();
+verifier((await page.locator('.verdict').count()) === 1, 'leçon : retour sur la prédiction');
+while (await page.locator('[data-testid=pas-suivant]').count()) await page.locator('[data-testid=pas-suivant]').click();
+verifier((await page.locator('.exemple-resolu .resultat').count()) === 1, 'leçon : exemple résolu pas à pas');
+await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-4-comprendre.jpg`, type: 'jpeg', quality: 82 });
+await page.locator('[data-testid=continuer]').click();
+// Une mauvaise réponse d'abord, pour vérifier le retour explicatif, puis les bonnes
+await page.locator('.exercice').nth(0).locator('.choix button').nth(0).click();
+verifier((await page.locator('.exercice').nth(0).locator('.retour.faux').count()) === 1, 'leçon : retour explicatif sur une mauvaise réponse');
+await page.locator('.exercice').nth(0).locator('.choix button').nth(1).click();
+await page.locator('.exercice').nth(1).locator('.choix button').nth(2).click();
+await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-5-exercer.jpg`, type: 'jpeg', quality: 82 });
+await page.locator('[data-testid=continuer]').click();
+verifier((await page.locator('.a-retenir').count()) === 1, 'leçon : point à retenir');
+await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-6-retenir.jpg`, type: 'jpeg', quality: 82 });
+await page.goto(`${base}/#/module/0`);
+verifier((await page.locator('.score').textContent()).startsWith('1'), 'module 0 : la leçon terminée est comptée comme acquise');
+// Chaque leçon s'ouvre et son animation se dessine
+for (const id of ['regles', 'lidar', 'hybride', 'contraintes', 'croyance', 'graine']) {
+  await page.goto(`${base}/#/module/0/${id}`);
+  await page.getByLabel('Tout afficher (mode formateur)').check();
+  verifier((await page.locator('.demo-scene svg').count()) === 1 && (await page.locator('.temps-carte').count()) === 6, `leçon ${id} : six temps affichés en mode formateur`);
 }
 
 // Les six modules
@@ -80,6 +110,9 @@ for (let n = 1; n <= 6; n++) {
     verifier((await page.locator('.decision .raison').first().textContent()).length > 5, `module ${n} : la décision est expliquée`);
     await page.locator('.lecteur').screenshot({ path: `${sortie}/m${n}-scene3d.jpg`, type: 'jpeg', quality: 82 });
   }
+  verifier((await page.locator('.objectifs li').count()) >= 3 && (await page.locator('.prerequis a').count()) >= 3, `module ${n} : objectifs et prérequis`);
+  verifier((await page.locator('.quiz .exercice').count()) === 3, `module ${n} : quiz de fin`);
+  if (n === 3) { await page.locator('.mission').scrollIntoViewIfNeeded(); await page.locator('.mission').screenshot({ path: `${sortie}/m3-mission.jpg`, type: 'jpeg', quality: 82 }); }
   const liens = await page.locator('.carte.notebook a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
   for (const lien of liens.filter((l) => l.startsWith('notebooks/'))) {
     const r = await page.request.get(`${base}/${lien}`);

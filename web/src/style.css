@@ -215,3 +215,77 @@ select { font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid 
 .sommaire b { color: var(--accent); }
 .carte.module.zero { border-top-color: var(--jaune); margin-bottom: 6px; }
 @media (max-width: 900px) { .concept { grid-template-columns: 1fr; } }
+
+/* Leçons guidées du module 0 */
+.page.lecon { max-width: 1060px; }
+.lecon-barre { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin: 6px 0 14px; }
+.temps { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; }
+.temps button { display: flex; align-items: center; gap: 7px; border: 1px solid var(--bord); background: var(--carte); color: var(--texte-doux); border-radius: 999px; padding: 5px 13px 5px 5px; font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+.temps span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--plan-sol); font-size: 0.78rem; }
+.temps .actif button { background: var(--bleu); border-color: var(--bleu); color: #fff; }
+.temps .actif span { background: var(--jaune); color: var(--noir); }
+.temps .fait span { background: var(--vert); color: #fff; }
+.formateur { font-size: 0.86rem; color: var(--texte-doux); display: flex; gap: 6px; align-items: center; cursor: pointer; }
+.temps-carte h2 { margin: 0 0 10px; font-size: 1.2rem; color: var(--accent); }
+.temps-carte h3 { font-size: 1rem; margin: 16px 0 6px; }
+.temps-carte > .bouton { margin-top: 16px; }
+.bouton:disabled { opacity: 0.4; cursor: not-allowed; }
+.accroche { font-size: 1.12rem; line-height: 1.55; border-left: 6px solid var(--jaune); padding: 4px 0 4px 14px; margin: 0 0 14px; }
+.objectif { background: var(--plan-sol); border-radius: 10px; padding: 10px 14px; margin: 0; }
+.mots { margin: 0; display: grid; gap: 6px; }
+.mots div { display: grid; grid-template-columns: 190px 1fr; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--bord); }
+.mots dt { font-weight: 700; color: var(--accent); }
+.mots dd { margin: 0; }
+.mots.glossaire { background: var(--carte); border: 1px solid var(--bord); border-radius: 14px; padding: 8px 18px; }
+.conseil { color: var(--texte-doux); font-size: 0.93rem; margin: 6px 0; }
+.rappel { margin-top: 16px; border-top: 1px dashed var(--bord); padding-top: 8px; }
+.choix button.pari { border-color: var(--bleu); background: color-mix(in srgb, var(--bleu) 14%, var(--carte)); font-weight: 700; }
+.question { font-size: 1.03rem; margin: 10px 0 8px; }
+.demo { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 18px; margin: 12px 0; }
+.demo-scene { background: var(--fond); border: 1px solid var(--bord); border-radius: 12px; overflow: hidden; align-self: start; }
+.demo-commandes { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 8px 10px; border-top: 1px solid var(--bord); }
+.demo-commandes button { border: 1px solid var(--bord); background: var(--carte); color: var(--texte); border-radius: 9px; padding: 7px 12px; font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; }
+.demo-compteur { margin-left: auto; font-size: 0.85rem; color: var(--texte-doux); }
+.demo-etapes { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; align-content: start; }
+.demo-etapes li { border: 1px solid var(--bord); border-radius: 12px; background: var(--carte); overflow: hidden; }
+.demo-etapes li > button { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; border: none; background: none; color: var(--texte); font: inherit; font-weight: 700; padding: 9px 12px; cursor: pointer; }
+.demo-etapes li > button span { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--plan-sol); font-size: 0.8rem; flex: none; }
+.demo-etapes li.active { border-color: var(--bleu); box-shadow: 0 0 0 2px color-mix(in srgb, var(--bleu) 25%, transparent); }
+.demo-etapes li.active > button span { background: var(--bleu); color: #fff; }
+.demo-etapes li.vue > button span { background: var(--vert); color: #fff; }
+.narration { padding: 0 14px 10px 48px; }
+.narration p { margin: 0 0 8px; }
+.regard { background: color-mix(in srgb, var(--jaune) 30%, var(--carte)); border-radius: 8px; padding: 6px 10px; font-size: 0.94rem; }
+.verdict { border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; border-left: 6px solid; }
+.verdict.juste { border-color: var(--vert); background: color-mix(in srgb, var(--vert) 10%, var(--carte)); }
+.verdict.faux { border-color: var(--orange, #e07b1a); background: color-mix(in srgb, #e07b1a 10%, var(--carte)); }
+.exemple-resolu { border: 1px solid var(--bord); border-radius: 12px; padding: 12px 16px; margin: 10px 0; }
+.exemple-resolu ol { margin: 8px 0; padding-left: 22px; display: grid; gap: 6px; }
+.exemple-resolu li { animation: apparaitre 0.4s; }
+.resultat { background: color-mix(in srgb, var(--vert) 12%, var(--carte)); border-radius: 8px; padding: 8px 12px; margin: 8px 0 0; }
+.piege { border-left: 6px solid var(--rouge); background: color-mix(in srgb, var(--rouge) 7%, var(--carte)); border-radius: 0 10px 10px 0; padding: 10px 14px; margin-top: 12px; }
+.a-retenir { font-size: 1.2rem; font-weight: 700; border-left: 6px solid var(--vert); padding-left: 14px; }
+.indice { background: color-mix(in srgb, var(--jaune) 25%, var(--carte)); border-radius: 8px; padding: 6px 10px; margin: 8px 0 0; font-size: 0.93rem; }
+button.lien { border: none; background: none; color: var(--accent); text-decoration: underline; cursor: pointer; font: inherit; font-size: 0.9rem; padding: 6px 0 0; }
+.exercice + .exercice { margin-top: 12px; }
+.retour { color: var(--texte); }
+.methode { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.methode li { display: flex; gap: 10px; font-size: 0.93rem; }
+.methode span { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--bleu); color: #fff; font-size: 0.78rem; flex: none; margin-top: 2px; }
+.lecon-carte.acquise { border-top-color: var(--vert); }
+.lecon-carte p { font-size: 0.92rem; }
+@keyframes apparaitre { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+/* Modules 1 à 6 : objectifs, prérequis, mission, quiz */
+.objectifs { margin: 0; padding-left: 20px; display: grid; gap: 4px; }
+.prerequis { display: flex; flex-wrap: wrap; gap: 8px; }
+.prerequis a { text-decoration: none; background: var(--plan-sol); color: var(--texte); border: 1px solid var(--bord); border-radius: 999px; padding: 5px 12px; font-size: 0.9rem; font-weight: 600; }
+.prerequis a:hover { border-color: var(--accent); }
+.avant { background: color-mix(in srgb, var(--jaune) 25%, var(--carte)); border-radius: 10px; padding: 10px 14px; }
+.mission { padding-left: 22px; display: grid; gap: 14px; margin: 8px 0 0; }
+.mission p { margin: 0 0 4px; }
+.reponse { background: color-mix(in srgb, var(--vert) 10%, var(--carte)); border-radius: 8px; padding: 8px 12px; }
+.quiz .exercice { background: none; padding: 6px 0; }
+.sous-titre { margin-top: 20px; }
+.pieges { list-style: none; padding: 0; display: grid; gap: 8px; }
+.pieges li { border-left: 6px solid var(--rouge); background: var(--carte); border-radius: 0 10px 10px 0; padding: 9px 14px; }
+@media (max-width: 900px) { .demo { grid-template-columns: 1fr; } .mots div { grid-template-columns: 1fr; gap: 0; } }

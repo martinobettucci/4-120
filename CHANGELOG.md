@@ -2,6 +2,20 @@
 
 Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémantique.
 
+## [1.2.0] 2026-11-14
+
+### Modifié
+
+- Module 0 entièrement repensé comme un parcours d'apprentissage : vingt leçons d'une page, en six temps (situer, prédire, observer, comprendre, s'exercer, retenir). L'animation ne tourne plus en boucle : elle avance par étapes commentées, avec une consigne d'observation à chaque étape.
+- Modules 1 à 6 : objectifs observables, prérequis reliés aux leçons, consigne de prédiction avant l'animation, mission d'observation guidée de la scène 3D, quiz de fin et erreurs fréquentes.
+- Notebooks : cellule « Avant de commencer » (prérequis, méthode lire, prédire, exécuter, modifier) et cellule « Auto-évaluation ».
+
+### Ajouté
+
+- Exemple résolu pas à pas, erreur fréquente, question d'application avec indice et question de transfert pour chaque leçon, avec une explication pour chaque réponse possible.
+- Rappel espacé d'une leçon antérieure en début de leçon, suivi de progression dans le navigateur, glossaire, mode formateur.
+- `docs/pedagogie.md` : cadres de référence (Merrill, Gagné, Mayer, charge cognitive, récupération en mémoire, prédire, observer, expliquer), sources et application dans le dépôt. Page « Méthodes et sources » sur le site.
+
 ## [1.1.0] 2026-11-14
 
 ### Ajouté
