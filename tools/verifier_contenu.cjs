@@ -24,7 +24,7 @@ const qcm = (id, nom, q) => {
   });
   if (new Set(q.choix.map((c) => c[0])).size !== q.choix.length) dire(id, `${nom} : choix en double`);
 };
-const interdits = /[—–]|viol|\$\$|\\frac/i;
+const interdits = /[\u2014\u2013]|viol|\$\$|\\frac/i;
 for (const n of NOTIONS) {
   for (const c of ['id', 'module', 'nom', 'anim', 'duree', 'accroche', 'objectif', 'mots', 'prediction', 'etapes', 'exemple', 'piege', 'exercice', 'transfert', 'retenir', 'ailleurs', 'theorie', 'atelier']) if (n[c] === undefined || n[c] === null) dire(n.id, `champ manquant : ${c}`);
   let prec = 0;
