@@ -30,6 +30,12 @@
 
 **Ce qui reste à valider.** Rien de cela n'a été mesuré sur de vrais apprenants. La première session dira quelles questions sont trop faciles et quelles étapes sont trop longues.
 
+**Savoir exécuter n'est pas savoir concevoir.** Second retour : les exercices vérifiaient que l'apprenant donnait la même réponse que la machine, pas qu'il saurait écrire un système à règles ou une politique. C'est un défaut d'alignement entre objectif et évaluation. Chaque leçon se valide maintenant par une construction, exécutée par le système. L'atelier de règles en donne le ton : un cahier des charges, des règles à écrire, un banc de huit cas dont deux ne passent que si l'ordre de priorité est bon.
+
+**Des ateliers étalonnés.** Un atelier trop facile ne mesure rien. Le recuit a été étalonné par simulation : mal réglé, il finit à 15 à 38 % de la meilleure tournée, bien réglé à 3 à 8 %, et le seuil est à 8 %. Pour la politique, le trajet le plus court longe la zone interdite et tombe à 75 % de réussite avec les déviations, contre 99 % pour le trajet prudent : le seuil de 90 % oblige à raisonner sur les transitions.
+
+**La théorie manquait.** Montrer un mécanisme ne le définit pas. Chaque leçon expose maintenant le modèle, la formule, l'algorithme et les limites. Et le périmètre a été élargi là où le syllabus cite une notion sans ses fondations : on ne peut pas « utiliser un réseau de neurones » sans avoir vu un neurone, ni « apprendre une politique » sans savoir ce qu'est une politique.
+
 ## Pistes ouvertes
 
 - Mesurer les gains GPU sur la machine de formation et les reporter dans les notebooks.

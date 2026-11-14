@@ -3,11 +3,13 @@ import { Link, useParams } from 'react-router-dom';
 import { NOTIONS, BLOCS } from '../lecons/notions.js';
 import { marquer, useProgression } from '../lecons/progression.js';
 import Qcm from '../composants/Qcm.jsx';
+import Theorie from '../composants/Theorie.jsx';
+import { ATELIERS } from '../ateliers/Ateliers.jsx';
 
 // Une leçon du module 0. Six temps, inspirés des principes de Merrill et de Gagné :
-// situer, prédire, observer une démonstration segmentée, comprendre par un exemple résolu,
-// s'exercer avec un retour explicatif, retenir et transférer.
-const TEMPS = ['Situer', 'Prédire', 'Observer', 'Comprendre', "S'exercer", 'Retenir'];
+// situer, prédire, observer une démonstration segmentée, étudier le cours et un exemple résolu,
+// construire soi-même l'objet étudié dans un atelier, retenir et transférer.
+const TEMPS = ['Situer', 'Prédire', 'Observer', 'Le cours', 'Construire', 'Retenir'];
 
 function Demonstration({ n, surFin }) {
   const [k, setK] = useState(0);
@@ -94,6 +96,7 @@ export default function Lecon() {
   const rappel = i >= 2 ? NOTIONS[i - 2] : null;
   const bloc = BLOCS.find((b) => b.module === n.module);
   const visible = (k) => tout || temps === k;
+  const AtelierCourant = ATELIERS[n.atelier.type];
   const Suite = ({ vers, texte, inactif }) => <button className="bouton" disabled={inactif} onClick={() => { setTemps(vers); window.scrollTo({ top: 0, behavior: 'smooth' }); }} data-testid="continuer">{texte} →</button>;
 
   return (
@@ -149,25 +152,34 @@ export default function Lecon() {
 
       {visible(3) && (
         <section className="carte temps-carte">
-          <h2>4. Comprendre</h2>
+          <h2>4. Le cours</h2>
           {pari !== undefined && (
             <div className={`verdict ${pari === n.prediction.ok ? 'juste' : 'faux'}`}>
               <b>Retour sur votre prédiction.</b> Vous aviez répondu « {n.prediction.choix[pari]} ». {pari === n.prediction.ok ? "C'est bien ce que montre la démonstration." : `La démonstration montre autre chose : « ${n.prediction.choix[n.prediction.ok]} ». Cet écart est utile : c'est précisément l'idée à corriger.`}
             </div>
           )}
+          <p className="conseil">Vous avez vu le mécanisme fonctionner. Voici maintenant ce qu'il est exactement : sa définition, son modèle, son algorithme et ses limites.</p>
+          <Theorie blocs={n.theorie} />
           <ExempleResolu ex={n.exemple} />
           <div className="piege"><b>Erreur fréquente.</b> {n.piege}</div>
-          {!tout && <Suite vers={4} texte="À moi de jouer" />}
+          {!tout && <Suite vers={4} texte="À moi de construire" />}
         </section>
       )}
 
       {visible(4) && (
         <section className="carte temps-carte">
-          <h2>5. S'exercer</h2>
-          <p className="conseil">Deux questions. La première applique la notion au robot. La seconde la transpose dans un autre domaine : c'est le vrai test de compréhension. Chaque réponse, juste ou non, reçoit une explication.</p>
-          <Qcm {...n.exercice} etiquette="Application" memo={prog[n.id]?.application} surReussite={(premier) => marquer(n.id, 'application', premier ? 'direct' : 'aide')} />
-          <Qcm {...n.transfert} etiquette="Transfert" memo={prog[n.id]?.transfert} surReussite={(premier) => marquer(n.id, 'transfert', premier ? 'direct' : 'aide')} />
-          {!tout && <Suite vers={5} texte="Ce que je retiens" inactif={!(prog[n.id]?.application && prog[n.id]?.transfert)} />}
+          <h2>5. Construire</h2>
+          <h3 className="atelier-titre">Atelier : {n.atelier.titre}</h3>
+          <p className="mission-atelier">{n.atelier.mission}</p>
+          <AtelierCourant config={n.atelier.config} surReussite={() => marquer(n.id, 'atelier')} />
+          {prog[n.id]?.atelier && <p className="acquis-atelier">Atelier réussi : cette leçon est acquise.</p>}
+          <details className="controle">
+            <summary>Deux questions rapides pour vérifier le vocabulaire et le transfert</summary>
+            <Qcm {...n.exercice} etiquette="Application" />
+            <Qcm {...n.transfert} etiquette="Transfert" />
+          </details>
+          {!tout && <Suite vers={5} texte="Ce que je retiens" inactif={!prog[n.id]?.atelier} />}
+          {!tout && !prog[n.id]?.atelier && <p className="conseil">Réussissez l'atelier pour valider la leçon. Chaque essai vous indique quoi corriger.</p>}
         </section>
       )}
 

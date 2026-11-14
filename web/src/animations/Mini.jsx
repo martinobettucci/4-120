@@ -406,3 +406,108 @@ export function Graine(t) {
     </Cadre>
   );
 }
+
+// ------------------------------------------------------------------ Leçons ajoutées
+export function Neurone(t) {
+  const ph = t < 0.25 ? 0 : t < 0.5 ? 1 : t < 0.75 ? 2 : 3;
+  const entree = (y, nom, x, w, prod) => (
+    <g>
+      <circle cx="60" cy={y} r="24" fill="var(--carte)" stroke={COUL.bleu} strokeWidth="2.5" />
+      <text x="60" y={y + 5} textAnchor="middle" fontSize="14" fontWeight="700" fill="var(--texte)">{x}</text>
+      <text x="60" y={y - 32} textAnchor="middle" {...D}>{nom}</text>
+      <line x1="86" y1={y} x2="232" y2="112" stroke={COUL.gris} strokeWidth={ph >= 1 ? 3 : 1.5} />
+      <text x="150" y={y + (y < 112 ? -4 : 22)} textAnchor="middle" fontSize="12.5" fill={COUL.orange} fontWeight="700">poids {w}</text>
+      {ph >= 1 && <text x="196" y={y < 112 ? 86 : 150} textAnchor="middle" fontSize="12.5" fontWeight="700" fill="var(--texte)">{prod}</text>}
+    </g>
+  );
+  return (
+    <Cadre>
+      {entree(60, 'x₁ température', '0,8', '0,9', '0,72')}{entree(165, 'x₂ vibration', '0,3', '0,6', '0,18')}
+      <circle cx="262" cy="112" r="32" fill={ph >= 2 ? COUL.bleu : 'var(--carte)'} stroke={COUL.bleu} strokeWidth="2.5" />
+      <text x="262" y="108" textAnchor="middle" fontSize="12" fill={ph >= 2 ? '#fff' : 'var(--texte-doux)'}>somme</text>
+      <text x="262" y="125" textAnchor="middle" fontSize="14" fontWeight="700" fill={ph >= 2 ? '#fff' : 'var(--texte)'}>{ph >= 2 ? '0,10' : '?'}</text>
+      <text x="262" y="66" textAnchor="middle" fontSize="12.5" fill={COUL.orange} fontWeight="700">biais -0,8</text>
+      <line x1="296" y1="112" x2="350" y2="112" stroke={COUL.gris} strokeWidth="2.5" />
+      <rect x="350" y="88" width="76" height="48" rx="10" fill={ph >= 3 ? COUL.rouge : 'var(--carte)'} stroke={COUL.rouge} strokeWidth="2.5" />
+      <text x="388" y="118" textAnchor="middle" fontSize="15" fontWeight="700" fill={ph >= 3 ? '#fff' : 'var(--texte)'}>{ph >= 3 ? '1' : '?'}</text>
+      <text x="220" y="212" textAnchor="middle" {...T}>{['Deux mesures entrent dans le neurone', 'Chaque mesure est multipliée par son poids', '0,72 + 0,18 - 0,8 = 0,10', 'Somme positive : sortie 1, « arrêter »'][ph]}</text>
+    </Cadre>
+  );
+}
+
+export function Gradient(t) {
+  const taux = 0.25; const ws = [-1]; for (let k = 0; k < 8; k++) ws.push(ws[k] - taux * 2 * (ws[k] - 3));
+  const n = Math.min(8, Math.floor(t * 9)); const X = (w) => 40 + ((w + 2) / 7) * 360; const Y = (w) => 180 - ((w - 3) ** 2) * 9;
+  const w = ws[n]; const pente = 2 * (w - 3);
+  return (
+    <Cadre>
+      <polyline points={Array.from({ length: 71 }, (_, i) => { const x = -2 + i * 0.1; return `${X(x)},${Y(x)}`; }).join(' ')} fill="none" stroke="var(--texte)" strokeWidth="2.5" />
+      <polyline points={ws.slice(0, n + 1).map((x) => `${X(x)},${Y(x)}`).join(' ')} fill="none" stroke={COUL.orange} strokeDasharray="4 3" />
+      {ws.slice(0, n + 1).map((x, k) => <circle key={k} cx={X(x)} cy={Y(x)} r={k === n ? 8 : 4} fill={k === n ? COUL.jaune : COUL.orange} stroke={COUL.noir} strokeWidth={k === n ? 2 : 0} />)}
+      <text x="40" y="22" {...T} fontWeight="700">Perte L(w) = (w - 3)²</text>
+      <text x="40" y="206" {...T}>Pas {n} : w = {w.toFixed(2)}, pente = {pente.toFixed(2)}, perte = {((w - 3) ** 2).toFixed(2)}</text>
+      <text x="40" y="224" {...D}>w ← w - 0,25 × pente : plus la pente est forte, plus le pas est grand</text>
+    </Cadre>
+  );
+}
+
+export function Utilite(t) {
+  const p = 0.2 * t; const cont = p * 200; const arr = (1 - p) * 10; const mieux = cont < arr ? 0 : 1;
+  const barre = (y, nom, v, k) => (
+    <g><text x="20" y={y + 15} {...T} fontWeight={mieux === k ? 700 : 400}>{nom}</text>
+      <rect x="150" y={y} width={Math.min(260, v * 6.5)} height="22" rx="5" fill={mieux === k ? COUL.vert : COUL.gris} />
+      <text x={158 + Math.min(260, v * 6.5)} y={y + 16} {...T} fontWeight="700">{v.toFixed(1)} €</text></g>
+  );
+  return (
+    <Cadre>
+      <text x="20" y="26" {...T} fontWeight="700">Probabilité de panne : {(p * 100).toFixed(1)} %</text>
+      <rect x="20" y="36" width="400" height="10" rx="5" fill="var(--plan-sol)" /><rect x="20" y="36" width={400 * (p / 0.2)} height="10" rx="5" fill={COUL.orange} />
+      <line x1={20 + 400 * (0.0476 / 0.2)} y1="30" x2={20 + 400 * (0.0476 / 0.2)} y2="52" stroke={COUL.noir} strokeWidth="2" strokeDasharray="4 3" />
+      <text x={20 + 400 * (0.0476 / 0.2)} y="66" textAnchor="middle" {...D}>seuil 4,8 %</text>
+      {barre(92, 'Continuer', cont, 0)}{barre(132, 'Arrêter', arr, 1)}
+      <text x="20" y="190" {...D}>Coût espéré = probabilité × coût. Panne non évitée : 200 €. Arrêt inutile : 10 €.</text>
+      <text x="20" y="214" {...T} fontWeight="700">Décision la moins coûteuse : {mieux === 0 ? 'continuer' : 'arrêter'}</text>
+    </Cadre>
+  );
+}
+
+export function Recommandation(t) {
+  const ph = t < 0.3 ? 0 : t < 0.6 ? 1 : 2;
+  const noms = ['Ana', 'Ben', 'Chloé', 'Dan']; const notes = [[5, 4, 1, 5], [4, 5, 2, 4], [5, 5, 1, null], [1, 2, 5, 1]];
+  return (
+    <Cadre>
+      {['Film A', 'Film B', 'Film C', 'Film D'].map((f, j) => <text key={f} x={150 + j * 68} y="24" textAnchor="middle" {...D} fontWeight="700">{f}</text>)}
+      {noms.map((n, i) => (
+        <g key={n} opacity={ph >= 1 && i === 3 ? 0.3 : 1}>
+          <text x="30" y={58 + i * 40} {...T} fontWeight={i === 2 ? 700 : 400}>{n}</text>
+          {notes[i].map((v, j) => {
+            const cible = i === 2 && j === 3; const voisin = ph >= 1 && (i === 0 || i === 1);
+            return (<g key={j}><rect x={122 + j * 68} y={36 + i * 40} width="56" height="32" rx="6" fill={cible ? (ph === 2 ? COUL.vert : COUL.jaune) : voisin ? 'color-mix(in srgb, #23468C 22%, var(--carte))' : 'var(--plan-sol)'} />
+              <text x={150 + j * 68} y={58 + i * 40} textAnchor="middle" fontSize="15" fontWeight="700" fill={cible && ph === 2 ? '#fff' : 'var(--texte)'}>{cible ? (ph === 2 ? '4,5' : '?') : v}</text></g>);
+          })}
+        </g>
+      ))}
+      <text x="220" y="216" textAnchor="middle" {...T}>{['Chloé n\'a pas vu le film D : quelle note lui donnerait-elle ?', 'Ana et Ben ont noté les autres films comme Chloé', 'Prédiction : moyenne de leurs notes, (5 + 4) / 2 = 4,5'][ph]}</text>
+    </Cadre>
+  );
+}
+
+export function Mdp(t) {
+  const ph = t < 0.25 ? 0 : t < 0.5 ? 1 : t < 0.75 ? 2 : 3; const c = 56; const ox = 120; const oy = 14;
+  const cell = (x, y, f) => <rect x={ox + x * c + 2} y={oy + y * c + 2} width={c - 4} height={c - 4} rx="6" fill={f} />;
+  const fl = (dx, dy, p, coul) => (<g><line x1={ox + 1.5 * c} y1={oy + 1.5 * c} x2={ox + (1.5 + dx * 0.78) * c} y2={oy + (1.5 + dy * 0.78) * c} stroke={coul} strokeWidth={2 + p * 6} strokeLinecap="round" />
+    <text x={ox + (1.5 + dx * 1.0) * c + (dx ? 0 : 22)} y={oy + (1.5 + dy * 0.62) * c + (dx ? -8 : 4)} textAnchor="middle" fontSize="12.5" fontWeight="700" fill={coul}>{Math.round(p * 100)} %</text></g>);
+  return (
+    <Cadre>
+      {[0, 1, 2].map((y) => [0, 1, 2, 3].map((x) => <g key={`${x}-${y}`}>{cell(x, y, x === 3 && y === 1 ? COUL.vert : x === 2 && y === 2 ? COUL.rouge : 'var(--plan-sol)')}</g>))}
+      <text x={ox + 3.5 * c} y={oy + 1.5 * c + 7} textAnchor="middle" fontSize="20" fill="#fff">★</text>
+      {ph >= 2 && <>{fl(1, 0, 0.8, COUL.bleu)}{fl(0, -1, 0.1, COUL.gris)}{fl(0, 1, 0.1, COUL.gris)}</>}
+      {ph === 1 && <text x={ox + 1.5 * c + 30} y={oy + 1.5 * c + 8} fontSize="26" fontWeight="700" fill={COUL.bleu}>→</text>}
+      <circle cx={ox + (ph === 3 ? 2.5 : 1.5) * c} cy={oy + 1.5 * c} r="14" fill={COUL.bleu} stroke="#fff" strokeWidth="2" />
+      <text x="16" y="60" {...D}>état s</text><text x="16" y="78" {...T} fontWeight="700">case (2, 2)</text>
+      {ph >= 1 && <><text x="16" y="110" {...D}>action a</text><text x="16" y="128" {...T} fontWeight="700">est</text></>}
+      {ph >= 3 && <><text x="366" y="60" {...D}>récompense</text><text x="366" y="78" {...T} fontWeight="700">-0,05</text></>}
+      <text x="220" y="212" textAnchor="middle" {...T}>{["L'état : tout ce qu'il faut savoir pour décider", "L'action choisie par la politique dans cet état", 'La transition est incertaine : P(s′ | s, a)', "Nouvel état, et récompense reçue pour ce pas"][ph]}</text>
+    </Cadre>
+  );
+}

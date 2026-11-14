@@ -289,3 +289,55 @@ button.lien { border: none; background: none; color: var(--accent); text-decorat
 .pieges { list-style: none; padding: 0; display: grid; gap: 8px; }
 .pieges li { border-left: 6px solid var(--rouge); background: var(--carte); border-radius: 0 10px 10px 0; padding: 9px 14px; }
 @media (max-width: 900px) { .demo { grid-template-columns: 1fr; } .mots div { grid-template-columns: 1fr; gap: 0; } }
+
+/* Cours (théorie) et ateliers de construction */
+.theorie section { margin: 0 0 14px; }
+.theorie h3 { font-size: 1.02rem; margin: 14px 0 6px; color: var(--texte); border-left: 4px solid var(--bleu); padding-left: 10px; }
+.theorie p { margin: 0 0 8px; max-width: 86ch; }
+.theorie ul { margin: 0 0 8px; padding-left: 22px; display: grid; gap: 3px; }
+.theorie pre { margin: 6px 0 10px; font-size: 0.88rem; line-height: 1.5; }
+.formule { font-family: ui-monospace, 'Cascadia Code', Menlo, monospace; background: var(--plan-sol); border-left: 4px solid var(--jaune); border-radius: 0 8px 8px 0; padding: 8px 12px; font-size: 0.95rem; overflow-x: auto; }
+.atelier-titre { font-size: 1.12rem !important; margin: 0 0 4px !important; }
+.mission-atelier { border-left: 6px solid var(--jaune); padding: 4px 0 4px 12px; }
+.atelier { border: 2px solid var(--bord); border-radius: 14px; padding: 14px 16px; margin: 12px 0; background: var(--fond); }
+.atelier.deux { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.atelier svg { width: 100%; height: auto; display: block; font-family: inherit; max-width: 520px; }
+.atelier .bouton { margin-top: 10px; }
+.bilan { border-radius: 10px; padding: 10px 14px; margin: 12px 0 0; border-left: 6px solid; }
+.bilan.juste { border-color: var(--vert); background: color-mix(in srgb, var(--vert) 12%, var(--carte)); }
+.bilan.faux { border-color: #e07b1a; background: color-mix(in srgb, #e07b1a 10%, var(--carte)); }
+.cahier { background: var(--carte); border: 1px solid var(--bord); border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; }
+.cahier ul { margin: 6px 0 0; padding-left: 20px; }
+.regles-edit { list-style: none; padding: 0; margin: 10px 0; display: grid; gap: 6px; }
+.regles-edit li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; background: var(--carte); border: 1px solid var(--bord); border-radius: 10px; padding: 6px 10px; }
+.regles-edit input { width: 64px; font: inherit; padding: 5px 6px; border-radius: 8px; border: 1px solid var(--bord); background: var(--carte); color: var(--texte); }
+.regles-edit .defaut { border-style: dashed; }
+.fleches { display: inline-flex; flex-direction: column; gap: 1px; }
+.fleches button { border: 1px solid var(--bord); background: var(--carte); color: var(--texte); border-radius: 5px; font-size: 0.6rem; line-height: 1; padding: 3px 6px; cursor: pointer; }
+.fleches button:disabled { opacity: 0.3; }
+.banc { margin-top: 12px; font-size: 0.88rem; }
+.champs { padding-left: 22px; display: grid; gap: 10px; margin: 10px 0; }
+.champs label { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.saisie { display: inline-flex; align-items: center; gap: 6px; }
+.saisie input { width: 90px; font: inherit; padding: 5px 8px; border-radius: 8px; border: 1px solid var(--bord); background: var(--carte); color: var(--texte); }
+.saisie em { font-style: normal; color: var(--texte-doux); }
+.marque.juste { color: var(--vert); font-weight: 700; margin-left: 8px; }
+.aide-champ { display: block; color: #b25c00; font-size: 0.9rem; margin-top: 2px; }
+.donnees { width: auto; margin-bottom: 10px; background: var(--carte); }
+.donnees th, .donnees td { text-align: center; min-width: 64px; }
+.parsons { list-style: none; padding: 0; margin: 10px 0; display: grid; gap: 4px; }
+.parsons li { display: flex; align-items: center; gap: 8px; background: #101827; border-radius: 8px; padding: 4px 8px; border-left: 5px solid transparent; }
+.parsons li.juste { border-left-color: var(--vert); }
+.parsons li.faux { border-left-color: var(--rouge); }
+.parsons code { background: none; color: #e8ecf5; white-space: pre; font-size: 0.88rem; overflow-x: auto; }
+.curseur { display: grid; grid-template-columns: 220px 1fr; align-items: center; gap: 10px; margin: 6px 0; }
+.curseur input { accent-color: var(--bleu); width: 100%; }
+.grille-edit rect { transition: fill 0.15s; }
+.acquis-atelier { color: var(--vert); font-weight: 700; }
+.controle { margin-top: 16px; border-top: 1px dashed var(--bord); padding-top: 10px; }
+.controle summary, .cours-notion summary { cursor: pointer; font-weight: 600; }
+.cours-notion { background: var(--carte); border: 1px solid var(--bord); border-radius: 12px; padding: 10px 16px; margin: 8px 0; }
+.cours-notion summary { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.cours-notion summary span { color: var(--texte-doux); font-weight: 400; font-size: 0.9rem; }
+.cours-notion[open] summary { margin-bottom: 8px; }
+@media (max-width: 900px) { .atelier.deux { grid-template-columns: 1fr; } .curseur { grid-template-columns: 1fr; } }

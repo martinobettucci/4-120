@@ -3,7 +3,7 @@
 export const PEDAGOGIE = {
   1: {
     objectifs: ["Écrire un petit système à règles et expliquer la décision qu'il rend", "Calculer une probabilité a posteriori et la relier à la prévalence", "Entraîner un classifieur et l'évaluer sur des données jamais vues", "Choisir, pour un problème donné, l'approche la plus adaptée et justifier ce choix"],
-    prerequis: ['regles', 'bayes', 'reseau', 'supervise'],
+    prerequis: ['regles', 'bayes', 'reseau', 'utilite', 'supervise', 'neurone', 'gradient', 'recommandation'],
     avant: "Choisissez le cas « Vibration forte, moteur tiède » dans la liste. Avant de lancer l'animation, notez la décision que vous prendriez vous-même. Vous la comparerez aux trois approches.",
     pieges: ["Chercher « la meilleure approche » dans l'absolu. Le bon choix dépend des données disponibles, du besoin d'explication et du coût d'une erreur.", "Comparer des exactitudes sans regarder quelles erreurs sont commises : arrêter un robot sain coûte moins cher que laisser rouler un robot dangereux."],
     quiz: [
@@ -57,7 +57,7 @@ export const PEDAGOGIE = {
   },
   5: {
     objectifs: ["Programmer une boucle d'autonomie qui tient compte de l'incertitude", "Mettre à jour une croyance après une mesure et après un déplacement", "Comparer une politique naïve et une politique filtrée sur plusieurs graines", "Entraîner une politique par Q-learning et l'encadrer par une garde de sécurité"],
-    prerequis: ['etat', 'croyance', 'qlearning', 'exploration'],
+    prerequis: ['etat', 'croyance', 'mdp', 'qlearning', 'exploration'],
     avant: "Avant l'étape 3 de l'animation, prédisez : après un déplacement, la croyance sera-t-elle plus nette ou plus étalée ?",
     mission: [
       { faire: "Laissez « Politique améliorée » en A (bleu) et « Politique simple » en B (orange). Avancez de cinq étapes.", question: "Repérez l'anneau rouge (position mesurée) et l'anneau vert (position estimée par le filtre). Lequel est le plus proche du robot bleu ?", reponse: "L'anneau vert. La mesure brute saute d'une case à l'autre, l'estimation filtrée reste collée à la position réelle." },

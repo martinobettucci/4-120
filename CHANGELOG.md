@@ -2,6 +2,18 @@
 
 Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémantique.
 
+## [1.3.0] 2026-11-14
+
+### Ajouté
+
+- Cours théorique dans chaque leçon : définition, modèle, formules, algorithme en pseudo-code, propriétés et limites. Repris à déplier sur la page de chaque module.
+- Cinq leçons au-delà du syllabus : décision par coût espéré, neurone et réseau de neurones, descente de gradient, système de recommandation, processus de décision markovien et politique. Le module 0 compte 25 leçons.
+- Ateliers de construction, un par leçon : base de règles exécutée sur un banc de test, réglage d'un neurone, taux d'apprentissage, conception d'un scénario qui met un agent en défaut, modèle de contraintes vérifié par un solveur, réglage d'un recuit simulé, politique définie case par case et testée avec aléas, conception de récompenses, assemblage de programmes, calculs complets.
+
+### Modifié
+
+- Une leçon se valide par son atelier de construction, et non plus par des questions à choix. Les questions restent disponibles en complément.
+
 ## [1.2.0] 2026-11-14
 
 ### Modifié

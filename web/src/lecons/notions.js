@@ -3,6 +3,8 @@
 // exemple résolu pas à pas, erreur fréquente, exercice guidé, transfert, point à retenir.
 // `etapes[].fin` est la position (entre 0 et 1) où l'animation s'arrête à la fin de l'étape.
 import * as M from '../animations/Mini.jsx';
+import { THEORIE, ATELIER } from './cours.js';
+import { NOUVELLES } from './nouvelles.js';
 
 export const BLOCS = [
   { module: 1, titre: 'Décider : trois familles de solutions IA' },
@@ -13,7 +15,7 @@ export const BLOCS = [
   { module: 6, titre: 'Tester et valider' },
 ];
 
-export const NOTIONS = [
+const BASE = [
   // ------------------------------------------------------------------ Module 1
   {
     id: 'regles', module: 1, nom: 'Système à base de règles', anim: M.Regles, duree: 9,
@@ -382,5 +384,12 @@ export const NOTIONS = [
     ailleurs: "Recherche scientifique, tests logiciels, enquêtes après incident, audits de modèles.",
   },
 ];
+
+// Assemblage : théorie et atelier rattachés à chaque leçon, leçons ajoutées insérées à leur place.
+export const NOTIONS = (() => {
+  const liste = BASE.map((n) => ({ ...n, theorie: THEORIE[n.id], atelier: ATELIER[n.id] }));
+  for (const n of NOUVELLES) liste.splice(liste.findIndex((x) => x.id === n.apres) + 1, 0, n);
+  return liste;
+})();
 
 export const notion = (id) => NOTIONS.find((n) => n.id === id);

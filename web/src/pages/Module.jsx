@@ -6,6 +6,8 @@ import { LiensNotebook } from './Notebooks.jsx';
 import { PEDAGOGIE } from '../lecons/modules-pedagogie.js';
 import { notion } from '../lecons/notions.js';
 import Qcm from '../composants/Qcm.jsx';
+import Theorie from '../composants/Theorie.jsx';
+import { NOTIONS } from '../lecons/notions.js';
 import { useState } from 'react';
 import AnimM1 from '../animations/AnimM1.jsx';
 import AnimM2 from '../animations/AnimM2.jsx';
@@ -66,6 +68,18 @@ export default function Module() {
           <p className="tp"><b>Travaux pratiques :</b> {m.tp}</p>
         </section>
       </div>
+
+      <section>
+        <h2>Le cours du module</h2>
+        <p className="intro">La théorie de chaque notion, à déplier. Chaque leçon complète ajoute une démonstration commentée, un exemple résolu et un atelier où vous construisez vous-même.</p>
+        {NOTIONS.filter((x) => x.module === m.n).map((x) => (
+          <details className="cours-notion" key={x.id}>
+            <summary><b>{x.nom}</b><span>Atelier : {x.atelier.titre}</span></summary>
+            <Theorie blocs={x.theorie} />
+            <p><Link className="bouton secondaire" to={`/module/0/${x.id}`}>Leçon complète et atelier →</Link></p>
+          </details>
+        ))}
+      </section>
 
       <section>
         <h2><span className="etape-cycle">2</span> Animation explicative</h2>

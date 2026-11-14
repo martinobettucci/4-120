@@ -69,10 +69,10 @@ Conditions : densité 0.14, glissement 0.1, bruit du lidar 0.3, palette imprévu
 
 | agent | succès (%) | IC à 95 % (%) | missions sans collision (%) | collisions (moyenne) | allongement médian | décision moyenne (ms) | décision max (ms) |
 |---|---|---|---|---|---|---|---|
-| réactif | 83.333 | [66 ; 93] | 63.333 | 1.533 | 1.107 | 0.001 | 0.124 |
-| délibératif | 0.000 | [0 ; 11] | 3.333 | 8.067 | nan | 0.001 | 0.039 |
-| hybride | 100.000 | [89 ; 100] | 96.667 | 0.033 | 1.179 | 0.015 | 0.339 |
-| robuste | 100.000 | [89 ; 100] | 96.667 | 0.033 | 1.179 | 0.147 | 0.721 |
+| réactif | 83.333 | [66 ; 93] | 63.333 | 1.533 | 1.107 | 0.002 | 0.398 |
+| délibératif | 0.000 | [0 ; 11] | 3.333 | 8.067 | nan | 0.001 | 0.043 |
+| hybride | 100.000 | [89 ; 100] | 96.667 | 0.033 | 1.179 | 0.015 | 0.416 |
+| robuste | 100.000 | [89 ; 100] | 96.667 | 0.033 | 1.179 | 0.164 | 3.394 |
 
 ## 6. Échecs analysés
 

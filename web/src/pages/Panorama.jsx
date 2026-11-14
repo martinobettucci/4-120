@@ -6,21 +6,21 @@ const METHODE = [
   ['Situer', "Une situation concrète pose le problème, l'objectif dit ce que vous saurez faire, et le vocabulaire est défini avant d'être utilisé."],
   ['Prédire', "Vous vous engagez sur une réponse avant de voir. Se tromper ici est utile : c'est ce qui rend la suite mémorable."],
   ['Observer', "La démonstration est découpée en étapes courtes, chacune commentée, avec l'endroit précis à regarder. Vous avancez à votre rythme."],
-  ['Comprendre', "Un exemple chiffré est résolu pas à pas, puis l'erreur la plus fréquente est nommée pour l'éviter."],
-  ["S'exercer", "Une question d'application, puis une question de transfert dans un autre domaine. Chaque réponse reçoit une explication."],
+  ['Le cours', "La théorie est exposée : définition, modèle, formule, algorithme, limites. Un exemple chiffré est ensuite résolu pas à pas."],
+  ['Construire', "Vous fabriquez l'objet étudié : une base de règles, un neurone, un modèle de contraintes, une politique, un programme. Le système le met à l'épreuve et vous dit quoi corriger."],
   ['Retenir', "L'idée tient en une phrase, reliée à d'autres domaines et au module où vous la programmerez."],
 ];
 
 export default function Panorama() {
   const prog = useProgression();
-  const acquis = (id) => prog[id]?.application && prog[id]?.transfert;
+  const acquis = (id) => !!prog[id]?.atelier;
   const total = NOTIONS.filter((n) => acquis(n.id)).length;
   const suivante = NOTIONS.find((n) => !acquis(n.id)) || NOTIONS[0];
   return (
     <div className="page large">
       <p className="surtitre">Module 0 · Prélude, hors des 12 heures du syllabus</p>
       <h1>Les fondamentaux, pas à pas</h1>
-      <p className="chapo">Vingt leçons courtes pour acquérir, sans prérequis en IA, toutes les notions utilisées dans la formation. Comptez 8 à 10 minutes par leçon.</p>
+      <p className="chapo">{NOTIONS.length} leçons pour acquérir, sans prérequis en IA, toutes les notions de la formation et celles qui les rendent compréhensibles. Chaque leçon expose la théorie puis vous fait construire. Comptez 15 à 20 minutes par leçon.</p>
 
       <div className="deux-colonnes">
         <div className="carte">
@@ -31,7 +31,7 @@ export default function Panorama() {
             <Link className="bouton" to={`/module/0/${suivante.id}`} data-testid="reprendre">{total === 0 ? 'Commencer la première leçon' : total === NOTIONS.length ? 'Revoir les leçons' : `Reprendre : ${suivante.nom}`}</Link>
             {total > 0 && <button className="bouton secondaire" onClick={reinitialiser}>Remettre à zéro</button>}
           </div>
-          <p className="conseil">La progression est conservée dans votre navigateur. Une leçon est acquise quand ses deux exercices sont réussis.</p>
+          <p className="conseil">La progression est conservée dans votre navigateur. Une leçon est acquise quand son atelier de construction est réussi.</p>
         </div>
         <div className="carte">
           <h3>Comment apprendre avec ces leçons</h3>

@@ -36,7 +36,7 @@ Chaque module suit le même cycle : problème, animation explicative, décomposi
 
 ## 3 bis. Module 0, les fondamentaux pas à pas
 
-Un prélude, hors des 12 heures du syllabus, enseigne les 20 notions de la formation à un public qui les découvre. Chaque notion est une leçon de 8 à 10 minutes en six temps : situer (situation, objectif, vocabulaire), prédire, observer une démonstration découpée en étapes commentées, comprendre par un exemple résolu, s'exercer (application puis transfert, avec explication de chaque réponse), retenir. Les principes appliqués et leurs sources sont décrits dans `docs/pedagogie.md`.
+Un prélude, hors des 12 heures du syllabus, enseigne à un public qui les découvre les notions de la formation et celles qui les rendent compréhensibles : 25 leçons, dont 5 au-delà du syllabus. Chaque leçon suit six temps : situer, prédire, observer une démonstration commentée, étudier le cours (théorie et exemple résolu), construire, retenir. Une leçon se valide par un atelier où l'apprenant fabrique l'objet étudié (base de règles, neurone, modèle de contraintes, politique, récompenses, programme) et où le système le met à l'épreuve. Les principes appliqués et leurs sources sont décrits dans `docs/pedagogie.md`.
 
 ## 4. Jour 1, agents et décision
 

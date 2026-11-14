@@ -13,12 +13,14 @@ LECONS = {
     "astar": "Planifier avec A*", "hybride": "Architecture hybride", "espace": "Espace de recherche et fonction de coût",
     "contraintes": "Programmation sous contraintes", "recuit": "Recuit simulé", "croyance": "Croyance et filtre bayésien",
     "qlearning": "Apprentissage par renforcement", "exploration": "Exploration et exploitation",
+    "utilite": "Décider sous incertitude : le coût espéré", "neurone": "Du neurone au réseau de neurones", "gradient": "Entraîner : la descente de gradient",
+    "recommandation": "Système de recommandation", "mdp": "Processus de décision markovien et politique",
     "confiance": "Distribution des résultats et intervalle de confiance", "robustesse": "Robustesse", "graine": "Reproductibilité et rejeu",
 }
 
 NOTEBOOKS = {
     "01": {
-        "prerequis": ["regles", "bayes", "reseau", "supervise"],
+        "prerequis": ["regles", "bayes", "reseau", "utilite", "supervise", "neurone", "gradient", "recommandation"],
         "acquis": ["écrire un système à règles et expliquer la décision qu'il rend", "calculer une probabilité a posteriori et dire comment elle dépend de la prévalence", "entraîner un classifieur et l'évaluer sur des données qu'il n'a jamais vues", "choisir une approche pour un problème donné et justifier ce choix"],
     },
     "02": {
@@ -34,7 +36,7 @@ NOTEBOOKS = {
         "acquis": ["modéliser un problème par ses variables, ses domaines, ses contraintes et son objectif", "résoudre ce modèle avec CP-SAT et interpréter le statut retourné", "programmer un recuit simulé et régler sa température", "comparer les deux approches en qualité de solution et en temps de calcul"],
     },
     "05": {
-        "prerequis": ["etat", "croyance", "qlearning", "exploration"],
+        "prerequis": ["etat", "croyance", "mdp", "qlearning", "exploration"],
         "acquis": ["programmer une boucle d'autonomie qui tient compte du bruit et du glissement", "mettre à jour une croyance après une mesure et après un déplacement", "comparer deux politiques sur plusieurs graines et plusieurs niveaux de bruit", "entraîner une politique par Q-learning et l'encadrer par une garde réactive"],
     },
     "06": {
@@ -49,7 +51,7 @@ def ouverture(numero: str) -> str:
     liens = "\n".join(f"- [{LECONS[i]}]({SITE}{i})" for i in n["prerequis"])
     return f"""## Avant de commencer
 
-**Ce qu'il faut connaître.** Chaque notion utilisée ici a sa leçon guidée dans le module 0 du site. Si l'une d'elles vous est nouvelle, commencez par là (8 à 10 minutes par leçon) :
+**Ce qu'il faut connaître.** Chaque notion utilisée ici a sa leçon guidée dans le module 0 du site. Si l'une d'elles vous est nouvelle, commencez par là (15 à 20 minutes par leçon, théorie et atelier de construction compris) :
 
 {liens}
 
