@@ -84,6 +84,7 @@ export default function Lecteur3D({ catalogue, initialA, initialB = '', hauteur 
     Promise.all([idA === '__import' ? importee : chargerTrace(idA), idB ? chargerTrace(idB) : null])
       .then(([a, b]) => {
         if (annule) return;
+        if (a && b && a.monde.nom !== b.monde.nom) b = null;
         setTraces([a, b]);
         scene.current?.definirTraces([a, b]);
         scene.current?.definirCouches(couches);
@@ -94,6 +95,14 @@ export default function Lecteur3D({ catalogue, initialA, initialB = '', hauteur 
     return () => { annule = true; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [idA, idB, importee]);
+
+  // Deux exécutions ne se comparent que dans le même entrepôt : sinon un robot traverserait les murs de l'autre.
+  const mondeA = idA === '__import' ? importee?.monde?.nom : catalogue.find((c) => c.id === idA)?.monde;
+  const comparables = catalogue.filter((c) => c.id !== idA && (!c.monde || !mondeA || c.monde === mondeA));
+  useEffect(() => {
+    if (idB && !comparables.some((c) => c.id === idB)) setIdB('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [idA, mondeA]);
 
   const max = useMemo(() => Math.max(...traces.filter(Boolean).map((x) => x.etapes.length), 0), [traces]);
 
@@ -142,10 +151,10 @@ export default function Lecteur3D({ catalogue, initialA, initialB = '', hauteur 
             {importee && <option value="__import">Trace importée : {importee.meta.titre}</option>}
           </select>
         </label>
-        <label>Comparer avec B
+        <label>Comparer avec B (même entrepôt)
           <select value={idB} onChange={(e) => setIdB(e.target.value)} data-testid="choix-b">
             <option value="">Aucune</option>
-            {catalogue.filter((c) => c.id !== idA).map((c) => <option key={c.id} value={c.id}>{c.titre}</option>)}
+            {comparables.map((c) => <option key={c.id} value={c.id}>{c.titre}</option>)}
           </select>
         </label>
         {importer && (
@@ -178,9 +187,9 @@ export default function Lecteur3D({ catalogue, initialA, initialB = '', hauteur 
         </aside>
       </div>
       <div className="transport">
-        <button onClick={() => { setLecture(false); setT(0); }} title="Retour à l'état initial" data-testid="reinit">⏮ Réinitialiser</button>
+        <button onClick={() => { setLecture(false); setT(0); }} title="Retour à l'état initial" data-testid="reinit">↺ Réinitialiser</button>
         <button onClick={() => pas(-1)} title="Étape précédente">◀ Étape</button>
-        <button className="principal" onClick={() => { if (t >= max) setT(0); setLecture(!lecture); }} data-testid="lecture">{lecture ? '⏸ Pause' : '▶ Lecture'}</button>
+        <button className="principal" onClick={() => { if (t >= max) setT(0); setLecture(!lecture); }} data-testid="lecture">{lecture ? '❚❚ Pause' : '▶ Lecture'}</button>
         <button onClick={() => pas(1)} title="Étape suivante" data-testid="pas">Étape ▶</button>
         <input type="range" min="0" max={max} step="0.01" value={t} onChange={(e) => { setLecture(false); setT(Number(e.target.value)); }} aria-label="Position dans la trace" />
         <span className="compteur">Étape {Math.min(i, max)} / {max}</span>

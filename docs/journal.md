@@ -20,6 +20,10 @@
 
 **Lisibilité de la scène 3D.** Les lignes WebGL font un pixel de large, illisible en projection. Rayons du lidar et trajectoires sont dessinés avec des cylindres fins. Les étiquettes ont été agrandies après examen des captures.
 
+**Comparer ce qui est comparable.** Le lecteur 3D laissait superposer deux traces issues de cartes différentes : le second robot traversait les murs du premier entrepôt. Le catalogue porte désormais le nom du monde et la liste de comparaison se limite au même entrepôt.
+
+**Un module 0.** Les modules supposaient le vocabulaire acquis. Le panorama installe les 20 notions avant d'entrer dans les algorithmes : une animation courte par notion, calculée en direct quand c'est possible (A*, retour arrière, itération de valeur), et un exercice dont la correction explique le pourquoi.
+
 ## Pistes ouvertes
 
 - Mesurer les gains GPU sur la machine de formation et les reporter dans les notebooks.

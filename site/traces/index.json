@@ -5,6 +5,7 @@
   "titre": "Agent réactif, zone dégagée",
   "description": "Capteurs parfaits : l'observation correspond à l'état réel.",
   "agent": "reactif",
+  "monde": "ouvert",
   "succes": true,
   "etapes": 26,
   "collisions": 0
@@ -15,6 +16,7 @@
   "titre": "Agent réactif, lidar bruité",
   "description": "Lidar bruité et rayons perdus : l'agent décide sur une observation imparfaite.",
   "agent": "reactif",
+  "monde": "ouvert",
   "succes": true,
   "etapes": 27,
   "collisions": 1
@@ -25,6 +27,7 @@
   "titre": "Agent complet, entrepôt de référence",
   "description": "Le fil rouge : chariots mobiles et rayonnages.",
   "agent": "hybride",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 32,
   "collisions": 0
@@ -35,6 +38,7 @@
   "titre": "Agent réactif, cul-de-sac en U",
   "description": "Architecture reactive dans le scénario « cul-de-sac en U ».",
   "agent": "reactif",
+  "monde": "piege",
   "succes": false,
   "etapes": 70,
   "collisions": 0
@@ -45,6 +49,7 @@
   "titre": "Agent délibératif, cul-de-sac en U",
   "description": "Architecture deliberative dans le scénario « cul-de-sac en U ».",
   "agent": "deliberatif",
+  "monde": "piege",
   "succes": true,
   "etapes": 25,
   "collisions": 0
@@ -55,6 +60,7 @@
   "titre": "Agent hybride, cul-de-sac en U",
   "description": "Architecture hybride dans le scénario « cul-de-sac en U ».",
   "agent": "hybride",
+  "monde": "piege",
   "succes": true,
   "etapes": 25,
   "collisions": 0
@@ -65,6 +71,7 @@
   "titre": "Agent réactif, palette imprévue",
   "description": "Architecture reactive dans le scénario « palette imprévue ».",
   "agent": "reactif",
+  "monde": "entrepot",
   "succes": false,
   "etapes": 70,
   "collisions": 0
@@ -75,6 +82,7 @@
   "titre": "Agent délibératif, palette imprévue",
   "description": "Architecture deliberative dans le scénario « palette imprévue ».",
   "agent": "deliberatif",
+  "monde": "entrepot",
   "succes": false,
   "etapes": 70,
   "collisions": 12
@@ -85,6 +93,7 @@
   "titre": "Agent hybride, palette imprévue",
   "description": "Architecture hybride dans le scénario « palette imprévue ».",
   "agent": "hybride",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 30,
   "collisions": 0
@@ -95,6 +104,7 @@
   "titre": "Politique simple, capteurs bruités",
   "description": "L'agent fait confiance à la position brute : il replanifie sans cesse.",
   "agent": "naif",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 125,
   "collisions": 1
@@ -105,6 +115,7 @@
   "titre": "Politique améliorée, filtre bayésien",
   "description": "La position vient d'une croyance mise à jour à chaque étape.",
   "agent": "robuste",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 35,
   "collisions": 0
@@ -115,6 +126,7 @@
   "titre": "Scénario nominal, avant correction",
   "description": "Niveau de perturbation nominal (avant correction).",
   "agent": "naif",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 30,
   "collisions": 0
@@ -125,6 +137,7 @@
   "titre": "Scénario nominal, après correction",
   "description": "Niveau de perturbation nominal (après correction).",
   "agent": "robuste",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 30,
   "collisions": 0
@@ -135,6 +148,7 @@
   "titre": "Scénario dégradé, avant correction",
   "description": "Niveau de perturbation dégradé (avant correction).",
   "agent": "naif",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 52,
   "collisions": 0
@@ -145,6 +159,7 @@
   "titre": "Scénario dégradé, après correction",
   "description": "Niveau de perturbation dégradé (après correction).",
   "agent": "robuste",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 45,
   "collisions": 0
@@ -155,6 +170,7 @@
   "titre": "Scénario limite, avant correction",
   "description": "Niveau de perturbation limite (avant correction).",
   "agent": "naif",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 113,
   "collisions": 5
@@ -165,6 +181,7 @@
   "titre": "Scénario limite, après correction",
   "description": "Niveau de perturbation limite (après correction).",
   "agent": "robuste",
+  "monde": "entrepot",
   "succes": true,
   "etapes": 63,
   "collisions": 0

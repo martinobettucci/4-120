@@ -2,6 +2,17 @@
 
 Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémantique.
 
+## [1.1.0] 2026-11-14
+
+### Ajouté
+
+- Module 0, « Panorama des concepts » : les 20 notions des modules 1 à 6, chacune avec une animation en boucle pilotable (pause, curseur), une explication, un exemple du fil rouge, un commentaire pour la salle et un exercice à correction immédiate, avec suivi de progression.
+
+### Corrigé
+
+- Scène 3D : la comparaison de deux exécutions n'est proposée qu'entre traces du même entrepôt. Auparavant, deux scénarios aux cartes différentes pouvaient être superposés et un robot traversait les murs de l'autre.
+- Symboles des boutons de lecture remplacés par des caractères présents dans toutes les polices.
+
 ## [1.0.0] 2026-11-14
 
 ### Ajouté

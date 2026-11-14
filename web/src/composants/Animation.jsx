@@ -53,9 +53,9 @@ export default function Animation({ titre, etapes, duree = 5, children, hauteur 
         <p>{etapes[etape].texte}</p>
       </div>
       <div className="anim-commandes">
-        <button onClick={() => { setLecture(false); aller(0); }} title="Rejouer depuis le début">⏮</button>
+        <button onClick={() => { setLecture(false); aller(0); }} title="Rejouer depuis le début">↺</button>
         <button onClick={() => { setLecture(false); aller(etape - 1); setP(1); }} disabled={etape === 0}>◀</button>
-        <button className="principal" onClick={() => { if (etape === etapes.length - 1 && p >= 1) aller(0); else if (p >= 1) aller(etape + 1); setLecture(!lecture); }}>{lecture ? '⏸ Pause' : '▶ Lecture'}</button>
+        <button className="principal" onClick={() => { if (etape === etapes.length - 1 && p >= 1) aller(0); else if (p >= 1) aller(etape + 1); setLecture(!lecture); }}>{lecture ? '❚❚ Pause' : '▶ Lecture'}</button>
         <button onClick={() => { setLecture(false); aller(etape + 1); setP(1); }} disabled={etape === etapes.length - 1}>▶</button>
         <div className="anim-points">
           {etapes.map((e, k) => (

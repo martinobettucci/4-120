@@ -185,3 +185,33 @@ select { font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid 
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 .vue3d canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* Module 0 : panorama des concepts */
+.concept { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 22px; background: var(--carte); border: 1px solid var(--bord); border-radius: 16px; box-shadow: var(--ombre); padding: 18px; margin: 16px 0; scroll-margin-top: 80px; }
+.concept h3 { font-size: 1.25rem; margin: 2px 0 6px; }
+.concept p { margin: 0 0 8px; }
+.mini { background: var(--fond); border: 1px solid var(--bord); border-radius: 12px; overflow: hidden; align-self: start; }
+.mini-scene svg { width: 100%; height: auto; display: block; font-family: inherit; }
+.mini-commandes { display: flex; gap: 10px; align-items: center; padding: 6px 10px 8px; border-top: 1px solid var(--bord); }
+.mini-commandes button { border: 1px solid var(--bord); background: var(--carte); color: var(--texte); border-radius: 8px; width: 34px; height: 30px; cursor: pointer; }
+.mini-commandes input { flex: 1; accent-color: var(--bleu); }
+.exemple { border-left: 4px solid var(--bleu); padding-left: 10px; }
+.commentaire { border-left: 4px solid var(--jaune); padding-left: 10px; color: var(--texte-doux); }
+.exercice { background: var(--plan-sol); border-radius: 10px; padding: 10px 12px; margin-top: 10px; }
+.exercice .question { margin-bottom: 8px; }
+.choix { display: flex; flex-wrap: wrap; gap: 8px; }
+.choix button { border: 2px solid var(--bord); background: var(--carte); color: var(--texte); border-radius: 9px; padding: 6px 12px; cursor: pointer; font: inherit; font-size: 0.93rem; }
+.choix button:hover:not(:disabled) { border-color: var(--accent); }
+.choix button.juste { border-color: var(--vert); background: color-mix(in srgb, var(--vert) 18%, var(--carte)); font-weight: 700; }
+.choix button.faux { border-color: var(--rouge); background: color-mix(in srgb, var(--rouge) 14%, var(--carte)); }
+.retour { margin: 8px 0 0 !important; font-size: 0.93rem; }
+.retour.juste { color: var(--vert); }
+.retour.faux { color: var(--rouge); }
+.progression { height: 10px; background: var(--plan-sol); border-radius: 5px; overflow: hidden; margin-top: 12px; }
+.progression div { height: 100%; background: var(--vert); transition: width 0.4s; }
+.score { margin: 6px 0 10px; color: var(--texte-doux); }
+.sommaire { display: flex; flex-wrap: wrap; gap: 8px; }
+.sommaire a { text-decoration: none; background: var(--plan-sol); color: var(--texte); border-radius: 999px; padding: 5px 12px; font-size: 0.9rem; }
+.sommaire b { color: var(--accent); }
+.carte.module.zero { border-top-color: var(--jaune); margin-bottom: 6px; }
+@media (max-width: 900px) { .concept { grid-template-columns: 1fr; } }

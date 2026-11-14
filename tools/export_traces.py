@@ -35,6 +35,7 @@ def main() -> None:
                 "titre": titre,
                 "description": description,
                 "agent": agent.nom,
+                "monde": monde.nom,
                 "succes": b["succes"],
                 "etapes": b["etapes"],
                 "collisions": b["collisions"],

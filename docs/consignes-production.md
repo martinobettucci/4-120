@@ -34,6 +34,10 @@ Pour six modules : 4 h 30 de théorie et de démonstrations, 7 h 30 de travaux p
 
 Chaque module suit le même cycle : problème, animation explicative, décomposition visuelle 3D, algorithme et code Python, exécution en notebook, simulation, modification des paramètres, observation des résultats, synthèse.
 
+## 3 bis. Module 0, panorama des concepts
+
+Un prélude, hors des 12 heures du syllabus, présente les 20 notions de la formation dans l'ordre des modules. Chaque notion comporte une animation en boucle (pause et curseur pour commenter un instant précis), une explication, un exemple tiré du fil rouge, un commentaire destiné à l'animation en salle et un exercice à correction immédiate. Il se parcourt avant la session ou en ouverture de chaque demi-journée.
+
 ## 4. Jour 1, agents et décision
 
 **Module 1, Solutions IA pour la décision.** Motion design : une décision prise par un système de règles, la circulation des probabilités dans un réseau bayésien, le fonctionnement d'un modèle supervisé, la comparaison des trois approches sur un même problème. Notebook 01 : système à règles, inférence bayésienne, petit modèle supervisé, modification des données d'entrée, visualisation des décisions, probabilités et erreurs, comparaison des résultats.

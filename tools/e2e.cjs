@@ -31,7 +31,7 @@ if (!webgl) console.warn('AVERTISSEMENT : WebGL indisponible dans ce navigateur 
 await page.waitForSelector(webgl ? '[data-testid=vue3d] canvas' : '[data-testid=vue3d]');
 await page.waitForTimeout(1500);
 verifier((await page.textContent('h1')).includes('agents autonomes'), 'accueil : titre de la formation');
-verifier((await page.locator('.carte.module').count()) === 6, 'accueil : six modules');
+verifier((await page.locator('.carte.module').count()) === 7, 'accueil : module 0 et six modules');
 await capture('01-accueil');
 await page.locator('[data-testid=lecture]').first().click();
 await page.waitForTimeout(3500);
@@ -40,6 +40,21 @@ await capture('02-accueil-scene3d');
 const compteur = await page.locator('.compteur').first().textContent();
 if (webgl) verifier(!compteur.startsWith('Étape 0 '), `accueil : la lecture 3D avance (${compteur.trim()})`);
 else verifier((await page.textContent('main')).includes('demande WebGL'), 'accueil : message de repli sans WebGL');
+
+// Module 0 : panorama des concepts
+await page.goto(`${base}/#/module/0`);
+await page.waitForSelector('.concept');
+verifier((await page.locator('.concept').count()) === 20, 'module 0 : vingt notions');
+verifier((await page.locator('.concept .mini svg').count()) === 20, 'module 0 : vingt animations');
+await page.locator('.concept').first().locator('.choix button').nth(2).click();
+verifier((await page.locator('[data-testid=progression] + .score').textContent()).startsWith('1'), 'module 0 : exercice corrigé et compté');
+await page.waitForTimeout(1500);
+await capture('m0-panorama-haut');
+for (const id of ['bayes', 'astar', 'contraintes', 'qlearning', 'confiance']) {
+  await page.locator(`#${id}`).scrollIntoViewIfNeeded();
+  await page.waitForTimeout(2600);
+  await page.locator(`#${id}`).screenshot({ path: `${sortie}/m0-${id}.jpg`, type: 'jpeg', quality: 82 });
+}
 
 // Les six modules
 for (let n = 1; n <= 6; n++) {

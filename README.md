@@ -56,6 +56,7 @@ Réglage à faire une seule fois dans le dépôt : **Settings, Pages, Build and 
 
 | Jour | Module | Notebook |
 | --- | --- | --- |
+| Prélude | 0. Panorama des concepts (20 notions animées, avec exercices), hors des 12 heures | (page du site) |
 | 1 | 1. Solutions IA pour la prise de décision | `01_solutions_ia_decision.ipynb` |
 | 1 | 2. Concept des agents intelligents et interactions avec l'environnement | `02_agent_environnement.ipynb` |
 | 1 | 3. Architecture des agents intelligents | `03_architectures_agents.ipynb` |

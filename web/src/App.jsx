@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import Accueil from './pages/Accueil.jsx';
 import Module from './pages/Module.jsx';
+import Panorama from './pages/Panorama.jsx';
 import Atelier from './pages/Atelier.jsx';
 import Notebooks from './pages/Notebooks.jsx';
 import PageMarkdown from './pages/PageMarkdown.jsx';
@@ -26,6 +27,7 @@ export default function App() {
           <div className="menu-modules">
             <span>Modules</span>
             <div className="sous-menu">
+              <NavLink to="/module/0"><b>0</b> Panorama des concepts</NavLink>
               {MODULES.map((m) => <NavLink key={m.n} to={`/module/${m.n}`}><b>{m.n}</b> {m.titre}</NavLink>)}
             </div>
           </div>
@@ -39,6 +41,7 @@ export default function App() {
           <Route path="/" element={<Accueil />} />
           <Route path="/syllabus" element={<PageMarkdown source={syllabus} surtitre="Référentiel officiel ASCENT, Lot 4" />} />
           <Route path="/consignes" element={<PageMarkdown source={consignes} surtitre="Cahier de conception pédagogique" />} />
+          <Route path="/module/0" element={<Panorama />} />
           <Route path="/module/:n" element={<Module />} />
           <Route path="/notebooks" element={<Notebooks />} />
           <Route path="/atelier" element={<Atelier />} />

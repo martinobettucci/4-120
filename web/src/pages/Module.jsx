@@ -64,7 +64,7 @@ export default function Module() {
       </section>
 
       <nav className="suite">
-        {m.n > 1 ? <Link to={`/module/${m.n - 1}`}>← Module {m.n - 1}</Link> : <span />}
+        <Link to={`/module/${m.n - 1}`}>← Module {m.n - 1}</Link>
         {m.n < 6 ? <Link className="bouton" to={`/module/${m.n + 1}`}>Module {m.n + 1} : {MODULES[m.n].titre} →</Link> : <Link className="bouton" to="/atelier">Atelier 3D →</Link>}
       </nav>
     </div>

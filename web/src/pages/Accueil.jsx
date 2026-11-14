@@ -3,7 +3,7 @@ import { MODULES } from '../modules.js';
 import Lecteur3D from '../composants/Lecteur3D.jsx';
 
 const CYCLE = ['Problème', 'Animation explicative', 'Décomposition 3D', 'Algorithme et code', 'Notebook', 'Simulation', 'Paramètres', 'Résultats', 'Synthèse'];
-const VITRINE = [{ id: 'm3_hybride_entrepot', titre: 'Agent hybride, palette imprévue' }, { id: 'm5_robuste', titre: 'Agent robuste, capteurs bruités' }, { id: 'm3_reactif_piege', titre: 'Agent réactif, cul-de-sac en U' }];
+const VITRINE = [{ id: 'm3_hybride_entrepot', titre: 'Agent hybride, palette imprévue', monde: 'entrepot' }, { id: 'm5_robuste', titre: 'Agent robuste, capteurs bruités', monde: 'entrepot' }, { id: 'm3_reactif_piege', titre: 'Agent réactif, cul-de-sac en U', monde: 'piege' }];
 
 export default function Accueil() {
   return (
@@ -14,7 +14,8 @@ export default function Accueil() {
           <h1>Les agents autonomes<br />et aide à la décision</h1>
           <p className="chapo">Deux jours pour concevoir, optimiser et valider des agents intelligents, autour d'un fil rouge : un robot autonome dans un entrepôt logistique simulé. Chaque concept est expliqué par une animation, décomposé dans une scène 3D, puis expérimenté dans un notebook Python.</p>
           <div className="actions">
-            <Link className="bouton" to="/module/1">Commencer le jour 1</Link>
+            <Link className="bouton" to="/module/0">Commencer par le panorama</Link>
+            <Link className="bouton secondaire" to="/module/1">Jour 1</Link>
             <Link className="bouton secondaire" to="/syllabus">Lire le syllabus officiel</Link>
           </div>
           <ul className="chiffres">
@@ -34,6 +35,11 @@ export default function Accueil() {
 
       <section>
         <h2>Programme</h2>
+        <Link to="/module/0" className="carte module zero">
+          <span className="numero">Module 0 · Prélude</span>
+          <h4>Panorama des concepts</h4>
+          <p>Les 20 notions de la formation en animations, avec explications, exemples, commentaires et exercices. À parcourir avant la session ou en ouverture de chaque demi-journée.</p>
+        </Link>
         {[1, 2].map((jour) => (
           <div key={jour}>
             <h3 className="jour">Jour {jour} : {jour === 1 ? 'Introduction aux agents intelligents et solutions IA' : 'Optimisation et autonomie des systèmes robotisés'} <small>6 heures</small></h3>
