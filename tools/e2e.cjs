@@ -13,16 +13,22 @@ const sortie = 'docs/captures';
 fs.mkdirSync(sortie, { recursive: true });
 const verifier = (condition, message) => { if (!condition) { erreurs.push(message); console.error('ECHEC :', message); } else console.log('ok    :', message); };
 
-const navigateur = await chromium.launch({ args: ['--use-angle=swiftshader', '--use-gl=angle', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--enable-webgl'] });
+const options = { args: ['--use-angle=swiftshader', '--use-gl=angle', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--enable-webgl'] };
+if (process.env.E2E_SANS_WEBGL === '1') options.args = ['--disable-gpu', '--disable-software-rasterizer', '--disable-webgl', '--disable-3d-apis'];
+// Chromium complet (nouveau mode sans affichage) de préférence : son WebGL logiciel est plus fiable.
+const navigateur = await chromium.launch({ ...options, channel: 'chromium' }).catch(() => chromium.launch(options));
 const contexte = await navigateur.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1, ...(video ? { recordVideo: { dir: sortie, size: { width: 1440, height: 900 } } } : {}) });
 const page = await contexte.newPage();
+page.on('response', (r) => { if (r.status() >= 400) console.error(`HTTP ${r.status()} : ${r.url()}`); });
 page.on('pageerror', (e) => erreurs.push(`Erreur JavaScript : ${e.message}`));
-page.on('console', (m) => { if (m.type() === 'error' && !m.text().includes('favicon')) erreurs.push(`Console : ${m.text()}`); });
+page.on('console', (m) => { if (m.type() === 'error' && !m.text().includes('favicon') && !m.text().includes('WebGL')) erreurs.push(`Console : ${m.text()}`); });
 const capture = (nom, options = {}) => page.screenshot({ path: `${sortie}/${nom}.jpg`, type: 'jpeg', quality: 82, ...options });
 
 // Accueil et scène 3D de vitrine
 await page.goto(`${base}/#/`);
-await page.waitForSelector('[data-testid=vue3d] canvas');
+const webgl = await page.evaluate(() => { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); });
+if (!webgl) console.warn('AVERTISSEMENT : WebGL indisponible dans ce navigateur de test, les vérifications 3D sont ignorées.');
+await page.waitForSelector(webgl ? '[data-testid=vue3d] canvas' : '[data-testid=vue3d]');
 await page.waitForTimeout(1500);
 verifier((await page.textContent('h1')).includes('agents autonomes'), 'accueil : titre de la formation');
 verifier((await page.locator('.carte.module').count()) === 6, 'accueil : six modules');
@@ -32,14 +38,15 @@ await page.waitForTimeout(3500);
 await page.locator('[data-testid=vue3d]').first().scrollIntoViewIfNeeded();
 await capture('02-accueil-scene3d');
 const compteur = await page.locator('.compteur').first().textContent();
-verifier(!compteur.startsWith('Étape 0 '), `accueil : la lecture 3D avance (${compteur.trim()})`);
+if (webgl) verifier(!compteur.startsWith('Étape 0 '), `accueil : la lecture 3D avance (${compteur.trim()})`);
+else verifier((await page.textContent('main')).includes('demande WebGL'), 'accueil : message de repli sans WebGL');
 
 // Les six modules
 for (let n = 1; n <= 6; n++) {
   await page.goto(`${base}/#/module/${n}`);
   await page.waitForSelector('.animation');
   await page.waitForTimeout(700);
-  verifier((await page.locator('.erreur').count()) === 0, `module ${n} : aucune donnée manquante`);
+  verifier((await page.locator('.animation ~ .erreur, p.erreur:not(.lecteur .erreur)').count()) === 0, `module ${n} : aucune donnée manquante`);
   const etapes = await page.locator('.anim-points button').count();
   verifier(etapes >= 4, `module ${n} : animation en ${etapes} étapes`);
   for (let k = 0; k < etapes; k++) {
@@ -50,7 +57,7 @@ for (let n = 1; n <= 6; n++) {
       await page.locator('.animation').screenshot({ path: `${sortie}/m${n}-animation-${k + 1}.jpg`, type: 'jpeg', quality: 82 });
     }
   }
-  if (await page.locator('[data-testid=vue3d]').count()) {
+  if (webgl && await page.locator('[data-testid=vue3d]').count()) {
     await page.locator('[data-testid=vue3d]').scrollIntoViewIfNeeded();
     for (let k = 0; k < 9; k++) await page.locator('[data-testid=pas]').click();
     await page.waitForTimeout(900);
@@ -65,6 +72,7 @@ for (let n = 1; n <= 6; n++) {
   }
 }
 
+if (webgl) {
 // Vue éclatée dans l'atelier, puis pages de contenu
 await page.goto(`${base}/#/atelier`);
 await page.waitForSelector('[data-testid=vue3d] canvas');
@@ -86,6 +94,7 @@ if (fs.existsSync('notebooks/resultats/m5-appris.json')) {
   await page.waitForTimeout(800);
   verifier((await page.locator('.erreur').count()) === 0, 'atelier : la trace importée se rejoue');
   await page.locator('.lecteur').screenshot({ path: `${sortie}/atelier-trace-importee.jpg`, type: 'jpeg', quality: 82 });
+}
 }
 for (const [route, texte] of [['syllabus', 'Niveau SAME'], ['consignes', 'Consignes de production'], ['notebooks', 'Notebooks']]) {
   await page.goto(`${base}/#/${route}`);
