@@ -50,8 +50,11 @@ jobs:
       - name: Parcours de bout en bout (Playwright)
         run: |
           mkdir -p /tmp/e2e && (cd /tmp/e2e && npm init -y >/dev/null && npm i --no-audit --no-fund playwright@1.63.0 && npx playwright install --with-deps chromium)
-          (cd web && npx vite preview --port 4173 &) && sleep 4
-          NODE_PATH=/tmp/e2e/node_modules node tools/e2e.cjs http://localhost:4173
+          ls -la web/dist
+          python -m http.server 4173 --bind 127.0.0.1 --directory web/dist >/dev/null 2>&1 &
+          for i in $(seq 1 20); do curl -sf -o /dev/null http://127.0.0.1:4173/ && break; sleep 1; done
+          curl -sI http://127.0.0.1:4173/ | head -1
+          NODE_PATH=/tmp/e2e/node_modules node tools/e2e.cjs http://127.0.0.1:4173
       - uses: actions/upload-artifact@v4
         if: always()
         with:
