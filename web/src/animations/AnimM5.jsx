@@ -1,4 +1,5 @@
 import Animation, { COUL, doux } from '../composants/Animation.jsx';
+const F = (x, n) => Number(x).toFixed(n).replace('.', ',');
 
 // Filtre bayésien discret dans un couloir : le calcul est fait ici, en direct, avec les mêmes
 // équations que le notebook 05 (prédiction par le modèle de mouvement, correction par la mesure).
@@ -51,7 +52,7 @@ export default function AnimM5() {
               return (
                 <g key={i}>
                   <rect x={x0 + i * c + 8} y={250 - h} width={c - 16} height={h} rx="5" fill={COUL.orange} opacity="0.9" />
-                  <text x={x0 + i * c + c / 2} y={242 - h} textAnchor="middle" fontSize="12.5" fill="var(--texte)">{val.toFixed(2)}</text>
+                  <text x={x0 + i * c + c / 2} y={242 - h} textAnchor="middle" fontSize="12.5" fill="var(--texte)">{F(val, 2)}</text>
                 </g>
               );
             })}

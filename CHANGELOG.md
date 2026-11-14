@@ -2,6 +2,32 @@
 
 Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémantique.
 
+## [1.3.1] 2026-11-14
+
+### Corrigé
+
+Défauts relevés par une vérification complète des 25 leçons (78 étapes de démonstration, 68 questions, 25 ateliers), des 6 animations de module (30 étapes), des missions d'observation et des 6 notebooks.
+
+- Recuit simulé (leçon et module 4) : la courbe de coût était tracée à l'envers et la bille finissait sur une bosse. Un coût faible est maintenant en bas, et la bille finit dans le creux le plus profond.
+- Croyance et filtre bayésien : le scénario du couloir laissait deux positions plausibles alors que le commentaire en annonçait une seule. Portes déplacées, valeurs recalculées avec le modèle de la leçon (62 % et 28 %).
+- Robustesse : la fin de l'étape « conditions nominales » affichait 89 % contre 99 %. Courbe et positions d'arrêt revues (98 % et 99 %, puis 87 % et 39 %, puis 69 % et 5 %).
+- Architecture hybride : l'animation était en avance sur son commentaire. Trois phases alignées : plan initial, palette et détection par le lidar, nouveau plan.
+- Planifier avec A* : l'exemple ne montrait aucune exploration au-delà du chemin. L'objectif est maintenant derrière un obstacle (15 cases explorées pour un chemin de 11 pas).
+- État réel et observation : deux mesures censées différer tombaient au même endroit.
+- Processus de décision markovien : la fosse n'était pas au sud du robot, contrairement au texte.
+- Réseau bayésien : le commentaire annonçait 72 % et 22 %, l'animation affichait 73 % et 23 %.
+- Apprentissage supervisé : l'erreur affichée était une valeur arbitraire. Elle est maintenant comptée sur les points réellement mal classés (54 %, puis 15 %, puis 7 %).
+- Espace de recherche, architecture réactive, intervalle de confiance, boucle perception, décision, action : commentaires et positions d'arrêt alignés sur ce que l'animation montre.
+- Cours sur le réseau de neurones : l'architecture citée ne correspondait pas à celle du notebook 01 (6 entrées, deux couches de 32 neurones, 4 sorties).
+- Trois cours sans formule (apprentissage supervisé, agent, robustesse) complétés.
+- Animation du module 4 : plantage introduit pendant la mise au format français des nombres, détecté par le contrôle de toutes les étapes et corrigé.
+- Légendes tronquées ou recouvertes, décimales au format anglais, « ARRET » sans accent.
+
+### Ajouté
+
+- `tools/verifier_contenu.cjs` : contrôle de la totalité du contenu (structure de chaque leçon, cohérence de chaque question, exécution de chaque animation) et génération des planches `docs/captures/planches`, qui montrent chaque étape de chaque leçon à côté de son commentaire.
+- Parcours automatisé : résolution de l'atelier de chacune des 25 leçons, avec un essai refusé puis une construction validée.
+
 ## [1.3.0] 2026-11-14
 
 ### Ajouté

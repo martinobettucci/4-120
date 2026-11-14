@@ -1,5 +1,6 @@
 import Animation, { COUL, seuil } from '../composants/Animation.jsx';
 import { useJSON, Plan2D, centre, polyligne } from '../composants/outils.jsx';
+const F = (x, n) => Number(x).toFixed(n).replace('.', ',');
 
 const ETAPES = [
   { titre: "Un espace de recherche", texte: "Le robot doit visiter toutes les stations de collecte puis revenir au dépôt. Chaque ordre de visite est une solution candidate : avec 9 stations, il en existe 9! = 362 880. Voici un ordre pris au hasard." },
@@ -65,21 +66,23 @@ function Courbe({ h, p, x = 470, y = 40, w = 400, ht = 250 }) {
 }
 
 // Paysage de coût à une dimension, pour l'intuition du critère d'acceptation.
-const paysage = (x) => 0.55 + 0.3 * Math.sin(x * 9) * Math.cos(x * 2.3) + 0.35 * (x - 0.7) ** 2;
+const paysage = (x) => 0.55 + 0.3 * Math.sin(x * 9) * Math.cos(x * 2.3) + 0.35 * (x - 0.7) ** 2 - 0.1 * Math.exp(-((x - 0.9) ** 2) / 0.004);
+const CREUX = (() => { let m = 0; for (let i = 0; i <= 200; i++) if (paysage(i / 200) < paysage(m)) m = i / 200; return m; })();
 function Paysage({ p }) {
   const x0 = 470; const w = 400; const y0 = 60; const h = 210;
-  const pts = Array.from({ length: 101 }, (_, i) => `${x0 + (i / 100) * w},${y0 + paysage(i / 100) * h}`).join(' ');
-  // Trajectoire déterministe : exploration large puis descente dans le meilleur bassin.
+  // Coût élevé en haut, coût faible en bas : la bille doit finir dans le creux le plus profond.
+  const Yc = (x) => y0 + (1 - paysage(x)) * h;
+  const pts = Array.from({ length: 101 }, (_, i) => `${x0 + (i / 100) * w},${Yc(i / 100)}`).join(' ');
   const T = 1 - p;
-  const bx = 0.12 + 0.6 * seuil(p, 0, 0.75) + 0.16 * T * Math.sin(p * 40);
+  const bx = Math.max(0, Math.min(1, 0.08 + (CREUX - 0.08) * seuil(p, 0, 0.75) + 0.16 * T * Math.sin(p * 40)));
   return (
     <g>
       <polyline points={pts} fill="none" stroke="var(--texte)" strokeWidth="2.5" />
-      <circle cx={x0 + bx * w} cy={y0 + paysage(bx) * h - 11} r="10" fill={COUL.jaune} stroke={COUL.noir} strokeWidth="2" />
-      <text x={x0} y={y0 - 22} fontSize="12.5" fill="var(--texte)">Coût des solutions (plus bas : meilleur)</text>
+      <circle cx={x0 + bx * w} cy={Yc(bx) - 11} r="10" fill={COUL.jaune} stroke={COUL.noir} strokeWidth="2" />
+      <text x={x0} y={y0 - 22} fontSize="12.5" fill="var(--texte)">Coût des solutions (haut : mauvais, bas : bon)</text>
       <rect x={x0} y={320} width={w} height="12" rx="6" fill="var(--plan-sol)" />
       <rect x={x0} y={320} width={w * T} height="12" rx="6" fill={COUL.rouge} />
-      <text x={x0} y={312} fontSize="12.5" fill="var(--texte)">Température T : {T.toFixed(2)} (probabilité d'accepter une dégradation Δ = 0,2 : {Math.round(Math.exp(-0.2 / Math.max(T, 0.01)) * 100)} %)</text>
+      <text x={x0} y={312} fontSize="12.5" fill="var(--texte)">T = {F(T, 2)} : une dégradation de 0,2 est acceptée dans {Math.round(Math.exp(-0.2 / Math.max(T, 0.01)) * 100)} % des cas</text>
     </g>
   );
 }
@@ -121,11 +124,11 @@ export default function AnimM4() {
                 <rect x="470" y="70" width="400" height="92" rx="10" fill="var(--carte)" stroke={COUL.vert} strokeWidth="2.5" />
                 <text x="486" y="98" fontWeight="700">Programmation sous contraintes (CP-SAT)</text>
                 <text x="486" y="122">coût {Math.round(d.cp_sat.cout)}, statut {d.cp_sat.statut}</text>
-                <text x="486" y="144">temps de calcul : {Number(d.cp_sat.duree_s).toFixed(2)} s</text>
+                <text x="486" y="144">temps de calcul : {F(d.cp_sat.duree_s, 2)} s</text>
                 <rect x="470" y="186" width="400" height="92" rx="10" fill="var(--carte)" stroke={COUL.bleu} strokeWidth="2.5" />
                 <text x="486" y="214" fontWeight="700">Recuit simulé</text>
                 <text x="486" y="238">coût {Math.round(d.recuit.cout)}, sans preuve d'optimalité</text>
-                <text x="486" y="260">temps de calcul : {Number(d.recuit.duree_s).toFixed(2)} s</text>
+                <text x="486" y="260">temps de calcul : {F(d.recuit.duree_s, 2)} s</text>
               </g>
             )}
             <text x="20" y="28" fontSize="13" fontWeight="700" fill="var(--texte)">Entrepôt vu de dessus</text>

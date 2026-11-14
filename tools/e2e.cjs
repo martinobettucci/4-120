@@ -156,20 +156,42 @@ verifier((await page.locator('.bilan.faux').count()) === 1, 'atelier recuit : un
 await page.getByLabel('Température initiale').fill('1');
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier recuit : le réglage trouvé atteint l\'objectif');
-// 9. Assemblage de programme : on reconstruit l'ordre en déplaçant les lignes
-const { ATELIER } = await import(require('node:url').pathToFileURL(require('node:path').resolve('web/src/lecons/cours.js')).href);
-await allerAuTemps('boucle', 4);
-await page.locator('[data-testid=verifier]').click();
-verifier((await page.locator('.bilan.faux').count()) === 1, 'atelier programme : un ordre incorrect est signalé ligne par ligne');
-const cible = ATELIER.boucle.config.lignes.map((l) => l.trim());
-for (let i = 0; i < cible.length; i++) {
-  const textes = await page.locator('.parsons li code').allTextContents();
-  let j = textes.findIndex((t, k) => k >= i && t.trim() === cible[i]);
-  while (j > i) { await page.locator('.parsons li').nth(j).getByLabel('Monter').click(); j--; }
+// 9. Tous les autres ateliers, leçon par leçon : calculs complets et assemblage de programmes.
+//    Avec les huit ateliers ci-dessus, les 25 leçons sont validées par une construction réelle.
+const chemin = require('node:path'); const tmpdir = fs.mkdtempSync(chemin.join(require('node:os').tmpdir(), 'e2e-'));
+fs.writeFileSync(chemin.join(tmpdir, 'e.js'), `export { NOTIONS } from ${JSON.stringify(chemin.resolve('web/src/lecons/notions.js'))};`);
+require(chemin.resolve('web/node_modules/esbuild')).buildSync({ entryPoints: [chemin.join(tmpdir, 'e.js')], bundle: true, format: 'cjs', platform: 'node', outfile: chemin.join(tmpdir, 'n.cjs'), jsx: 'automatic', logLevel: 'error', nodePaths: [chemin.resolve('web/node_modules')] });
+const { NOTIONS } = require(chemin.join(tmpdir, 'n.cjs'));
+const construits = new Set(['regles', 'contraintes', 'reactif', 'gradient', 'neurone', 'mdp', 'qlearning', 'recuit']);
+for (const n of NOTIONS) {
+  const a = n.atelier;
+  if (a.type !== 'formulaire' && a.type !== 'parsons') continue;
+  await allerAuTemps(n.id, 4);
+  await page.locator('[data-testid=verifier]').click();
+  const refuse = (await page.locator('.bilan.faux').count()) === 1;
+  if (a.type === 'formulaire') {
+    for (let k = 0; k < a.config.champs.length; k++) {
+      const c = a.config.champs[k]; const li = page.locator('.champs li').nth(k);
+      if (c.options) await li.locator('select').selectOption(c.reponse); else await li.locator('input').fill(String(c.reponse).replace('.', ','));
+    }
+  } else {
+    const cible = a.config.lignes.map((l) => l.trim());
+    for (let k = 0; k < cible.length; k++) {
+      const textes = await page.locator('.parsons li code').allTextContents();
+      let j = textes.findIndex((t, m) => m >= k && t.trim() === cible[k]);
+      while (j > k) { await page.locator('.parsons li').nth(j).getByLabel('Monter').click(); j--; }
+    }
+  }
+  await page.locator('[data-testid=verifier]').click();
+  const valide = (await page.locator('.bilan.juste').count()) === 1;
+  verifier(refuse && valide, `atelier « ${n.id} » (${a.type === 'formulaire' ? 'calcul' : 'programme'}) : construction vide refusée, construction correcte validée`);
+  if (n.id === 'boucle') await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-programme.jpg`, type: 'jpeg', quality: 82 });
+  construits.add(n.id);
 }
-await page.locator('[data-testid=verifier]').click();
-verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier programme : le programme assemblé est validé');
-await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-programme.jpg`, type: 'jpeg', quality: 82 });
+verifier(construits.size === NOTIONS.length, `les ${NOTIONS.length} leçons ont chacune leur atelier résolu de bout en bout (${construits.size})`);
+await page.goto(`${base}/#/module/0`);
+const acquises = await page.locator('.lecon-carte.acquise').count();
+verifier(acquises === NOTIONS.length, `module 0 : ${acquises} leçons marquées acquises après résolution de tous les ateliers`);
 // Toutes les leçons s'ouvrent en entier : cours, démonstration, atelier
 const ids = await page.evaluate(() => 0).then(async () => { await page.goto(`${base}/#/module/0`); return page.locator('.lecon-carte').evaluateAll((els) => els.map((e) => e.getAttribute('data-lecon'))); });
 for (const id of ids) {

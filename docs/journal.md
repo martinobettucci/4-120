@@ -36,6 +36,10 @@
 
 **La théorie manquait.** Montrer un mécanisme ne le définit pas. Chaque leçon expose maintenant le modèle, la formule, l'algorithme et les limites. Et le périmètre a été élargi là où le syllabus cite une notion sans ses fondations : on ne peut pas « utiliser un réseau de neurones » sans avoir vu un neurone, ni « apprendre une politique » sans savoir ce qu'est une politique.
 
+**Vérifier tout, pas un échantillon.** J'avais contrôlé à l'œil une seule leçon et rapporté le reste comme « non vérifié ». Remarque reçue, à juste titre : une vérification porte sur la totalité. Le contrôle complet (une planche par leçon, chaque étape à côté de son commentaire, tous les nombres recalculés, tous les ateliers résolus) a relevé une quinzaine de défauts qu'aucun test automatique ne signalait, dont trois sérieux : une courbe de coût tracée à l'envers, un scénario de localisation qui ne démontrait pas ce que son texte affirmait, et une animation en avance sur son commentaire. Un test qui passe prouve que la page s'affiche, pas qu'elle dit vrai. L'outil `tools/verifier_contenu.cjs` et ses planches rendent ce contrôle reproductible sur l'ensemble des leçons.
+
+**Une correction peut casser.** La mise au format français des nombres, faite par remplacement automatique, a fait planter l'animation du module 4. C'est le passage en revue de toutes les étapes de toutes les animations qui l'a révélé, pas le remplacement lui-même. Toute modification en série est suivie du contrôle complet.
+
 ## Pistes ouvertes
 
 - Mesurer les gains GPU sur la machine de formation et les reporter dans les notebooks.

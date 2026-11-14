@@ -1,5 +1,6 @@
 import Animation, { COUL, seuil, doux } from '../composants/Animation.jsx';
 import { useJSON } from '../composants/outils.jsx';
+const F = (x, n) => Number(x).toFixed(n).replace('.', ',');
 
 const ETAPES = [
   { titre: "Valider un comportement, pas un résultat", texte: "Un agent autonome ne se valide pas sur une exécution réussie. Ses décisions dépendent d'aléas (bruit des capteurs, glissement, obstacles mobiles) : il faut mesurer une distribution de résultats sur un grand nombre de simulations." },
@@ -75,7 +76,7 @@ export default function AnimM6() {
                   const alea = ((i * 2654435761) % 1000) / 1000;
                   return <rect key={i} x={60 + (i % 40) * 19.5} y={64 + Math.floor(i / 40) * 19.5} width="16" height="16" rx="3" fill={alea < r.taux_succes ? COUL.vert : COUL.rouge} />;
                 })}
-                <text x="60" y="290" fontSize="14" fill="var(--texte)">Taux de réussite mesuré : <tspan fontWeight="700">{(r.taux_succes * 100).toFixed(1)} %</tspan>, collisions moyennes par exécution : <tspan fontWeight="700">{Number(r.collisions_moyennes).toFixed(2)}</tspan></text>
+                <text x="60" y="290" fontSize="14" fill="var(--texte)">Taux de réussite mesuré : <tspan fontWeight="700">{F((r.taux_succes * 100), 1)} %</tspan>, collisions moyennes par exécution : <tspan fontWeight="700">{F(r.collisions_moyennes, 2)}</tspan></text>
               </g>
             );
           })()}

@@ -55,6 +55,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Controle complet du contenu pedagogique (25 lecons, questions, ateliers)
+        run: |
+          cd web && npm ci --no-audit --no-fund && cd ..
+          node tools/verifier_contenu.cjs
       - name: Parcours de bout en bout du site versionne (Playwright)
         run: |
           mkdir -p /tmp/e2e && (cd /tmp/e2e && npm init -y >/dev/null && npm i --no-audit --no-fund playwright@1.63.0 && npx playwright install --with-deps chromium)

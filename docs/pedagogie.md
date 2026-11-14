@@ -150,7 +150,20 @@ Chaque page de module (`web/src/lecons/modules-pedagogie.js`) comporte désormai
 
 Objectifs, activités et évaluation portent sur les mêmes savoir-faire : l'objectif annoncé en tête de leçon est celui que l'exercice vérifie et que la dernière page reformule. La même chaîne relie la leçon (comprendre), le module (analyser un comportement) et le notebook (programmer).
 
-## 4. Limites
+## 4. Vérification du contenu
+
+Un support pédagogique faux est pire qu'un support absent. Le contenu est vérifié en totalité, par quatre contrôles complémentaires :
+
+| Contrôle | Portée | Outil |
+| --- | --- | --- |
+| Structure et questions | Chaque leçon, chaque étape, chaque question et chaque module | `tools/verifier_contenu.cjs` |
+| Cohérence image et commentaire | Chaque étape de chaque démonstration, relue sur planche | `tools/verifier_contenu.cjs --planches`, puis lecture de `docs/captures/planches` |
+| Ateliers | L'atelier de chaque leçon : un essai refusé, puis une construction validée | `tools/e2e.cjs` |
+| Nombres | Chaque valeur du cours, des exemples et des ateliers, recalculée indépendamment | Relecture à chaque modification d'une leçon |
+
+Les deux premiers et le troisième tournent aussi dans le workflow GitHub. La relecture des planches reste un travail humain : aucun test ne sait si un commentaire décrit bien ce que montre l'image.
+
+## 5. Limites
 
 - Les ateliers font construire dans un cadre guidé : les variables, les formes de règles ou les lignes de code sont fournies. Écrire un programme entier à partir d'une page blanche reste l'objet des notebooks.
 - Aucune mesure d'efficacité n'a été faite sur de vrais apprenants. Les retours de la première session serviront à ajuster les leçons : questions trop faciles, étapes trop longues, vocabulaire manquant.

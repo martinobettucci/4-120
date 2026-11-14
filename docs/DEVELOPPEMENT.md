@@ -50,6 +50,15 @@ Les sources sont les fichiers `notebooks/src/NN_nom.py`, au format « percent »
 
 Le parcours de bout en bout (`tools/e2e.cjs`) vérifie les six modules, fait avancer chaque animation et chaque scène 3D, contrôle la présence des notebooks, puis enregistre des captures JPEG et une vidéo WebM dans `docs/captures/`.
 
+Contrôle complet du contenu pédagogique, à lancer après toute modification d'une leçon :
+
+```bash
+cd web && npm ci && cd ..
+node tools/verifier_contenu.cjs --planches   # structure, questions, animations, planches de relecture
+```
+
+Les planches écrites dans `docs/captures/planches` montrent chaque étape de chaque leçon à côté de son commentaire : elles sont à relire en entier avant publication.
+
 Sans Docker :
 
 ```bash

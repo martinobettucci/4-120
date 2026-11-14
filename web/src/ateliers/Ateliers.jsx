@@ -2,6 +2,7 @@
 // il fabrique l'objet étudié (une base de règles, un neurone, un modèle de contraintes,
 // une politique, des récompenses, un programme), puis le système le met à l'épreuve.
 import { useMemo, useState } from 'react';
+const F = (x, n) => Number(x).toFixed(n).replace('.', ',');
 
 const C = { bleu: '#23468C', vert: '#238C33', jaune: '#D9CF4A', rouge: '#F24141', noir: '#0D0D0D', gris: '#8A93A6', orange: '#E07B1A' };
 export const alea = (graine) => { let s = graine; return () => { s = (s * 16807) % 2147483647; return s / 2147483647; }; };
@@ -134,7 +135,7 @@ export function AtelierNeurone({ surReussite }) {
   const T = 250; const X = (v) => 30 + v * T; const Y = (v) => 10 + (1 - v) * T;
   // Frontière : w1 x + w2 y + b = 0, tracée d'un bord à l'autre du carré.
   const seg = []; for (const x of [0, 1]) { if (Math.abs(w2) > 1e-6) { const y = -(w1 * x + b) / w2; if (y >= -0.001 && y <= 1.001) seg.push([x, y]); } } for (const y of [0, 1]) { if (Math.abs(w1) > 1e-6) { const x = -(w2 * y + b) / w1; if (x >= -0.001 && x <= 1.001) seg.push([x, y]); } }
-  const curseur = (nom, val, set, min, max, pas) => (<label className="curseur">{nom} = <b>{val.toFixed(2)}</b><input type="range" min={min} max={max} step={pas} value={val} onChange={(e) => set(Number(e.target.value))} aria-label={nom} /></label>);
+  const curseur = (nom, val, set, min, max, pas) => (<label className="curseur">{nom} = <b>{F(val, 2)}</b><input type="range" min={min} max={max} step={pas} value={val} onChange={(e) => set(Number(e.target.value))} aria-label={nom} /></label>);
   return (
     <div className="atelier deux">
       <svg viewBox="0 0 300 290" role="img" aria-label="Points à séparer">
@@ -147,8 +148,8 @@ export function AtelierNeurone({ surReussite }) {
       <div>
         <p>Réglez les deux poids et le biais pour que le neurone réponde 1 (arrêter) sur tous les points rouges et 0 (continuer) sur tous les points bleus. Les points cerclés de noir sont mal classés.</p>
         {curseur('w₁', w1, setW1, -2, 2, 0.1)}{curseur('w₂', w2, setW2, -2, 2, 0.1)}{curseur('b', b, setB, -2, 2, 0.05)}
-        <p className="formule">sortie = 1 si {w1.toFixed(2)} × x₁ + {w2.toFixed(2)} × x₂ + ({b.toFixed(2)}) &gt; 0</p>
-        {faux && <p className="conseil">Exemple mal classé : x₁ = {faux[0].toFixed(2)}, x₂ = {faux[1].toFixed(2)}. Somme = {(w1 * faux[0] + w2 * faux[1] + b).toFixed(2)}, donc sortie {sortie(faux)}, alors que la bonne réponse est {faux[2]}.</p>}
+        <p className="formule">sortie = 1 si {F(w1, 2)} × x₁ + {F(w2, 2)} × x₂ + ({F(b, 2)}) &gt; 0</p>
+        {faux && <p className="conseil">Exemple mal classé : x₁ = {F(faux[0], 2)}, x₂ = {F(faux[1], 2)}. Somme = {F((w1 * faux[0] + w2 * faux[1] + b), 2)}, donc sortie {sortie(faux)}, alors que la bonne réponse est {faux[2]}.</p>}
         <button className="bouton" onClick={() => { if (justes === POINTS.length) surReussite(); }} data-testid="verifier" disabled={justes !== POINTS.length}>Valider mon neurone</button>
         <Bilan ok={justes === POINTS.length}>{justes} point(s) bien classé(s) sur {POINTS.length}. {justes === POINTS.length ? "Votre neurone sépare les deux classes. C'est exactement ce que l'entraînement fait automatiquement : chercher des poids qui réduisent les erreurs." : 'Un poids positif pousse vers « arrêter » quand la mesure augmente. Le biais déplace la frontière sans la faire tourner.'}</Bilan>
       </div>
@@ -172,9 +173,9 @@ export function AtelierGradient({ surReussite }) {
         {(lance ? pas : [pas[0]]).map((w, k) => <circle key={k} cx={X(w)} cy={Y(w)} r={k === 0 ? 7 : 4.5} fill={k === 0 ? C.bleu : C.orange} />)}
         <line x1={X(3)} y1="200" x2={X(3)} y2="208" stroke={C.vert} strokeWidth="3" /><text x={X(3)} y="214" textAnchor="middle" fontSize="11" fill={C.vert}>minimum</text>
       </svg>
-      <label className="curseur">taux d'apprentissage = <b>{taux.toFixed(2)}</b><input type="range" min="0.01" max="1.2" step="0.01" value={taux} onChange={(e) => { setTaux(Number(e.target.value)); setLance(false); }} aria-label="taux d'apprentissage" /></label>
+      <label className="curseur">taux d'apprentissage = <b>{F(taux, 2)}</b><input type="range" min="0.01" max="1.2" step="0.01" value={taux} onChange={(e) => { setTaux(Number(e.target.value)); setLance(false); }} aria-label="taux d'apprentissage" /></label>
       <button className="bouton" onClick={() => { setLance(true); if (ok) surReussite(); }} data-testid="verifier">Lancer 20 pas de descente</button>
-      {lance && <Bilan ok={ok}>Après 20 pas : w = {Math.abs(fin) > 999 ? 'hors échelle' : fin.toFixed(2)}. {ok ? 'Convergence atteinte. Vous avez réglé un hyperparamètre : ni trop prudent, ni trop audacieux.' : diverge ? "Chaque pas dépasse le minimum et s'en éloigne davantage : le taux est trop grand, la descente diverge." : Math.abs(taux - 1) < 0.006 ? 'Le paramètre saute indéfiniment d\'un côté à l\'autre du minimum, sans s\'en approcher.' : taux > 0.5 ? 'Le paramètre oscille de part et d\'autre du minimum et se rapproche trop lentement. Réduisez le taux.' : 'Le paramètre avance dans la bonne direction, mais à trop petits pas : 20 pas ne suffisent pas. Augmentez le taux.'}</Bilan>}
+      {lance && <Bilan ok={ok}>Après 20 pas : w = {Math.abs(fin) > 999 ? 'hors échelle' : F(fin, 2)}. {ok ? 'Convergence atteinte. Vous avez réglé un hyperparamètre : ni trop prudent, ni trop audacieux.' : diverge ? "Chaque pas dépasse le minimum et s'en éloigne davantage : le taux est trop grand, la descente diverge." : Math.abs(taux - 1) < 0.006 ? 'Le paramètre saute indéfiniment d\'un côté à l\'autre du minimum, sans s\'en approcher.' : taux > 0.5 ? 'Le paramètre oscille de part et d\'autre du minimum et se rapproche trop lentement. Réduisez le taux.' : 'Le paramètre avance dans la bonne direction, mais à trop petits pas : 20 pas ne suffisent pas. Augmentez le taux.'}</Bilan>}
     </div>
   );
 }
@@ -293,8 +294,8 @@ export function AtelierRecuit({ surReussite }) {
   return (
     <div className="atelier">
       <p>Le robot doit visiter 16 stations. Le recuit dispose de 3 000 itérations et échange deux stations à chaque essai. Réglez la température initiale T₀ et le coefficient de refroidissement α (à chaque itération, T ← α × T) pour que la longueur moyenne obtenue sur 5 graines soit à moins de 8 % de la meilleure tournée connue.</p>
-      <label className="curseur">T₀ = <b>{t0.toFixed(3)}</b><input type="range" min="0.001" max="3" step="0.001" value={t0} onChange={(ev) => { setT0(Number(ev.target.value)); setRes(null); }} aria-label="Température initiale" /></label>
-      <label className="curseur">α = <b>{alpha.toFixed(4)}</b><input type="range" min="0.99" max="0.9999" step="0.0001" value={alpha} onChange={(ev) => { setAlpha(Number(ev.target.value)); setRes(null); }} aria-label="Coefficient de refroidissement" /></label>
+      <label className="curseur">T₀ = <b>{F(t0, 3)}</b><input type="range" min="0.001" max="3" step="0.001" value={t0} onChange={(ev) => { setT0(Number(ev.target.value)); setRes(null); }} aria-label="Température initiale" /></label>
+      <label className="curseur">α = <b>{F(alpha, 4)}</b><input type="range" min="0.99" max="0.9999" step="0.0001" value={alpha} onChange={(ev) => { setAlpha(Number(ev.target.value)); setRes(null); }} aria-label="Coefficient de refroidissement" /></label>
       <p className="conseil">Température à la fin des 3 000 itérations : {(t0 * alpha ** 3000).toExponential(1)}. Un échange typique allonge la tournée de 0,1 à 0,5.</p>
       <button className="bouton" onClick={lancer} data-testid="verifier">Lancer 5 recuits</button>
       {res && (
@@ -306,7 +307,7 @@ export function AtelierRecuit({ surReussite }) {
             <line x1="225" x2="425" y1={190 - ((REFERENCE - REFERENCE * 0.9) / (REFERENCE * 1.6)) * 170} y2={190 - ((REFERENCE - REFERENCE * 0.9) / (REFERENCE * 1.6)) * 170} stroke={C.vert} strokeDasharray="4 3" />
             <text x="225" y="12" fontSize="11" fill="var(--texte-doux)">coût au fil des itérations (première graine)</text>
           </svg>
-          <Bilan ok={res.ecart <= 0.08}>Longueur moyenne : {res.moy.toFixed(2)}, meilleure connue : {REFERENCE.toFixed(2)}, écart : {(res.ecart * 100).toFixed(1)} %. {res.ecart <= 0.08 ? "Objectif atteint : la température était assez haute pour explorer, et elle a eu le temps de redescendre." : t0 * alpha ** 3000 > 0.05 ? "La température est encore élevée à la fin : la recherche accepte toujours des dégradations et n'a pas eu le temps de se stabiliser. Refroidissez plus vite (α plus petit) ou partez de moins haut." : t0 < 0.2 ? "La température de départ est trop basse : presque aucune dégradation n'est acceptée, la recherche se comporte comme une simple descente et reste dans un minimum local." : "La température chute trop vite : la phase d'exploration est trop courte. Ralentissez le refroidissement (α plus proche de 1)."}</Bilan>
+          <Bilan ok={res.ecart <= 0.08}>Longueur moyenne : {F(res.moy, 2)}, meilleure connue : {F(REFERENCE, 2)}, écart : {F((res.ecart * 100), 1)} %. {res.ecart <= 0.08 ? "Objectif atteint : la température était assez haute pour explorer, et elle a eu le temps de redescendre." : t0 * alpha ** 3000 > 0.05 ? "La température est encore élevée à la fin : la recherche accepte toujours des dégradations et n'a pas eu le temps de se stabiliser. Refroidissez plus vite (α plus petit) ou partez de moins haut." : t0 < 0.2 ? "La température de départ est trop basse : presque aucune dégradation n'est acceptée, la recherche se comporte comme une simple descente et reste dans un minimum local." : "La température chute trop vite : la phase d'exploration est trop courte. Ralentissez le refroidissement (α plus proche de 1)."}</Bilan>
         </>
       )}
     </div>

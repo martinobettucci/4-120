@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Animation, { COUL, seuil, doux } from '../composants/Animation.jsx';
 import { useJSON } from '../composants/outils.jsx';
+const F = (x, n) => Number(x).toFixed(n).replace('.', ',');
 
 const ETAPES = [
   { titre: "Un même problème, trois approches", texte: "Le superviseur du robot doit choisir une action à partir de quelques mesures. Les trois approches du module reçoivent exactement la même entrée : choisissez un cas dans la liste pour la faire varier." },
@@ -11,7 +12,9 @@ const ETAPES = [
 ];
 
 const NOMS = { temperature: 'température', distance_obstacle: 'distance obstacle', bruit_capteur: 'bruit capteur' };
-const libelleDecision = (d) => (d === undefined || d === null ? 'n.c.' : String(d));
+// Affichage : accent de « ARRÊT » et virgule décimale, les identifiants des données restant inchangés.
+const aff = (x) => String(x).replaceAll('ARRET', 'ARRÊT').replace(/(\d)\.(\d)/g, '$1,$2');
+const libelleDecision = (d) => (d === undefined || d === null ? 'n.c.' : aff(d));
 
 function Entree({ cas, variables }) {
   const cles = Object.keys(cas.entree);
@@ -28,7 +31,7 @@ function Entree({ cas, variables }) {
             <text x="20" y={y} fontSize="12.5" fill="var(--texte-doux)">{NOMS[k] || k.replaceAll('_', ' ')}</text>
             <rect x="20" y={y + 7} width="190" height="10" rx="5" fill="var(--plan-sol)" />
             <rect x="20" y={y + 7} width={190 * f} height="10" rx="5" fill={COUL.bleu} />
-            <text x="218" y={y + 17} fontSize="12.5" fontWeight="700" fill="var(--texte)">{Number.isInteger(val) ? val : val.toFixed(1)} {v.unite || ''}</text>
+            <text x="218" y={y + 17} fontSize="12.5" fontWeight="700" fill="var(--texte)">{Number.isInteger(val) ? val : F(val, 1)} {v.unite || ''}</text>
           </g>
         );
       })}
@@ -57,7 +60,7 @@ function Regles({ donnees, cas, p }) {
         return (
           <g key={r.id} opacity={0.25 + 0.75 * vu}>
             <rect x="310" y={30 + i * 44} width="560" height="36" rx="8" fill={actif && vu > 0.9 ? COUL.jaune : 'var(--carte)'} stroke={actif && vu > 0.9 ? COUL.noir : 'var(--bord)'} strokeWidth="1.5" />
-            <text x="324" y={53 + i * 44} fontSize="12.5" fill={actif && vu > 0.9 ? '#0D0D0D' : 'var(--texte)'}><tspan fontWeight="700">{r.id}</tspan>  si {r.condition} → {r.decision}</text>
+            <text x="324" y={53 + i * 44} fontSize="12.5" fill={actif && vu > 0.9 ? '#0D0D0D' : 'var(--texte)'}><tspan fontWeight="700">{r.id}</tspan>  si {aff(r.condition)} → {aff(r.decision)}</text>
           </g>
         );
       })}
@@ -130,7 +133,7 @@ function Supervise({ cas, p }) {
         const f = doux(seuil(p, 0.6, 0.9));
         return (
           <g key={d}>
-            <text x="662" y={ys(probas.length, i) - 6} fontSize="12" fill="var(--texte)">{d}</text>
+            <text x="662" y={ys(probas.length, i) - 6} fontSize="12" fill="var(--texte)">{aff(d)}</text>
             <rect x="662" y={ys(probas.length, i)} width="150" height="9" rx="4.5" fill="var(--plan-sol)" />
             <rect x="662" y={ys(probas.length, i)} width={150 * v * f} height="9" rx="4.5" fill={d === cas.supervise.decision ? COUL.vert : COUL.gris} />
             <text x="820" y={ys(probas.length, i) + 9} fontSize="12" fontWeight="700" fill="var(--texte)" opacity={f}>{Math.round(v * 100)} %</text>
