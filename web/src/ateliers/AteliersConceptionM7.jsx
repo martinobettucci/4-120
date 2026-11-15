@@ -112,7 +112,7 @@ export function AtelierComposantes({ surReussite }) {
             {verdict(res.tests.charge, `Demandes soumises à la responsable : ${res.soumises} (maximum ${RH.maxSoumises})`)}
             {verdict(res.tests.sobre, `Données reçues sans être utilisées : ${res.tests.sobre ? 'aucune' : 'le motif du congé'}`)}
           </tbody></table>
-          <Bilan ok={res.ok}>{res.ok ? "Les 12 demandes sont bien traitées, et les congés longs passent par la responsable. Vous venez de spécifier un agent : ce qu'il perçoit, ce qu'il tient à jour, comment il décide, sur quoi il agit et ce qu'il fait seul. Retirez une seule de ces composantes, et il se trompe ou cesse d'agir." : [
+          <Bilan ok={res.ok} solution="composantes">{res.ok ? "Les 12 demandes sont bien traitées, et les congés longs passent par la responsable. Vous venez de spécifier un agent : ce qu'il perçoit, ce qu'il tient à jour, comment il décide, sur quoi il agit et ce qu'il fait seul. Retirez une seule de ces composantes, et il se trompe ou cesse d'agir." : [
             !a.percoit.includes('formulaire') && "L'agent ne perçoit aucune demande : il n'a rien à traiter. Par où les demandes lui arrivent-elles ?",
             res.sansEffet > 0 && `Votre agent répond « accordé » ${res.sansEffet} fois, mais rien ne change dans le planning ni dans les soldes : il répond sans agir, comme un chatbot. Sur quoi doit-il pouvoir agir ?`,
             res.sousEffectif.length > 0 && `Le jour J${res.sousEffectif[0]}, il reste moins de ${RH.presents} personnes présentes : l'agent a accordé un congé sans savoir qui était déjà absent. ${a.tient.includes('planning') && a.regles.includes('effectif') ? "Son planning ne contient que les congés qu'il a inscrits lui-même : comment apprend-il ceux que la responsable a validés ?" : "Tient-il à jour de quoi le savoir, et une règle s'en sert-elle ?"}`,
@@ -245,7 +245,7 @@ export function AtelierImplementation({ surReussite }) {
                 <td className={x.ok ? 'ok' : 'ko'}>{x.ok ? 'réussi ✓' : `${x.juste ? '' : 'décision ✗ '}${x.manque.length ? `journal ✗ : il manque ${x.manque.join(', ')}` : ''}`}</td></tr>
             ))}</tbody>
           </table>
-          <Bilan ok={res.ok}>{res.ok ? "Les 6 dossiers de test passent : chaque dossier reçoit une décision, le doute remonte à un humain, rien ne sort sans contrôle et le journal dit où en était le traitement, même interrompu. Vous venez d'écrire la fonction centrale du système, celle du notebook 07." : `${res.nb} dossier(s) de test réussi(s) sur 6. ${[
+          <Bilan ok={res.ok} solution="implementation">{res.ok ? "Les 6 dossiers de test passent : chaque dossier reçoit une décision, le doute remonte à un humain, rien ne sort sans contrôle et le journal dit où en était le traitement, même interrompu. Vous venez d'écrire la fonction centrale du système, celle du notebook 07." : `${res.nb} dossier(s) de test réussi(s) sur 6. ${[
             res.cas.some((x) => x.exception) && `Sur ${res.cas.filter((x) => x.exception).map((x) => x.d.id).join(' et ')}, la fonction s'arrête sur une exception : le dossier reste sans décision. Que doit devenir un dossier que le système ne sait pas traiter ?`,
             c.journal === 'fin' && cas('D5').journal.length === 0 && `Sur D5, l'agent de score tombe en panne et le journal est vide : il ne dit pas où le traitement s'est arrêté. La ligne récapitulative n'est écrite que si la fonction va jusqu'au bout. À quel moment écrire pour garder une trace quoi qu'il arrive ensuite ?`,
             !cas('D5').exception && !cas('D5').juste && "Sur D5, la décision est prise sur deux avis au lieu de trois, sans que personne le sache. Une panne est-elle un cas que le système sait traiter avec certitude ?",
@@ -342,7 +342,7 @@ export function AtelierEvaluation({ surReussite }) {
               <tr><td>Coût du dispositif : {res.cout} jours par mois (budget {EVAL.budget})</td><td className={res.tests.budget ? 'ok' : 'ko'}>{res.tests.budget ? 'tenu ✓' : 'dépassé ✗'}</td></tr>
             </tbody>
           </table>
-          <Bilan ok={res.ok}>{res.ok ? `Les 5 défauts sont révélés pour ${res.cout} jours par mois. Vous venez de monter un dispositif d'évaluation : à chaque composant ses indicateurs, et pour chaque erreur qui ne laisse pas de trace, un banc de cas connus ou un contrôle humain par sondage.` : [
+          <Bilan ok={res.ok} solution="evaluation">{res.ok ? `Les 5 défauts sont révélés pour ${res.cout} jours par mois. Vous venez de monter un dispositif d'évaluation : à chaque composant ses indicateurs, et pour chaque erreur qui ne laisse pas de trace, un banc de cas connus ou un contrôle humain par sondage.` : [
             `${res.nb} défaut(s) révélé(s) sur ${DEFAUTS.length}.`,
             res.aveugle && "Votre dispositif ne compte que ce que le système laisse voir : retours, désaccords, blocages, délais. Un accord faux, un message traité au mauvais endroit, une action à risque qui passe ne laissent aucune trace dans le journal. Qui connaît la bonne réponse pour ces cas-là ?",
             !res.aveugle && !res.tests.detection && "Pour chaque ligne en rouge, demandez-vous quel composant est en cause, quel indicateur de la leçon le juge, et qui peut fournir la bonne réponse : un banc de cas connus, ou un humain qui recontrôle un échantillon.",
@@ -430,7 +430,7 @@ export function AtelierCasusage({ surReussite }) {
             {verdict(res.tests.fuites, `Non-divulgation : ${res.fuites} réponse(s) par jour avec une donnée personnelle`)}
             {verdict(res.tests.justif, `Décisions justifiables par des règles et un score : ${res.tests.justif ? 'oui' : 'non'}`)}
           </tbody></table>
-          <Bilan ok={res.ok}>{res.ok ? `Les cinq exigences sont tenues : ${F(res.erreurs, 1)} erreurs, ${res.validations} validations et ${milliers(res.cout)} € par jour. Vous venez de concevoir un système complet : la chaîne contrôlée là où elle perd des dossiers, le vote réservé aux dossiers à risque, l'humain sous le seuil que le coût d'une erreur justifie, le LLM en interface, le modérateur en sortie.` : [
+          <Bilan ok={res.ok} solution="casusage">{res.ok ? `Les cinq exigences sont tenues : ${F(res.erreurs, 1)} erreurs, ${res.validations} validations et ${milliers(res.cout)} € par jour. Vous venez de concevoir un système complet : la chaîne contrôlée là où elle perd des dossiers, le vote réservé aux dossiers à risque, l'humain sous le seuil que le coût d'une erreur justifie, le LLM en interface, le modérateur en sortie.` : [
             !res.tests.justif && "Le LLM rend la décision : ni règle ni score ne permettent de la justifier devant un usager. Où son aptitude au langage est-elle utile sans engager le service ?",
             !res.tests.fuites && `${res.fuites} réponses par jour partent avec une donnée personnelle. Quel composant décide de ce que le système a le droit d'envoyer ?`,
             !res.tests.cout && c.avis === 'tous' && `Trois avis sur tous les dossiers : ${milliers(res.traitements)} avis par jour. Sur les 650 dossiers nets, combien d'erreurs ce vote évite-t-il, et à quel prix ?`,

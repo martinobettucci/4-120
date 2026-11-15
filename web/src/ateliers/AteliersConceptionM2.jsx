@@ -83,7 +83,7 @@ export function AtelierAgent({ surReussite }) {
               <tr><td>Coût des équipements ({DRONE.cout} € au plus)</td><td className={res.okCout ? 'ok' : 'ko'}>{res.cout} € {res.okCout ? '✓' : '✗'}</td></tr>
             </tbody>
           </table>
-          <Bilan ok={res.ok}>{res.ok ? "Les six situations sont réussies, dans le budget de masse et de coût. Vous venez de spécifier un agent : pour chaque situation de sa mission, ce qu'il doit percevoir et ce par quoi il doit agir, sans rien embarquer de superflu." : [
+          <Bilan ok={res.ok} solution="agent">{res.ok ? "Les six situations sont réussies, dans le budget de masse et de coût. Vous venez de spécifier un agent : pour chaque situation de sa mission, ce qu'il doit percevoir et ce par quoi il doit agir, sans rien embarquer de superflu." : [
             `${res.reussies} situation(s) réussie(s) sur ${SITUATIONS.length}.`,
             res.impuissant > 0 && `Dans ${res.impuissant} situation(s), votre drone perçoit ce qui se passe sans pouvoir y répondre : sans l'effecteur adapté, un agent est impuissant. Par quoi agirait-il ?`,
             res.aveugle > 0 && `Dans ${res.aveugle} situation(s), aucun capteur ne lui livre l'information dont dépend sa décision. Pour chaque ligne concernée : que doit-il percevoir, et quel équipement le lui apporte ?`,
@@ -182,7 +182,7 @@ export function AtelierLidar({ surReussite }) {
               <tr><td>Calcul (au plus {LIDAR.calcul} points par tour)</td><td>{c.rayons} rayons × {c.portee} cases = {res.points} points</td><td className={res.okCalcul ? 'ok' : 'ko'}>{res.okCalcul ? 'tenu ✓' : 'dépassé ✗'}</td></tr>
             </tbody>
           </table>
-          <Bilan ok={res.ok}>{res.ok ? "Les trois obstacles sont touchés assez tôt, à la cadence demandée et sans saturer le calculateur. Vous venez de régler un capteur d'après ce que le robot doit voir : assez de rayons pour ne rien laisser passer entre deux, et juste la portée qu'exige la distance d'arrêt." : [
+          <Bilan ok={res.ok} solution="lidar">{res.ok ? "Les trois obstacles sont touchés assez tôt, à la cadence demandée et sans saturer le calculateur. Vous venez de régler un capteur d'après ce que le robot doit voir : assez de rayons pour ne rien laisser passer entre deux, et juste la portée qu'exige la distance d'arrêt." : [
             rate && !rate.vue && c.rayons === 4 && `Scène « ${rate.nom} » : avec 4 rayons, le robot ne regarde que devant, derrière et sur les côtés. Ce qui arrive en diagonale reste entre deux rayons jusqu'au choc. Que verrait un rayon de plus dans chaque intervalle ?`,
             rate && (rate.vue || c.rayons !== 4) && rate.reste <= 1 && `Scène « ${rate.nom} » : l'obstacle était à portée, mais il est resté entre deux rayons presque jusqu'au contact. Regardez le dessin : qu'est-ce qui resserre l'écart entre deux rayons voisins ?`,
             rate && rate.reste > 1 && `Scène « ${rate.nom} » : l'obstacle est touché à ${rate.reste} cases du croisement, alors qu'il faut ${res.arret} cases pour s'arrêter à ${c.vitesse} cases par seconde, et une case de garde. Deux réglages jouent sur cet écart : lesquels ?`,
@@ -248,7 +248,7 @@ export function AtelierEtat({ surReussite }) {
             {ligne(res.okCollisions, `Collisions : ${res.collisions} sur ${milliers} approches, soit ${F(res.taux * 100, 2)} % (maximum ${F(MUR.plafond * 100, 0)} %)`)}
             {ligne(res.okLoin, `Arrêts à plus de ${F(MUR.bras, 2)} m du mur : ${res.loin} sur ${milliers}, soit ${F(res.tropLoin * 100, 1)} % (maximum ${F(MUR.part * 100, 0)} %)`)}
           </tbody></table>
-          <Bilan ok={res.ok}>{res.collisions < MUR.approches ? `Arrêt moyen à ${F(res.moyen, 2)} m du mur. ` : ''}{res.ok ? `Les deux exigences sont tenues. Vous venez de concevoir la façon dont un agent exploite un capteur bruité : assez de mesures pour ramener l'incertitude à ${F(res.bruit, 2)} m, pas au point de rouler longtemps sans décider, et une marge qui couvre ce qui reste.` : [
+          <Bilan ok={res.ok} solution="etat">{res.collisions < MUR.approches ? `Arrêt moyen à ${F(res.moyen, 2)} m du mur. ` : ''}{res.ok ? `Les deux exigences sont tenues. Vous venez de concevoir la façon dont un agent exploite un capteur bruité : assez de mesures pour ramener l'incertitude à ${F(res.bruit, 2)} m, pas au point de rouler longtemps sans décider, et une marge qui couvre ce qui reste.` : [
             !res.okCollisions && res.reglable && `Trop de collisions. Avec ${c.n} mesures, il reste ${F(res.bruit, 2)} m d'incertitude sur la moyenne et ${F(res.aveugle, 2)} m parcourus pendant un lot : votre marge de ${F(c.marge, 2)} m ne couvre pas les deux. Que doit-elle absorber ?`,
             !res.okCollisions && !res.reglable && res.peuDeMesures && `Trop de collisions. Chaque décision repose sur une moyenne incertaine de ${F(res.bruit, 2)} m, pour ${F(c.marge, 2)} m de marge : trop souvent, le robot croit le mur plus loin qu'il n'est. Deux leviers réduisent ce risque : lesquels, et que coûte chacun ?`,
             !res.okCollisions && !res.reglable && !res.peuDeMesures && `Trop de collisions. Pendant qu'il accumule ses ${c.n} mesures, le robot parcourt ${F(res.aveugle, 2)} m sans rien décider, et sa moyenne décrit une position déjà dépassée. Une marge peut-elle couvrir un tel trajet sans arrêter le robot trop loin ?`,
@@ -346,7 +346,7 @@ export function AtelierBoucle({ surReussite }) {
             <thead><tr><th>Scénario</th><th>Ce que l'exécution donne</th></tr></thead>
             <tbody>{res.essais.map((e, i) => <tr key={e.nom}><td>{i + 1}. {e.nom}</td><td className={e.ok ? 'ok' : 'ko'}>{e.bilan} {e.ok ? '✓' : '✗'}</td></tr>)}</tbody>
           </table>
-          <Bilan ok={res.ok}>{res.ok ? "Les trois scénarios réussissent. Vous venez de programmer une boucle fermée : percevoir à chaque tour, décider sur la dernière observation, s'arrêter sur ce que le robot constate, et boucler plus vite que ce qui peut surgir." : `${res.essais.filter((e) => e.ok).length} scénario(s) réussi(s) sur 3. ${
+          <Bilan ok={res.ok} solution="boucle">{res.ok ? "Les trois scénarios réussissent. Vous venez de programmer une boucle fermée : percevoir à chaque tour, décider sur la dernière observation, s'arrêter sur ce que le robot constate, et boucler plus vite que ce qui peut surgir." : `${res.essais.filter((e) => e.ok).length} scénario(s) réussi(s) sur 3. ${
             c.perception === 'avant' && c.arret === 'observe' ? "Votre programme ne perçoit qu'une fois, et sa condition d'arrêt lit cette observation du départ : elle ne changera jamais. Comment le programme saurait-il que le robot est arrivé ?"
               : c.perception === 'avant' ? "Votre programme ne perçoit qu'une fois : tout ce qu'il sait date du départ. Un monde qui ne change pas lui suffirait. Dans les scénarios en échec, qu'est-ce qui a changé sans qu'il puisse le constater ?"
               : c.decision === 'plan' ? "Votre programme perçoit à chaque tour, mais sa décision ne lit jamais l'observation : il suit le plan du départ. À quoi sert une perception dont la décision ne tient pas compte ?"

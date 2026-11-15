@@ -7,6 +7,7 @@ import { PEDAGOGIE } from '../lecons/modules-pedagogie.js';
 import { notion } from '../lecons/notions.js';
 import Qcm from '../composants/Qcm.jsx';
 import Theorie from '../composants/Theorie.jsx';
+import Definition from '../composants/Definition.jsx';
 import { NOTIONS } from '../lecons/notions.js';
 import { useState } from 'react';
 import AnimM1 from '../animations/AnimM1.jsx';
@@ -76,6 +77,7 @@ export default function Module() {
         {NOTIONS.filter((x) => x.module === m.n).map((x) => (
           <details className="cours-notion" key={x.id}>
             <summary><b>{x.nom}</b><span>Atelier : {x.atelier.titre}</span></summary>
+            <Definition d={x.definition} />
             <Theorie blocs={x.theorie} />
             <p><Link className="bouton secondaire" to={`/module/0/${x.id}`}>Leçon complète et atelier →</Link></p>
           </details>

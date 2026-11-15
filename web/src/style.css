@@ -230,6 +230,11 @@ select { font: inherit; padding: 6px 8px; border-radius: 8px; border: 1px solid 
 .temps-carte h3 { font-size: 1rem; margin: 16px 0 6px; }
 .temps-carte > .bouton { margin-top: 16px; }
 .bouton:disabled { opacity: 0.4; cursor: not-allowed; }
+.definition p { max-width: 78ch; line-height: 1.6; margin: 0 0 10px; }
+.definition p:first-child { font-size: 1.06rem; }
+.definition .en-savoir-plus { background: var(--plan-sol); border-radius: 10px; padding: 8px 14px; max-width: none; margin-top: 14px; }
+.definition .en-savoir-plus small { color: var(--texte-doux); }
+.cours-notion .definition { border-left: 4px solid var(--jaune); padding-left: 12px; margin-bottom: 12px; }
 .accroche { font-size: 1.12rem; line-height: 1.55; border-left: 6px solid var(--jaune); padding: 4px 0 4px 14px; margin: 0 0 14px; }
 .objectif { background: var(--plan-sol); border-radius: 10px; padding: 10px 14px; margin: 0; }
 .mots { margin: 0; display: grid; gap: 6px; }
@@ -306,6 +311,13 @@ button.lien { border: none; background: none; color: var(--accent); text-decorat
 .bilan { border-radius: 10px; padding: 10px 14px; margin: 12px 0 0; border-left: 6px solid; }
 .bilan.juste { border-color: var(--vert); background: color-mix(in srgb, var(--vert) 12%, var(--carte)); }
 .bilan.faux { border-color: #e07b1a; background: color-mix(in srgb, #e07b1a 10%, var(--carte)); }
+.explications { margin: 14px 0 0; border: 1px solid var(--bord); border-radius: 12px; padding: 12px 14px; background: var(--carte); }
+.explications h3 { margin: 0 0 4px; font-size: 1.02rem; color: var(--texte); border-left: 4px solid var(--jaune); padding-left: 10px; }
+.explications .intro { margin: 0 0 10px; color: var(--texte-doux); font-size: 0.93rem; }
+.explications dl { margin: 0; display: grid; gap: 8px; }
+.explications .explication { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.45fr); gap: 8px; align-items: stretch; }
+.explications dt { font-weight: 700; padding: 7px 10px; background: var(--plan-sol); border-radius: 8px; line-height: 1.4; }
+.explications dd { margin: 0; padding: 7px 11px; border-left: 3px solid var(--jaune); background: var(--plan-sol); border-radius: 0 8px 8px 0; line-height: 1.45; }
 .cahier { background: var(--carte); border: 1px solid var(--bord); border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; }
 .cahier ul { margin: 6px 0 0; padding-left: 20px; }
 .regles-edit { list-style: none; padding: 0; margin: 10px 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
@@ -330,4 +342,4 @@ button.lien { border: none; background: none; color: var(--accent); text-decorat
 .cours-notion summary { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
 .cours-notion summary span { color: var(--texte-doux); font-weight: 400; font-size: 0.9rem; }
 .cours-notion[open] summary { margin-bottom: 8px; }
-@media (max-width: 900px) { .atelier.deux { grid-template-columns: 1fr; } .curseur { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 900px) { .atelier.deux { grid-template-columns: 1fr; } .curseur { grid-template-columns: minmax(0, 1fr); } .explications .explication { grid-template-columns: 1fr; gap: 4px; } }

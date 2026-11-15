@@ -70,18 +70,21 @@ https://en.wikipedia.org/wiki/Parsons_problems
 
 ## 3. Application dans le dépôt
 
-### Une leçon du module 0 : six temps
+### Une leçon du module 0 : la notion en bref, puis six temps
 
-Chaque notion est une page, structurée de la même façon. Les données sont dans `web/src/lecons/notions.js`, le déroulé dans `web/src/pages/Lecon.jsx`.
+Chaque notion est une page, structurée de la même façon. Les données sont dans `web/src/lecons/notions.js` et `web/src/lecons/definitions.js`, le déroulé dans `web/src/pages/Lecon.jsx`.
 
 | Temps | Contenu | Principes appliqués |
 | --- | --- | --- |
+| 0. La notion | Deux paragraphes de définition avec les mots du cours, puis un ou deux liens vers Wikipédia pour en savoir plus | Pré-apprentissage (Mayer), vocabulaire avant la démonstration |
 | 1. Situer | Situation concrète, objectif formulé en « vous saurez… », vocabulaire défini, rappel d'une leçon antérieure | Problème (Merrill), attention, objectif et rappel (Gagné), pré-apprentissage (Mayer), récupération espacée |
 | 2. Prédire | Une question à laquelle l'apprenant répond avant de voir | Prédire, observer, expliquer |
 | 3. Observer | Animation découpée en étapes qui s'arrêtent, commentaire à côté de l'image, consigne « Regardez : … » | Démonstration (Merrill), segmentation, signalement, contiguïté (Mayer) |
 | 4. Le cours | Retour sur la prédiction, théorie (définition, modèle, formule, algorithme, propriétés, limites), exemple chiffré révélé pas à pas, erreur fréquente | Présentation du contenu et guidage (Gagné), exemple résolu |
 | 5. Construire | Atelier où l'apprenant fabrique l'objet étudié, mis à l'épreuve par le système avec un diagnostic. Deux questions rapides en complément | Application (Merrill), alignement objectif et évaluation (Biggs), retour explicatif |
 | 6. Retenir | L'idée en une phrase, autres domaines d'usage, renvoi vers le module et le notebook | Intégration (Merrill), rétention et transfert (Gagné) |
+
+Le temps 0 répond à une difficulté précise : un débutant ne peut pas suivre une démonstration dont les mots ne sont pas définis. La définition vient avant la situation, et les liens Wikipédia permettent d'aller plus loin sans quitter la leçon. Chaque lien a été vérifié en ligne, en français ou en anglais, et ne renvoie ni vers une page absente ni vers une page d'homonymie.
 
 ### Le cours : la théorie exposée
 
@@ -177,13 +180,15 @@ Chaque atelier a été étalonné en énumérant ses conceptions possibles : les
 
 Un apprenant bloqué n'apprend plus. Après trois vérifications infructueuses, chaque atelier propose « Voir la solution ». Le bouton ne valide rien : il applique une conception correcte dans l'atelier, et c'est l'apprenant qui lance la vérification. Il lit alors, exigence par exigence, ce que cette conception donne, et peut la comparer à ses essais ou la modifier pour voir ce qui la fait échouer. Le seuil de trois essais maintient l'effort de recherche avant l'aide : c'est l'essai, et le retour qu'il reçoit, qui font apprendre.
 
+Dans les vingt et un ateliers de conception, la vérification réussie ouvre un encadré « Pourquoi cette solution, ligne par ligne » (`web/src/ateliers/explications.js`). Chaque décision de la solution de référence y est reprise avec la raison qui la rend exacte : pourquoi ce détecteur plutôt qu'un autre, pourquoi ce seuil, pourquoi cette donnée écartée. L'encadré s'affiche aussi bien après une solution devinée qu'après « Voir la solution » : dans les deux cas, l'apprenant vient de produire une construction valide et peut comprendre ce qui la justifie. Il précise que d'autres constructions peuvent tenir le cahier des charges ; ce qui est expliqué, c'est la logique de celle qui est proposée, décision par décision.
+
 Choix de conception :
 
 - **L'animation ne tourne plus en boucle.** Elle joue une étape, s'arrête, et attend l'apprenant.
 - **Les chiffres de l'animation sont ceux de l'exemple résolu.** L'apprenant peut refaire le calcul et retrouver ce qu'il a vu.
-- **La démonstration attend une prédiction**, et la leçon n'est acquise qu'une fois l'atelier réussi. Les six temps restent accessibles par leurs onglets : le guidage oriente sans enfermer.
+- **La démonstration attend une prédiction**, et la leçon n'est acquise qu'une fois l'atelier réussi. La notion en bref et les six temps restent accessibles par leurs onglets : le guidage oriente sans enfermer.
 - **Le rappel de début de leçon** repose une question de l'avant-dernière leçon, pour espacer la récupération.
-- **Le mode formateur** affiche les six temps d'un coup, pour la projection en salle.
+- **Le mode formateur** affiche la notion en bref et les six temps d'un coup, pour la projection en salle.
 - **La progression** est conservée dans le navigateur de l'apprenant, sans aucun envoi de données.
 
 ### Les modules 1 à 6

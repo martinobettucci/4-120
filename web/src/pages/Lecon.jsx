@@ -4,12 +4,13 @@ import { NOTIONS, BLOCS } from '../lecons/notions.js';
 import { marquer, useProgression } from '../lecons/progression.js';
 import Qcm from '../composants/Qcm.jsx';
 import Theorie from '../composants/Theorie.jsx';
+import Definition from '../composants/Definition.jsx';
 import { ATELIERS } from '../ateliers/index.js';
 
-// Une leçon du module 0. Six temps, inspirés des principes de Merrill et de Gagné :
-// situer, prédire, observer une démonstration segmentée, étudier le cours et un exemple résolu,
-// construire soi-même l'objet étudié dans un atelier, retenir et transférer.
-const TEMPS = ['Situer', 'Prédire', 'Observer', 'Le cours', 'Construire', 'Retenir'];
+// Une leçon du module 0. Un bloc 0 pose la notion (définition, origine, liens pour en savoir plus), puis six temps,
+// inspirés des principes de Merrill et de Gagné : situer, prédire, observer une démonstration segmentée,
+// étudier le cours et un exemple résolu, construire soi-même l'objet étudié dans un atelier, retenir et transférer.
+const TEMPS = ['La notion', 'Situer', 'Prédire', 'Observer', 'Le cours', 'Construire', 'Retenir'];
 
 function Demonstration({ n, surFin }) {
   const [k, setK] = useState(0);
@@ -105,12 +106,21 @@ export default function Lecon() {
       <h1>{n.nom}</h1>
       <div className="lecon-barre">
         <ol className="temps">
-          {TEMPS.map((nom, k) => <li key={nom} className={k === temps && !tout ? 'actif' : k < temps ? 'fait' : ''}><button onClick={() => setTemps(k)}><span>{k + 1}</span>{nom}</button></li>)}
+          {TEMPS.map((nom, k) => <li key={nom} className={k === temps && !tout ? 'actif' : k < temps ? 'fait' : ''}><button onClick={() => setTemps(k)} data-temps={k}><span>{k}</span>{nom}</button></li>)}
         </ol>
         <label className="formateur"><input type="checkbox" checked={tout} onChange={(e) => setTout(e.target.checked)} /> Tout afficher (mode formateur)</label>
       </div>
 
       {visible(0) && (
+        <section className="carte temps-carte" data-testid="bloc-notion">
+          <h2>0. La notion en bref</h2>
+          <p className="conseil">Avant toute mise en situation, voici de quoi il s'agit : ce qu'est la notion, d'où elle vient, à quoi elle sert. La leçon la fait ensuite vivre sur un cas concret.</p>
+          <Definition d={n.definition} />
+          {!tout && <Suite vers={1} texte="Voir la situation" />}
+        </section>
+      )}
+
+      {visible(1) && (
         <section className="carte temps-carte">
           <h2>1. Situer</h2>
           <p className="accroche">{n.accroche}</p>
@@ -123,11 +133,11 @@ export default function Lecon() {
               <Qcm q={rappel.exercice.q} choix={rappel.exercice.choix} ok={rappel.exercice.ok} etiquette="Rappel" />
             </div>
           )}
-          {!tout && <Suite vers={1} texte="Je fais ma prédiction" />}
+          {!tout && <Suite vers={2} texte="Je fais ma prédiction" />}
         </section>
       )}
 
-      {visible(1) && (
+      {visible(2) && (
         <section className="carte temps-carte">
           <h2>2. Prédire</h2>
           <p className="conseil">Engagez-vous sur une réponse avant de voir la démonstration. Peu importe qu'elle soit juste : comparer votre idée de départ à ce que vous allez observer est ce qui fait progresser.</p>
@@ -136,21 +146,21 @@ export default function Lecon() {
             {n.prediction.choix.map((c, k) => <button key={c} className={pari === k ? 'pari' : ''} onClick={() => setPari(k)} data-testid="pari">{c}</button>)}
           </div>
           {pari !== undefined && <p className="retour">Prédiction enregistrée. Vous la vérifierez après la démonstration.</p>}
-          {!tout && <Suite vers={2} texte="Voir la démonstration" inactif={pari === undefined} />}
-        </section>
-      )}
-
-      {visible(2) && (
-        <section className="carte temps-carte">
-          <h2>3. Observer</h2>
-          <p className="conseil">La démonstration avance étape par étape et s'arrête à chaque fois. Lisez le commentaire, repérez ce qu'il vous demande de regarder, puis passez à la suite à votre rythme.</p>
-          <Demonstration n={n} surFin={() => setDemoVue(true)} />
-          {!tout && <Suite vers={3} texte="Comprendre ce que j'ai vu" inactif={!demoVue} />}
-          {!tout && !demoVue && <p className="conseil">Parcourez toutes les étapes pour continuer.</p>}
+          {!tout && <Suite vers={3} texte="Voir la démonstration" inactif={pari === undefined} />}
         </section>
       )}
 
       {visible(3) && (
+        <section className="carte temps-carte">
+          <h2>3. Observer</h2>
+          <p className="conseil">La démonstration avance étape par étape et s'arrête à chaque fois. Lisez le commentaire, repérez ce qu'il vous demande de regarder, puis passez à la suite à votre rythme.</p>
+          <Demonstration n={n} surFin={() => setDemoVue(true)} />
+          {!tout && <Suite vers={4} texte="Comprendre ce que j'ai vu" inactif={!demoVue} />}
+          {!tout && !demoVue && <p className="conseil">Parcourez toutes les étapes pour continuer.</p>}
+        </section>
+      )}
+
+      {visible(4) && (
         <section className="carte temps-carte">
           <h2>4. Le cours</h2>
           {pari !== undefined && (
@@ -162,11 +172,11 @@ export default function Lecon() {
           <Theorie blocs={n.theorie} />
           <ExempleResolu ex={n.exemple} />
           <div className="piege"><b>Erreur fréquente.</b> {n.piege}</div>
-          {!tout && <Suite vers={4} texte="À moi de construire" />}
+          {!tout && <Suite vers={5} texte="À moi de construire" />}
         </section>
       )}
 
-      {visible(4) && (
+      {visible(5) && (
         <section className="carte temps-carte">
           <h2>5. Construire</h2>
           <h3 className="atelier-titre">Atelier : {n.atelier.titre}</h3>
@@ -178,12 +188,12 @@ export default function Lecon() {
             <Qcm {...n.exercice} etiquette="Application" />
             <Qcm {...n.transfert} etiquette="Transfert" />
           </details>
-          {!tout && <Suite vers={5} texte="Ce que je retiens" inactif={!prog[n.id]?.atelier} />}
+          {!tout && <Suite vers={6} texte="Ce que je retiens" inactif={!prog[n.id]?.atelier} />}
           {!tout && !prog[n.id]?.atelier && <p className="conseil">Réussissez l'atelier pour valider la leçon. Chaque essai vous indique quoi corriger.</p>}
         </section>
       )}
 
-      {visible(5) && (
+      {visible(6) && (
         <section className="carte temps-carte">
           <h2>6. Retenir</h2>
           <p className="a-retenir">{n.retenir}</p>

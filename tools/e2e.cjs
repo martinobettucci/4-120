@@ -47,8 +47,13 @@ await page.waitForSelector('.lecon-carte');
 const nbLecons = await page.locator('.lecon-carte').count();
 verifier(nbLecons === 39, `module 0 : ${nbLecons} leçons au sommaire`);
 await capture('m0-sommaire');
-const allerAuTemps = async (id, k) => { await page.goto(`${base}/#/module/0/${id}`); await page.waitForSelector('.temps'); await page.locator('.temps button').nth(k).click(); };
+// Les temps d'une leçon portent leur numéro affiché : 0 pour la notion en bref, 1 à 6 pour les six temps (5 : Construire).
+const allerAuTemps = async (id, k) => { await page.goto(`${base}/#/module/0/${id}`); await page.waitForSelector('.temps'); await page.locator(`.temps button[data-temps="${k}"]`).click(); };
 await page.goto(`${base}/#/module/0/bayes`);
+await page.waitForSelector('[data-testid=bloc-notion]');
+verifier((await page.locator('[data-testid=bloc-notion] .definition > p').count()) >= 3 && (await page.locator('[data-testid=bloc-notion] .en-savoir-plus a[href*="wikipedia.org/wiki/"]').count()) >= 1, 'leçon : le bloc 0 définit la notion et renvoie vers Wikipédia');
+await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-0-notion.jpg`, type: 'jpeg', quality: 82 });
+await page.locator('[data-testid=continuer]').click();
 await page.waitForSelector('.accroche');
 verifier((await page.locator('.mots div').count()) >= 3, 'leçon : vocabulaire défini avant la démonstration');
 await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-1-situer.jpg`, type: 'jpeg', quality: 82 });
@@ -76,6 +81,8 @@ verifier((await page.locator('.atelier .cahier').count()) === 1, 'atelier : un c
 const premier = await conception.bayes(page);
 verifier(premier.refuse, 'atelier : les conceptions insuffisantes sont exécutées, mesurées et refusées avec un retour ciblé');
 verifier(premier.valide, 'atelier de conception : le dispositif conçu tient le cahier des charges');
+const raisonsDevinée = await page.locator('[data-testid=explications] .explication').count();
+verifier(raisonsDevinée >= 3, `atelier de conception : la solution devinée est expliquée ligne par ligne (${raisonsDevinée} lignes)`);
 await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-5-construire.jpg`, type: 'jpeg', quality: 82 });
 await page.locator('[data-testid=continuer]').click();
 verifier((await page.locator('.a-retenir').count()) === 1, 'leçon : point à retenir');
@@ -84,7 +91,7 @@ verifier((await page.locator('.score').textContent()).startsWith('1'), 'module 0
 
 // Ateliers de construction : chacun est réussi par une vraie construction, pas par un choix de réponse
 // 1. Base de règles
-await allerAuTemps('regles', 4);
+await allerAuTemps('regles', 5);
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.banc td.ko').count()) > 0, 'atelier règles : une base incomplète échoue sur le banc de test');
 const regle = async (i, v, op, s, d) => { const li = page.locator('.regles-edit li').nth(i); await li.locator('select').nth(0).selectOption(v); await li.locator('select').nth(1).selectOption(op); await li.locator('input').fill(s); await li.locator('select').nth(2).selectOption(d); };
@@ -94,7 +101,7 @@ await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.banc td.ok').count()) === 8 && (await page.locator('.bilan.juste').count()) === 1, 'atelier règles : la base construite passe les 8 cas');
 await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-regles.jpg`, type: 'jpeg', quality: 82 });
 // 2. Modèle de contraintes
-await allerAuTemps('contraintes', 4);
+await allerAuTemps('contraintes', 5);
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.faux').textContent()).includes('trop permissif'), 'atelier contraintes : un modèle incomplet reçoit un contre-exemple');
 const contrainte = async (i, g, op, d) => { const li = page.locator('.regles-edit li').nth(i); await li.locator('select').nth(0).selectOption(g); await li.locator('select').nth(1).selectOption(op); await li.locator('select').nth(2).selectOption(d); };
@@ -104,7 +111,7 @@ await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier contraintes : le modèle construit est validé par le solveur');
 await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-contraintes.jpg`, type: 'jpeg', quality: 82 });
 // 3. Scénario piège
-await allerAuTemps('reactif', 4);
+await allerAuTemps('reactif', 5);
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.faux').count()) === 1, 'atelier scénario : une grille vide ne piège pas l\'agent');
 for (const c of ['6,2', '6,3', '6,4', '5,2', '5,4', '4,2', '4,4']) await page.locator(`[data-case="${c}"]`).click();
@@ -112,20 +119,20 @@ await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier scénario : le cul-de-sac construit met l\'agent réactif en défaut');
 await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-piege.jpg`, type: 'jpeg', quality: 82 });
 // 4. Taux d'apprentissage
-await allerAuTemps('gradient', 4);
+await allerAuTemps('gradient', 5);
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.faux').count()) === 1, 'atelier gradient : un taux trop faible ne converge pas');
 await page.getByLabel("taux d'apprentissage").fill('0.3');
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier gradient : le taux réglé converge');
 // 5. Neurone
-await allerAuTemps('neurone', 4);
+await allerAuTemps('neurone', 5);
 await page.getByLabel('w₁').fill('0.9'); await page.getByLabel('w₂').fill('0.6'); await page.getByLabel('b', { exact: true }).fill('-0.8');
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier neurone : les poids réglés séparent les deux classes');
 await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-neurone.jpg`, type: 'jpeg', quality: 82 });
 // 6. Politique
-await allerAuTemps('mdp', 4);
+await allerAuTemps('mdp', 5);
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.faux').textContent()).includes('sans flèche'), 'atelier politique : une politique incomplète est refusée');
 const N = 1, E = 2, S = 3;
@@ -139,7 +146,7 @@ await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier politique : la politique prudente est validée');
 await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-politique.jpg`, type: 'jpeg', quality: 82 });
 // 7. Récompenses
-await allerAuTemps('qlearning', 4);
+await allerAuTemps('qlearning', 5);
 await page.getByLabel("Atteindre l'objectif").fill('10');
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.faux').textContent()).includes('traversant la zone fragile'), 'atelier récompenses : sans pénalité, l\'agent coupe par la zone fragile');
@@ -148,7 +155,7 @@ await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier récompenses : les récompenses conçues produisent le détour');
 await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-recompenses.jpg`, type: 'jpeg', quality: 82 });
 // 8. Recuit
-await allerAuTemps('recuit', 4);
+await allerAuTemps('recuit', 5);
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.faux').count()) === 1, 'atelier recuit : une température trop basse échoue');
 await page.getByLabel('Température initiale').fill('1');
@@ -165,7 +172,7 @@ const agentique = { ...require('./e2e_agentique_a.cjs'), ...require('./e2e_agent
 for (const n of NOTIONS) {
   const a = n.atelier;
   if (agentique[n.id]) {
-    await allerAuTemps(n.id, 4);
+    await allerAuTemps(n.id, 5);
     const r = await agentique[n.id](page);
     verifier(r.refuse && r.valide, `atelier « ${n.id} » (${a.type}) : essai insuffisant refusé, construction correcte validée`);
     await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-m7-${n.id}.jpg`, type: 'jpeg', quality: 82 });
@@ -173,7 +180,7 @@ for (const n of NOTIONS) {
     continue;
   }
   if (conception[n.id] && !construits.has(n.id)) {
-    await allerAuTemps(n.id, 4);
+    await allerAuTemps(n.id, 5);
     const r = await conception[n.id](page);
     verifier(r.refuse && r.valide, `atelier de conception « ${n.id} » : conceptions insuffisantes refusées, conception correcte validée`);
     await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-conception-${n.id}.jpg`, type: 'jpeg', quality: 82 });
@@ -187,27 +194,31 @@ verifier(acquises === NOTIONS.length, `module 0 : ${acquises} leçons marquées 
 // Aucun atelier de restitution : ni champs de calcul à remplir, ni lignes à remettre en ordre
 verifier(NOTIONS.every((n) => n.atelier.type !== 'formulaire' && n.atelier.type !== 'parsons'), "aucun atelier ne demande de recopier un calcul ou de remettre des lignes en ordre");
 // Bouton « Voir la solution » : absent avant trois vérifications infructueuses, il applique une conception que la vérification valide
-let sansSolution = 0;
+// et, pour les ateliers de conception, affiche la raison de chaque ligne de la solution.
+let sansSolution = 0; let expliques = 0; const nbConception = NOTIONS.filter((n) => n.atelier.type.startsWith('conception_')).length;
 for (const n of NOTIONS) {
-  await allerAuTemps(n.id, 4); await page.waitForSelector('.atelier');
+  await allerAuTemps(n.id, 5); await page.waitForSelector('.atelier');
   const bouton = page.locator('[data-testid=verifier]'); const solution = page.locator('[data-testid=solution]');
   await bouton.click(); await bouton.click();
   const avant = await solution.count();
   await bouton.click();
   const apres = await solution.count(); let reussi = false;
   if (apres === 1) { await solution.click(); await bouton.click(); reussi = (await page.locator('.bilan.juste').count()) === 1; }
+  const lignes = reussi ? await page.locator('[data-testid=explications] .explication').count() : 0;
+  if (n.atelier.type.startsWith('conception_')) { if (lignes >= 2) expliques++; else verifier(false, `atelier « ${n.id} » : solution appliquée sans explication ligne par ligne (${lignes} ligne(s))`); }
   if (avant !== 0 || apres !== 1 || !reussi) { sansSolution++; verifier(false, `atelier « ${n.id} » : solution proposée après 2 échecs (${avant}), après 3 (${apres}), validée (${reussi})`); }
 }
 verifier(sansSolution === 0, `les ${NOTIONS.length} ateliers proposent « Voir la solution » après trois essais infructueux, et la solution appliquée est validée`);
+verifier(expliques === nbConception, `les ${nbConception} ateliers de conception expliquent leur solution ligne par ligne après application`);
 // Toutes les leçons s'ouvrent en entier : cours, démonstration, atelier
 const ids = await page.evaluate(() => 0).then(async () => { await page.goto(`${base}/#/module/0`); return page.locator('.lecon-carte').evaluateAll((els) => els.map((e) => e.getAttribute('data-lecon'))); });
 for (const id of ids) {
   await page.goto(`${base}/#/module/0/${id}`);
   await page.getByLabel('Tout afficher (mode formateur)').check();
-  const ok = (await page.locator('.demo-scene svg').count()) === 1 && (await page.locator('.temps-carte').count()) === 6 && (await page.locator('.theorie section').count()) >= 3 && (await page.locator('.atelier').count()) === 1;
-  if (!ok) verifier(false, `leçon ${id} : cours, démonstration ou atelier manquant`);
+  const ok = (await page.locator('.demo-scene svg').count()) === 1 && (await page.locator('.temps-carte').count()) === 7 && (await page.locator('[data-testid=bloc-notion] .en-savoir-plus a').count()) >= 1 && (await page.locator('.theorie section').count()) >= 3 && (await page.locator('.atelier').count()) === 1;
+  if (!ok) verifier(false, `leçon ${id} : notion en bref, cours, démonstration ou atelier manquant`);
 }
-verifier(true, `les ${ids.length} leçons affichent cours, démonstration et atelier`);
+verifier(true, `les ${ids.length} leçons affichent la notion en bref, le cours, la démonstration et l'atelier`);
 
 // Les six modules du syllabus et le module 7, sans scène 3D
 for (let n = 1; n <= 7; n++) {

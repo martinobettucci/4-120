@@ -1,9 +1,10 @@
 // Module 0 : les leçons. Chaque leçon suit la même progression pédagogique :
-// situation et objectif, vocabulaire, prédiction, démonstration segmentée et commentée,
+// la notion en bref (bloc 0, dans definitions.js), situation et objectif, vocabulaire, prédiction, démonstration segmentée et commentée,
 // exemple résolu pas à pas, erreur fréquente, exercice guidé, transfert, point à retenir.
 // `etapes[].fin` est la position (entre 0 et 1) où l'animation s'arrête à la fin de l'étape.
 import * as M from '../animations/Mini.jsx';
 import { THEORIE, ATELIER } from './cours.js';
+import { DEFINITIONS } from './definitions.js';
 import { NOUVELLES } from './nouvelles.js';
 import { AGENTIQUE_A } from './agentique-a.js';
 import { AGENTIQUE_B } from './agentique-b.js';
@@ -405,7 +406,7 @@ export const NOTIONS = (() => {
   const [autonomie, routage, rag, gouvernance] = AGENTIQUE_B;
   const [familles, ...architectures] = AGENTIQUE_A;
   const [composantes, nonllm, patterns, implementation, evaluation, casusage] = AGENTIQUE_C;
-  return [...liste, composantes, autonomie, familles, nonllm, ...architectures, routage, rag, patterns, implementation, evaluation, gouvernance, casusage];
+  return [...liste, composantes, autonomie, familles, nonllm, ...architectures, routage, rag, patterns, implementation, evaluation, gouvernance, casusage].map((n) => ({ ...n, definition: DEFINITIONS[n.id] }));
 })();
 
 export const notion = (id) => NOTIONS.find((n) => n.id === id);

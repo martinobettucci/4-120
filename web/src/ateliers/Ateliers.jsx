@@ -3,12 +3,18 @@
 // une politique, des récompenses), puis le système le met à l'épreuve.
 import { useMemo, useState } from 'react';
 import { useSolution } from './Solution.jsx';
+import Explications from './Explications.jsx';
 export const F = (x, n) => Number(x).toFixed(n).replace('.', ',');
 
 export const C = { bleu: '#23468C', vert: '#238C33', jaune: '#D9CF4A', rouge: '#F24141', noir: '#0D0D0D', gris: '#8A93A6', orange: '#E07B1A' };
 export const alea = (graine) => { let s = graine; return () => { s = (s * 16807) % 2147483647; return s / 2147483647; }; };
 export const nombre = (x) => parseFloat(String(x).replace(',', '.'));
-export const Bilan = ({ ok, children }) => <p className={`bilan ${ok ? 'juste' : 'faux'}`} role="status">{children}</p>;
+export const Bilan = ({ ok, solution, children }) => (
+  <>
+    <p className={`bilan ${ok ? 'juste' : 'faux'}`} role="status">{children}</p>
+    {ok && solution && <Explications id={solution} />}
+  </>
+);
 
 // -------------------------------------------------------------- Base de règles
 const VARS = { temperature: ['température', '°C'], batterie: ['batterie', '%'], obstacle: ['distance obstacle', 'm'] };

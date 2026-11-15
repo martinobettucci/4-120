@@ -1,17 +1,19 @@
 // Vérification complète du contenu pédagogique : TOUTES les leçons et TOUS les modules.
 // 1. Structure : champs, étapes, cours, exemple résolu, atelier (de conception, avec sa solution), animation exécutable.
 // 2. Questions : la bonne réponse est bien celle dont le retour l'approuve, aucune autre.
-// 3. Planches : pour chaque leçon, l'image de chaque étape à côté de son commentaire
+// 3. Explications : chaque atelier de conception affiche, une fois validé, la raison de chaque ligne de sa solution.
+// 4. Planches : pour chaque leçon, l'image de chaque étape à côté de son commentaire
 //    (docs/captures/planches), à relire d'un coup d'œil avant toute publication.
-// Usage : node tools/verifier_contenu.cjs [--planches]   (après « npm ci » dans web/)
+// 5. Liens : avec --liens, l'existence de chaque page Wikipédia citée est contrôlée en ligne (hors intégration continue).
+// Usage : node tools/verifier_contenu.cjs [--planches] [--liens]   (après « npm ci » dans web/)
 const path = require('node:path'); const fs = require('node:fs'); const os = require('node:os');
 const racine = path.resolve(__dirname, '..'); const web = path.join(racine, 'web');
 const esbuild = require(path.join(web, 'node_modules', 'esbuild'));
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'verif-'));
 const entree = path.join(tmp, 'entree.jsx');
-fs.writeFileSync(entree, `export { NOTIONS } from ${JSON.stringify(path.join(web, 'src/lecons/notions.js'))};\nexport { PEDAGOGIE } from ${JSON.stringify(path.join(web, 'src/lecons/modules-pedagogie.js'))};\nexport { ATELIERS } from ${JSON.stringify(path.join(web, 'src/ateliers/index.js'))};\nexport { renderToStaticMarkup } from 'react-dom/server';\n`);
+fs.writeFileSync(entree, `export { NOTIONS } from ${JSON.stringify(path.join(web, 'src/lecons/notions.js'))};\nexport { PEDAGOGIE } from ${JSON.stringify(path.join(web, 'src/lecons/modules-pedagogie.js'))};\nexport { ATELIERS } from ${JSON.stringify(path.join(web, 'src/ateliers/index.js'))};\nexport { EXPLICATIONS } from ${JSON.stringify(path.join(web, 'src/ateliers/explications.js'))};\nexport { renderToStaticMarkup } from 'react-dom/server';\n`);
 esbuild.buildSync({ entryPoints: [entree], bundle: true, format: 'cjs', platform: 'node', outfile: path.join(tmp, 'contenu.cjs'), jsx: 'automatic', logLevel: 'error', nodePaths: [path.join(web, 'node_modules')] });
-const { NOTIONS, PEDAGOGIE, ATELIERS, renderToStaticMarkup } = require(path.join(tmp, 'contenu.cjs'));
+const { NOTIONS, PEDAGOGIE, ATELIERS, EXPLICATIONS, renderToStaticMarkup } = require(path.join(tmp, 'contenu.cjs'));
 
 const pb = []; const dire = (id, m) => pb.push(`${id} : ${m}`);
 const qcm = (id, nom, q) => {
@@ -26,7 +28,7 @@ const qcm = (id, nom, q) => {
 };
 const interdits = /[\u2014\u2013]|viol|\$\$|\\frac/i;
 for (const n of NOTIONS) {
-  for (const c of ['id', 'module', 'nom', 'anim', 'duree', 'accroche', 'objectif', 'mots', 'prediction', 'etapes', 'exemple', 'piege', 'exercice', 'transfert', 'retenir', 'ailleurs', 'theorie', 'atelier']) if (n[c] === undefined || n[c] === null) dire(n.id, `champ manquant : ${c}`);
+  for (const c of ['id', 'module', 'nom', 'anim', 'duree', 'accroche', 'objectif', 'mots', 'prediction', 'etapes', 'exemple', 'piege', 'exercice', 'transfert', 'retenir', 'ailleurs', 'theorie', 'atelier', 'definition']) if (n[c] === undefined || n[c] === null) dire(n.id, `champ manquant : ${c}`);
   let prec = 0;
   n.etapes.forEach((e, i) => { if (!(e.fin > prec && e.fin <= 1)) dire(n.id, `étape ${i + 1} : position d'arrêt ${e.fin} non croissante`); prec = e.fin; for (const c of ['titre', 'texte', 'regard']) if (!e[c]) dire(n.id, `étape ${i + 1} : ${c} manquant`); });
   if (n.etapes.length < 2) dire(n.id, 'moins de deux étapes de démonstration');
@@ -37,6 +39,11 @@ for (const n of NOTIONS) {
   if (!n.theorie.some(([, l]) => l.some((x) => x.startsWith('= ') || x.startsWith('> ')))) dire(n.id, 'cours : ni formule ni algorithme');
   if (n.exemple.pas.length < 3) dire(n.id, 'exemple résolu : moins de trois pas');
   if (n.mots.length < 3) dire(n.id, 'moins de trois mots définis');
+  // Bloc 0 : la notion en bref, deux paragraphes au moins et un lien Wikipédia au moins, en français ou en anglais.
+  const d = n.definition || { texte: [], liens: [] };
+  if (d.texte.length < 2 || d.texte.some((t) => t.length < 120)) dire(n.id, 'notion en bref : moins de deux paragraphes, ou paragraphe trop court');
+  if (!d.liens.length) dire(n.id, 'notion en bref : aucun lien pour en savoir plus');
+  d.liens.forEach((l) => { if (!/^https:\/\/(fr|en)\.wikipedia\.org\/wiki\/\S+$/.test(l.url) || !l.titre || !l.url.startsWith(`https://${l.langue}.`)) dire(n.id, `notion en bref : lien mal formé (${l.titre})`); });
   const a = n.atelier;
   if (!a.titre || !a.mission) dire(n.id, 'atelier : titre ou mission manquant');
   // Un atelier fait concevoir : ni calcul à recopier, ni rangement dans des rubriques, ni lignes à remettre en ordre.
@@ -64,10 +71,33 @@ for (const f of fs.readdirSync(path.join(web, 'src/ateliers')).filter((x) => /^A
   const solutions = (source.match(/sol\.bouton\(/g) || []).length;
   if (composants !== solutions) dire(f, `${composants} atelier(s) pour ${solutions} bouton(s) « Voir la solution »`);
 }
+// Explications ligne par ligne : chaque atelier de conception en a une, chaque ligne justifie son choix,
+// et le bilan de l'atelier les affiche (attribut solution="<type>").
+const conception = NOTIONS.filter((n) => String(n.atelier.type).startsWith('conception_'));
+const idExplication = (n) => n.atelier.type.replace(/^conception_/, '');
+conception.forEach((n) => {
+  const e = EXPLICATIONS[idExplication(n)];
+  if (!e) { dire(n.id, `explications : aucune entrée pour « ${n.atelier.type} »`); return; }
+  if (!e.intro || e.intro.length < 60) dire(n.id, 'explications : introduction absente ou trop courte');
+  if (!Array.isArray(e.lignes) || e.lignes.length < 2) dire(n.id, 'explications : moins de deux lignes');
+  (e.lignes || []).forEach((l, i) => {
+    if (!l.choix || l.choix.length < 4) dire(n.id, `explications ligne ${i + 1} : intitulé du choix absent ou trop court`);
+    if (!l.pourquoi || l.pourquoi.length < 80) dire(n.id, `explications ligne ${i + 1} : raison absente ou trop courte`);
+  });
+  if (new Set((e.lignes || []).map((l) => l.choix)).size !== (e.lignes || []).length) dire(n.id, 'explications : deux lignes de même intitulé');
+  if (interdits.test(JSON.stringify(e))) dire(n.id, 'explications : caractère ou mot proscrit');
+});
+const typesConception = new Set(conception.map(idExplication));
+Object.keys(EXPLICATIONS).forEach((k) => { if (!typesConception.has(k)) dire('explications', `entrée sans atelier de conception : ${k}`); });
+const annonces = new Set();
+for (const f of fs.readdirSync(path.join(web, 'src/ateliers')).filter((x) => /^AteliersConception.*\.jsx$/.test(x))) {
+  for (const m of fs.readFileSync(path.join(web, 'src/ateliers', f), 'utf8').matchAll(/solution="([^"]+)"/g)) annonces.add(m[1]);
+}
+conception.forEach((n) => { if (!annonces.has(idExplication(n))) dire(n.id, `explications : le bilan de l'atelier ne les affiche pas (solution="${idExplication(n)}")`); });
 const cites = new Set(Object.values(PEDAGOGIE).flatMap((p) => p.prerequis));
 NOTIONS.forEach((n) => { if (!cites.has(n.id)) dire(n.id, "leçon citée par aucun module"); });
 const nbEtapes = NOTIONS.reduce((s, n) => s + n.etapes.length, 0);
-console.log(`${NOTIONS.length} leçons, ${nbEtapes} étapes de démonstration, ${NOTIONS.length * 2 + Object.values(PEDAGOGIE).reduce((s, p) => s + p.quiz.length, 0)} questions, ${NOTIONS.length} ateliers`);
+console.log(`${NOTIONS.length} leçons, ${nbEtapes} étapes de démonstration, ${NOTIONS.length * 2 + Object.values(PEDAGOGIE).reduce((s, p) => s + p.quiz.length, 0)} questions, ${NOTIONS.length} ateliers, ${conception.length} explications ligne par ligne`);
 
 if (process.argv.includes('--planches')) {
   const sortie = path.join(racine, 'docs', 'captures', 'planches'); fs.mkdirSync(sortie, { recursive: true });
@@ -84,5 +114,25 @@ if (process.argv.includes('--planches')) {
     }
     await b.close(); console.log(`planches écrites dans ${path.relative(racine, sortie)}`); finir();
   })();
+} else if (process.argv.includes('--liens')) {
+  (async () => {
+    const liens = [...new Map(NOTIONS.flatMap((n) => n.definition.liens.map((l) => [l.url, { ...l, lecon: n.id }]))).values()];
+    for (const langue of ['fr', 'en']) {
+      const lot = liens.filter((l) => l.langue === langue);
+      for (let i = 0; i < lot.length; i += 20) {
+        const titres = lot.slice(i, i + 20);
+        const url = `https://${langue}.wikipedia.org/w/api.php?action=query&format=json&redirects=1&prop=pageprops&titles=${encodeURIComponent(titres.map((l) => l.titre).join('|'))}`;
+        const q = (await (await fetch(url, { headers: { 'User-Agent': 'ascent-4130-verification/1.0 (https://github.com/martinobettucci/4-120)' } })).json()).query;
+        const vers = Object.fromEntries([...(q.normalized || []), ...(q.redirects || [])].map((r) => [r.from, r.to])); const pages = Object.values(q.pages);
+        for (const l of titres) {
+          let t = l.titre; for (let k = 0; k < 3 && vers[t]; k++) t = vers[t];
+          const page = pages.find((x) => x.title === t);
+          if (!page || page.missing !== undefined) dire(l.lecon, `page Wikipédia introuvable (${langue}) : ${l.titre}`);
+          else if (page.pageprops && page.pageprops.disambiguation !== undefined) dire(l.lecon, `page d'homonymie (${langue}) : ${l.titre}`);
+        }
+      }
+    }
+    console.log(`${liens.length} pages Wikipédia contrôlées en ligne`); finir();
+  })().catch((e) => { console.error('Contrôle des liens impossible :', e.message); process.exit(1); });
 } else finir();
 function finir() { if (pb.length) { console.error(pb.join('\n')); process.exit(1); } console.log('Contrôle du contenu : aucun défaut.'); }

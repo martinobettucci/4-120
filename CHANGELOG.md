@@ -7,13 +7,15 @@ Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémant
 ### Ajouté
 
 - Bouton « Voir la solution » sur les 39 ateliers. Il n'apparaît qu'après trois vérifications infructueuses. Il applique une conception valide dans l'atelier : l'apprenant lance alors la vérification et lit ce qu'elle donne, comme s'il l'avait saisie (`web/src/ateliers/Solution.jsx`).
+- Notion en bref avant les six temps de chaque leçon (`web/src/lecons/definitions.js`, `web/src/composants/Definition.jsx`). Deux paragraphes au moins définissent la notion avec les mots du cours, et un ou deux liens renvoient vers Wikipédia, en français ou en anglais, pour en savoir plus. Le bloc forme le temps 0 de la page ; les six temps historiques restent inchangés.
+- Explications ligne par ligne de la solution des vingt et un ateliers de conception (`web/src/ateliers/explications.js`, `web/src/ateliers/Explications.jsx`). Dès que la construction est validée, que l'apprenant l'ait devinée ou qu'il ait appliqué « Voir la solution », un encadré « Pourquoi cette solution, ligne par ligne » reprend chaque décision de la solution de référence et la raison qui la rend exacte.
 - Vingt et un ateliers de conception (`web/src/ateliers/AteliersConception*.jsx`). L'apprenant y prend les décisions de conception de l'objet étudié, le système exécute ce qu'il a conçu (simulation ou algorithme, reproductible) et le confronte à un cahier des charges, exigence par exigence :
   - module 1 : composer un contrôle dont les alertes sont exploitables, composer les dépendances d'un réseau bayésien, régler une politique d'arrêt d'après les coûts, choisir les jeux de données d'un entraînement, régler un recommandeur ;
   - module 2 : spécifier l'équipement d'un drone, régler un lidar, exploiter un capteur bruité, programmer la boucle d'un agent ;
   - modules 3 à 5 : configurer une recherche A*, programmer l'arbitrage d'un agent hybride, écrire la fonction de coût d'une tournée, aménager un couloir pour un filtre bayésien, régler une stratégie d'exploration ;
   - module 6 : concevoir une campagne de validation, construire un plan de test, rendre une campagne rejouable ;
   - module 7 : spécifier les composantes d'un agent, programmer la fonction qui traite un dossier, monter un dispositif d'évaluation, concevoir un système complet.
-- Contrôle du contenu : un atelier de restitution est refusé, chaque atelier doit avoir son composant et son bouton de solution, aucun tirage non reproductible. Parcours automatisé : chaque atelier de conception est d'abord refusé sur des conceptions insuffisantes, puis validé, et le parcours « trois échecs, solution, vérification » est rejoué sur les 39 leçons (`tools/e2e_conception_m*.cjs`).
+- Contrôle du contenu : un atelier de restitution est refusé, chaque atelier doit avoir son composant et son bouton de solution, chaque atelier de conception doit avoir ses explications (au moins deux lignes, chacune avec son choix et sa raison), aucun tirage non reproductible. Parcours automatisé : chaque atelier de conception est d'abord refusé sur des conceptions insuffisantes, puis validé, et le parcours « trois échecs, solution, vérification » est rejoué sur les 39 leçons ; les explications sont contrôlées après une solution devinée comme après une solution appliquée (`tools/e2e_conception_m*.cjs`).
 
 ### Modifié
 

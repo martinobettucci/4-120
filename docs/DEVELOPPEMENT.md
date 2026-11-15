@@ -48,13 +48,13 @@ Les sources sont les fichiers `notebooks/src/NN_nom.py`, au format « percent »
 ./runDev.sh e2e     # Playwright : navigation, animations, scènes 3D, notebooks
 ```
 
-Le parcours de bout en bout (`tools/e2e.cjs`) vérifie les sept modules, résout l'atelier de chacune des 39 leçons (conceptions insuffisantes refusées, puis conception correcte validée), rejoue sur chacun le parcours « trois échecs, Voir la solution, vérification », fait avancer chaque animation et chaque scène 3D, contrôle la présence des notebooks, puis enregistre des captures JPEG et une vidéo WebM dans `docs/captures/`.
+Le parcours de bout en bout (`tools/e2e.cjs`) vérifie les sept modules, ouvre la notion en bref de chaque leçon, résout l'atelier de chacune des 39 leçons (conceptions insuffisantes refusées, puis conception correcte validée), rejoue sur chacun le parcours « trois échecs, Voir la solution, vérification », contrôle que les ateliers de conception expliquent alors leur solution ligne par ligne, fait avancer chaque animation et chaque scène 3D, contrôle la présence des notebooks, puis enregistre des captures JPEG et une vidéo WebM dans `docs/captures/`.
 
 Contrôle complet du contenu pédagogique, à lancer après toute modification d'une leçon :
 
 ```bash
 cd web && npm ci && cd ..
-node tools/verifier_contenu.cjs --planches   # structure, questions, animations, planches de relecture
+node tools/verifier_contenu.cjs --planches   # structure, questions, animations, explications, planches de relecture
 ```
 
 Écrire ou modifier un atelier : un composant `({ surReussite })` dans `web/src/ateliers/`, dont l'évaluation est une fonction pure exportée (`evaluerXxx(conception)`), reproductible (générateur `alea`, jamais `Math.random`). L'atelier appelle `sol.noter(reussi)` à chaque vérification et place `sol.bouton(appliquer)` à côté du bouton de vérification (`useSolution`, dans `Solution.jsx`). Sa recette de bout en bout va dans `tools/e2e_conception_*.cjs` ou `tools/e2e_agentique_*.cjs`. Avant de publier, énumérer les conceptions possibles avec la fonction d'évaluation : l'état de départ et l'essai tentant doivent échouer, et les conceptions valides rester rares.

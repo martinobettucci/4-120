@@ -91,8 +91,10 @@ Chaque notebook commence par une cellule d'installation (sans effet si la biblio
 | Lecteur | `web/src/composants/Lecteur3D.jsx` | Transport (lecture, pause, étape, retour), comparaison, import, panneau de décision |
 | Cadre d'animation | `web/src/composants/Animation.jsx` | Étapes, lecture automatique, navigation au clavier |
 | Animations | `web/src/animations/AnimM1.jsx` à `AnimM7.jsx` | Une séquence par module |
-| Leçons du module 0 | `web/src/lecons/notions.js`, `web/src/pages/Lecon.jsx`, `web/src/animations/Mini.jsx` | Contenu des 20 leçons, déroulé en six temps, animations segmentées |
+| Leçons du module 0 | `web/src/lecons/notions.js`, `web/src/lecons/definitions.js`, `web/src/pages/Lecon.jsx`, `web/src/animations/Mini.jsx` | Contenu des 39 leçons, notion en bref puis six temps, animations segmentées |
+| Notion en bref | `web/src/composants/Definition.jsx`, `web/src/lecons/definitions.js` | Deux paragraphes de définition et les liens Wikipédia affichés au temps 0 de chaque leçon |
 | Ateliers de conception | `web/src/ateliers/AteliersConception*.jsx`, `web/src/lecons/ateliers-conception-*.js`, `web/src/ateliers/Solution.jsx` | Les 21 ateliers où l'apprenant décide et où le système exécute, leurs fiches (titre, mission), et le bouton « Voir la solution » commun aux 39 ateliers |
+| Explications de solution | `web/src/ateliers/explications.js`, `web/src/ateliers/Explications.jsx` | La raison de chaque ligne de la solution des 21 ateliers de conception, affichée une fois la construction validée |
 | Bloc « Systèmes agentiques » | `web/src/lecons/agentique-a.js`, `agentique-b.js`, `agentique-c.js`, `web/src/animations/MiniAgentique*.jsx`, `web/src/ateliers/AteliersAgentique*.jsx` | Les 14 leçons du module 7, leurs démonstrations et leurs ateliers |
 | Pédagogie des modules | `web/src/lecons/modules-pedagogie.js`, `web/src/composants/Qcm.jsx` | Objectifs, prérequis, missions d'observation, quiz avec retour explicatif |
 | Progression | `web/src/lecons/progression.js` | Suivi local dans le navigateur, sans envoi de données |

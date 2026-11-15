@@ -58,7 +58,7 @@ Réglage à faire une seule fois dans le dépôt : **Settings, Pages, Build and 
 
 | Jour | Module | Notebook |
 | --- | --- | --- |
-| Prélude | 0. Les fondamentaux, pas à pas : 39 leçons (démonstration commentée, cours théorique, exemple résolu, atelier où l'apprenant conçoit et où le système exécute sa conception, avec « Voir la solution » après trois essais infructueux), dont 14 pour le module 7, hors des 12 heures | (pages du site) |
+| Prélude | 0. Les fondamentaux, pas à pas : 39 leçons (notion en bref avec liens Wikipédia, démonstration commentée, cours théorique, exemple résolu, atelier où l'apprenant conçoit et où le système exécute sa conception, avec « Voir la solution » après trois essais infructueux et la raison de chaque ligne une fois la solution validée), dont 14 pour le module 7, hors des 12 heures | (pages du site) |
 | 1 | 1. Solutions IA pour la prise de décision | `01_solutions_ia_decision.ipynb` |
 | 1 | 2. Concept des agents intelligents et interactions avec l'environnement | `02_agent_environnement.ipynb` |
 | 1 | 3. Architecture des agents intelligents | `03_architectures_agents.ipynb` |
