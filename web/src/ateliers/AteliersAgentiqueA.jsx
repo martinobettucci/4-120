@@ -3,6 +3,7 @@
 // le plan de contrôle d'une chaîne d'agents, et un arbitre entre trois décideurs.
 import { useMemo, useState } from 'react';
 import { F, C, alea, nombre, Bilan } from './Ateliers.jsx';
+import { useSolution } from './Solution.jsx';
 
 // --------------------------------------------------------------- Composition
 // Une famille d'agent par étape du traitement d'une réclamation.
@@ -30,6 +31,7 @@ export function evaluerComposition(choix) {
 export function AtelierComposition({ surReussite }) {
   const [choix, setChoix] = useState({ extraire: 'llm', conformite: 'llm', risque: 'llm', planifier: 'llm' });
   const [teste, setTeste] = useState(false);
+  const sol = useSolution();
   const r = evaluerComposition(choix);
   const ligne = (ok, texte) => <tr><td>{texte}</td><td className={ok ? 'ok' : 'ko'}>{ok ? 'respecté ✓' : 'non respecté ✗'}</td></tr>;
   return (
@@ -56,7 +58,10 @@ export function AtelierComposition({ surReussite }) {
           </li>
         ))}
       </ol>
-      <button className="bouton" onClick={() => { setTeste(true); if (r.ok) surReussite(); }} data-testid="verifier">Évaluer mon agent</button>
+      <div className="actions">
+        <button className="bouton" onClick={() => { setTeste(true); sol.noter(r.ok); if (r.ok) surReussite(); }} data-testid="verifier">Évaluer mon agent</button>
+        {sol.bouton(() => { setChoix({ extraire: 'llm', conformite: 'regles', risque: 'statistique', planifier: 'optimisation' }); setTeste(false); })}
+      </div>
       {teste && (
         <>
           <table className="tableau compact banc"><tbody>
@@ -98,6 +103,7 @@ const euros = (x) => `${String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ' ')} €`;
 export function AtelierControles({ surReussite }) {
   const [cs, setCs] = useState([{ p: 'sup', s: '5000' }]);
   const [teste, setTeste] = useState(false);
+  const sol = useSolution();
   const res = evaluerControles(cs); const nb = res.filter((r) => r.juste).length;
   const maj = (i, ch, v) => { setCs(cs.map((x, k) => (k === i ? { ...x, [ch]: v } : x))); setTeste(false); };
   return (
@@ -117,7 +123,8 @@ export function AtelierControles({ surReussite }) {
       </ol>
       <div className="actions">
         <button className="bouton secondaire" onClick={() => { setCs([...cs, { p: 'inf', s: '' }]); setTeste(false); }} data-testid="ajouter-regle">+ Ajouter un contrôle</button>
-        <button className="bouton" onClick={() => { setTeste(true); if (nb === CAS_LLM.length) surReussite(); }} data-testid="verifier">Tester mes contrôles</button>
+        <button className="bouton" onClick={() => { setTeste(true); sol.noter(nb === CAS_LLM.length); if (nb === CAS_LLM.length) surReussite(); }} data-testid="verifier">Tester mes contrôles</button>
+        {sol.bouton(() => { setCs([{ p: 'sup', s: '5000' }, { p: 'lignes', s: '' }, { p: 'siret', s: '' }, { p: 'date', s: '' }, { p: 'liste', s: '' }]); setTeste(false); })}
       </div>
       {teste && (
         <>
@@ -146,6 +153,7 @@ export function evaluerChaine(controles) {
 export function AtelierPipeline({ surReussite }) {
   const [ct, setCt] = useState([false, false, false, false, false]);
   const [teste, setTeste] = useState(false);
+  const sol = useSolution();
   const r = evaluerChaine(ct);
   return (
     <div className="atelier">
@@ -168,7 +176,10 @@ export function AtelierPipeline({ surReussite }) {
           <li key={nom}><label><input type="checkbox" checked={ct[i]} onChange={(e) => { setCt(ct.map((x, k) => (k === i ? e.target.checked : x))); setTeste(false); }} aria-label={`Contrôle après ${nom}`} /> Contrôle après « {nom} » (fiabilité de l'agent seul : {F(p * 100, 0)} %)</label></li>
         ))}
       </ol>
-      <button className="bouton" onClick={() => { setTeste(true); if (r.ok) surReussite(); }} data-testid="verifier">Évaluer ma chaîne</button>
+      <div className="actions">
+        <button className="bouton" onClick={() => { setTeste(true); sol.noter(r.ok); if (r.ok) surReussite(); }} data-testid="verifier">Évaluer ma chaîne</button>
+        {sol.bouton(() => { setCt([false, true, false, true, true]); setTeste(false); })}
+      </div>
       {teste && <Bilan ok={r.ok}>Fiabilité de bout en bout : {r.eff.map((x) => F(x, 3)).join(' × ')} = {F(r.fiab * 100, 1)} %. Délai : 5 × 2 s + {r.nb} × 1 s = {r.delai} s. {r.ok ? "Objectif atteint dans le délai. Vous avez placé les contrôles là où ils rapportent le plus, au lieu de tout contrôler." : r.delai > 13 ? "Le délai est dépassé : tous les contrôles ne se valent pas. Calculez ce que chacun fait gagner et gardez les plus utiles." : r.nb < 3 ? `Sans contrôle, les fiabilités se multiplient et la chaîne perd des dossiers à chaque agent. Il vous reste du délai pour ${3 - r.nb} contrôle(s).` : "Le délai est tenu, mais la fiabilité reste sous 90 %. Un contrôle fait gagner (1 - p) × 0,8 sur son agent : l'un des vôtres protège un agent déjà très fiable."}</Bilan>}
     </div>
   );
@@ -195,7 +206,8 @@ export function AtelierArbitre({ surReussite }) {
   const [poids, setPoids] = useState([1, 1, 1]); const [accord, setAccord] = useState(50); const [res, setRes] = useState(null);
   const stats = useMemo(() => { const n = DOSSIERS_ARBITRE.length; const err = [0, 1, 2].map((i) => DOSSIERS_ARBITRE.filter((d) => d.faux[i]).length / n); const acc = [[0, 1], [0, 2], [1, 2]].map(([a, b]) => DOSSIERS_ARBITRE.filter((d) => d.faux[a] === d.faux[b]).length / n); const ensemble = DOSSIERS_ARBITRE.filter((d) => d.faux[1] && d.faux[2]).length; return { err, acc, ensemble }; }, []);
   const curseur = (nom, val, set, min, max, pas, unite = '') => (<label className="curseur">{nom} = <b>{val}{unite}</b><input type="range" min={min} max={max} step={pas} value={val} onChange={(e) => { set(Number(e.target.value)); setRes(null); }} aria-label={nom} /></label>);
-  const tester = () => { const r = evaluerArbitre(poids, accord); setRes(r); if (r.ok) surReussite(); };
+  const sol = useSolution();
+  const tester = () => { const r = evaluerArbitre(poids, accord); setRes(r); sol.noter(r.ok); if (r.ok) surReussite(); };
   return (
     <div className="atelier">
       <p>Trois décideurs examinent chacun les mêmes 1 000 dossiers et rendent un avis : conforme ou non conforme. Vous construisez l'arbitre. Il additionne les poids de chaque camp. Si le camp le plus lourd atteint la part d'accord exigée, sa décision est appliquée automatiquement. Sinon, ou en cas d'égalité, le dossier est transmis à un agent humain.</p>
@@ -213,7 +225,10 @@ export function AtelierArbitre({ surReussite }) {
       {curseur(`Poids du ${NOMS_ARBITRE[1]}`, poids[1], (v) => setPoids([poids[0], v, poids[2]]), 0, 3, 1)}
       {curseur(`Poids de l'${NOMS_ARBITRE[2]}`, poids[2], (v) => setPoids([poids[0], poids[1], v]), 0, 3, 1)}
       {curseur('Accord exigé', accord, setAccord, 50, 100, 5, ' %')}
-      <button className="bouton" onClick={tester} data-testid="verifier">Faire arbitrer les 1 000 dossiers</button>
+      <div className="actions">
+        <button className="bouton" onClick={tester} data-testid="verifier">Faire arbitrer les 1 000 dossiers</button>
+        {sol.bouton(() => { setPoids([2, 1, 1]); setAccord(75); setRes(null); })}
+      </div>
       {res && (
         <Bilan ok={res.ok}>
           Décisions automatiques fausses : {res.erreurs}. Dossiers transmis à un humain : {res.humain} ({F(res.charge * 100, 1)} %). Coût moyen : ({res.erreurs} × 60 € + {res.humain} × 4 €) / 1 000 = {F(res.cout, 2)} € par dossier.{' '}

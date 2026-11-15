@@ -2,12 +2,13 @@
 // décision par utilité espérée, neurone et réseau de neurones, descente de gradient,
 // système de recommandation, processus de décision markovien et politique.
 import * as M from '../animations/Mini.jsx';
+import { FICHES_CONCEPTION_M1 } from './ateliers-conception-m1.js';
 
 export const NOUVELLES = [
   {
     id: 'utilite', apres: 'reseau', module: 1, nom: 'Décider sous incertitude : le coût espéré', anim: M.Utilite, duree: 12,
     accroche: "Le réseau bayésien vous dit : 6 % de chances de panne. Et maintenant ? Une probabilité n'est pas une décision. Arrêter un robot sain coûte un peu, laisser rouler un robot défaillant coûte beaucoup. Comment passer du chiffre à l'action ?",
-    objectif: "calculer le coût espéré de chaque décision possible et en déduire le seuil de probabilité à partir duquel il faut agir",
+    objectif: "calculer le coût espéré de chaque décision possible, en déduire le seuil de probabilité à partir duquel il faut agir, et régler ce seuil quand les coûts d'erreur changent",
     mots: [['Coût espéré', "le coût moyen d'une décision, pondéré par les probabilités."], ['Fausse alerte', "agir alors qu'il n'y avait pas de problème."], ['Manque', "ne pas agir alors qu'il y avait un problème."]],
     prediction: { q: "Un arrêt inutile coûte 10 €, une panne non évitée 200 €. À partir de quelle probabilité de panne vaut-il mieux arrêter le robot ?", choix: ['50 %', '20 %', 'Environ 5 %'], ok: 2 },
     etapes: [
@@ -27,13 +28,7 @@ export const NOUVELLES = [
       ['Le seuil de décision', ["Avec deux décisions, on trouve la probabilité p où les deux coûts sont égaux. En notant C_fa le coût d'une fausse alerte et C_m celui d'un manque :", '= seuil = C_fa / (C_fa + C_m)', "Au-dessus du seuil, on agit. Plus le manque est grave par rapport à la fausse alerte, plus le seuil est bas."]],
       ['Pourquoi c\'est important', ["C'est le chaînon entre les modèles probabilistes (Bayes, réseaux, classifieurs qui sortent une probabilité) et l'action. Deux systèmes dotés du même modèle peuvent décider différemment, simplement parce que leurs coûts diffèrent. Fixer ces coûts est un choix de conception, souvent à discuter avec le métier."]],
     ],
-    atelier: { type: 'formulaire', titre: 'Fixez le seuil de décision d\'un système', mission: "Un robot transporte des produits fragiles. S'il s'arrête pour rien, la tournée perd 5 €. S'il continue malgré une défaillance, la casse coûte 95 €. Le modèle annonce 8 % de probabilité de défaillance.",
-      config: { champs: [
-        { label: 'Coût espéré de « continuer »', reponse: 7.6, tolerance: 0.011, unite: '€', aide: '0,08 × 95.' },
-        { label: 'Coût espéré de « arrêter »', reponse: 4.6, tolerance: 0.011, unite: '€', aide: '0,92 × 5.' },
-        { label: 'Décision à prendre', options: ['continuer', 'arrêter'], reponse: 'arrêter', aide: 'Choisissez le coût espéré le plus faible.' },
-        { label: "Seuil de probabilité à programmer dans le robot", reponse: 5, tolerance: 0.11, unite: '%', aide: 'C_fa / (C_fa + C_m) = 5 / (5 + 95).' },
-      ], bilan: "Vous avez transformé un modèle probabiliste en règle de décision : « arrêter si la probabilité de défaillance dépasse 5 % »." } },
+    atelier: FICHES_CONCEPTION_M1.utilite,
   },
   {
     id: 'neurone', apres: 'supervise', module: 1, nom: 'Du neurone au réseau de neurones', anim: M.Neurone, duree: 12,
@@ -89,7 +84,7 @@ export const NOUVELLES = [
   {
     id: 'recommandation', apres: 'gradient', module: 1, nom: 'Système de recommandation', anim: M.Recommandation, duree: 10,
     accroche: "Une plateforme ne sait rien de vos goûts, sinon les notes que vous avez données. Elle ne sait rien non plus du contenu des films. Et pourtant elle vous en propose un qui vous plaît. Sur quoi s'appuie-t-elle ?",
-    objectif: "prédire une note manquante à partir d'utilisateurs semblables et citer les limites de cette méthode",
+    objectif: "prédire une note manquante à partir d'utilisateurs semblables, régler la mesure de proximité et le voisinage d'un recommandeur, et citer les limites de cette méthode",
     mots: [['Matrice de notes', "le tableau utilisateurs × articles, où la plupart des cases sont vides."], ['Filtrage collaboratif', "recommander à partir des goûts des autres utilisateurs."], ['Démarrage à froid', "la difficulté de recommander à un nouvel utilisateur, ou un nouvel article, sans aucune note."]],
     prediction: { q: "Pour prédire la note que Chloé donnerait à un film, de qui faut-il regarder les notes ?", choix: ['De tous les utilisateurs, à égalité', 'Des utilisateurs qui notent comme elle', 'De personne, il faut analyser le film'], ok: 1 },
     etapes: [
@@ -106,16 +101,11 @@ export const NOUVELLES = [
     theorie: [
       ['Le problème', ["On dispose d'une matrice de notes, avec une ligne par utilisateur et une colonne par article. Elle est très creuse : chacun n'a noté qu'une infime partie du catalogue. Recommander revient à prédire les cases vides, puis à proposer les articles aux notes prédites les plus hautes."]],
       ['Filtrage collaboratif par voisinage', ["On mesure la ressemblance entre deux utilisateurs sur les articles qu'ils ont notés tous les deux. Pour prédire une note, on fait la moyenne des notes des utilisateurs les plus semblables, pondérée par leur ressemblance :", '= note prédite = somme de (ressemblance × note du voisin) / somme des ressemblances', "On peut faire de même entre articles : « ceux qui ont aimé ceci ont aussi aimé cela »."]],
+      ["Régler le voisinage", ["Trois réglages décident de la qualité des prédictions.", "- La mesure de proximité. Certains notent toujours haut, d'autres toujours bas. Comparer les notes brutes éloigne deux utilisateurs qui ont pourtant les mêmes préférences. On compare donc les notes centrées, et l'on prédit un écart à la moyenne de l'utilisateur.", "= note centrée = note - moyenne des notes de l'utilisateur", "- Le nombre de voisins. Avec un seul voisin, la prédiction répète son avis. Avec trop de voisins, on fait entrer des utilisateurs qui ne ressemblent plus.", "- Le nombre d'articles notés en commun. Une ressemblance mesurée sur un seul article ne prouve rien. En exiger trop laisse sans prédiction ceux qui ont peu noté : la couverture baisse.", "Un réglage se juge sur deux mesures à la fois : l'erreur moyenne sur des notes masquées, et la part des notes que l'on a su prédire."]],
       ['Factorisation de matrice', ["Méthode plus puissante : on associe à chaque utilisateur et à chaque article un petit vecteur de nombres. La note prédite est le produit scalaire des deux vecteurs. Ces vecteurs sont appris par descente de gradient, en minimisant l'erreur sur les notes connues. Personne ne leur donne de sens, mais ils finissent par coder des goûts : action ou comédie, grand public ou confidentiel.", "C'est l'étude de cas du notebook 01, entraînée avec PyTorch."]],
       ['Limites', ['- Démarrage à froid : rien à proposer à un nouvel utilisateur ni pour un nouvel article.', '- Biais de popularité : les articles déjà très notés sont sur-recommandés.', "- Enfermement : à force de proposer ce qui ressemble au passé, le système ne découvre plus rien. Le remède, l'exploration, est traité au module 5.", "- Évaluation : on masque des notes connues et on mesure l'erreur de prédiction sur celles-ci."]],
     ],
-    atelier: { type: 'formulaire', titre: 'Calculez une recommandation', mission: "Quatre utilisateurs ont noté des séries de 1 à 5. Léa n'a pas vu la série Z. Trouvez ses voisins et prédisez sa note.",
-      config: { donnees: [['', 'Série W', 'Série X', 'Série Y', 'Série Z'], ['Léa', '2', '5', '4', '?'], ['Marc', '2', '4', '5', '2'], ['Nina', '5', '1', '2', '5'], ['Omar', '1', '5', '4', '3']], champs: [
-        { label: "L'utilisateur dont les goûts s'opposent à ceux de Léa", options: ['Marc', 'Nina', 'Omar'], reponse: 'Nina', aide: 'Comparez les notes des séries W, X et Y avec celles de Léa.' },
-        { label: 'Note prédite pour Léa sur la série Z (moyenne de ses deux voisins)', reponse: 2.5, tolerance: 0.011, aide: 'Moyenne des notes de Marc et Omar pour la série Z.' },
-        { label: 'Note que prédirait la simple popularité', reponse: 3.33, tolerance: 0.04, aide: 'Moyenne des trois notes connues de la série Z.' },
-        { label: 'Faut-il recommander la série Z à Léa ?', options: ['oui', 'non'], reponse: 'non', aide: 'Une note prédite de 2,5 sur 5 est sous la moyenne.' },
-      ], bilan: "Vous avez appliqué un filtrage collaboratif complet : mesurer les ressemblances, choisir les voisins, prédire, décider. La popularité aurait conduit à l'erreur inverse." } },
+    atelier: FICHES_CONCEPTION_M1.recommandation,
   },
   {
     id: 'mdp', apres: 'croyance', module: 5, nom: 'Processus de décision markovien et politique', anim: M.Mdp, duree: 12,

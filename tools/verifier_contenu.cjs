@@ -1,5 +1,5 @@
 // Vérification complète du contenu pédagogique : TOUTES les leçons et TOUS les modules.
-// 1. Structure : champs, étapes, cours, exemple résolu, atelier, animation exécutable.
+// 1. Structure : champs, étapes, cours, exemple résolu, atelier (de conception, avec sa solution), animation exécutable.
 // 2. Questions : la bonne réponse est bien celle dont le retour l'approuve, aucune autre.
 // 3. Planches : pour chaque leçon, l'image de chaque étape à côté de son commentaire
 //    (docs/captures/planches), à relire d'un coup d'œil avant toute publication.
@@ -9,9 +9,9 @@ const racine = path.resolve(__dirname, '..'); const web = path.join(racine, 'web
 const esbuild = require(path.join(web, 'node_modules', 'esbuild'));
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'verif-'));
 const entree = path.join(tmp, 'entree.jsx');
-fs.writeFileSync(entree, `export { NOTIONS } from ${JSON.stringify(path.join(web, 'src/lecons/notions.js'))};\nexport { PEDAGOGIE } from ${JSON.stringify(path.join(web, 'src/lecons/modules-pedagogie.js'))};\nexport { renderToStaticMarkup } from 'react-dom/server';\n`);
+fs.writeFileSync(entree, `export { NOTIONS } from ${JSON.stringify(path.join(web, 'src/lecons/notions.js'))};\nexport { PEDAGOGIE } from ${JSON.stringify(path.join(web, 'src/lecons/modules-pedagogie.js'))};\nexport { ATELIERS } from ${JSON.stringify(path.join(web, 'src/ateliers/index.js'))};\nexport { renderToStaticMarkup } from 'react-dom/server';\n`);
 esbuild.buildSync({ entryPoints: [entree], bundle: true, format: 'cjs', platform: 'node', outfile: path.join(tmp, 'contenu.cjs'), jsx: 'automatic', logLevel: 'error', nodePaths: [path.join(web, 'node_modules')] });
-const { NOTIONS, PEDAGOGIE, renderToStaticMarkup } = require(path.join(tmp, 'contenu.cjs'));
+const { NOTIONS, PEDAGOGIE, ATELIERS, renderToStaticMarkup } = require(path.join(tmp, 'contenu.cjs'));
 
 const pb = []; const dire = (id, m) => pb.push(`${id} : ${m}`);
 const qcm = (id, nom, q) => {
@@ -39,8 +39,9 @@ for (const n of NOTIONS) {
   if (n.mots.length < 3) dire(n.id, 'moins de trois mots définis');
   const a = n.atelier;
   if (!a.titre || !a.mission) dire(n.id, 'atelier : titre ou mission manquant');
-  if (a.type === 'formulaire') a.config.champs.forEach((c) => { if (c.reponse === undefined || !c.aide) dire(n.id, `atelier : champ « ${c.label} » sans réponse ou sans aide`); if (c.options && !c.options.includes(c.reponse)) dire(n.id, `atelier : réponse absente des options pour « ${c.label} »`); });
-  if (a.type === 'parsons' && a.config.lignes.length < 5) dire(n.id, 'atelier programme : moins de cinq lignes');
+  // Un atelier fait concevoir : ni calcul à recopier, ni rangement dans des rubriques, ni lignes à remettre en ordre.
+  if (a.type === 'formulaire' || a.type === 'parsons') dire(n.id, `atelier de restitution proscrit (${a.type}) : l'apprenant doit concevoir, le système exécuter`);
+  if (typeof ATELIERS[a.type] !== 'function') dire(n.id, `atelier : aucun composant pour le type « ${a.type} »`);
   for (const t of [0, 0.25, 0.5, 0.75, 0.9999, ...n.etapes.map((e) => Math.min(e.fin, 0.9999))]) { try { renderToStaticMarkup(n.anim(t)); } catch (e) { dire(n.id, `animation en erreur à t = ${t} : ${e.message}`); } }
   if (interdits.test(JSON.stringify(n, (k, v) => (typeof v === 'function' ? undefined : v)))) dire(n.id, 'caractère ou mot proscrit');
 }
@@ -51,6 +52,17 @@ for (const [m, p] of Object.entries(PEDAGOGIE)) {
   p.quiz.forEach((q, k) => qcm(`module ${m}`, `quiz ${k + 1}`, q));
   if (p.objectifs.length < 4) dire(`module ${m}`, 'moins de quatre objectifs');
   if (interdits.test(JSON.stringify(p))) dire(`module ${m}`, 'caractère ou mot proscrit');
+}
+// Chaque type d'atelier sert une seule leçon, et chaque fichier d'ateliers respecte les règles de rédaction et propose la solution.
+const parType = {}; NOTIONS.forEach((n) => { (parType[n.atelier.type] = parType[n.atelier.type] || []).push(n.id); });
+Object.entries(parType).forEach(([t, l]) => { if (l.length > 1) dire(l.join(', '), `même atelier (${t}) pour plusieurs leçons`); });
+for (const f of fs.readdirSync(path.join(web, 'src/ateliers')).filter((x) => /^Ateliers.*\.jsx$/.test(x))) {
+  const source = fs.readFileSync(path.join(web, 'src/ateliers', f), 'utf8');
+  if (interdits.test(source)) dire(f, 'caractère ou mot proscrit');
+  if (/Math\.random/.test(source)) dire(f, 'tirage non reproductible (Math.random)');
+  const composants = (source.match(/^(?:export )?function \w+\(\{ (?:config, )?surReussite \}\)/gm) || []).length;
+  const solutions = (source.match(/sol\.bouton\(/g) || []).length;
+  if (composants !== solutions) dire(f, `${composants} atelier(s) pour ${solutions} bouton(s) « Voir la solution »`);
 }
 const cites = new Set(Object.values(PEDAGOGIE).flatMap((p) => p.prerequis));
 NOTIONS.forEach((n) => { if (!cites.has(n.id)) dire(n.id, "leçon citée par aucun module"); });

@@ -8,6 +8,10 @@ import { NOUVELLES } from './nouvelles.js';
 import { AGENTIQUE_A } from './agentique-a.js';
 import { AGENTIQUE_B } from './agentique-b.js';
 import { AGENTIQUE_C } from './agentique-c.js';
+import { FICHES_CONCEPTION_M1 } from './ateliers-conception-m1.js';
+import { FICHES_CONCEPTION_M2 } from './ateliers-conception-m2.js';
+import { FICHES_CONCEPTION_M3 } from './ateliers-conception-m3.js';
+import { FICHES_CONCEPTION_M6 } from './ateliers-conception-m6.js';
 
 export const BLOCS = [
   { module: 1, titre: 'Décider : trois familles de solutions IA' },
@@ -42,7 +46,7 @@ const BASE = [
   {
     id: 'bayes', module: 1, nom: 'Théorème de Bayes et prévalence', anim: M.Bayes, duree: 10,
     accroche: "Un détecteur de panne, fiable à 90 %, vient de sonner sur un robot. Faut-il l'envoyer tout de suite en maintenance ? Avant de répondre « oui, à 90 % », il manque une information : les pannes sont-elles fréquentes ou rares ?",
-    objectif: "calculer la probabilité qu'une alerte soit fondée, en tenant compte de la fréquence réelle du problème",
+    objectif: "calculer la probabilité qu'une alerte soit fondée, en tenant compte de la fréquence réelle du problème, et composer un contrôle dont les alertes sont exploitables",
     mots: [['Prévalence', "la proportion de cas réellement concernés (ici, les robots vraiment en panne)."], ['Sensibilité', "la proportion de vraies pannes que le test détecte."], ['Fausse alerte', "le test sonne alors que le robot est sain."]],
     prediction: { q: "Sur 200 robots, 10 sont en panne. Le test détecte 90 % des pannes et sonne à tort sur 10 % des robots sains. Un test sonne : quelle est la probabilité d'une vraie panne ?", choix: ['Environ 90 %', 'Environ 50 %', 'Environ 30 %'], ok: 2 },
     etapes: [
@@ -60,7 +64,7 @@ const BASE = [
   {
     id: 'reseau', module: 1, nom: 'Réseau bayésien', anim: M.Reseau, duree: 10,
     accroche: "Un robot vibre anormalement. Vous ne pouvez pas ouvrir le moteur pour vérifier s'il est usé, mais vous savez que l'usure provoque des vibrations et des surchauffes. Que pouvez-vous déduire de cette seule vibration ?",
-    objectif: "lire un réseau bayésien et prévoir dans quel sens une observation modifie les autres probabilités",
+    objectif: "lire un réseau bayésien, prévoir dans quel sens une observation modifie les autres probabilités, et composer les dépendances d'un réseau à partir de constats mesurés",
     mots: [['Nœud', "une variable du problème (usure, vibration, surchauffe)."], ['Arc', "une flèche de la cause vers l'effet."], ['A priori, a posteriori', "la probabilité avant, puis après, avoir observé quelque chose."]],
     prediction: { q: "On observe une vibration. Que devient la probabilité d'une surchauffe, que l'on n'a pas encore mesurée ?", choix: ['Elle baisse', 'Elle reste la même', 'Elle augmente'], ok: 2 },
     etapes: [
@@ -79,7 +83,7 @@ const BASE = [
   {
     id: 'supervise', module: 1, nom: 'Apprentissage supervisé', anim: M.Supervise, duree: 10,
     accroche: "Personne ne sait écrire la règle exacte qui sépare « le robot peut continuer » de « il faut l'arrêter » : trop de mesures, trop de cas particuliers. En revanche, vous disposez de milliers de situations passées, avec la bonne décision pour chacune. Peut-on apprendre la règle à partir de ces exemples ?",
-    objectif: "expliquer comment un modèle apprend à partir d'exemples étiquetés et pourquoi il doit être évalué sur des données qu'il n'a jamais vues",
+    objectif: "expliquer comment un modèle apprend à partir d'exemples étiquetés, pourquoi il doit être évalué sur des données qu'il n'a jamais vues, et choisir les jeux de données d'un entraînement et de son test",
     mots: [['Exemple étiqueté', "une situation accompagnée de la bonne réponse."], ['Frontière de décision', "la limite que le modèle trace entre deux réponses."], ["Erreur d'entraînement", "la proportion d'exemples que le modèle classe mal."]],
     prediction: { q: "Au départ, la frontière est placée au hasard. Que va faire l'apprentissage ?", choix: ['Déplacer les points', "Déplacer la frontière pour réduire l'erreur", 'Supprimer les points mal classés'], ok: 1 },
     etapes: [
@@ -98,7 +102,7 @@ const BASE = [
   {
     id: 'agent', module: 2, nom: 'Agent et environnement', anim: M.AgentEnv, duree: 6,
     accroche: "Un robot d'entrepôt, un thermostat connecté, un aspirateur autonome : trois objets très différents. Pourtant un même schéma les décrit tous les trois. Lequel ?",
-    objectif: "identifier, pour n'importe quel système autonome, son environnement, ses capteurs, ses effecteurs et son objectif",
+    objectif: "identifier, pour n'importe quel système autonome, son environnement, ses capteurs, ses effecteurs et son objectif, et spécifier les capteurs et les effecteurs qu'exige une mission",
     mots: [['Agent', "un système qui perçoit et agit pour atteindre un objectif."], ['Capteur', "ce qui renseigne l'agent sur son environnement."], ['Effecteur', "ce qui permet à l'agent d'agir sur son environnement."]],
     prediction: { q: "Entre l'agent et son environnement, combien de flux d'information circulent ?", choix: ["Un seul, de l'environnement vers l'agent", 'Deux, un dans chaque sens', 'Aucun, ils sont indépendants'], ok: 1 },
     etapes: [
@@ -115,7 +119,7 @@ const BASE = [
   {
     id: 'lidar', module: 2, nom: 'Capteurs : le lidar', anim: M.Lidar, duree: 8,
     accroche: "Fermez les yeux et tendez huit bâtons autour de vous. Vous savez à quelle distance se trouve le premier objet dans chaque direction, et rien d'autre. C'est exactement ce que perçoit notre robot.",
-    objectif: "interpréter une mesure de lidar et dire ce que le robot sait, et ne sait pas, de son environnement",
+    objectif: "interpréter une mesure de lidar, dire ce que le robot sait, et ne sait pas, de son environnement, et régler un lidar d'après ce que le robot doit voir à temps",
     mots: [['Lidar', "un capteur qui mesure des distances en émettant des rayons."], ['Portée', "la distance maximale à laquelle le capteur détecte un obstacle."], ['Rayon', "une direction de mesure. Notre robot en a huit."]],
     prediction: { q: "Un obstacle se trouve derrière un mur, à deux cellules du robot. Le lidar le détecte-t-il ?", choix: ['Oui, il est à portée', 'Non, le rayon est arrêté par le mur', 'Seulement si le robot tourne'], ok: 1 },
     etapes: [
@@ -133,7 +137,7 @@ const BASE = [
   {
     id: 'etat', module: 2, nom: 'État réel et observation', anim: M.EtatObs, duree: 8,
     accroche: "Votre GPS vous place parfois dans la rue d'à côté. La voiture, elle, n'a pas bougé. Il existe donc deux choses distinctes : l'endroit où vous êtes vraiment et l'endroit où vos instruments vous situent.",
-    objectif: "distinguer l'état réel de l'observation et expliquer pourquoi un agent ne décide jamais sur l'état réel",
+    objectif: "distinguer l'état réel de l'observation, expliquer pourquoi un agent ne décide jamais sur l'état réel, et régler la façon dont il exploite un capteur bruité",
     mots: [['État réel', "la situation exacte du monde à un instant donné."], ['Observation', "ce que les capteurs en rapportent."], ['Bruit', "l'erreur aléatoire d'une mesure."]],
     prediction: { q: "Le robot est immobile et mesure trois fois de suite la position d'une palette immobile. Obtient-il trois fois le même résultat ?", choix: ['Oui, rien ne bouge', 'Non, chaque mesure contient une erreur différente', "Oui, sauf si le capteur est cassé"], ok: 1 },
     etapes: [
@@ -151,7 +155,7 @@ const BASE = [
   {
     id: 'boucle', module: 2, nom: 'Boucle perception, décision, action', anim: M.Boucle, duree: 8,
     accroche: "Quand vous marchez dans la foule, vous ne calculez pas votre trajet une fois pour toutes. Vous regardez, vous ajustez, vous avancez, et vous recommencez plusieurs fois par seconde. Un agent autonome fait de même.",
-    objectif: "décrire les trois temps de la boucle et expliquer pourquoi elle doit se répéter sans cesse",
+    objectif: "décrire les trois temps de la boucle, expliquer pourquoi elle doit se répéter sans cesse, et programmer une boucle qui résiste aux perturbations",
     mots: [['Pas de temps', "un tour complet de la boucle."], ['Boucle fermée', "chaque action est suivie d'une nouvelle perception, qui permet de corriger."], ['Boucle ouverte', "l'agent agit sans vérifier le résultat."]],
     prediction: { q: "Après avoir agi, que fait l'agent ?", choix: ["Il s'arrête, sa tâche est finie", 'Il perçoit de nouveau, car la situation a changé', 'Il répète la même action'], ok: 1 },
     etapes: [
@@ -188,7 +192,7 @@ const BASE = [
   {
     id: 'astar', module: 3, nom: 'Planifier avec A*', anim: M.AEtoile, duree: 11,
     accroche: "Avant un trajet en voiture, votre application de navigation calcule l'itinéraire complet. Elle n'essaie pourtant pas toutes les routes du pays : elle explore d'abord celles qui vont dans la bonne direction. Comment fait-elle ?",
-    objectif: "expliquer comment A* choisit la prochaine case à explorer et calculer le score d'une case",
+    objectif: "expliquer comment A* choisit la prochaine case à explorer, calculer le score d'une case, et configurer une recherche qui garantit le plus court chemin sans explorer inutilement",
     mots: [['Coût parcouru', "le nombre de pas déjà faits depuis le départ."], ['Heuristique', "une estimation de la distance restante jusqu'à l'objectif (ici, à vol d'oiseau)."], ['Score', "coût parcouru + distance restante estimée."]],
     prediction: { q: "Pour trouver le plus court chemin, A* doit-il explorer toutes les cases de la carte ?", choix: ['Oui, sinon il pourrait en manquer un meilleur', "Non, il explore en priorité les cases prometteuses", 'Non, il tire des cases au hasard'], ok: 1 },
     etapes: [
@@ -207,7 +211,7 @@ const BASE = [
   {
     id: 'hybride', module: 3, nom: 'Architecture hybride', anim: M.Hybride, duree: 11,
     accroche: "Vous suivez l'itinéraire de votre GPS, mais vous freinez quand un piéton traverse. Le GPS voit loin et réfléchit lentement. Vos réflexes voient près et agissent vite. Vous utilisez les deux à la fois.",
-    objectif: "expliquer le rôle de chacune des deux couches d'un agent hybride et dire laquelle a la priorité",
+    objectif: "expliquer le rôle de chacune des deux couches d'un agent hybride, dire laquelle a la priorité, et programmer l'arbitrage entre elles",
     mots: [['Couche délibérative', "celle qui calcule un plan à long terme."], ['Couche réactive', "celle qui surveille les capteurs et réagit immédiatement."], ['Replanification', "le calcul d'un nouveau plan depuis la position courante."]],
     prediction: { q: "Le robot suit son plan. Une palette tombe sur le trajet prévu. Que fait un agent hybride ?", choix: ['Il suit son plan et heurte la palette', "Il s'arrête définitivement", 'Il détecte la palette et calcule un nouveau plan'], ok: 2 },
     etapes: [
@@ -226,7 +230,7 @@ const BASE = [
   {
     id: 'espace', module: 4, nom: 'Espace de recherche et fonction de coût', anim: M.Espace, duree: 9,
     accroche: "Un livreur doit passer chez 9 clients. Dans quel ordre ? Il pourrait essayer tous les ordres et garder le plus court. Combien de temps cela prendrait-il ?",
-    objectif: "définir un problème d'optimisation par ses solutions candidates et son coût, et estimer la taille de l'espace de recherche",
+    objectif: "définir un problème d'optimisation par ses solutions candidates et son coût, estimer la taille de l'espace de recherche, et écrire la fonction de coût qui traduit les exigences du métier",
     mots: [['Solution candidate', "une réponse possible au problème (ici, un ordre de visite)."], ['Coût', "le nombre qui mesure la qualité d'une solution (ici, la distance totale)."], ['Espace de recherche', "l'ensemble de toutes les solutions candidates."]],
     prediction: { q: "Avec 9 stations à visiter, combien d'ordres de visite différents existe-t-il ?", choix: ['81', 'Environ 5 000', 'Plus de 360 000'], ok: 2 },
     etapes: [
@@ -281,7 +285,7 @@ const BASE = [
   {
     id: 'croyance', module: 5, nom: 'Croyance et filtre bayésien', anim: M.Croyance, duree: 12,
     accroche: "Vous vous réveillez dans un train sans savoir où vous êtes. Vous apercevez une gare : plusieurs lignes en ont une semblable. Dix minutes plus tard, un pont. Une seule ligne enchaîne cette gare et ce pont. Vous venez de vous localiser.",
-    objectif: "expliquer comment une croyance évolue après une mesure et après un déplacement",
+    objectif: "expliquer comment une croyance évolue après une mesure et après un déplacement, et aménager un environnement dans lequel un robot parvient à se localiser",
     mots: [['Croyance', "la probabilité que le robot attribue à chaque position possible."], ['Correction', "la mise à jour de la croyance après une mesure."], ['Prédiction', "la mise à jour de la croyance après un déplacement."]],
     prediction: { q: "Le robot se déplace d'une case, mais ses roues glissent parfois. Sa certitude sur sa position…", choix: ['augmente', 'diminue', 'ne change pas'], ok: 1 },
     etapes: [
@@ -318,7 +322,7 @@ const BASE = [
   {
     id: 'exploration', module: 5, nom: 'Exploration et exploitation', anim: M.Exploration, duree: 10,
     accroche: "Vous avez un restaurant préféré. Y retourner est sans risque. Essayer celui d'en face peut décevoir, ou vous faire découvrir mieux. Si vous n'essayez jamais rien de nouveau, comment savoir que votre préféré est vraiment le meilleur ?",
-    objectif: "expliquer le compromis entre explorer et exploiter, et le rôle du paramètre ε",
+    objectif: "expliquer le compromis entre explorer et exploiter, et régler le paramètre ε, sa décroissance et son plancher",
     mots: [['Exploiter', "choisir la meilleure action connue."], ['Explorer', "essayer une autre action pour en apprendre la valeur."], ['ε (epsilon)', "la probabilité de choisir une action au hasard."]],
     prediction: { q: "Un agent qui n'explore jamais choisit toujours la première action qui lui a rapporté quelque chose. Quel est le risque ?", choix: ['Aucun', 'Passer à côté d\'une action bien meilleure', "Oublier ce qu'il a appris"], ok: 1 },
     etapes: [
@@ -337,7 +341,7 @@ const BASE = [
   {
     id: 'confiance', module: 6, nom: 'Distribution des résultats et intervalle de confiance', anim: M.Confiance, duree: 11,
     accroche: "Votre robot réussit sa mission 8 fois sur 10 en démonstration. Un concurrent annonce 82 % sur 2 000 essais. Les deux chiffres se ressemblent. Vous inspirent-ils la même confiance ?",
-    objectif: "expliquer pourquoi un taux de réussite doit être accompagné d'un intervalle de confiance et comment cet intervalle dépend du nombre d'essais",
+    objectif: "expliquer pourquoi un taux de réussite doit être accompagné d'un intervalle de confiance, comment cet intervalle dépend du nombre d'essais, et concevoir la campagne et la règle d'acceptation qui valident un agent",
     mots: [['Distribution', "l'ensemble des résultats obtenus quand on répète une expérience soumise au hasard."], ['Intervalle de confiance', "la fourchette dans laquelle se trouve très probablement la vraie valeur."], ['Taille d\'échantillon', "le nombre d'essais, noté n."]],
     prediction: { q: "On passe de 10 à 2 000 simulations, avec le même taux de réussite mesuré. Que devient la fourchette d'incertitude ?", choix: ['Elle reste la même', 'Elle se resserre fortement', "Elle s'élargit"], ok: 1 },
     etapes: [
@@ -355,7 +359,7 @@ const BASE = [
   {
     id: 'robustesse', module: 6, nom: 'Robustesse', anim: M.Robustesse, duree: 10,
     accroche: "Deux ponts supportent sans broncher la circulation habituelle. Lors d'une tempête, l'un vibre et tient, l'autre cède. Par beau temps, rien ne les distinguait.",
-    objectif: "définir la robustesse et expliquer pourquoi elle ne peut pas se mesurer en conditions normales",
+    objectif: "définir la robustesse, expliquer pourquoi elle ne peut pas se mesurer en conditions normales, et construire un plan de test qui départage un agent robuste d'un agent fragile",
     mots: [['Conditions nominales', "les conditions habituelles, pour lesquelles l'agent a été conçu."], ['Perturbation', "tout ce qui écarte du nominal : bruit, glissement, obstacles."], ['Dégradation progressive', "des performances qui baissent peu à peu, sans effondrement."]],
     prediction: { q: "Deux agents atteignent 99 % de réussite en conditions nominales. Sont-ils aussi robustes l'un que l'autre ?", choix: ['Oui, leurs performances sont identiques', 'On ne peut pas le savoir sans les perturber', 'Le plus rapide est le plus robuste'], ok: 1 },
     etapes: [
@@ -373,7 +377,7 @@ const BASE = [
   {
     id: 'graine', module: 6, nom: 'Reproductibilité et rejeu', anim: M.Graine, duree: 9,
     accroche: "Sur 5 000 simulations, une seule se termine par une collision. Vous relancez la campagne pour comprendre : cette fois, aucune collision. Comment étudier un échec qui ne se reproduit pas ?",
-    objectif: "expliquer le rôle d'une graine aléatoire et ce qu'il faut conserver pour pouvoir rejouer un échec",
+    objectif: "expliquer le rôle d'une graine aléatoire, choisir où la fixer et ce qu'il faut conserver pour pouvoir rejouer un échec",
     mots: [['Graine', "le nombre de départ d'un générateur aléatoire. Même graine, même suite de tirages."], ['Reproductible', "qui donne exactement le même résultat quand on le relance."], ['Trace', "l'enregistrement complet d'une exécution, étape par étape."]],
     prediction: { q: "On lance deux fois la même simulation « aléatoire » avec la même graine. Les deux exécutions sont…", choix: ['différentes, puisque c\'est aléatoire', 'identiques', 'identiques au début seulement'], ok: 1 },
     etapes: [
@@ -389,9 +393,12 @@ const BASE = [
   },
 ];
 
+// Ateliers de conception des leçons de base : l'apprenant décide, le système exécute et confronte au cahier des charges.
+const CONCEPTION = { ...FICHES_CONCEPTION_M1, ...FICHES_CONCEPTION_M2, ...FICHES_CONCEPTION_M3, ...FICHES_CONCEPTION_M6 };
+
 // Assemblage : théorie et atelier rattachés à chaque leçon, leçons ajoutées insérées à leur place.
 export const NOTIONS = (() => {
-  const liste = BASE.map((n) => ({ ...n, theorie: THEORIE[n.id], atelier: ATELIER[n.id] }));
+  const liste = BASE.map((n) => ({ ...n, theorie: THEORIE[n.id], atelier: ATELIER[n.id] || CONCEPTION[n.id] }));
   for (const n of NOUVELLES) liste.splice(liste.findIndex((x) => x.id === n.apres) + 1, 0, n);
   // Bloc « Systèmes agentiques », dans l'ordre du support : composantes, autonomie, familles, agents non LLM, LLM,
   // complexité, risque, routage, RAG, design patterns, implémentation, évaluation, gouvernance, cas d'usage.

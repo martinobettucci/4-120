@@ -46,6 +46,12 @@
 
 **Un LLM mesuré, pas supposé.** Le notebook 07 lit les courriers avec un petit modèle ouvert quand il est disponible. Exécuté de bout en bout avec ce modèle, il donne des taux d'erreur de lecture plus élevés que le simulateur réglé par défaut (40 % de fiches avec au moins un champ faux, contre 23 %), et les conclusions tiennent : chaque brique ajoutée fait baisser le coût, et le système final reste sous le coût d'un service entièrement humain.
 
+**De bons robots, ou de bons concepteurs ?** Troisième retour de l'autrice sur les ateliers : plus de la moitié mesuraient encore si l'apprenant sait faire ce qu'une machine ferait. Calculer 19, 49, 68 puis 28 %, ranger sept phrases dans sept rubriques, remettre dix lignes dans l'ordre. Sa question : saurais-je faire les bonnes règles, composer les bonnes dépendances bayésiennes, choisir les bons jeux de données pour un entraînement ? Les vingt et un ateliers concernés ont été remplacés par des ateliers de conception. L'apprenant décide, le système exécute sa décision pour de bon et la confronte à un cahier des charges. Pour le réseau bayésien, il trace les flèches et un test de séparation dit, constat par constat, ce que son graphe prédit. Pour l'apprentissage supervisé, il affecte des lots de données et un classifieur est réellement entraîné : mettre des doublons de l'entraînement dans le test donne 100 % annoncés et bien moins sur le terrain.
+
+**Une aide qui ne court-circuite pas l'effort.** Demande associée : un bouton « Voir la solution », mais seulement après trois échecs, et qui applique la solution au lieu de valider l'atelier. L'apprenant la vérifie comme s'il l'avait saisie, et voit pourquoi elle tient.
+
+**Finir ce qui est commencé.** L'écriture des ateliers avait été répartie entre cinq agents, tous interrompus avant leur compte rendu. Deux groupes n'avaient ni fiches ni recettes de test. Le travail a été repris à partir des fichiers trouvés, sans rien tenir pour acquis : chaque atelier étalonné de nouveau par énumération, rejoué dans un navigateur, relu sur capture. Deux défauts d'affichage ont été corrigés à cette occasion (titres de scènes qui se chevauchaient, ligne de programme coupée).
+
 ## Pistes ouvertes
 
 - Mesurer les gains GPU sur la machine de formation et les reporter dans les notebooks.

@@ -92,6 +92,7 @@ Chaque notebook commence par une cellule d'installation (sans effet si la biblio
 | Cadre d'animation | `web/src/composants/Animation.jsx` | Étapes, lecture automatique, navigation au clavier |
 | Animations | `web/src/animations/AnimM1.jsx` à `AnimM7.jsx` | Une séquence par module |
 | Leçons du module 0 | `web/src/lecons/notions.js`, `web/src/pages/Lecon.jsx`, `web/src/animations/Mini.jsx` | Contenu des 20 leçons, déroulé en six temps, animations segmentées |
+| Ateliers de conception | `web/src/ateliers/AteliersConception*.jsx`, `web/src/lecons/ateliers-conception-*.js`, `web/src/ateliers/Solution.jsx` | Les 21 ateliers où l'apprenant décide et où le système exécute, leurs fiches (titre, mission), et le bouton « Voir la solution » commun aux 39 ateliers |
 | Bloc « Systèmes agentiques » | `web/src/lecons/agentique-a.js`, `agentique-b.js`, `agentique-c.js`, `web/src/animations/MiniAgentique*.jsx`, `web/src/ateliers/AteliersAgentique*.jsx` | Les 14 leçons du module 7, leurs démonstrations et leurs ateliers |
 | Pédagogie des modules | `web/src/lecons/modules-pedagogie.js`, `web/src/composants/Qcm.jsx` | Objectifs, prérequis, missions d'observation, quiz avec retour explicatif |
 | Progression | `web/src/lecons/progression.js` | Suivi local dans le navigateur, sans envoi de données |

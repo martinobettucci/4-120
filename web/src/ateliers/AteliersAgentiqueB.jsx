@@ -4,6 +4,7 @@
 // La logique de chaque atelier est exportée à part, pour être étalonnée et testée sans navigateur.
 import { useMemo, useState } from 'react';
 import { F, C, alea, Bilan } from './Ateliers.jsx';
+import { useSolution } from './Solution.jsx';
 
 const milliers = (x) => Math.round(x).toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ');
 const euros = (x) => `${milliers(x)} €`;
@@ -36,6 +37,7 @@ export function optimum() {
 }
 function AtelierDelegation({ surReussite }) {
   const [bas, setBas] = useState(0.5); const [haut, setHaut] = useState(0.5); const [res, setRes] = useState(null);
+  const sol = useSolution();
   const lancer = () => {
     const r = simulerDelegation(bas, haut); const opt = optimum(); const ecart = r.cout / opt.cout - 1;
     const pente = (b, h) => simulerDelegation(Math.min(1, Math.max(0.5, b)), Math.min(1, Math.max(0.5, h))).attendu - r.attendu;
@@ -46,7 +48,7 @@ function AtelierDelegation({ surReussite }) {
     if (pente(b + 0.02, haut) < -0.004 * r.attendu) pistes.push("Juste au-dessus de votre seuil bas, corriger les erreurs oubliées à la validation coûte plus cher qu'une décision humaine complète : ce seuil est trop bas.");
     else if (pente(b - 0.02, haut) < -0.004 * r.attendu) pistes.push("Juste sous votre seuil bas, des agents humains refont entièrement des dossiers qu'une simple validation suffirait à sécuriser : ce seuil est trop haut.");
     const ok = ecart <= DELEG.tolerance && r.tauxAuto <= DELEG.plafond;
-    setRes({ ...r, ecart, pistes, ok, opt }); if (ok) surReussite();
+    setRes({ ...r, ecart, pistes, ok, opt }); sol.noter(ok); if (ok) surReussite();
   };
   const b = Math.min(bas, haut);
   const histo = useMemo(() => { const h = Array(25).fill(0); LOT.forEach((d) => { h[Math.min(24, Math.floor((d.c - 0.5) / 0.02))]++; }); return h; }, []);
@@ -73,7 +75,10 @@ function AtelierDelegation({ surReussite }) {
       {curseur('Seuil bas (en dessous : décision humaine)', bas, setBas)}
       {curseur('Seuil haut (au-dessus : exécution automatique)', haut, setHaut)}
       <p className="conseil">Entre les deux seuils, l'agent pré-remplit la décision et un humain la valide. Pour placer un seuil, comparez le coût espéré des deux régimes qu'il sépare, comme dans l'exemple résolu.</p>
-      <button className="bouton" onClick={lancer} data-testid="verifier">Traiter le lot avec ces seuils</button>
+      <div className="actions">
+        <button className="bouton" onClick={lancer} data-testid="verifier">Traiter le lot avec ces seuils</button>
+        {sol.bouton(() => { setBas(0.8); setHaut(0.97); setRes(null); })}
+      </div>
       {res && (
         <>
           <table className="tableau compact banc">
@@ -117,6 +122,7 @@ function AtelierRouteur({ surReussite }) {
   const [regles, setRegles] = useState([{ mot: 'panne', file: 'Technique' }]);
   const [defaut, setDefaut] = useState('Technique');
   const [teste, setTeste] = useState(false);
+  const sol = useSolution();
   const maj = (i, champ, val) => { setRegles(regles.map((r, k) => (k === i ? { ...r, [champ]: val } : r))); setTeste(false); };
   const bouger = (i, d) => { const j = i + d; if (j < 0 || j >= regles.length) return; const r = [...regles]; [r[i], r[j]] = [r[j], r[i]]; setRegles(r); setTeste(false); };
   const res = MESSAGES.map(([t]) => router(regles, defaut, t));
@@ -144,7 +150,8 @@ function AtelierRouteur({ surReussite }) {
       </ol>
       <div className="actions">
         <button className="bouton secondaire" disabled={regles.length >= MAX_REGLES} onClick={() => { setRegles([...regles, { mot: '', file: 'Technique' }]); setTeste(false); }} data-testid="ajouter-regle">+ Ajouter une règle</button>
-        <button className="bouton" onClick={() => { setTeste(true); if (tout) surReussite(); }} data-testid="verifier">Tester mon routeur</button>
+        <button className="bouton" onClick={() => { setTeste(true); sol.noter(tout); if (tout) surReussite(); }} data-testid="verifier">Tester mon routeur</button>
+        {sol.bouton(() => { setRegles([['facture', 'Facturation'], ['remboursement', 'Facturation'], ['incendie', 'Urgence sécurité'], ['gaz', 'Urgence sécurité'], ['panne', 'Technique'], ['portail', 'Technique']].map(([mot, file]) => ({ mot, file }))); setDefaut('Administratif'); setTeste(false); })}
       </div>
       {teste && (
         <>
@@ -209,7 +216,8 @@ export function evaluerRag(taille, k, methode) {
 }
 function AtelierRag({ surReussite }) {
   const [taille, setTaille] = useState(6); const [k, setK] = useState(1); const [methode, setMethode] = useState('compte'); const [res, setRes] = useState(null);
-  const lancer = () => { const r = evaluerRag(taille, k, methode); setRes(r); if (r.ok) surReussite(); };
+  const sol = useSolution();
+  const lancer = () => { const r = evaluerRag(taille, k, methode); setRes(r); sol.noter(r.ok); if (r.ok) surReussite(); };
   const curseur = (nom, val, set, min, max) => (<label className="curseur">{nom} = <b>{val}</b><input type="range" min={min} max={max} step="1" value={val} onChange={(e) => { set(Number(e.target.value)); setRes(null); }} aria-label={nom} /></label>);
   const rate = res?.details.find((d) => !d.trouve);
   return (
@@ -221,7 +229,10 @@ function AtelierRag({ surReussite }) {
       {curseur('Taille des morceaux (phrases)', taille, setTaille, 1, 6)}
       {curseur('Nombre k de morceaux transmis', k, setK, 1, 5)}
       <label className="curseur">Score d'un morceau<select value={methode} onChange={(e) => { setMethode(e.target.value); setRes(null); }} aria-label="Score d'un morceau"><option value="compte">nombre de mots communs avec la question</option><option value="rarete">mots communs pondérés par leur rareté</option></select></label>
-      <button className="bouton" onClick={lancer} data-testid="verifier">Lancer les {QUESTIONS.length} questions</button>
+      <div className="actions">
+        <button className="bouton" onClick={lancer} data-testid="verifier">Lancer les {QUESTIONS.length} questions</button>
+        {sol.bouton(() => { setTaille(2); setK(2); setMethode('rarete'); setRes(null); })}
+      </div>
       {res && (
         <>
           <table className="tableau compact banc">
@@ -274,7 +285,8 @@ function AtelierJournal({ surReussite }) {
   const [choisis, setChoisis] = useState(['id', 'texte']); const [res, setRes] = useState(null);
   const basculer = (c) => { setChoisis(choisis.includes(c) ? choisis.filter((x) => x !== c) : [...choisis, c]); setRes(null); };
   const cout = CHAMPS.filter(([c]) => choisis.includes(c)).reduce((t, x) => t + x[2], 0);
-  const verifier = () => { const r = auditer(choisis); setRes(r); if (r.ok) surReussite(); };
+  const sol = useSolution();
+  const verifier = () => { const r = auditer(choisis); setRes(r); sol.noter(r.ok); if (r.ok) surReussite(); };
   return (
     <div className="atelier">
       <div className="cahier"><b>Cahier des charges du journal.</b>
@@ -287,7 +299,10 @@ function AtelierJournal({ surReussite }) {
       </ul>
       <p className="conseil">Enregistrement actuel : {cout} unité(s) sur {JOURNAL.budget}.</p>
       <pre><code>{`{\n${CHAMPS.filter(([c]) => choisis.includes(c)).map((x) => `  ${x[4]}`).join(',\n')}\n}`}</code></pre>
-      <button className="bouton" onClick={verifier} data-testid="verifier">Rejouer les questions d'audit</button>
+      <div className="actions">
+        <button className="bouton" onClick={verifier} data-testid="verifier">Rejouer les questions d'audit</button>
+        {sol.bouton(() => { setChoisis(['id', 'horodatage', 'versions', 'regles', 'avis', 'validation', 'outils', 'empreinte']); setRes(null); })}
+      </div>
       {res && (
         <>
           <table className="tableau compact banc">

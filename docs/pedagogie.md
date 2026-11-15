@@ -62,9 +62,9 @@ https://en.wikipedia.org/wiki/Constructive_alignment
 
 https://en.wikipedia.org/wiki/Bloom%27s_taxonomy
 
-### Problèmes de Parsons
+### Du programme à remettre en ordre au programme à concevoir
 
-Pour apprendre à programmer, Dale Parsons et Patricia Haden (2006) proposent de donner les lignes d'un programme dans le désordre et de les faire remettre en ordre. L'apprenant construit la logique du programme sans buter sur la syntaxe. C'est une étape intermédiaire entre lire du code et en écrire.
+Dale Parsons et Patricia Haden (2006) proposent de donner les lignes d'un programme dans le désordre et de les faire remettre en ordre. L'exercice évite de buter sur la syntaxe, mais il ne demande aucune décision : toutes les lignes sont justes, il n'y a qu'un ordre possible, et on peut le retrouver sans comprendre ce que le programme fait. Le site a utilisé cette forme, puis l'a abandonnée. Les ateliers de programmation demandent maintenant de choisir, à chaque point du programme, entre des variantes plausibles (où percevoir, quand journaliser, où fixer la graine), puis exécutent le programme obtenu sur des cas de test. Une variante fausse échoue pour une raison que l'exécution montre.
 
 https://en.wikipedia.org/wiki/Parsons_problems
 
@@ -105,22 +105,22 @@ Le module 7 ajoute au programme le contenu du support de l'autrice « Systèmes 
 
 | Partie du support | Leçons (`web/src/lecons/agentique-*.js`) | Atelier |
 | --- | --- | --- |
-| I. Fondements | Composantes et vocabulaire, niveaux d'autonomie | Fiche de diagnostic d'un système, seuils de délégation |
+| I. Fondements | Composantes et vocabulaire, niveaux d'autonomie | Spécification d'un agent exécutée sur douze demandes, seuils de délégation |
 | II et III. Typologie, agents non LLM | Familles d'agents, agents à règles, heuristiques et statistiques | Composition d'un agent étape par étape, poids d'une heuristique de priorité |
 | IV. Agents LLM | Agent LLM et hybridation | Contrôles qui encadrent un LLM |
 | V. Architectures | Diffusion de la complexité, diffusion du risque | Contrôles d'une chaîne, réglage d'un arbitre |
 | VI. Routage, arbitrage, modération | Routage, arbitrage et modération | Routeur d'une boîte de réception |
 | VII. RAG et mémoire | RAG et mémoire | Étage de recherche d'un système RAG |
 | VIII. Design patterns | Design patterns des systèmes agentiques | Architecture d'une demande de prêt |
-| IX. Implémentation | Implémenter un système agentique en Python | Fonction qui traite un dossier |
-| X. Évaluation et gouvernance | Évaluer un système agentique, gouvernance et journalisation | Tableau de bord, schéma de journal |
-| XI et XII. Cas d'usage, synthèses | Cas d'usage et conception d'un système complet | Note de conception chiffrée |
+| IX. Implémentation | Implémenter un système agentique en Python | Cinq choix de programmation, fonction exécutée sur six dossiers de test |
+| X. Évaluation et gouvernance | Évaluer un système agentique, gouvernance et journalisation | Dispositif d'évaluation confronté à cinq défauts cachés, schéma de journal |
+| XI et XII. Cas d'usage, synthèses | Cas d'usage et conception d'un système complet | Cinq décisions de conception chiffrées sur 1 000 dossiers par jour |
 
 Le notebook 07 assemble le tout en code : un système de traitement de dossiers construit brique par brique, avec une mesure après chaque ajout.
 
 ### Les ateliers : évaluer la capacité à construire
 
-Une question à choix sur la sortie d'un système vérifie que l'on sait l'exécuter, comme le ferait la machine. L'objectif est ailleurs : savoir le concevoir. Chaque leçon se valide donc par un atelier de construction (`web/src/ateliers/Ateliers.jsx`, et `AteliersAgentique*.jsx` pour le module 7), où le système exécute ce que l'apprenant a construit et lui retourne un diagnostic.
+Une question à choix sur la sortie d'un système vérifie que l'on sait l'exécuter, comme le ferait la machine. L'objectif est ailleurs : savoir le concevoir. Chaque leçon se valide donc par un atelier (`web/src/ateliers/Ateliers.jsx`, `AteliersAgentique*.jsx` pour le module 7, `AteliersConception*.jsx` pour les ateliers de conception), où le système exécute ce que l'apprenant a construit et lui retourne un diagnostic.
 
 | Atelier | Ce que l'apprenant construit | Comment c'est vérifié |
 | --- | --- | --- |
@@ -132,10 +132,50 @@ Une question à choix sur la sortie d'un système vérifie que l'on sait l'exéc
 | Recuit simulé | La température initiale et le refroidissement | Moyenne de 5 recuits comparée à la meilleure tournée connue |
 | Politique | Une action pour chaque case | Test sans aléa depuis toutes les cases, puis 400 missions avec déviations |
 | Récompenses | Les trois récompenses d'un agent | Calcul de la politique qui en découle et vérification du comportement obtenu |
-| Programme | L'ordre des lignes d'un programme (problème de Parsons) | Position de chaque ligne |
-| Calcul ou fiche | Un calcul complet, ou la description d'un système | Chaque valeur, avec une indication sur celles qui sont inexactes |
 
 Trois principes ont guidé leur conception. La réussite ne s'obtient pas par élimination : il faut produire quelque chose. L'échec renseigne : chaque essai dit ce qui ne va pas, sans donner la solution. Et plusieurs constructions sont valables : il existe plus d'une base de règles, plus d'une politique, plus d'un réglage corrects.
+
+### Les ateliers de conception : décider, pas exécuter
+
+Une première série d'ateliers faisait calculer des nombres, ranger des éléments dans des rubriques ou remettre en ordre les lignes d'un programme. L'autrice les a refusés : ils mesurent si l'apprenant sait faire ce qu'une machine ferait, pas s'il saurait faire le bon choix, la bonne configuration, la bonne méthode, la bonne programmation. Ils ont tous été remplacés. Un atelier de conception suit cinq règles :
+
+1. L'apprenant décide : il choisit, configure, compose ou programme l'objet de la leçon.
+2. Le système exécute réellement ce qui a été conçu, par une simulation ou un algorithme reproductible. Aucune saisie n'est comparée à une réponse attendue.
+3. Un cahier des charges fixe des exigences mesurables, et le résultat les reprend une à une avec les nombres mesurés.
+4. Le retour nomme ce qui échoue et pose la question qui fait avancer, sans donner la réponse.
+5. L'essai naturel est refusé : l'état de départ échoue, et la conception tentante mais fausse échoue avec un retour qui lui est propre.
+
+| Leçon | Ce que l'apprenant décide | Ce que le système exécute |
+| --- | --- | --- |
+| Théorème de Bayes | Détecteur, réglage, confirmation des colis signalés | 10 000 colis dans le dispositif : part des alertes fondées, défauts arrêtés, coût |
+| Réseau bayésien | Le sens de chaque flèche entre cinq variables | Test de séparation dans le graphe pour neuf constats mesurés, compte des probabilités à renseigner |
+| Coût espéré | Le seuil d'arrêt de trois chargements aux coûts différents | Rejeu de 20 000 alertes par chargement, comparé au meilleur seuil |
+| Apprentissage supervisé | L'affectation de sept lots : entraînement, test, écarté | Entraînement d'un classifieur, exactitude sur le test puis sur 2 000 situations de terrain |
+| Recommandation | Mesure de proximité, nombre de voisins, séries communes exigées | Chaque note connue est cachée puis prédite : erreur moyenne et couverture |
+| Agent et environnement | Capteurs et effecteurs d'un drone, sous un budget de masse et de coût | Six situations de mission, chacune réussie ou non selon ce que le drone perçoit et peut faire |
+| Lidar | Nombre de rayons, portée, vitesse du robot | Lancer de rayons dans trois scènes : obstacle touché assez tôt pour s'arrêter, charge de calcul |
+| État et observation | Nombre de mesures moyennées, marge de sécurité | 4 000 approches d'un mur avec un capteur bruité : collisions et arrêts trop éloignés |
+| Boucle perception, décision, action | Quatre choix de programmation de la boucle | Programme exécuté dans trois scénarios, trajectoires tracées |
+| A* | Heuristique, facteur, départage des scores égaux | Recherche exécutée dans l'entrepôt : longueur du chemin, garantie, cases examinées |
+| Architecture hybride | Priorité, distance de garde, conduite après un blocage, mémoire | Agent exécuté face à une palette, un chariot et un cul-de-sac |
+| Espace de recherche et coût | Le poids de quatre termes d'une fonction de coût | Énumération des 120 tournées, vérification des exigences sur la tournée de coût minimal |
+| Croyance et filtre bayésien | La place de trois portes et la confiance dans le capteur | Filtre exécuté depuis les dix cases de départ, puis avec une lecture fausse |
+| Exploration et exploitation | ε initial, décroissance, plancher | 40 apprentissages de 800 trajets, avec un changement en cours de route |
+| Intervalle de confiance | Nombre de simulations et règle d'acceptation | 2 000 campagnes rejouées pour un bon agent et un agent insuffisant |
+| Robustesse | Conditions et seuil de trois niveaux de test | 400 missions par niveau pour un agent robuste et un agent naïf |
+| Reproductibilité | Où fixer la graine, quoi conserver de chaque essai | Campagne de 60 essais, puis rejeu d'un échec avec ce qui a été conservé |
+| Composantes d'un agent | Perception, représentation, règles, actions, autonomie | Douze demandes de congé traitées par l'agent spécifié |
+| Implémentation | Cinq choix de programmation de la fonction de traitement | Fonction exécutée sur six dossiers de test, décision et journal vérifiés |
+| Évaluation | Les instruments de mesure, sous un budget | Un mois simulé avec cinq défauts cachés, révélés ou non par les instruments choisis |
+| Cas d'usage | Cinq décisions de conception d'un système complet | Chiffrage sur 1 000 dossiers par jour avec les formules du module |
+
+L'alignement de Biggs vaut dans les deux sens. L'objectif de chacune de ces leçons annonce désormais la capacité de conception que l'atelier vérifie, et le cours a été complété là où l'atelier demandait une notion qui n'y figurait pas : treize blocs, de la confirmation indépendante d'une alerte au dispositif de mesure d'un système en service.
+
+Chaque atelier a été étalonné en énumérant ses conceptions possibles : les conceptions valides sont rares (une sur 36 pour la boucle, deux sur 4 096 pour le drone, 1,4 % des réglages pour le capteur bruité), et l'essai tentant échoue.
+
+### Le bouton « Voir la solution »
+
+Un apprenant bloqué n'apprend plus. Après trois vérifications infructueuses, chaque atelier propose « Voir la solution ». Le bouton ne valide rien : il applique une conception correcte dans l'atelier, et c'est l'apprenant qui lance la vérification. Il lit alors, exigence par exigence, ce que cette conception donne, et peut la comparer à ses essais ou la modifier pour voir ce qui la fait échouer. Le seuil de trois essais maintient l'effort de recherche avant l'aide : c'est l'essai, et le retour qu'il reçoit, qui font apprendre.
 
 Choix de conception :
 

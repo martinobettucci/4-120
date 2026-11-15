@@ -2,6 +2,29 @@
 
 Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémantique.
 
+## [1.5.0] 2026-11-15
+
+### Ajouté
+
+- Bouton « Voir la solution » sur les 39 ateliers. Il n'apparaît qu'après trois vérifications infructueuses. Il applique une conception valide dans l'atelier : l'apprenant lance alors la vérification et lit ce qu'elle donne, comme s'il l'avait saisie (`web/src/ateliers/Solution.jsx`).
+- Vingt et un ateliers de conception (`web/src/ateliers/AteliersConception*.jsx`). L'apprenant y prend les décisions de conception de l'objet étudié, le système exécute ce qu'il a conçu (simulation ou algorithme, reproductible) et le confronte à un cahier des charges, exigence par exigence :
+  - module 1 : composer un contrôle dont les alertes sont exploitables, composer les dépendances d'un réseau bayésien, régler une politique d'arrêt d'après les coûts, choisir les jeux de données d'un entraînement, régler un recommandeur ;
+  - module 2 : spécifier l'équipement d'un drone, régler un lidar, exploiter un capteur bruité, programmer la boucle d'un agent ;
+  - modules 3 à 5 : configurer une recherche A*, programmer l'arbitrage d'un agent hybride, écrire la fonction de coût d'une tournée, aménager un couloir pour un filtre bayésien, régler une stratégie d'exploration ;
+  - module 6 : concevoir une campagne de validation, construire un plan de test, rendre une campagne rejouable ;
+  - module 7 : spécifier les composantes d'un agent, programmer la fonction qui traite un dossier, monter un dispositif d'évaluation, concevoir un système complet.
+- Contrôle du contenu : un atelier de restitution est refusé, chaque atelier doit avoir son composant et son bouton de solution, aucun tirage non reproductible. Parcours automatisé : chaque atelier de conception est d'abord refusé sur des conceptions insuffisantes, puis validé, et le parcours « trois échecs, solution, vérification » est rejoué sur les 39 leçons (`tools/e2e_conception_m*.cjs`).
+
+### Modifié
+
+- Objectif des vingt et une leçons concernées : la capacité de conception que l'atelier vérifie y est annoncée (par exemple « composer les dépendances d'un réseau à partir de constats mesurés »).
+- Cours : treize blocs ajoutés, pour que chaque atelier ne demande rien qui n'ait été enseigné. Confirmation indépendante d'une alerte (Bayes), vérification d'une structure par ses indépendances (réseau bayésien), choix des données (apprentissage supervisé), réglage du voisinage (recommandation), spécification d'un agent, dimensionnement d'un lidar, prix de la moyenne (état et observation), réglages d'une recherche A*, pondération d'un coût, conditions de la localisation (filtre bayésien), risques d'une règle d'acceptation (intervalle de confiance), graine dans une campagne (reproductibilité), dispositif de mesure (évaluation). Rien n'est retiré des cours ni des exemples résolus.
+- Affichage des ateliers sur écran étroit : les listes de choix ne débordent plus de leur cadre.
+
+### Retiré
+
+- Les vingt et un ateliers qui faisaient exécuter à l'apprenant ce que ferait une machine : calculs à recopier, éléments à ranger dans des rubriques, lignes de programme à remettre en ordre.
+
 ## [1.4.0] 2026-11-15
 
 ### Ajouté

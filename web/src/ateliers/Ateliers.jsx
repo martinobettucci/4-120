@@ -1,75 +1,14 @@
 // Ateliers de construction du module 0. Ici l'apprenant ne choisit pas une réponse :
 // il fabrique l'objet étudié (une base de règles, un neurone, un modèle de contraintes,
-// une politique, des récompenses, un programme), puis le système le met à l'épreuve.
+// une politique, des récompenses), puis le système le met à l'épreuve.
 import { useMemo, useState } from 'react';
+import { useSolution } from './Solution.jsx';
 export const F = (x, n) => Number(x).toFixed(n).replace('.', ',');
 
 export const C = { bleu: '#23468C', vert: '#238C33', jaune: '#D9CF4A', rouge: '#F24141', noir: '#0D0D0D', gris: '#8A93A6', orange: '#E07B1A' };
 export const alea = (graine) => { let s = graine; return () => { s = (s * 16807) % 2147483647; return s / 2147483647; }; };
 export const nombre = (x) => parseFloat(String(x).replace(',', '.'));
 export const Bilan = ({ ok, children }) => <p className={`bilan ${ok ? 'juste' : 'faux'}`} role="status">{children}</p>;
-
-// ---------------------------------------------------------------- Formulaire
-// Calcul ou fiche à compléter : champs numériques (avec tolérance) ou listes de choix.
-export function Formulaire({ config, surReussite }) {
-  const [v, setV] = useState({});
-  const [verif, setVerif] = useState(false);
-  const juste = (c, i) => (c.options ? v[i] === c.reponse : v[i] !== undefined && v[i] !== '' && Math.abs(nombre(v[i]) - c.reponse) <= (c.tolerance ?? 0.011));
-  const nb = config.champs.filter(juste).length;
-  const tout = nb === config.champs.length;
-  return (
-    <div className="atelier">
-      {config.donnees && (
-        <table className="tableau compact donnees"><tbody>{config.donnees.map((l) => <tr key={l.join('|')}>{l.map((x, k) => (k === 0 ? <th key={x}>{x}</th> : <td key={`${k}-${x}`}>{x}</td>))}</tr>)}</tbody></table>
-      )}
-      <ol className="champs">
-        {config.champs.map((c, i) => (
-          <li key={c.label}>
-            <label>{c.label}
-              {c.options ? (
-                <select value={v[i] ?? ''} onChange={(e) => { setV({ ...v, [i]: e.target.value }); setVerif(false); }}>
-                  <option value="">choisir…</option>{c.options.map((o) => <option key={o}>{o}</option>)}
-                </select>
-              ) : (
-                <span className="saisie"><input inputMode="decimal" value={v[i] ?? ''} onChange={(e) => { setV({ ...v, [i]: e.target.value }); setVerif(false); }} />{c.unite && <em>{c.unite}</em>}</span>
-              )}
-            </label>
-            {verif && (juste(c, i) ? <span className="marque juste">✓</span> : <span className="aide-champ">{c.aide}</span>)}
-          </li>
-        ))}
-      </ol>
-      <button className="bouton" onClick={() => { setVerif(true); if (tout) surReussite(); }} data-testid="verifier">Vérifier ma construction</button>
-      {verif && <Bilan ok={tout}>{tout ? config.bilan : `${nb} élément(s) correct(s) sur ${config.champs.length}. Corrigez ceux qui portent une indication, puis vérifiez de nouveau.`}</Bilan>}
-    </div>
-  );
-}
-
-// ------------------------------------------------------------------- Parsons
-// Assembler un programme : les lignes sont données dans le désordre, à remettre en ordre.
-export function Parsons({ config, surReussite }) {
-  const n = config.lignes.length;
-  const depart = useMemo(() => { const g = alea(n * 97 + config.lignes[0].length); const o = config.lignes.map((_, i) => i); for (let i = n - 1; i > 0; i--) { const j = Math.floor(g() * (i + 1)); [o[i], o[j]] = [o[j], o[i]]; } if (o.every((x, i) => x === i)) o.reverse(); return o; }, [config, n]);
-  const [ordre, setOrdre] = useState(depart);
-  const [verif, setVerif] = useState(false);
-  const bouger = (i, d) => { const j = i + d; if (j < 0 || j >= n) return; const o = [...ordre]; [o[i], o[j]] = [o[j], o[i]]; setOrdre(o); setVerif(false); };
-  const place = (i) => config.lignes[ordre[i]].trim() === config.lignes[i].trim();
-  const nb = ordre.filter((_, i) => place(i)).length;
-  const tout = nb === n;
-  return (
-    <div className="atelier">
-      <ol className="parsons">
-        {ordre.map((k, i) => (
-          <li key={k} className={verif ? (place(i) ? 'juste' : 'faux') : ''}>
-            <span className="fleches"><button onClick={() => bouger(i, -1)} disabled={i === 0} aria-label="Monter">▲</button><button onClick={() => bouger(i, 1)} disabled={i === n - 1} aria-label="Descendre">▼</button></span>
-            <code>{verif && tout ? config.lignes[i] : config.lignes[k].trim()}</code>
-          </li>
-        ))}
-      </ol>
-      <button className="bouton" onClick={() => { setVerif(true); if (tout) surReussite(); }} data-testid="verifier">Vérifier mon programme</button>
-      {verif && <Bilan ok={tout}>{tout ? config.bilan : `${nb} ligne(s) à la bonne place sur ${n}. Les lignes en rouge sont à déplacer. ${config.aide || ''}`}</Bilan>}
-    </div>
-  );
-}
 
 // -------------------------------------------------------------- Base de règles
 const VARS = { temperature: ['température', '°C'], batterie: ['batterie', '%'], obstacle: ['distance obstacle', 'm'] };
@@ -82,6 +21,7 @@ export function AtelierRegles({ surReussite }) {
   const [regles, setRegles] = useState([{ v: 'temperature', op: '>', s: '85', d: 'ARRÊT' }]);
   const [defaut, setDefaut] = useState('CONTINUER');
   const [teste, setTeste] = useState(false);
+  const sol = useSolution();
   const maj = (i, champ, val) => { setRegles(regles.map((r, k) => (k === i ? { ...r, [champ]: val } : r))); setTeste(false); };
   const bouger = (i, d) => { const j = i + d; if (j < 0 || j >= regles.length) return; const r = [...regles]; [r[i], r[j]] = [r[j], r[i]]; setRegles(r); setTeste(false); };
   const decider = ([t, b, o]) => { const m = { temperature: t, batterie: b, obstacle: o }; for (let i = 0; i < regles.length; i++) { const r = regles[i]; const s = nombre(r.s); if (Number.isNaN(s)) continue; if (r.op === '>' ? m[r.v] > s : m[r.v] < s) return [r.d, `R${i + 1}`]; } return [defaut, 'défaut']; };
@@ -108,7 +48,8 @@ export function AtelierRegles({ surReussite }) {
       </ol>
       <div className="actions">
         <button className="bouton secondaire" onClick={() => { setRegles([...regles, { v: 'batterie', op: '<', s: '', d: 'RALENTIR' }]); setTeste(false); }} data-testid="ajouter-regle">+ Ajouter une règle</button>
-        <button className="bouton" onClick={() => { setTeste(true); if (nb === BANC.length) surReussite(); }} data-testid="verifier">Tester ma base de règles</button>
+        <button className="bouton" onClick={() => { setTeste(true); sol.noter(nb === BANC.length); if (nb === BANC.length) surReussite(); }} data-testid="verifier">Tester ma base de règles</button>
+        {sol.bouton(() => { setRegles([{ v: 'obstacle', op: '<', s: '0,5', d: 'ARRÊT' }, { v: 'temperature', op: '>', s: '85', d: 'ARRÊT' }, { v: 'batterie', op: '<', s: '20', d: 'RALENTIR' }, { v: 'obstacle', op: '<', s: '1,5', d: 'RALENTIR' }]); setDefaut('CONTINUER'); setTeste(false); })}
       </div>
       {teste && (
         <>
@@ -129,6 +70,7 @@ export function AtelierRegles({ surReussite }) {
 const POINTS = (() => { const g = alea(31); const p = []; while (p.length < 18) { const x = g(); const y = g(); const s = 0.9 * x + 0.6 * y - 0.8; if (Math.abs(s) > 0.07) p.push([x, y, s > 0 ? 1 : 0]); } return p; })();
 export function AtelierNeurone({ surReussite }) {
   const [w1, setW1] = useState(1); const [w2, setW2] = useState(-1); const [b, setB] = useState(0);
+  const sol = useSolution();
   const sortie = ([x, y]) => (w1 * x + w2 * y + b > 0 ? 1 : 0);
   const justes = POINTS.filter((p) => sortie(p) === p[2]).length;
   const faux = POINTS.find((p) => sortie(p) !== p[2]);
@@ -150,7 +92,10 @@ export function AtelierNeurone({ surReussite }) {
         {curseur('w₁', w1, setW1, -2, 2, 0.1)}{curseur('w₂', w2, setW2, -2, 2, 0.1)}{curseur('b', b, setB, -2, 2, 0.05)}
         <p className="formule">sortie = 1 si {F(w1, 2)} × x₁ + {F(w2, 2)} × x₂ + ({F(b, 2)}) &gt; 0</p>
         {faux && <p className="conseil">Exemple mal classé : x₁ = {F(faux[0], 2)}, x₂ = {F(faux[1], 2)}. Somme = {F((w1 * faux[0] + w2 * faux[1] + b), 2)}, donc sortie {sortie(faux)}, alors que la bonne réponse est {faux[2]}.</p>}
-        <button className="bouton" onClick={() => { if (justes === POINTS.length) surReussite(); }} data-testid="verifier" disabled={justes !== POINTS.length}>Valider mon neurone</button>
+        <div className="actions">
+          <button className="bouton" onClick={() => { sol.noter(justes === POINTS.length); if (justes === POINTS.length) surReussite(); }} data-testid="verifier">Valider mon neurone</button>
+          {sol.bouton(() => { setW1(0.9); setW2(0.6); setB(-0.8); })}
+        </div>
         <Bilan ok={justes === POINTS.length}>{justes} point(s) bien classé(s) sur {POINTS.length}. {justes === POINTS.length ? "Votre neurone sépare les deux classes. C'est exactement ce que l'entraînement fait automatiquement : chercher des poids qui réduisent les erreurs." : 'Un poids positif pousse vers « arrêter » quand la mesure augmente. Le biais déplace la frontière sans la faire tourner.'}</Bilan>
       </div>
     </div>
@@ -161,6 +106,7 @@ export function AtelierNeurone({ surReussite }) {
 export function AtelierGradient({ surReussite }) {
   const [taux, setTaux] = useState(0.02);
   const [lance, setLance] = useState(false);
+  const sol = useSolution();
   const pas = useMemo(() => { const w = [-4]; for (let k = 0; k < 20; k++) w.push(w[k] - taux * 2 * (w[k] - 3)); return w; }, [taux]);
   const fin = pas[20]; const ok = Math.abs(fin - 3) < 0.05; const diverge = Math.abs(fin - 3) > 7.01;
   const X = (w) => 20 + ((Math.max(-6, Math.min(12, w)) + 6) / 18) * 400; const Y = (w) => 200 - Math.min(190, ((w - 3) ** 2) * 2.2);
@@ -174,7 +120,10 @@ export function AtelierGradient({ surReussite }) {
         <line x1={X(3)} y1="200" x2={X(3)} y2="208" stroke={C.vert} strokeWidth="3" /><text x={X(3)} y="214" textAnchor="middle" fontSize="11" fill={C.vert}>minimum</text>
       </svg>
       <label className="curseur">taux d'apprentissage = <b>{F(taux, 2)}</b><input type="range" min="0.01" max="1.2" step="0.01" value={taux} onChange={(e) => { setTaux(Number(e.target.value)); setLance(false); }} aria-label="taux d'apprentissage" /></label>
-      <button className="bouton" onClick={() => { setLance(true); if (ok) surReussite(); }} data-testid="verifier">Lancer 20 pas de descente</button>
+      <div className="actions">
+        <button className="bouton" onClick={() => { setLance(true); sol.noter(ok); if (ok) surReussite(); }} data-testid="verifier">Lancer 20 pas de descente</button>
+        {sol.bouton(() => { setTaux(0.3); setLance(false); })}
+      </div>
       {lance && <Bilan ok={ok}>Après 20 pas : w = {Math.abs(fin) > 999 ? 'hors échelle' : F(fin, 2)}. {ok ? 'Convergence atteinte. Vous avez réglé un hyperparamètre : ni trop prudent, ni trop audacieux.' : diverge ? "Chaque pas dépasse le minimum et s'en éloigne davantage : le taux est trop grand, la descente diverge." : Math.abs(taux - 1) < 0.006 ? 'Le paramètre saute indéfiniment d\'un côté à l\'autre du minimum, sans s\'en approcher.' : taux > 0.5 ? 'Le paramètre oscille de part et d\'autre du minimum et se rapproche trop lentement. Réduisez le taux.' : 'Le paramètre avance dans la bonne direction, mais à trop petits pas : 20 pas ne suffisent pas. Augmentez le taux.'}</Bilan>}
     </div>
   );
@@ -186,6 +135,7 @@ const DIRS = { N: [0, -1], E: [1, 0], S: [0, 1], O: [-1, 0] }; const OPP = { N: 
 export function AtelierPiege({ surReussite }) {
   const [murs, setMurs] = useState(new Set());
   const [res, setRes] = useState(null);
+  const sol = useSolution();
   const cle = (x, y) => `${x},${y}`;
   const libre = (x, y) => x > 0 && y > 0 && x < GL - 1 && y < GH - 1 && !murs.has(cle(x, y));
   const basculer = (x, y) => { if ((x === DEP[0] && y === DEP[1]) || (x === BUT[0] && y === BUT[1]) || x === 0 || y === 0 || x === GL - 1 || y === GH - 1) return; const m = new Set(murs); if (m.has(cle(x, y))) m.delete(cle(x, y)); else m.add(cle(x, y)); setMurs(m); setRes(null); };
@@ -206,7 +156,7 @@ export function AtelierPiege({ surReussite }) {
       if (!a) break;
       der = a; p = [p[0] + DIRS[a][0], p[1] + DIRS[a][1]]; trace.push(p); arrive = p[0] === BUT[0] && p[1] === BUT[1];
     }
-    const r = { chemin, trace, arrive }; setRes(r);
+    const r = { chemin, trace, arrive }; setRes(r); sol.noter(!!chemin && !arrive);
     if (chemin && !arrive) surReussite();
   };
   const c = 40;
@@ -223,7 +173,10 @@ export function AtelierPiege({ surReussite }) {
         <rect x={BUT[0] * c + 9} y={BUT[1] * c + 9} width={c - 18} height={c - 18} rx="4" fill={C.vert} pointerEvents="none" />
         <circle cx={(res ? res.trace[res.trace.length - 1][0] : DEP[0]) * c + c / 2} cy={(res ? res.trace[res.trace.length - 1][1] : DEP[1]) * c + c / 2} r="12" fill={C.bleu} stroke="#fff" strokeWidth="2" pointerEvents="none" />
       </svg>
-      <button className="bouton" onClick={tester} data-testid="verifier">Lancer les deux agents</button>
+      <div className="actions">
+        <button className="bouton" onClick={tester} data-testid="verifier">Lancer les deux agents</button>
+        {sol.bouton(() => { setMurs(new Set(['6,2', '6,3', '6,4', '5,2', '5,4', '4,2', '4,4'])); setRes(null); })}
+      </div>
       {res && <Bilan ok={!!res.chemin && !res.arrive}>{!res.chemin ? "Aucun chemin n'existe : même un agent planificateur échouerait. Un bon scénario de test doit rester soluble. Ouvrez un passage." : res.arrive ? `L'agent réactif (trait bleu) arrive en ${res.trace.length - 1} pas : ce scénario ne le met pas en défaut. Indice : il lui faut un obstacle qui barre la route directe et dont il ne peut pas sortir en avançant vers l'objectif, par exemple un U ouvert côté départ.` : `Scénario réussi. Un chemin de ${res.chemin.length - 1} pas existe (pointillés verts), mais l'agent réactif tourne en rond (trait bleu). Vous avez conçu un cas de test qui révèle une limite de l'architecture.`}</Bilan>}
     </div>
   );
@@ -237,13 +190,14 @@ const dire = (a) => `A au créneau ${a.A}, B au créneau ${a.B}, C au créneau $
 export function AtelierContraintes({ surReussite }) {
   const [cs, setCs] = useState([{ g: 'A', op: '≠', d: 'B' }]);
   const [res, setRes] = useState(null);
+  const sol = useSolution();
   const val = (a, x) => (NOMS.includes(x) ? a[x] : Number(x));
   const respecte = (a) => cs.every(({ g, op, d }) => { const l = a[g]; const r = val(a, d); return op === '≠' ? l !== r : op === '<' ? l < r : op === '>' ? l > r : l === r; });
   const maj = (i, ch, v) => { setCs(cs.map((x, k) => (k === i ? { ...x, [ch]: v } : x))); setRes(null); };
   const tester = () => {
     const trouvees = TOUTES.filter(respecte); const attendues = TOUTES.filter((a) => EXIGENCES.every(([, f]) => f(a)));
     const enTrop = trouvees.find((a) => !EXIGENCES.every(([, f]) => f(a))); const manquante = attendues.find((a) => !respecte(a));
-    setRes({ trouvees, enTrop, manquante }); if (!enTrop && !manquante) surReussite();
+    setRes({ trouvees, enTrop, manquante }); sol.noter(!enTrop && !manquante); if (!enTrop && !manquante) surReussite();
   };
   return (
     <div className="atelier">
@@ -262,6 +216,7 @@ export function AtelierContraintes({ surReussite }) {
       <div className="actions">
         <button className="bouton secondaire" onClick={() => { setCs([...cs, { g: 'A', op: '≠', d: 'C' }]); setRes(null); }} data-testid="ajouter-regle">+ Ajouter une contrainte</button>
         <button className="bouton" onClick={tester} data-testid="verifier">Lancer le solveur sur mon modèle</button>
+        {sol.bouton(() => { setCs([{ g: 'A', op: '≠', d: 'B' }, { g: 'A', op: '≠', d: 'C' }, { g: 'B', op: '≠', d: 'C' }, { g: 'A', op: '<', d: 'B' }, { g: 'C', op: '≠', d: '1' }]); setRes(null); })}
       </div>
       {res && (
         <Bilan ok={!res.enTrop && !res.manquante}>
@@ -289,7 +244,8 @@ export function recuit(t0, alpha, graine, iterations = 3000) {
 const REFERENCE = Math.min(...[1, 2, 3, 4, 5, 6].map((s) => recuit(0.3, 0.998, s * 13).meilleur));
 export function AtelierRecuit({ surReussite }) {
   const [t0, setT0] = useState(0.001); const [alpha, setAlpha] = useState(0.998); const [res, setRes] = useState(null);
-  const lancer = () => { const essais = [11, 23, 37, 41, 59].map((s) => recuit(t0, alpha, s)); const moy = essais.reduce((s, e) => s + e.meilleur, 0) / essais.length; const r = { essais, moy, ecart: moy / REFERENCE - 1 }; setRes(r); if (r.ecart <= 0.08) surReussite(); };
+  const sol = useSolution();
+  const lancer = () => { const essais = [11, 23, 37, 41, 59].map((s) => recuit(t0, alpha, s)); const moy = essais.reduce((s, e) => s + e.meilleur, 0) / essais.length; const r = { essais, moy, ecart: moy / REFERENCE - 1 }; setRes(r); sol.noter(r.ecart <= 0.08); if (r.ecart <= 0.08) surReussite(); };
   const e = res?.essais[0];
   return (
     <div className="atelier">
@@ -297,7 +253,10 @@ export function AtelierRecuit({ surReussite }) {
       <label className="curseur">T₀ = <b>{F(t0, 3)}</b><input type="range" min="0.001" max="3" step="0.001" value={t0} onChange={(ev) => { setT0(Number(ev.target.value)); setRes(null); }} aria-label="Température initiale" /></label>
       <label className="curseur">α = <b>{F(alpha, 4)}</b><input type="range" min="0.99" max="0.9999" step="0.0001" value={alpha} onChange={(ev) => { setAlpha(Number(ev.target.value)); setRes(null); }} aria-label="Coefficient de refroidissement" /></label>
       <p className="conseil">Température à la fin des 3 000 itérations : {(t0 * alpha ** 3000).toExponential(1)}. Un échange typique allonge la tournée de 0,1 à 0,5.</p>
-      <button className="bouton" onClick={lancer} data-testid="verifier">Lancer 5 recuits</button>
+      <div className="actions">
+        <button className="bouton" onClick={lancer} data-testid="verifier">Lancer 5 recuits</button>
+        {sol.bouton(() => { setT0(1); setAlpha(0.998); setRes(null); })}
+      </div>
       {res && (
         <>
           <svg viewBox="0 0 440 200" role="img" aria-label="Tournée et convergence">
@@ -323,18 +282,19 @@ const LATERAL = { N: ['O', 'E'], S: ['E', 'O'], E: ['N', 'S'], O: ['S', 'N'] };
 function deplacer(x, y, a) { const [dx, dy] = DIRS[a]; const t = typeCase(x + dx, y + dy); return t === '#' ? [x, y] : [x + dx, y + dy]; }
 export function AtelierPolitique({ surReussite }) {
   const [pol, setPol] = useState({}); const [res, setRes] = useState(null);
+  const sol = useSolution();
   const cases = []; PG.forEach((l, y) => [...l].forEach((ch, x) => { if (ch === '.' || ch === 'S') cases.push([x, y]); }));
   const cle = (x, y) => `${x},${y}`;
   const tourner = (x, y) => { const a = pol[cle(x, y)]; setPol({ ...pol, [cle(x, y)]: ORDRE[(ORDRE.indexOf(a) + 1) % 4] }); setRes(null); };
   const tester = () => {
-    if (cases.some(([x, y]) => !pol[cle(x, y)])) { setRes({ incomplet: true }); return; }
+    if (cases.some(([x, y]) => !pol[cle(x, y)])) { setRes({ incomplet: true }); sol.noter(false); return; }
     // 1. Sans aléa, depuis chaque case : la politique mène-t-elle à l'objectif ?
     let echec = null;
     for (const [sx, sy] of cases) { let [x, y] = [sx, sy]; let fin = null; for (let t = 0; t < 25 && !fin; t++) { [x, y] = deplacer(x, y, pol[cle(x, y)]); const tc = typeCase(x, y); if (tc === 'G') fin = 'G'; else if (tc === 'X') fin = 'X'; } if (fin !== 'G') { echec = { de: [sx, sy], fin }; break; } }
     // 2. Avec glissement (10 % à gauche, 10 % à droite), 400 missions depuis le départ.
     const g = alea(4130); let ok = 0; let chutes = 0;
     for (let e = 0; e < 400; e++) { let [x, y] = [0, 3]; let fin = null; for (let t = 0; t < 40 && !fin; t++) { const a = pol[cle(x, y)]; const r = g(); const reel = r < 0.1 ? LATERAL[a][0] : r < 0.2 ? LATERAL[a][1] : a; [x, y] = deplacer(x, y, reel); const tc = typeCase(x, y); if (tc === 'G') fin = 'G'; else if (tc === 'X') fin = 'X'; } if (fin === 'G') ok++; else if (fin === 'X') chutes++; }
-    const r = { echec, taux: ok / 400, chutes: chutes / 400 }; setRes(r); if (!echec && r.taux >= 0.9) surReussite();
+    const r = { echec, taux: ok / 400, chutes: chutes / 400 }; setRes(r); sol.noter(!echec && r.taux >= 0.9); if (!echec && r.taux >= 0.9) surReussite();
   };
   const c = 62;
   return (
@@ -349,7 +309,10 @@ export function AtelierPolitique({ surReussite }) {
           </g>
         )))}
       </svg>
-      <button className="bouton" onClick={tester} data-testid="verifier">Tester ma politique</button>
+      <div className="actions">
+        <button className="bouton" onClick={tester} data-testid="verifier">Tester ma politique</button>
+        {sol.bouton(() => { setPol({ '0,3': 'E', '1,3': 'E', '2,3': 'E', '3,3': 'E', '4,3': 'N', '4,2': 'N', '4,1': 'N', '3,2': 'E', '2,2': 'E', '3,1': 'E', '0,2': 'S', '0,1': 'S', '0,0': 'E', '1,0': 'E', '2,0': 'E', '3,0': 'E' }); setRes(null); })}
+      </div>
       {res && (
         <Bilan ok={!res.incomplet && !res.echec && res.taux >= 0.9}>
           {res.incomplet ? "Une politique doit donner une action dans chaque situation possible : il reste des cases sans flèche (marquées d'un point)." : res.echec ? `Sans aucun aléa, en partant de la case (colonne ${res.echec.de[0] + 1}, ligne ${res.echec.de[1] + 1}), votre politique ${res.echec.fin === 'X' ? 'conduit dans la zone interdite' : "tourne en rond ou bute contre un mur sans jamais atteindre l'objectif"}. Suivez les flèches depuis cette case pour trouver l'erreur.` : `Sans aléa, toutes les cases mènent à l'objectif. Avec glissement, 400 missions depuis le départ : ${Math.round(res.taux * 100)} % de réussite, ${Math.round(res.chutes * 100)} % de chutes dans la zone interdite. ${res.taux >= 0.9 ? "Votre politique est correcte et robuste : elle tient compte de ce qui peut mal tourner, pas seulement du chemin le plus court." : "Votre politique longe la zone interdite : chaque déviation latérale y fait tomber le robot. Une bonne politique tient compte des transitions incertaines. Cherchez un trajet qui s'en tient éloigné."}`}
@@ -363,6 +326,7 @@ export function AtelierPolitique({ surReussite }) {
 const RG = ['S.X.G', '..X..', '.....'];
 export function AtelierRecompenses({ surReussite }) {
   const [rObj, setRObj] = useState(0); const [rZone, setRZone] = useState(0); const [rPas, setRPas] = useState(0); const [res, setRes] = useState(null);
+  const sol = useSolution();
   const tc = (x, y) => (RG[y] && RG[y][x]) || '#';
   const calculer = () => {
     const gamma = 0.95; let V = RG.map((l) => [...l].map(() => 0));
@@ -371,7 +335,7 @@ export function AtelierRecompenses({ surReussite }) {
     const pol = V.map((l, y) => l.map((_, x) => { const vals = ORDRE.map((a) => q(x, y, a, V)); const m = Math.max(...vals); return vals.every((v) => Math.abs(v - m) < 1e-9) ? null : ORDRE[vals.indexOf(m)]; }));
     let [x, y] = [0, 0]; const chemin = [[0, 0]]; let arrive = false; let zone = false;
     for (let t = 0; t < 20 && !arrive; t++) { const a = pol[y][x]; if (!a) break; const [dx, dy] = DIRS[a]; if (tc(x + dx, y + dy) === '#') break; x += dx; y += dy; chemin.push([x, y]); if (tc(x, y) === 'X') zone = true; arrive = tc(x, y) === 'G'; }
-    const r = { V, pol, chemin, arrive, zone }; setRes(r); if (arrive && !zone) surReussite();
+    const r = { V, pol, chemin, arrive, zone }; setRes(r); sol.noter(arrive && !zone); if (arrive && !zone) surReussite();
   };
   const c = 62; const vmax = res ? Math.max(0.001, ...res.V.flat().map(Math.abs)) : 1;
   const curseur = (nom, val, set, min, max) => (<label className="curseur">{nom} = <b>{val}</b><input type="range" min={min} max={max} step="1" value={val} onChange={(e) => { set(Number(e.target.value)); setRes(null); }} aria-label={nom} /></label>);
@@ -380,7 +344,10 @@ export function AtelierRecompenses({ surReussite }) {
       <div>
         <p>Vous ne programmez pas le trajet : vous fixez les récompenses, et l'agent en déduit sa politique. La zone orange est un sol fragile, que le robot peut traverser mais qu'il doit éviter. Réglez les trois récompenses pour que la politique apprise mène à l'objectif en contournant cette zone.</p>
         {curseur("Atteindre l'objectif", rObj, setRObj, 0, 10)}{curseur('Entrer dans la zone fragile', rZone, setRZone, -10, 0)}{curseur('Chaque pas', rPas, setRPas, -3, 0)}
-        <button className="bouton" onClick={calculer} data-testid="verifier">Calculer la politique apprise</button>
+        <div className="actions">
+          <button className="bouton" onClick={calculer} data-testid="verifier">Calculer la politique apprise</button>
+          {sol.bouton(() => { setRObj(10); setRZone(-6); setRPas(0); setRes(null); })}
+        </div>
       </div>
       <div>
         <svg viewBox={`0 0 ${5 * c} ${3 * c}`} role="img" aria-label="Politique apprise">
@@ -399,4 +366,4 @@ export function AtelierRecompenses({ surReussite }) {
   );
 }
 
-export const ATELIERS = { formulaire: Formulaire, parsons: Parsons, regles: AtelierRegles, neurone: AtelierNeurone, gradient: AtelierGradient, piege: AtelierPiege, contraintes: AtelierContraintes, recuit: AtelierRecuit, politique: AtelierPolitique, recompenses: AtelierRecompenses };
+export const ATELIERS = { regles: AtelierRegles, neurone: AtelierNeurone, gradient: AtelierGradient, piege: AtelierPiege, contraintes: AtelierContraintes, recuit: AtelierRecuit, politique: AtelierPolitique, recompenses: AtelierRecompenses };

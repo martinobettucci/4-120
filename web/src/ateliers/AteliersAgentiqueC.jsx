@@ -4,6 +4,7 @@
 // La logique de chaque atelier est exportée à part, pour être étalonnée et testée sans navigateur.
 import { useState } from 'react';
 import { F, Bilan } from './Ateliers.jsx';
+import { useSolution } from './Solution.jsx';
 
 const entier = (x) => (Math.abs(x - Math.round(x)) < 1e-6 ? String(Math.round(x)) : F(x, 1));
 
@@ -33,7 +34,8 @@ export function evaluerPriorisation(p) {
 }
 export function AtelierPriorisation({ surReussite }) {
   const [p, setP] = useState([3, 2, 1, 4, 3]); const [res, setRes] = useState(null);
-  const trier = () => { const r = evaluerPriorisation(p); setRes(r); if (r.ok) surReussite(); };
+  const sol = useSolution();
+  const trier = () => { const r = evaluerPriorisation(p); setRes(r); sol.noter(r.ok); if (r.ok) surReussite(); };
   const manque = res?.exigences.find((e) => !e.ok);
   return (
     <div className="atelier">
@@ -44,7 +46,10 @@ export function AtelierPriorisation({ surReussite }) {
       {CRITERES.map((nom, i) => (
         <label className="curseur" key={nom}>{nom} = <b>{p[i]}</b><input type="range" min="0" max="10" step="1" value={p[i]} onChange={(e) => { setP(p.map((x, k) => (k === i ? Number(e.target.value) : x))); setRes(null); }} aria-label={nom} /></label>
       ))}
-      <button className="bouton" onClick={trier} data-testid="verifier">Trier la file avec ces poids</button>
+      <div className="actions">
+        <button className="bouton" onClick={trier} data-testid="verifier">Trier la file avec ces poids</button>
+        {sol.bouton(() => { setP([6, 1, 1, 2, 2]); setRes(null); })}
+      </div>
       {res && (
         <>
           <table className="tableau compact file-triee">
@@ -81,6 +86,7 @@ export function evaluerArchitecture({ org, double, contra, vh }) {
 const ORGANISATIONS = { pipeline: 'Pipeline linéaire', superviseur: 'Superviseur central', reseau: "Réseau d'agents spécialisés" };
 export function AtelierPatrons({ surReussite }) {
   const [a, setA] = useState({ org: 'pipeline', double: false, contra: false, vh: false }); const [teste, setTeste] = useState(false);
+  const sol = useSolution();
   const r = evaluerArchitecture(a);
   const maj = (cle, v) => { setA({ ...a, [cle]: v }); setTeste(false); };
   const ligne = (ok, texte) => <tr><td>{texte}</td><td className={ok ? 'ok' : 'ko'}>{ok ? 'respecté ✓' : 'non respecté ✗'}</td></tr>;
@@ -106,7 +112,10 @@ export function AtelierPatrons({ surReussite }) {
         {coche('contra', 'Contradicteur dédié', 'un agent conteste chaque acceptation avant son exécution')}
         {coche('vh', 'Suggestion puis validation humaine', 'au-dessus de 10 000 €, le système propose et un humain décide')}
       </ol>
-      <button className="bouton" onClick={() => { setTeste(true); if (r.ok) surReussite(); }} data-testid="verifier">Évaluer mon architecture</button>
+      <div className="actions">
+        <button className="bouton" onClick={() => { setTeste(true); sol.noter(r.ok); if (r.ok) surReussite(); }} data-testid="verifier">Évaluer mon architecture</button>
+        {sol.bouton(() => { setA({ org: 'superviseur', double: true, contra: false, vh: false }); setTeste(false); })}
+      </div>
       {teste && (
         <>
           <table className="tableau compact banc"><tbody>
