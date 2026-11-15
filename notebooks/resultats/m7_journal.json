@@ -1,0 +1,668 @@
+[
+ {
+  "sequence": 1,
+  "dossier": "D00001",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.014574739277132778,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 2,
+  "dossier": "D00002",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.0009461394580985907,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R3"
+ },
+ {
+  "sequence": 3,
+  "dossier": "D00003",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.026305641385806433,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 4,
+  "dossier": "D00004",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.000934914921133787,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R2, R4"
+ },
+ {
+  "sequence": 5,
+  "dossier": "D00005",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.01797168201465641,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R1"
+ },
+ {
+  "sequence": 6,
+  "dossier": "D00006",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {},
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "pièces manquantes"
+ },
+ {
+  "sequence": 7,
+  "dossier": "D00007",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.10118960060395107,
+  "decision": "HUMAIN",
+  "motif": "score d'anomalie au-dessus du seuil"
+ },
+ {
+  "sequence": 8,
+  "dossier": "D00008",
+  "version_regles": "2026.1",
+  "file": "humain",
+  "verdicts": {},
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "routage vers un agent instructeur"
+ },
+ {
+  "sequence": 9,
+  "dossier": "D00009",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": false
+  },
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "contrôle de la lecture du courrier : année absente ou invraisemblable"
+ },
+ {
+  "sequence": 10,
+  "dossier": "D00010",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": false
+  },
+  "score": 5.127034147290562e-06,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R1"
+ },
+ {
+  "sequence": 11,
+  "dossier": "D00011",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {},
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "pièces manquantes"
+ },
+ {
+  "sequence": 12,
+  "dossier": "D00012",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 9.359380432432256e-05,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R2"
+ },
+ {
+  "sequence": 13,
+  "dossier": "D00013",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {},
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "pièces manquantes"
+ },
+ {
+  "sequence": 14,
+  "dossier": "D00014",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.0037898608035385004,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 15,
+  "dossier": "D00015",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.0635148935512044,
+  "decision": "HUMAIN",
+  "motif": "score d'anomalie au-dessus du seuil"
+ },
+ {
+  "sequence": 16,
+  "dossier": "D00016",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.01007333138829023,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 17,
+  "dossier": "D00017",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": true
+  },
+  "score": 0.00011291588891730157,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 18,
+  "dossier": "D00018",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": true
+  },
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "contrôle de la lecture du courrier : montant absent ou invraisemblable"
+ },
+ {
+  "sequence": 19,
+  "dossier": "D00019",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": false
+  },
+  "score": 3.065036317335977e-07,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R1, R2"
+ },
+ {
+  "sequence": 20,
+  "dossier": "D00020",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.0001140484460024688,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 21,
+  "dossier": "D00021",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.00011442654001729056,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 22,
+  "dossier": "D00022",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.0679925134440744,
+  "decision": "HUMAIN",
+  "motif": "score d'anomalie au-dessus du seuil"
+ },
+ {
+  "sequence": 23,
+  "dossier": "D00023",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.00037788313836720227,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 24,
+  "dossier": "D00024",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.004394707411280728,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R2"
+ },
+ {
+  "sequence": 25,
+  "dossier": "D00025",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {},
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "pièces manquantes"
+ },
+ {
+  "sequence": 26,
+  "dossier": "D00026",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": false,
+   "llm": true,
+   "registre": false
+  },
+  "score": 0.003498732384292393,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R3"
+ },
+ {
+  "sequence": 27,
+  "dossier": "D00027",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.0005018478457122096,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R2"
+ },
+ {
+  "sequence": 28,
+  "dossier": "D00028",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": true
+  },
+  "score": 0.049664365457900254,
+  "decision": "HUMAIN",
+  "motif": "score d'anomalie au-dessus du seuil"
+ },
+ {
+  "sequence": 29,
+  "dossier": "D00029",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.0005886194905988106,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 30,
+  "dossier": "D00030",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.09580676957478973,
+  "decision": "HUMAIN",
+  "motif": "score d'anomalie au-dessus du seuil"
+ },
+ {
+  "sequence": 31,
+  "dossier": "D00031",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.00074572775398267,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R3, R4"
+ },
+ {
+  "sequence": 32,
+  "dossier": "D00032",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.000800010887424436,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R3, R4"
+ },
+ {
+  "sequence": 33,
+  "dossier": "D00033",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": false
+  },
+  "score": 3.1803178113188463e-06,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 34,
+  "dossier": "D00034",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.0002951421450060526,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 35,
+  "dossier": "D00035",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.004476116979904141,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R1"
+ },
+ {
+  "sequence": 36,
+  "dossier": "D00036",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.003038936791686005,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 37,
+  "dossier": "D00037",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.0019133412716178316,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 38,
+  "dossier": "D00038",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.004120310689511998,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 39,
+  "dossier": "D00039",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": false
+  },
+  "score": 2.071622069618684e-05,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 40,
+  "dossier": "D00040",
+  "version_regles": "2026.1",
+  "file": "fenetres",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.7805536044463799,
+  "decision": "HUMAIN",
+  "motif": "score d'anomalie au-dessus du seuil"
+ },
+ {
+  "sequence": 41,
+  "dossier": "D00041",
+  "version_regles": "2026.1",
+  "file": "humain",
+  "verdicts": {},
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "routage vers un agent instructeur"
+ },
+ {
+  "sequence": 42,
+  "dossier": "D00042",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": true
+  },
+  "score": 6.5245767255008e-06,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 43,
+  "dossier": "D00043",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.007264125119490567,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R3, R4"
+ },
+ {
+  "sequence": 44,
+  "dossier": "D00044",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.0010045933356264618,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R2"
+ },
+ {
+  "sequence": 45,
+  "dossier": "D00045",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 0.00024221561427040475,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 46,
+  "dossier": "D00046",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 3.338311048270224e-05,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 47,
+  "dossier": "D00047",
+  "version_regles": "2026.1",
+  "file": "isolation",
+  "verdicts": {
+   "declare": true
+  },
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "contrôle de la lecture du courrier : montant absent ou invraisemblable"
+ },
+ {
+  "sequence": 48,
+  "dossier": "D00048",
+  "version_regles": "2026.1",
+  "file": "chaudiere",
+  "verdicts": {},
+  "score": null,
+  "decision": "HUMAIN",
+  "motif": "pièces manquantes"
+ },
+ {
+  "sequence": 49,
+  "dossier": "D00049",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": true,
+   "llm": true,
+   "registre": true
+  },
+  "score": 7.309512751270025e-05,
+  "decision": "ACCEPTER",
+  "motif": "toutes les règles sont respectées"
+ },
+ {
+  "sequence": 50,
+  "dossier": "D00050",
+  "version_regles": "2026.1",
+  "file": "pompe_a_chaleur",
+  "verdicts": {
+   "declare": false,
+   "llm": false,
+   "registre": false
+  },
+  "score": 0.0007346734236563402,
+  "decision": "REJETER",
+  "motif": "règles non respectées : R4"
+ }
+]

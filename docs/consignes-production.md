@@ -36,7 +36,11 @@ Chaque module suit le même cycle : problème, animation explicative, décomposi
 
 ## 3 bis. Module 0, les fondamentaux pas à pas
 
-Un prélude, hors des 12 heures du syllabus, enseigne à un public qui les découvre les notions de la formation et celles qui les rendent compréhensibles : 25 leçons, dont 5 au-delà du syllabus. Chaque leçon suit six temps : situer, prédire, observer une démonstration commentée, étudier le cours (théorie et exemple résolu), construire, retenir. Une leçon se valide par un atelier où l'apprenant fabrique l'objet étudié (base de règles, neurone, modèle de contraintes, politique, récompenses, programme) et où le système le met à l'épreuve. Les principes appliqués et leurs sources sont décrits dans `docs/pedagogie.md`.
+Un prélude, hors des 12 heures du syllabus, enseigne à un public qui les découvre les notions de la formation et celles qui les rendent compréhensibles : 25 leçons, dont 5 au-delà du syllabus, auxquelles s'ajoutent les 14 leçons du module 7. Chaque leçon suit six temps : situer, prédire, observer une démonstration commentée, étudier le cours (théorie et exemple résolu), construire, retenir. Une leçon se valide par un atelier où l'apprenant fabrique l'objet étudié (base de règles, neurone, modèle de contraintes, politique, récompenses, programme) et où le système le met à l'épreuve. Les principes appliqués et leurs sources sont décrits dans `docs/pedagogie.md`.
+
+## 3 ter. Module 7, les systèmes agentiques
+
+Un prolongement, ajouté au programme sans rien en retirer, reprend le support de l'autrice « Systèmes agentiques : une exploration approfondie » (`docs/sources/`). Il en garde la structure et le vocabulaire : familles d'agents, diffusion de la complexité, diffusion du risque, routage, arbitrage, modération, niveaux d'autonomie de 0 à 5, design patterns. Le contenu est refait au format du site : 14 leçons en six temps, chacune avec son cours, son exemple résolu et son atelier de construction, une animation de module, et le notebook 07. Le fil rouge est le traitement d'un dossier, à côté du robot d'entrepôt. Dans le notebook, la lecture du courrier est confiée à un petit modèle de langage ouvert (`Qwen/Qwen3.5-0.8B`) quand il est disponible, notamment sur Colab, et à un extracteur simulé, annoncé comme tel, dans les autres cas.
 
 ## 4. Jour 1, agents et décision
 

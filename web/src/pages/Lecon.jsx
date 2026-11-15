@@ -4,7 +4,7 @@ import { NOTIONS, BLOCS } from '../lecons/notions.js';
 import { marquer, useProgression } from '../lecons/progression.js';
 import Qcm from '../composants/Qcm.jsx';
 import Theorie from '../composants/Theorie.jsx';
-import { ATELIERS } from '../ateliers/Ateliers.jsx';
+import { ATELIERS } from '../ateliers/index.js';
 
 // Une leçon du module 0. Six temps, inspirés des principes de Merrill et de Gagné :
 // situer, prédire, observer une démonstration segmentée, étudier le cours et un exemple résolu,

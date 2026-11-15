@@ -4,7 +4,7 @@ ASCENT 4-130, Les agents autonomes et aide à la décision. Version 1.0.0, 14 no
 
 ## 1. Contexte et objectifs
 
-Le projet fournit les supports d'une formation de 12 heures : un site interactif, six notebooks et une bibliothèque Python. Trois exigences structurent l'architecture :
+Le projet fournit les supports d'une formation de 12 heures : un site interactif, sept notebooks (six pour les modules du syllabus, un pour le module 7 de prolongement) et une bibliothèque Python. Trois exigences structurent l'architecture :
 
 - **Synchronisation** : un même exemple doit pouvoir être expliqué par une animation, exécuté dans un notebook et rejoué dans une scène 3D.
 - **Reproductibilité** : mêmes graines, mêmes résultats, sur GPU comme sur CPU.
@@ -45,6 +45,7 @@ Le sens des dépendances est unique : la bibliothèque Python produit des donné
 | `lot.py` | Simulations parallèles et Q-learning vectorisé en PyTorch (GPU ou CPU) |
 | `decision.py` | Règles, réseau bayésien, classifieur supervisé, jeux de données synthétiques |
 | `optim.py` | Problème de tournée, CP-SAT (OR-Tools), recuit simulé séquentiel et par lots |
+| `dossiers.py` | Module 7, traitement d'un dossier : dossiers synthétiques, routeur, agent à règles, score d'anomalie, extracteur LLM simulé ou réel, arbitre, modérateur, mini-RAG, journal |
 | `visualisation.py` | Dessins Matplotlib partagés par les notebooks |
 | `materiel.py` | Détection du GPU, graines aléatoires |
 
@@ -89,8 +90,9 @@ Chaque notebook commence par une cellule d'installation (sans effet si la biblio
 | Scène 3D | `web/src/scene/Scene3D.js` | Rendu Three.js d'une ou deux traces, couches explicatives, vue éclatée |
 | Lecteur | `web/src/composants/Lecteur3D.jsx` | Transport (lecture, pause, étape, retour), comparaison, import, panneau de décision |
 | Cadre d'animation | `web/src/composants/Animation.jsx` | Étapes, lecture automatique, navigation au clavier |
-| Animations | `web/src/animations/AnimM1.jsx` à `AnimM6.jsx` | Une séquence par module |
+| Animations | `web/src/animations/AnimM1.jsx` à `AnimM7.jsx` | Une séquence par module |
 | Leçons du module 0 | `web/src/lecons/notions.js`, `web/src/pages/Lecon.jsx`, `web/src/animations/Mini.jsx` | Contenu des 20 leçons, déroulé en six temps, animations segmentées |
+| Bloc « Systèmes agentiques » | `web/src/lecons/agentique-a.js`, `agentique-b.js`, `agentique-c.js`, `web/src/animations/MiniAgentique*.jsx`, `web/src/ateliers/AteliersAgentique*.jsx` | Les 14 leçons du module 7, leurs démonstrations et leurs ateliers |
 | Pédagogie des modules | `web/src/lecons/modules-pedagogie.js`, `web/src/composants/Qcm.jsx` | Objectifs, prérequis, missions d'observation, quiz avec retour explicatif |
 | Progression | `web/src/lecons/progression.js` | Suivi local dans le navigateur, sans envoi de données |
 | Contenu | `web/src/modules.js`, `docs/*.md` | Texte des modules, syllabus et consignes (source unique, rendue par `marked`) |

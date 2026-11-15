@@ -13,3 +13,4 @@ web/public/traces/
 web/public/data/
 .ccr-ca.crt
 docs/captures/*.webm.tmp
+.tmp/

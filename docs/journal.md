@@ -40,6 +40,12 @@
 
 **Une correction peut casser.** La mise au format français des nombres, faite par remplacement automatique, a fait planter l'animation du module 4. C'est le passage en revue de toutes les étapes de toutes les animations qui l'a révélé, pas le remplacement lui-même. Toute modification en série est suivie du contrôle complet.
 
+**Du robot seul au système d'agents.** Le syllabus était un point de départ, pas une limite. Le support de l'autrice sur les systèmes agentiques a été ajouté au programme, sans rien retirer de l'existant, sous la forme d'un module 7 : 14 leçons, leurs ateliers et un septième notebook. Le fond du support est repris, la forme est refaite : là où le support affirme qu'un vote réduit le risque, la leçon le calcule (2,8 % d'erreurs au lieu de 10 %) et montre le cas où le calcul ne tient plus, quand deux agents se trompent ensemble.
+
+**Vérifier contre la source.** Une première version avait été écrite sans le support sous les yeux. La relecture face au texte a montré des listes amputées (cinq rôles humains au lieu de six, quatre méthodes d'arbitrage au lieu de neuf), des types de mémoire renommés, et des parties entières absentes : fondements, agents non LLM, design patterns, implémentation, évaluation, cas d'usage. Elles ont été ajoutées. La source est maintenant dans le dépôt, `docs/sources/`, pour que la comparaison puisse être refaite.
+
+**Un LLM mesuré, pas supposé.** Le notebook 07 lit les courriers avec un petit modèle ouvert quand il est disponible. Exécuté de bout en bout avec ce modèle, il donne des taux d'erreur de lecture plus élevés que le simulateur réglé par défaut (40 % de fiches avec au moins un champ faux, contre 23 %), et les conclusions tiennent : chaque brique ajoutée fait baisser le coût, et le système final reste sous le coût d'un service entièrement humain.
+
 ## Pistes ouvertes
 
 - Mesurer les gains GPU sur la machine de formation et les reporter dans les notebooks.

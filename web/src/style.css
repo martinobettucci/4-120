@@ -330,7 +330,7 @@ button.lien { border: none; background: none; color: var(--accent); text-decorat
 .parsons li.juste { border-left-color: var(--vert); }
 .parsons li.faux { border-left-color: var(--rouge); }
 .parsons code { background: none; color: #e8ecf5; white-space: pre; font-size: 0.88rem; overflow-x: auto; }
-.curseur { display: grid; grid-template-columns: 220px 1fr; align-items: center; gap: 10px; margin: 6px 0; }
+.curseur { display: grid; grid-template-columns: minmax(220px, max-content) 1fr; align-items: center; gap: 10px; margin: 6px 0; }
 .curseur input { accent-color: var(--bleu); width: 100%; }
 .grille-edit rect { transition: fill 0.15s; }
 .acquis-atelier { color: var(--vert); font-weight: 700; }

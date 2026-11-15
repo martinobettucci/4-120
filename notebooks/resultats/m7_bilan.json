@@ -1,0 +1,103 @@
+{
+ "mode_llm": "simulé",
+ "modele_llm": null,
+ "graine": 4130,
+ "parametres": {
+  "n_dossiers": 2000,
+  "graine": 4130,
+  "LLM": "auto",
+  "modele_llm": "Qwen/Qwen3.5-0.8B",
+  "n_llm": null,
+  "taux_erreur_simule": 0.08,
+  "correlation_lectures": 0.8,
+  "cout_validation": 4.0,
+  "detection_validation": 0.9
+ },
+ "couts": {
+  "accepter_a_tort": 400.0,
+  "rejeter_a_tort": 150.0,
+  "humain": 12.0
+ },
+ "erreurs_lecture": {
+  "montant": 0.08506113769271664,
+  "annee": 0.07761828814460393,
+  "certifie": 0.08133971291866028,
+  "fiche": 0.22807017543859648
+ },
+ "routeur_naif": 0.7985,
+ "routeur_ordonne": 1.0,
+ "seuil_moderateur": 0.02912621359223301,
+ "rappel_rag": {
+  "1": 0.75,
+  "2": 0.9375,
+  "3": 1.0,
+  "4": 1.0,
+  "5": 1.0
+ },
+ "versions": [
+  {
+   "version": "v0",
+   "ajout": "tout humain (référence)",
+   "part automatique (%)": 0.0,
+   "erreurs automatiques (%)": 0.0,
+   "coût moyen (€)": 12.0,
+   "latence machine (ms)": 0.0
+  },
+  {
+   "version": "v1",
+   "ajout": "agent unique : règles sur la déclaration",
+   "part automatique (%)": 100.0,
+   "erreurs automatiques (%)": 26.05,
+   "coût moyen (€)": 90.7,
+   "latence machine (ms)": 2.0
+  },
+  {
+   "version": "v2",
+   "ajout": "routeur ordonné, dossiers incomplets vers l'humain",
+   "part automatique (%)": 87.8,
+   "erreurs automatiques (%)": 13.4,
+   "coût moyen (€)": 51.189,
+   "latence machine (ms)": 1.878
+  },
+  {
+   "version": "v3",
+   "ajout": "LLM en interface : les règles jugent la fiche lue dans le courrier",
+   "part automatique (%)": 87.8,
+   "erreurs automatiques (%)": 11.5,
+   "coût moyen (€)": 27.089,
+   "latence machine (ms)": 704.278
+  },
+  {
+   "version": "v4",
+   "ajout": "règles en contrôle de la sortie du LLM",
+   "part automatique (%)": 83.7,
+   "erreurs automatiques (%)": 9.85,
+   "coût moyen (€)": 24.731,
+   "latence machine (ms)": 704.237
+  },
+  {
+   "version": "v5",
+   "ajout": "diffusion du risque : trois sources indépendantes, vote à la majorité",
+   "part automatique (%)": 83.7,
+   "erreurs automatiques (%)": 5.65,
+   "coût moyen (€)": 19.306,
+   "latence machine (ms)": 831.502
+  },
+  {
+   "version": "v6",
+   "ajout": "modération : score d'anomalie et seuil déduit des coûts",
+   "part automatique (%)": 70.05,
+   "erreurs automatiques (%)": 1.0,
+   "coût moyen (€)": 6.969,
+   "latence machine (ms)": 833.176
+  },
+  {
+   "version": "v7",
+   "ajout": "arbitre pondéré réglé (exercice 2) à la place de la majorité",
+   "part automatique (%)": 56.5,
+   "erreurs automatiques (%)": 0.05,
+   "coût moyen (€)": 5.42,
+   "latence machine (ms)": 832.849
+  }
+ ]
+}

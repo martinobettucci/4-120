@@ -21,7 +21,8 @@ export default function Accueil() {
           <ul className="chiffres">
             <li><b>6</b> modules de 2 heures</li>
             <li><b>62,5 %</b> de travaux pratiques</li>
-            <li><b>6</b> notebooks GPU et CPU</li>
+            <li><b>7</b> notebooks GPU et CPU</li>
+            <li><b>39</b> leçons avec atelier</li>
             <li><b>17</b> traces rejouables en 3D</li>
           </ul>
         </div>
@@ -38,7 +39,7 @@ export default function Accueil() {
         <Link to="/module/0" className="carte module zero">
           <span className="numero">Module 0 · Prélude</span>
           <h4>Les fondamentaux, pas à pas</h4>
-          <p>Vingt leçons guidées pour qui découvre le sujet : une situation, une prédiction, une démonstration commentée étape par étape, un exemple résolu, des exercices corrigés. Aucun prérequis en IA.</p>
+          <p>Trente-neuf leçons guidées pour qui découvre le sujet : une situation, une prédiction, une démonstration commentée étape par étape, le cours, un exemple résolu, puis un atelier où l'on construit. Aucun prérequis en IA.</p>
         </Link>
         {[1, 2].map((jour) => (
           <div key={jour}>
@@ -55,11 +56,22 @@ export default function Accueil() {
             </div>
           </div>
         ))}
+        <h3 className="jour">Prolongement : du robot seul au système d'agents</h3>
+        <div className="cartes">
+          {MODULES.filter((m) => !m.jour).map((m) => (
+            <Link key={m.n} to={`/module/${m.n}`} className="carte module">
+              <span className="numero">Module {m.n}</span>
+              <h4>{m.titre}</h4>
+              <p>{m.court}</p>
+              <span className="horaire">Second fil rouge : le traitement d'un dossier</span>
+            </Link>
+          ))}
+        </div>
       </section>
 
       <section>
         <h2>Le cycle de chaque module</h2>
-        <p className="intro">Chaque module dure 2 heures : 45 minutes d'explications et de démonstrations, puis 75 minutes de travaux pratiques. Tous suivent le même cycle.</p>
+        <p className="intro">Chacun des six modules du syllabus dure 2 heures : 45 minutes d'explications et de démonstrations, puis 75 minutes de travaux pratiques. Tous suivent le même cycle.</p>
         <ol className="cycle">{CYCLE.map((c, i) => <li key={c}><span>{i + 1}</span>{c}</li>)}</ol>
       </section>
 

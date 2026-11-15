@@ -99,9 +99,28 @@ Le syllabus cite des notions sans toujours nommer ce qu'il faut savoir pour les 
 | Système de recommandation | Étude de cas du syllabus, traitée comme une notion à part entière |
 | Processus de décision markovien et politique | Donne le cadre sans lequel le Q-learning reste une recette |
 
+### Le module 7 : du robot seul au système d'agents
+
+Le module 7 ajoute au programme le contenu du support de l'autrice « Systèmes agentiques : une exploration approfondie », conservé dans `docs/sources/`. Rien n'est retiré du programme existant. Le support est repris dans sa structure et son vocabulaire, et refait au format des autres leçons : chaque affirmation chiffrée y est démontrée par un calcul, et chaque exercice de choix ou de classement du support devient un atelier où l'on construit.
+
+| Partie du support | Leçons (`web/src/lecons/agentique-*.js`) | Atelier |
+| --- | --- | --- |
+| I. Fondements | Composantes et vocabulaire, niveaux d'autonomie | Fiche de diagnostic d'un système, seuils de délégation |
+| II et III. Typologie, agents non LLM | Familles d'agents, agents à règles, heuristiques et statistiques | Composition d'un agent étape par étape, poids d'une heuristique de priorité |
+| IV. Agents LLM | Agent LLM et hybridation | Contrôles qui encadrent un LLM |
+| V. Architectures | Diffusion de la complexité, diffusion du risque | Contrôles d'une chaîne, réglage d'un arbitre |
+| VI. Routage, arbitrage, modération | Routage, arbitrage et modération | Routeur d'une boîte de réception |
+| VII. RAG et mémoire | RAG et mémoire | Étage de recherche d'un système RAG |
+| VIII. Design patterns | Design patterns des systèmes agentiques | Architecture d'une demande de prêt |
+| IX. Implémentation | Implémenter un système agentique en Python | Fonction qui traite un dossier |
+| X. Évaluation et gouvernance | Évaluer un système agentique, gouvernance et journalisation | Tableau de bord, schéma de journal |
+| XI et XII. Cas d'usage, synthèses | Cas d'usage et conception d'un système complet | Note de conception chiffrée |
+
+Le notebook 07 assemble le tout en code : un système de traitement de dossiers construit brique par brique, avec une mesure après chaque ajout.
+
 ### Les ateliers : évaluer la capacité à construire
 
-Une question à choix sur la sortie d'un système vérifie que l'on sait l'exécuter, comme le ferait la machine. L'objectif est ailleurs : savoir le concevoir. Chaque leçon se valide donc par un atelier de construction (`web/src/ateliers/Ateliers.jsx`), où le système exécute ce que l'apprenant a construit et lui retourne un diagnostic.
+Une question à choix sur la sortie d'un système vérifie que l'on sait l'exécuter, comme le ferait la machine. L'objectif est ailleurs : savoir le concevoir. Chaque leçon se valide donc par un atelier de construction (`web/src/ateliers/Ateliers.jsx`, et `AteliersAgentique*.jsx` pour le module 7), où le système exécute ce que l'apprenant a construit et lui retourne un diagnostic.
 
 | Atelier | Ce que l'apprenant construit | Comment c'est vérifié |
 | --- | --- | --- |

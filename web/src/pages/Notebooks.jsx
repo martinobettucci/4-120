@@ -15,7 +15,7 @@ export default function Notebooks() {
     <div className="page">
       <p className="surtitre">Travaux pratiques</p>
       <h1>Notebooks</h1>
-      <p className="intro">Six notebooks Jupyter, un par module. Chacun s'exécute du début à la fin, détecte le GPU, fonctionne aussi sur CPU, fixe ses graines aléatoires et embarque ses résultats pré-calculés.</p>
+      <p className="intro">Sept notebooks Jupyter, un par module. Chacun s'exécute du début à la fin, détecte le GPU, fonctionne aussi sur CPU, fixe ses graines aléatoires et embarque ses résultats pré-calculés.</p>
       <div className="carte">
         <h3>Installation</h3>
         <p>Sur un poste équipé de Docker, depuis le dépôt : <code>./runDev.sh</code> lance JupyterLab sur le port 8888 et ce site sur le port 5173, sans aucune autre installation.</p>
@@ -25,7 +25,7 @@ export default function Notebooks() {
       </div>
       {MODULES.map((m) => (
         <div className="carte notebook" key={m.n}>
-          <span className="numero">Module {m.n} · Jour {m.jour}</span>
+          <span className="numero">Module {m.n} · {m.jour ? `Jour ${m.jour}` : m.horaire}</span>
           <h3>{m.titre}</h3>
           <ul>{m.notebookPoints.map((p) => <li key={p}>{p}</li>)}</ul>
           <LiensNotebook nb={m.notebook} />

@@ -15,8 +15,9 @@ import AnimM3 from '../animations/AnimM3.jsx';
 import AnimM4 from '../animations/AnimM4.jsx';
 import AnimM5 from '../animations/AnimM5.jsx';
 import AnimM6 from '../animations/AnimM6.jsx';
+import AnimM7 from '../animations/AnimM7.jsx';
 
-const ANIMS = { 1: AnimM1, 2: AnimM2, 3: AnimM3, 4: AnimM4, 5: AnimM5, 6: AnimM6 };
+const ANIMS = { 1: AnimM1, 2: AnimM2, 3: AnimM3, 4: AnimM4, 5: AnimM5, 6: AnimM6, 7: AnimM7 };
 
 function Mission({ etapes }) {
   const [vues, setVues] = useState([]);
@@ -42,7 +43,7 @@ export default function Module() {
   const catalogue = m.scene && index ? index.filter((t) => m.scene.traces.includes(t.id)) : null;
   return (
     <div className="page large" key={m.n}>
-      <p className="surtitre">Jour {m.jour} · Module {m.n} · {m.horaire} · 2 heures</p>
+      <p className="surtitre">{m.jour ? `Jour ${m.jour} · Module ${m.n} · ${m.horaire} · 2 heures` : `Module ${m.n} · ${m.horaire}`}</p>
       <h1>{m.titre}</h1>
 
       <div className="deux-colonnes">
@@ -63,7 +64,7 @@ export default function Module() {
           <p>{m.probleme}</p>
         </section>
         <section className="carte">
-          <h3>Contenu du syllabus</h3>
+          <h3>{m.jour ? 'Contenu du syllabus' : 'Contenu du module'}</h3>
           <ul>{m.syllabus.map((s) => <li key={s}>{s}</li>)}</ul>
           <p className="tp"><b>Travaux pratiques :</b> {m.tp}</p>
         </section>
@@ -104,7 +105,7 @@ export default function Module() {
       <section>
         <h2><span className="etape-cycle">{m.scene ? 4 : 3}</span> Travaux pratiques : le notebook</h2>
         <div className="carte notebook">
-          <span className="numero">75 minutes · notebook {m.notebook}.ipynb</span>
+          <span className="numero">{m.dureeTp || '75 minutes'} · notebook {m.notebook}.ipynb</span>
           <p className="conseil"><b>Méthode de travail.</b> Pour chaque partie : lisez l'explication, prédisez le résultat de la cellule avant de l'exécuter, exécutez, puis modifiez un paramètre et expliquez ce qui change. Dans les exercices, essayez seul, puis consultez l'indice, et seulement ensuite la solution.</p>
           <ul>{m.notebookPoints.map((p) => <li key={p}>{p}</li>)}</ul>
           <LiensNotebook nb={m.notebook} />
@@ -122,11 +123,18 @@ export default function Module() {
       <section>
         <h2><span className="etape-cycle">{m.scene ? 6 : 5}</span> Synthèse</h2>
         <ul className="synthese">{m.synthese.map((s) => <li key={s}>{s}</li>)}</ul>
+        {ped.suite && (
+          <div className="carte">
+            <h3>Pour aller plus loin : du robot seul au système d'agents</h3>
+            <p className="conseil">Ces leçons du <Link to="/module/7">module 7</Link> prolongent ce module vers les systèmes à plusieurs décideurs.</p>
+            <div className="prerequis suite-agentique">{ped.suite.map((id) => <Link key={id} to={`/module/0/${id}`}>{notion(id).nom}</Link>)}</div>
+          </div>
+        )}
       </section>
 
       <nav className="suite">
         <Link to={`/module/${m.n - 1}`}>← Module {m.n - 1}</Link>
-        {m.n < 6 ? <Link className="bouton" to={`/module/${m.n + 1}`}>Module {m.n + 1} : {MODULES[m.n].titre} →</Link> : <Link className="bouton" to="/atelier">Atelier 3D →</Link>}
+        {m.n < MODULES.length ? <Link className="bouton" to={`/module/${m.n + 1}`}>Module {m.n + 1} : {MODULES[m.n].titre} →</Link> : <Link className="bouton" to="/atelier">Atelier 3D →</Link>}
       </nav>
     </div>
   );

@@ -4,6 +4,8 @@ Supports de la formation ASCENT (Lot 4, référence 4-130) des 16 et 17 novembre
 
 12 heures, 6 modules de 2 heures, 62,5 % de travaux pratiques. Fil rouge : un robot autonome dans un entrepôt logistique simulé.
 
+Un module 7, « Systèmes agentiques », prolonge le programme sans rien en retirer. Il reprend le support de l'autrice « Systèmes agentiques : une exploration approfondie » (`docs/sources/`), refait au format du site, avec un second fil rouge : le traitement d'un dossier.
+
 Site publié : https://martinobettucci.github.io/4-120/
 
 ## Contenu
@@ -45,7 +47,7 @@ Le site est compilé en local puis versionné dans `site/` :
 
 ```bash
 tools/build_site.sh             # reprend les notebooks exécutés du dépôt
-tools/build_site.sh --executer  # relance aussi les six notebooks
+tools/build_site.sh --executer  # relance aussi les sept notebooks
 ```
 
 Le workflow `.github/workflows/pages.yml` publie ce dossier tel quel. Les vérifications (tests, exécution des notebooks, parcours Playwright) tournent en parallèle et ne bloquent pas la publication.
@@ -56,13 +58,14 @@ Réglage à faire une seule fois dans le dépôt : **Settings, Pages, Build and 
 
 | Jour | Module | Notebook |
 | --- | --- | --- |
-| Prélude | 0. Les fondamentaux, pas à pas : 25 leçons (démonstration commentée, cours théorique, exemple résolu, atelier de construction), hors des 12 heures | (pages du site) |
+| Prélude | 0. Les fondamentaux, pas à pas : 39 leçons (démonstration commentée, cours théorique, exemple résolu, atelier de construction), dont 14 pour le module 7, hors des 12 heures | (pages du site) |
 | 1 | 1. Solutions IA pour la prise de décision | `01_solutions_ia_decision.ipynb` |
 | 1 | 2. Concept des agents intelligents et interactions avec l'environnement | `02_agent_environnement.ipynb` |
 | 1 | 3. Architecture des agents intelligents | `03_architectures_agents.ipynb` |
 | 2 | 4. Techniques d'optimisation pour les agents | `04_optimisation.ipynb` |
 | 2 | 5. Autonomie des systèmes robotisés | `05_autonomie_robotique.ipynb` |
 | 2 | 6. Tests et validation des systèmes | `06_tests_validation.ipynb` |
+| Prolongement | 7. Systèmes agentiques | `07_systemes_agentiques.ipynb` |
 
 ## Documentation
 

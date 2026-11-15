@@ -1,0 +1,2670 @@
+Systèmes
+Agentiques :
+Une Exploration
+Approfondie
+Une formation autonome couvrant les fondements, les types d'agents, les
+architectures avancées et l'implémentation des systèmes agentiques.
+Instructions d'utilisation
+
+
+Comment utiliser
+cette présentation
+Structure de contenu complète
+
+   Chaque section comprend des définitions, des modèles
+   mentaux, des exemples, des cas d'utilisation, des pièges,
+   des exercices et des considérations.
+
+Options d'engagement flexibles
+
+   Procédez linéairement ou utilisez comme référence pour
+   des concepts de conception et des meilleures pratiques
+   spécifiques.
+                                     Objectifs pédagogiques globaux
+                                                À l issue de ce support, l'apprenant sera capable de :
+
+
+
+
+    Définir un agent et un système                          Comparer les familles d'agents                            Concevoir des architectures
+    agentique                                               Distinguer et analyser les caractéristiques des           complexes
+    Acquérir une compréhension rigoureuse des               différentes catégories d'agents pour                      Élaborer des architectures de systèmes
+    concepts fondamentaux des agents et des                 comprendre leurs spécificités.                            capables de gérer la complexité ou de
+    systèmes qui les utilisent.                                                                                       minimiser les risques.
+
+
+
+
+    Mettre en place des mécanismes de gestion                                            Évaluer la performance des systèmes
+    Implémenter des stratégies de routage, d'arbitrage et de modération pour             Analyser le coût, la robustesse, la gouvernance et la qualité des décisions
+    optimiser le fonctionnement des systèmes.                                            prises par les systèmes agentiques.
+
+
+
+’
+            Pourquoi une approche large des agents
+
+
+
+
+Au-delà des LLMs                                            Fondements diversifiés
+La vision réductrice de l'agent LLM est insuffisante. Une   Les systèmes agentiques s'appuient sur diverses
+compréhension plus large est nécessaire.                    technologies, y compris des règles métier, des modèles
+                                                            statistiques, le raisonnement symbolique et des
+                                                            approches hybrides.
+                          Carte du parcours de formation
+                                       Un parcours structuré en douze étapes clés
+
+
+1   Cadre Général                           5   Agents LLM                          9    Fonctions Clés
+    Introduction et objectifs de la             Exploration des capacités et             Focus sur le routage, l'arbitrage et
+    formation.                                  limites des modèles de langage.          la modération.
+
+2   Fondements                              6   Hybridation                         10   RAG, Mémoire et
+    Définitions et composantes                  Techniques pour combiner                 Connaissances
+    essentielles des systèmes                   différentes approches d'agents.          Gestion de l'accès à l'information,
+    agentiques.                                                                          mémoire et RAG.
+                                            7   Architectures
+3   Typologie Générale des                      Compréhension des architectures     11   Implémentation Pratique
+    Agents                                      mono-agent et multi-agents.              Techniques et méthodes pour la
+    Vue d'ensemble des différentes                                                       mise en œuvre.
+    familles d'agents.                      8   Diffusion de la Complexité
+                                                et du Risque                        12   Évaluation et Cas d'Usage
+4   Agents Non LLM                              Stratégies pour organiser la             Mesure de la performance et
+    Approfondissement des                       complexité et gérer les risques.         exemples concrets d'applications.
+    approches classiques des agents.
+Partie I —
+Fondements
+généraux des
+systèmes agentiques
+Établir un socle de connaissances commun et un vocabulaire partagé
+                     Histoire et Généalogie des Agents
+                                         L'évolution des agents autonomes
+
+
+
+
+Systèmes Experts à Règles                  Agents Délibératifs                   Systèmes Statistiques
+Les pionniers de l'IA, introduisant le     Intégration de planification,         Approches basées sur les données
+raisonnement basé sur des règles.          raisonnement et prise de décision     et l'apprentissage automatique.
+                                           pour atteindre des objectifs.
+IA Symbolique                                                                    Robots Logiciels
+Représentation des connaissances           Systèmes Multi-Agents                 d'Automatisation
+et manipulation de symboles pour           (SMA)                                 Automatisation des tâches
+le raisonnement.                           Étude des interactions et de la       répétitives et des processus métier.
+                                           coordination entre plusieurs agents
+Agents Réactifs                            autonomes.                            Agents Outillés Fondés sur
+Réponse directe aux changements                                                  des LLM
+environnementaux sans                      Recherche Opérationnelle              Nouvelle génération exploitant les
+planification complexe.                    Apport de méthodes d'optimisation     grands modèles de langage pour
+                                           et de modélisation mathématique.      des capacités cognitives avancées.
+                   Les systèmes experts comme ancêtres
+                                   Une étape fondamentale dans le développement de l'IA
+
+
+
+
+Encodage explicite de la                     Séparation de la base de               Exemple concret : Moteur de
+connaissance métier                          connaissances et du moteur             validation de dossier
+Formalisation de la connaissance             d'inférence                            Application de règles explicites,
+humaine sous forme de faits et de            Architecture modulaire dissociant le   auditables et traçables pour vérifier
+règles, rendant le savoir explicite,         savoir de son mécanisme de             la conformité des dossiers de
+compréhensible et manipulable par            raisonnement, facilitant la            manière rigoureuse et transparente.
+la machine.                                  maintenance et l'évolution.
+               Agents Réactifs vs. Agents Délibératifs
+
+
+
+
+Agents Réactifs                                             Agents Délibératifs
+Répondent rapidement à des stimuli selon des règles         Maintiennent une représentation interne, évaluent des
+locales, sans mémoire interne ni planification. Exemple :   objectifs et planifient des actions en anticipant les
+Thermostat intelligent.                                     conséquences. Exemple : Système de planification
+                                                            logistique.
+Transition vers les Systèmes Multi-Agents
+     Répondre aux Besoins Clés pour des Performances Améliorées
+
+
+                             Décomposition des                    Approches Confrontées
+                             Problèmes                            Intégrer diverses perspectives de
+                             Diviser les défis complexes en       différents agents pour des
+                             parties gérables pour des            solutions plus riches et robustes.
+                             solutions plus claires.
+                                                                  Robustesse Améliorée
+                             Responsabilités Distribuées          Améliorer la fiabilité de la prise de
+                             Allouer les tâches et les            décision et la tolérance aux
+                             responsabilités entre plusieurs      pannes grâce à des agents
+                             agents pour optimiser le flux de     collaboratifs.
+                             travail.
+
+
+                             Compétences Séparées
+                             Attribuer des compétences
+                             spécialisées à des agents
+                             spécifiques pour une expertise
+                             ciblée.
+Définition d'un Agent
+
+
+Qu'est-ce qu'un Agent ?
+Un agent est une entité qui peut être vue comme un cycle continu de perception, représentation, sélection d'action et action.
+
+  Perception
+  Capacité à percevoir et comprendre sa situation actuelle.
+
+  Représentation
+  Maintient un modèle utile de son contexte et de son environnement.
+
+  Sélection d'Action
+  Choisit des actions basées sur des objectifs et des contraintes.
+
+  Action
+  Exécute des actions pour influencer son environnement.
+                      Boucle Perception-Décision-Action
+
+
+
+
+    Entrées (Perception)                           Décision
+    Événements, messages, mesures, documents.      Règle, heuristique, modèle statistique, planification,
+                                                   optimisation, LLM.
+    Représentation (Orientation)
+    Mémoire, faits, variables, scores, contexte.   Action
+                                                   Réponse, écriture en base, appel API, envoi d alerte ou
+                                                   délégation.
+
+
+
+
+’
+    Un agent nest pas seulement un chatbot
+
+                                                          Chatbot
+                                                          Répond aux questions mais n'agit pas sur son
+                                                          environnement. Souvent un assistant
+                                                          conversationnel.
+
+                                                          Agent
+                                                          Possède un moteur de décision qui surveille des
+                                                          signaux, choisit une action et agit automatiquement.
+
+                                                          Autonomie de l'agent
+                                                          Peut exister même sans interface conversationnelle,
+                                                          car sa fonction principale est d'agir sur son
+                                                          environnement.
+
+
+
+’
+         Un agent est défini par sa capacité à agir, pas seulement à répondre.
+Composants Clés
+
+
+Définition Formelle d'un Système Agent
+Un système agent est caractérisé par plusieurs composantes essentielles qui régissent son fonctionnement et son interaction avec son
+environnement :
+
+  Entrées (Inputs) : Données ou stimuli reçus par l'agent de son environnement.
+
+  Espace d'États (State Space) : Représente toutes les configurations internes possibles de l'agent.
+
+  Représentation Interne (Internal Representation) : La manière dont l'agent modélise son environnement, son propre état et le contexte pertinent.
+
+  Objectifs (Objectives) : Les buts spécifiques que l'agent cherche à atteindre.
+
+  Politique de Décision (Decision Policy) : La stratégie ou la logique utilisée par l'agent pour sélectionner ses actions en fonction de son état, de ses objectifs
+  et des entrées environnementales.
+
+  Actions Possibles (Possible Actions) : La gamme d'opérations ou de comportements que l'agent peut exécuter pour influencer son environnement.
+
+  Environnement (Environment) : Le contexte externe ou le système dans lequel l'agent opère et interagit.
+
+  Contraintes (Constraints) : Limitations, règles ou limites qui régissent le comportement de l'agent et la sélection de ses actions.
+
+  Mécanismes de Contrôle (Control Mechanisms) : Processus qui gèrent le fonctionnement de l'agent, tels que l'apprentissage, l'adaptation ou l'auto-
+  correction.
+                 Composants minimaux à diagnostiquer
+                                         Analyzing a system systematically
+
+
+
+
+    Ce qu il perçoit                       Sur quoi il agit                  Comment on le contrôle
+    Perception inputs and data intake.     Actions and output activation.    Control mechanisms and
+                                                                             regulation.
+    Comment il représente                  Dans quelle mesure il est
+    Internal representation and data       autonome                          Comment on mesure sa
+    modeling.                              Level of autonomy and             qualité
+                                           independence.                     Performance metrics and quality
+    Comment il décide                                                        assessment.
+    Decision-making processes and
+    logic.
+
+
+
+
+’
+                                      Niveaux d autonomie
+
+    Niveau 0 : Outil simple sans initiative                     Niveau 3 : Pré-exécution avec validation
+    Répond uniquement aux commandes directes. Aucune            humaine
+    capacité de décision ou d'anticipation.                     Prépare une action ou une décision. Nécessite une
+                                                                confirmation humaine avant l'exécution.
+    Niveau 1 : Suggestion sur demande
+    Peut proposer des options lorsque sollicité. Ne prend pas   Niveau 4 : Exécution automatique sous
+    d'initiative pour suggérer.                                 contraintes
+                                                                Exécute des actions de manière autonome. Opère dans
+    Niveau 2 : Recommandation proactive                         des limites prédéfinies et des règles strictes.
+    Peut suggérer des actions ou des solutions sans être
+    explicitement demandé. Base les suggestions sur des         Niveau 5 : Adaptation continue avec
+    données contextuelles.                                      supervision distante
+                                                                S'adapte en temps réel aux changements de
+                                                                l'environnement. Apprend et ajuste son comportement
+                                                                avec une supervision minimale à distance.
+’
+ Exemple Fil Rouge : Traitement d'un Dossier Complexe
+                                   Cas pratique pour illustrer le parcours d'un dossier entrant
+
+
+
+
+Composantes du dossier                                                Agents impliqués
+Détaille les éléments constitutifs d'un dossier, incluant             Liste les différents agents intervenant dans le traitement,
+pièces justificatives, texte libre, règles métier, scoring            tels que l'agent à règles, l'agent statistique, l'agent LLM, le
+statistique et décision finale.                                       routeur, l'arbitre et le modérateur.
+
+
+
+
+       Ce cas permet de visualiser l'interaction et la succession des différents agents pour aboutir à une décision éclairée.
+               Identifier les Composantes d'un Agent
+                                          Analyse des Systèmes Donnés
+
+
+
+
+Objectif                                                    Exemples de Systèmes
+Analyser un système donné en identifiant ses                Filtre anti-fraude, Chatbot FAQ, Ordonnanceur de
+composants fondamentaux en tant qu'agent.                   production, Pipeline ETL, Assistant RH, Moteur
+                                                            d'allocation de tickets.
+Instructions
+Choisissez un système parmi les exemples et déterminez
+ses entrées, état interne, politique de décision, actions
+possibles, niveau d'autonomie et mode de contrôle
+humain.
+           Erreurs fréquentes de vocabulaire en IA
+                                 Clarifications pour une meilleure compréhension
+
+
+
+Appeler "agent" tout                           Confondre "automatisation           Croire que le "multi-
+composant logiciel                             déterministe" et "agent             agents" est toujours
+Correction : Un agent est un                   adaptatif"                          supérieur au "mono-
+composant logiciel autonome                    Correction : L'automatisation       agent"
+qui perçoit son environnement                  déterministe suit des règles        Correction : L'architecture
+et agit pour atteindre ses                     prédéfinies, l'agent adaptatif      multi-agents est plus
+objectifs.                                     apprend et ajuste son               complexe et n'est pas toujours
+                                               comportement.                       la meilleure solution; le choix
+                                                                                   dépend du problème.
+Confondre "modèle" avec
+"système complet"                              Croire qu'un agent doit être
+Correction : Un modèle est                     conversationnel
+une représentation simplifiée,                 Correction : Les agents
+tandis qu'un système complet                   peuvent interagir de diverses
+inclut tous les composants et                  manières, la conversation n'est
+interactions.                                  qu'une possibilité.
+Partie II —
+Typologie
+générale
+des agents
+Nous distinguons plusieurs familles d'agents :
+                            Vue d ensemble des familles d agents
+
+
+
+
+                                                                                     Régimes Dominants de Décision
+                                                                                     Cette typologie ne décrit pas des mondes étanches
+                                                                                     mais des régimes dominants de décision.
+
+
+
+
+        ’
+    ’
+            La bonne question nest pas quel type est le plus moderne, mais quel type est adapté au problème, au risque et au coût.
+’
+                                              Agents à règles fixes
+                        Le cœur de la décision repose sur des règles explicites de type si condition alors action.
+
+
+
+
+        Validation de                   Contrôle d éligibilité           Détection                        Application de
+        conformité                      Détermine si un individu         d incohérences de                politiques métier
+        Vérifie si les données ou       ou une entité remplit les        champs                           Assure que les actions
+        processus respectent les        critères requis.                 Identifie les disparités ou      entreprises sont alignées
+        normes établies.                                                 erreurs dans les                 avec les règles de
+                                                                         informations                     l'entreprise.
+                                                                         enregistrées.
+
+
+
+
+’
+    ’
+Agents Impératifs Pilotés par Logique Métier
+
+
+                                         Logique Métier Codée
+                                         La logique métier est directement intégrée au code source à travers des
+                                         structures impératives, des fonctions dédiées, des états métier et des
+                                         transitions explicites.
+
+                                         Exemple : Orchestrateur
+                                         Applique une séquence de contrôles, d'enrichissements et d'actions
+                                         basée sur un graphe de décision programmé.
+
+
+
+
+     La logique métier est directement codée dans le programme via des structures
+   impératives, des fonctions spécialisées, des états métier et des transitions explicites.
+                                          Agents heuristiques
+
+
+
+
+Règles approximatives                          Pondérations et priorités                       Stratégies gloutonnes
+Utilisation de règles simplifiées ou de        Attribution de valeurs différentes aux          Choix de la meilleure option
+raccourcis pour prendre des                    critères pour guider la décision.               disponible à chaque étape, sans
+décisions.                                                                                     garantie d'optimalité globale.
+
+
+
+
+                    Ces agents privilégient des solutions rapides et suffisantes plutôt que l'optimalité parfaite.
+                                       Modèles
+
+                                       33%
+Agents
+Statistiques                 Scoring
+
+                             33%
+Fonctionnement et Prise de
+Décision
+
+                                       Seuils
+
+                                       33%
+                                      Agents Symboliques
+
+
+
+
+          Explicabilité                             Cohérence Logique                            Formalisation Métier
+Le raisonnement est transparent et            Assure l'intégrité et la validité des      Permet de représenter directement les
+            traçable.                                     déductions.                     règles et connaissances du domaine.
+
+
+
+
+ Ces agents manipulent explicitement des faits, des relations, des ontologies, des logiques ou des graphes de connaissances.
+    Agents d optimisation et de planification
+            Maximiser les objectifs et satisfaire les contraintes
+
+
+
+
+                                 Ordonnancement de production
+
+                                 Planification de tournées logistiques
+
+                                 Allocation de ressources
+
+                                 Priorisation de files d'attente
+
+
+
+
+’
+Agents Apprentis
+
+
+
+      Définition
+      Une famille d'agents qui apprennent une politique de décision.
+
+      Méthodes d'apprentissage
+      Apprentissage à partir de données, via des interactions, ou grâce aux
+      retours d'expérience.
+
+
+      Types d'apprentissage inclus
+      Comprend l'apprentissage supervisé, par renforcement et par imitation.
+                 Capacités des LLM
+Exploiter les grands modèles de langage pour l'exécution avancée de tâches
+
+
+
+                                Interpréter les requêtes            Utiliser des outils
+                                Comprendre l'intention de           Employer des API, des bases de
+                                l'utilisateur et les instructions   données ou des moteurs de
+                                complexes.                          recherche pour obtenir des
+                                                                    informations et effectuer des
+                                Raisonner avec flexibilité          actions.
+                                Planifier et stratégiser
+                                l'exécution des tâches avec         Coordonner des sous-
+                                adaptabilité.                       tâches
+                                                                    Décomposer et gérer des
+                                Générer des                         problèmes complexes en
+                                représentations textuelles          coordonnant des tâches plus
+                                                                    petites.
+                                Créer des sorties textuelles
+                                pour la communication ou un
+                                traitement ultérieur.
+                         Agents Hybrides
+
+                                       Règles Métier                         LLM (Grands Modèles de
+                                       Assurent la conformité et la          Langage)
+                                       prévisibilité.                        Facilitent l'interprétation et la
+                                                                             synthèse d'informations
+                                       Statistiques                          complexes.
+                                       Permettent le scoring et la
+                                       prédiction.                           Modération
+                                                                             Assurent le contrôle et la
+                                       Optimisation                          sécurité des actions.
+                                       Déterminent l'allocation
+                                       optimale des ressources.              Arbitrage
+                                                                             Prend la décision finale dans
+                                                                             des situations complexes.
+
+
+
+
+Les systèmes les plus robustes intègrent plusieurs approches pour une performance accrue.
+    Comparaison Transversale des Familles
+
+                           Critère
+
+                       Déterminisme
+
+                            Coût
+
+                          Latence
+
+                         Auditabilité
+
+                        Robustesse
+
+                Capacité à traiter l ambiguïté
+
+                       Généralisation
+
+                        Maintenance
+
+                     Besoin en données
+
+                   Aptitude au temps réel
+
+’
+                    Comparaison d'approches pour
+                     le tri des réclamations clients
+                                  Problème : Trier les réclamations clients
+
+
+Basé sur des règles (Rule-                   Statistique                        LLM (Grand Modèle de
+Based)                                       S'appuie sur des modèles           Langage)
+Logique explicite et prédéfinie              d'apprentissage automatique        Utilise une IA avancée pour
+de type "si-alors". Très                     entraînés sur des données          comprendre les nuances du
+structuré, transparent mais                  historiques pour prédire les       langage naturel, le contexte et
+rigide.                                      catégories en fonction des         l'intention pour la
+                                             modèles appris.                    catégorisation. Très flexible,
+                                                                                peut gérer l'ambiguïté.
+Heuristique
+Utilise des règles empiriques                Symbolique
+et des suppositions éclairées                Emploie la représentation des      Hybride
+basées sur des modèles                       connaissances pour raisonner       Combine plusieurs approches
+courants. Plus rapide, moins                 sur les types de réclamations      pour exploiter les forces de
+précis que l'approche basée                  et leurs relations. Met l'accent   chacune.
+sur des règles.                              sur le sens et la structure.
+                                          Exercice 2 — Choisir la bonne famille d agent
+                                        Pour chaque cas, choisissez la famille d agent dominante la plus pertinente et justifiez votre choix.
+
+
+                                    Détection de doublons                        Résumé de mails entrants                     Analyse de clauses
+                                    documentaires                                Famille d agent dominante :                  contractuelles
+                                    Famille d agent dominante :                  Agent d apprentissage / Agent                Famille d agent dominante :
+                                    Agent de recherche                           de traitement du langage                     Agent d extraction
+                                    d information. Justification :               naturel. Justification : Requiert            d information / Agent de
+                                    Nécessite de rechercher,                     la compréhension du contenu                  traitement du langage naturel.
+                                    comparer et identifier des                   textuel et la génération d un                Justification : Exige une
+                                    documents similaires ou                      résumé.                                      compréhension du langage
+                                    identiques.                                                                               juridique pour identifier et
+                                                                                                                              extraire des clauses.
+                                                                                 Contrôle de conformité
+                                    Allocation de rendez-vous                    Famille d agent dominante :
+                                    Famille d agent dominante :                  Agent réactif / Agent basé sur               Dispatch de tickets
+                                    Agent de planification.                      des règles. Justification :                  Famille d agent dominante :
+                                    Justification : Implique la                  Surveille les actions et réagit              Agent de classification / Agent
+                                    gestion de contraintes                       en fonction de règles                        de planification. Justification :
+                                    temporelles et l optimisation                prédéfinies.                                 Analyse le contenu du ticket
+                ’
+                            ’
+                                    de l emploi du temps.                                                                     pour le catégoriser et le router
+                                                                                                                              approprié.
+                    ’
+                    ’
+        ’                       ’
+                                ’
+’                           ’
+                        ’
+                    ’
+        ’
+                                ’
+            ’
+    ’
+              Partie III — Les agents
+             non LLM en profondeur
+Comprendre les agents à règles, heuristiques, statistiques, symboliques et d optimisation, essentiels dans les
+                                              systèmes réels.
+
+
+
+
+’
+           Agents à Règles: Principe Général
+
+
+Principe Général                               Règles Pondérées
+Un agent à règles applique des conditions      Chaque règle peut avoir un poids associé,
+explicites sur l'état du système ou sur ses    influençant la décision finale.
+entrées pour produire une décision.
+
+                                               Règles Contextualisées
+Règles Simples                                 Les règles peuvent dépendre du contexte
+Les règles peuvent être simples, sans          spécifique dans lequel elles sont appliquées.
+complexité additionnelle.
+
+
+Règles Hiérarchisées
+Les règles peuvent être organisées selon une
+structure hiérarchique.
+                                                  Architecture d un Agent à Règles
+
+
+        Collecte des Entrées                         Normalisation                            Calcul de Variables Dérivées            Application des Règles
+        Acquisition des données brutes.              Mise en forme et standardisation des     Création d'informations                 Évaluation des règles IF-THEN par
+                                                     données.                                 supplémentaires à partir des données.   rapport aux données.
+
+
+
+
+        Résolution des Priorités                     Production d une Décision                Journalisation                          Déclenchement dActions
+        Détermination de la règle à exécuter en      Génération du résultat ou de l'action.   Enregistrement du processus et des      (Optionnel)
+        cas de conflit.                                                                       décisions.                              Exécution de tâches supplémentaires
+                                                                                                                                      basées sur la décision.
+
+
+
+
+    ’
+’            ’
+                                Un agent à règles suit un processus séquentiel pour traiter l'information et prendre des décisions.
+Cas d'usage
+
+
+Exemple détaillé :
+Moteur d'éligibilité
+Déterminer si un dossier est recevable.
+
+Décisions possibles :
+
+   Accepté
+
+   Incomplet
+
+   Rejeté
+
+   Escalade humaine
+
+Règles d'éligibilité :
+
+   Pièce d'identité valide
+
+   Justificatif de domicile récent
+
+   Âge minimal requis
+
+   Absence de document manquant
+
+   Cohérence des dates
+                               Avantages des agents à règles
+
+              1                               2                             3                               4
+Comportement                     Excellent contrôle            Auditabilité                   Conformité
+déterministe                     La logique de décision est    Permet une traçabilité aisée   réglementaire
+Prévisibilité et                 facile à comprendre et à      des décisions prises pour      Facilite le respect des
+reproductibilité des actions     gérer.                        des analyses et des            normes et des régulations
+grâce à une logique claire.                                    rapports.                      en vigueur.
+
+
+
+
+             5                                6                             7                               8
+Coûts faibles                    Très bonne robustesse         Latence faible                 Tests simples
+Généralement moins               Fiabilité éprouvée dans des   Exécution rapide des           Facilité de vérification et de
+onéreux en termes de             domaines stables et bien      décisions, garantissant des    validation des règles et de
+développement et de              définis.                      réponses en temps réel.        leur application.
+maintenance.
+             Limitations des Agents à Règles
+
+
+
+Ambiguïté                                        Rigidité
+Difficulté à couvrir de manière exhaustive les   Manque de flexibilité face à des formulations
+cas ambigus.                                     variées ou nuancées.
+
+
+                                                 Coût de Maintenance
+Explosion Combinatoire
+                                                 Coût et effort élevés pour maintenir les règles
+Le nombre de règles devient ingérable.
+                                                 dans des domaines en évolution rapide.
+                         Exercice 3 — Écrire des Règles
+                        Métier pour un Dossier Fournisseur
+                                             Conception d'un Mini Agent à Règles
+
+
+       Objectif                                         Niveaux de Sévérité                              Ordre de Priorité des
+       Contrôler et valider les                         Définit l'impact des violations                  Règles
+       informations d'un dossier                        de règles : Erreur (critique),                   Séquence d'évaluation des
+       fournisseur pour assurer                         Avertissement (important),                       règles de validation, où les
+       l'intégrité et la conformité des                 Information (mineur).                            priorités plus basses sont
+       données.                                                                                          traitées en premier pour gérer
+                                                                                                         les dépendances.
+                                                        Règle d'Escalade Humaine
+       Règles de Validation                             Processus d'assignation
+       Liste des règles critiques pour                  automatique à un responsable
+       la validation des dossiers                       pour revue manuelle en cas de
+       fournisseurs, incluant leur                      violations multiples ou
+       sévérité et priorité.                            persistantes d'erreurs.
+
+
+
+
+L'implémentation de ces règles garantit la qualité et la fiabilité des données fournisseurs, optimisant ainsi les processus internes.
+                                       Agents Heuristiques
+                                           Quand la Règle Exacte n existe pas
+
+
+
+
+    Utilité Principale           Problèmes Mal                  Complexité                  Formes Courantes
+    Les heuristiques sont des    Définis                        Computationnelle            Définir un ordre
+    stratégies pratiques pour    Naviguer dans des              Trouver une solution        d'importance, attribuer
+    résoudre des problèmes       situations où les règles       satisfaisante rapidement,   des valeurs numériques,
+    qui ne peuvent pas être      exactes sont inconnues ou      plutôt qu'une solution      ajuster les scores ou
+    parfaitement formalisés ou   trop complexes.                optimale parfaite qui       utiliser des règles
+    qui sont trop complexes                                     prendrait trop de temps.    gloutonnes pour la prise
+    pour une solution optimale                                                              de décision.
+    exacte.
+
+
+
+’
+                               Priorisation Détaillée des Tickets
+                                                     Calcul du Score et Décision
+
+
+                 6
+
+
+                 5
+
+
+                 5
+
+
+
+
+Score / Valeur
+                 4
+
+
+                 4
+
+
+                 3
+
+
+                 3
+                     Gravité         Poids Secteur               Ancienneté                Pénalité SLA   Bonus Client Stratégique
+
+                                                            Facteurs du Score
+
+
+
+                                 Les tickets avec les scores les plus élevés sont traités en priorité.
+                                     Heuristiques vs. Optimisation
+                                                    Choisir la bonne approche
+
+
+
+     Définition                               But                  Utilisation des ressources          Résultat
+
+
+
+
+Approche pratique cherchant une         Trouver une solution       Idéal lorsque les ressources
+                                                                                                   Une solution réalisable et
+solution satisfaisante rapidement,    "suffisamment bonne" de        de calcul sont limitées ou
+    sans garantir l'optimalité.
+                                                                                                      souvent efficace.
+                                          manière efficace.         que la vitesse est critique.
+                     Agents Statistiques : Principe Général
+
+
+    1   Transformation d'observations                                  3    Probabilité de fraude > Seuil élevé
+        Les agents statistiques transforment des                            Escalade immédiate.
+        observations en probabilités, scores ou classes.
+                                                                      4     Probabilité de fraude Seuil intermédiaire
+    2   Importance de la politique d'action                                 Contrôle complémentaire.
+        Un score seul est insuffisant ; il nécessite une
+        politique d'action définie.                                    5    Probabilité de fraude < Seuil bas
+                                                                            Traitement normal.
+
+
+
+
+                             Un score seul est insuffisant ; il nécessite une politique d action définie.
+’
+                                                   Sortie Modèle
+
+                                                   10%
+
+
+
+             Entrées Modèle                                        Modèle
+
+                                                                   10%
+Exemple         40%
+détaillé :
+Scoring
+de Risque
+                              Politique d'Action
+
+                              40%
+             Forces et faiblesses des agents statistiques
+
+    Forces                                                     Faiblesses
+
+    Exploitation des données historiques                       Dépendance à la qualité des données
+    Capacité à identifier et utiliser des tendances passées.   Les performances sont directement liées à la précision et
+                                                               à la représentativité des données d'entrée.
+    Généralisation
+    Potentiel de meilleures performances que les systèmes      Biais
+    basés sur des règles pour certains problèmes               Risque d'apprendre et de perpétuer les biais présents
+    complexes.                                                 dans les données.
+
+
+    Coûts raisonnables                                         Dérive (Drift)
+    Souvent économiquement viables, surtout avec des           Performance potentiellement dégradée lorsque les
+    données accessibles.                                       caractéristiques des données évoluent dans le temps.
+
+                                                               Difficulté d explication
+                                                               Les modèles complexes peuvent être opaques, rendant
+                                                               l'interprétation difficile.
+
+’
+          Agents Symboliques et Systèmes Experts
+                               Interprétabilité et Raisonnement Basé sur des Règles
+
+
+
+
+Interprétabilité des Concepts                                 Diagnostic Médical
+Ces systèmes sont idéaux lorsque les concepts, relations et   Basé sur des symptômes et des règles médicales connues.
+contraintes doivent rester explicitement compréhensibles.
+                                                              Planification et Ordonnancement
+Raisonnement sur Grilles                                      Particulièrement utile pour des tâches où les contraintes
+Exemple : analyse de compatibilité réglementaire.             sont primordiales.
+
+
+Vérification de Dépendances
+Analyse des liens logiques dans des contrats ou
+spécifications techniques.
+    Agents d optimisation : Planification sous contraintes
+                   Gestion des ressources et exigences complexes dans un centre de traitement
+
+
+
+                                                          Noyau : Priorités et Compétences Clés
+                                                          Décider quel expert traite quel dossier
+
+                                                          Anneau 1 : Contraintes Temporelles
+                                                          Fenêtres horaires spécifiques
+
+                                                          Anneau 2 : Ressources Limitées
+                                                          Effectifs restreints
+
+                                                          Périmètre : Maximisation de l'Efficacité
+                                                          Déterminer l'ordre optimal de traitement et respecter toutes les
+                                                          contraintes
+
+
+
+’
+     Maximisation de l'efficacité en déterminant l'ordre optimal de traitement tout en respectant toutes les contraintes.
+The difference between a successful person
+and others is not a lack of strength, not a lack
+   of knowledge, but rather a lack of will.
+                   VINCE LOMBARDI
+                     Comparaison des Implémentations
+                        pour l'Allocation de Tâches
+
+   Critère       Purement Impérative            Heuristique               Statistique              Optimisation
+
+
+                                                                                              Très Élevé (formulation
+ Coût de        Élevé (logique explicite   Modéré (règles de bon       Élevé (collecte,
+                                                                                                  mathématique
+Conception            exhaustive)                 sens)             entraînement modèle)
+                                                                                                    complexe)
+                                              Modérée (règles       Faible à Modérée (boîte     Élevée (objectif et
+Auditabilité    Élevée (logique directe)
+                                             compréhensibles)          noire potentielle)       contraintes clairs)
+                                                                      Variable (inférence
+   Coût         Faible à Modéré (selon     Faible (conçue pour la                             Élevé (potentiellement
+                                                                     rapide, entraînement
+d'Exécution           complexité)                  rapidité)                                    intensif en calcul)
+                                                                             lourd)
+                                                                                                Modérée à Faible
+   Facilité        Élevée (simple) à          Modérée (règle           Faible (modèles
+                                                                                                      (modèle
+d'Explication     Difficile (complexe)         explicable)               complexes)
+                                                                                                 mathématique)
+                                                                        Modérés (biais,         Faibles (si modèle
+  Risques       Élevés (cas limites non     Modérés (solutions
+                                                                          mauvaise                correct), élevé
+  d'Erreur              gérés)               sous-optimales)
+                                                                        généralisation)            (formulation)
+             Partie IV — Les agents LLM
+               dans le paysage global
+Après avoir replacé les agents non LLM au cœur du tableau, nous situons maintenant les agents LLM : Leurs apports, Leurs
+                            limites, et Leur place dans des architectures hybrides plus réalistes
+Capacités Clés
+
+
+Ce qu'un agent LLM apporte réellement
+  Compréhension flexible du langage
+  S'adapte à diverses formulations, nuances et contextes pour des interactions naturelles.
+
+  Paraphrase
+  Reformule des informations complexes en termes plus simples pour une meilleure clarté.
+
+  Extraction sémantique
+  Identifie et extrait les informations clés à partir de textes non structurés.
+
+  Synthèse
+  Condense de grands volumes de texte en résumés concis.
+
+  Raisonnement approximatif
+  Gère l'ambiguïté et les informations imparfaites pour des inférences logiques.
+
+  Généralisation aux cas flous
+  Étends les capacités à des situations nouvelles ou ambiguës.
+
+  Orchestration textuelle de sous-tâches
+  Gère et séquence des opérations complexes par étapes textuelles.
+
+  Utilisation flexible d'outils
+  Intègre et utilise des outils externes ou des API en fonction des invites.
+The greatest
+limitation of a tool
+is not its power,
+but the wisdom
+of its user.
+    Exemple détaillé : Agent LLM dAnalyse Documentaire
+                   Traitement d'un dossier complexe et hétérogène en plusieurs étapes
+
+
+                                                  Lecture et Extraction                 Questions
+                                                  Analyse un ensemble de                Complémentaires
+                                                  documents variés pour en              Génère des questions pertinentes
+                                                  extraire les informations             pour clarifier des points obscurs
+                                                  essentielles.                         ou obtenir des précisions.
+
+                                                  Synthèse Structurée                   Décision Finale
+                                                  Produit une synthèse organisée        (Optionnelle)
+                                                  des données collectées, mettant       Validation finale de conformité
+                                                  en évidence les points clés.          déléguée à un moteur de règles
+                                                                                        ou à un expert humain.
+                                                  Détection d'Incohérences
+                                                  Identifie d'éventuelles
+                                                  contradictions ou anomalies au
+                                                  sein des informations extraites.
+
+
+’
+          Cet agent LLM est conçu pour traiter un dossier complexe et hétérogène en plusieurs étapes.
+                                                  Forces des agents LLM
+
+
+Adaptation à la variété linguistique                 Bonne performance sur extraction              Flexibilité des formats d'entrée
+Les LLM peuvent comprendre et générer                ouverte                                       Capacité à traiter et comprendre différents
+du texte dans diverses langues et dialectes.         Excellente capacité à extraire des            formats de données comme l'entrée.
+                                                     informations pertinentes à partir de textes
+                                                     non structurés ou ouverts.
+
+
+
+
+Simplification de l'interface                        Facilité de prototypage                       Possibilité d'orchestration
+utilisateur                                          Accélère le processus de développement        contextuelle
+Permet de créer des interfaces plus                  et de test de nouvelles idées grâce à leur    Permet une coordination intelligente des
+naturelles et intuitives pour les utilisateurs.      flexibilité.                                  tâches basée sur le contexte actuel.
+                                Faiblesses des agents LLM
+
+
+    Non-déterminisme                       Hallucinations                      Sensibilité aux prompts
+    Les réponses peuvent varier même       Génération d'informations           Les résultats sont très influencés
+    avec des entrées identiques.           incorrectes ou non fondées.         par la manière dont la requête est
+                                                                               formulée.
+    Coût                                   Difficulté d audit
+    Nécessite des ressources de calcul     Processus décisionnel opaque,       Comportements variables
+    importantes et peut être coûteux à     rendant l'explication et la         Peuvent présenter des
+    déployer et à exécuter.                correction des erreurs complexes.   performances différentes selon le
+                                                                               modèle utilisé ou même entre
+    Latence                                Dépendance au contexte              différentes exécutions.
+    Peut introduire des délais dans les    Performances fortement liées à la
+    réponses, affectant les applications   qualité et à la pertinence du
+    en temps réel.                         contexte fourni.
+
+
+
+’
+Hybridation : LLM en Interface, Règles en Contrôle
+Un modèle architectural pour combiner le traitement du langage naturel avec la logique métier déterministe
+
+
+
+                                                      Rôle du LLM (Interface)
+                                                      Interprétation des requêtes utilisateur, extraction et structuration des
+                                                      informations, reformulation des ambiguïtés, et préparation de données
+                                                      ou de requêtes.
+
+                                                      Rôle des Règles Métier / Moteur Impératif (Contrôle)
+                                                      Validation des informations, application des contraintes métier, refus des
+                                                      demandes non conformes, et déclenchement des actions effectives.
+
+                                                      Avantages
+                                                      Combine la flexibilité du langage naturel avec la rigueur des règles
+                                                      métier, améliorant l'expérience utilisateur tout en assurant le contrôle et
+                                                      la conformité.
+
+
+
+
+  Ce modèle architecturel offre un équilibre entre la flexibilité de l'IA et la robustesse des systèmes déterministes.
+            Hybridation : LLM + Statistique
+Une approche combinant l'IA et l'analyse de données pour une prise de décision optimisée.
+
+
+
+                                         1   Extraction de signaux par LLM
+                                             Analyse du langage naturel pour identifier des informations clés et des
+                                             indicateurs pertinents.
+
+                                        2    Scorage par modèle statistique
+                                             Quantification et évaluation des signaux extraits pour attribuer un score
+                                             objectif.
+
+                                        3    Moteur de décision
+                                             Application d'une politique ou règle métier basée sur le score obtenu.
+
+                                        4    Exemple : Analyse de mails de réclamation
+                                             LLM identifie la nature et l'urgence, le modèle statistique estime la priorité, et
+                                             le moteur de décision affecte la réclamation à la file d'attente appropriée.
+
+
+
+
+  Une synergie puissante pour une gestion optimisée des flux d'informations et des décisions.
+Exercice 5 — Décider où placer le LLM
+  Analyse et justification des rôles du LLM pour différents cas d'usage
+
+
+
+                               Revue de contrat
+                               Rôle du LLM : Composant d'extraction / Contrôleur critique.
+                               Justification : L'ambiguïté et les risques élevés des contrats nécessitent l'extraction
+                               de clauses clés et l'identification d'anomalies par le LLM, mais un contrôle humain
+                               reste essentiel en raison des risques juridiques et du besoin d'explicabilité.
+
+                               Traitement de demandes RH
+                               Rôle du LLM : Simple interface / Composant d'extraction.
+                               Justification : Le LLM peut catégoriser et extraire des informations des demandes RH
+                               variées. Le niveau de risque et le besoin d'explicabilité dépendent de la complexité de
+                               la demande, nécessitant potentiellement une intervention humaine pour les cas
+                               complexes.
+
+                               Tri de mails entrants
+                               Rôle du LLM : Moteur principal / Simple interface.
+                               Justification : Le LLM peut comprendre le contexte et l'intention des emails pour une
+                               catégorisation et un routage automatiques à haut volume. Le risque est généralement
+                               faible et l'explicabilité est assurée par les règles de routage.
+Partie V — Architectures
+Agentiques : Organisation
+      Fonctionnelle
+Comprendre les logiques structurantes de l'organisation des systèmes multi-agents.
+       Architecture Mono-Agent
+    Un seul agent gère l ensemble du cycle sur un problème donné.
+
+
+
+
+                               Pertinence
+                               Problèmes de complexité modérée.
+
+
+                               Pertinence
+                               Dépendances simples.
+
+                               Pertinence
+                               Coût de coordination faible souhaité.
+
+                               Pertinence
+                               Architecture lisible recherchée.
+
+
+
+
+’
+      Un seul agent gère l ensemble du cycle sur un problème donné.
+’
+Quand un seul agent suffit
+
+          Espace de décision limité
+          Le mono-agent est souvent suffisant lorsque l'espace de décision est
+          restreint.
+
+
+          Spécialisation non nécessaire
+          Lorsque la spécialisation n'apporte pas de gain clair, un agent unique
+          peut suffire.
+
+          Coût d'orchestration élevé
+          Si le coût d'orchestration des agents dépasse le bénéfice attendu, le
+          mono-agent est préférable.
+
+
+          Entrées homogènes
+          Le mono-agent est adapté lorsque les données d'entrée sont uniformes.
+                Définition de la Diffusion de la Complexité
+                          Stratégie de résolution de problèmes par décomposition et attribution
+
+
+
+
+Décomposition du problème                                              Attribution spécialisée
+Diviser un problème complexe en sous-problèmes plus                    Assigner chaque sous-problème à un agent ou une équipe
+petits et gérables.                                                    possédant l'expertise requise.
+
+
+
+
+    Il s'agit d'une approche 'top-down' qui vise à mieux maîtriser les défis complexes en répartissant le travail et l'expertise.
+                              Diffusion de la Complexité :
+                           Traitement Complet d'un Dossier
+                        Décomposition des tâches pour une gestion efficace des dossiers complexes
+
+
+
+                                                          Agent 1 : Ingestion & OCR               Agent 3 : Validation Métier
+                                                          Prend en charge l'accueil initial des   Valide les informations extraites par
+                                                          fichiers et effectue la                 rapport aux règles et critères métier.
+                                                          reconnaissance optique de
+                                                          caractères.                             Agent 4 : Scoring
+                                                                                                  Attribue un score ou une évaluation
+                                                          Agent 2 : Extraction                    basée sur les informations validées.
+                                                          d'Informations
+                                                          Extrait les données pertinentes et      Agent 5 : Synthèse Finale
+                                                          les informations clés des               Combine toutes les informations
+                                                          documents traités.                      traitées en un résultat final
+                                                                                                  synthétisé.
+
+
+
+
+Ce schéma illustre comment un problème complexe est décomposé en sous-problèmes gérables, chacun confié à un agent spécialisé.
+Avantages de la diffusion de la complexité
+
+                  Séparation des                     Remplacement de
+                  responsabilités                    module aisé
+                  Chaque composant a une tâche       Un module peut être remplacé
+                  bien définie, réduisant les        par un autre implémentant la
+                  interdépendances.                  même interface sans affecter le
+                                                     reste du système.
+                  Tests plus simples par
+                  composant                          Meilleure lisibilité
+                  Il est plus facile de tester des   fonctionnelle
+                  unités isolées de code.            La structure claire du code
+                                                     facilite la compréhension de
+                  Maintenance localisée              son fonctionnement.
+                  Les modifications sont
+                  confinées à des modules
+                  spécifiques, simplifiant les
+                  mises à jour.
+                                  Risques de la Complexité Diffuse
+                                 Les dangers d'une segmentation excessive et de dépendances multiples
+
+
+              1                                        2                                       3                                   4
+Sur-segmentation                         Multiplication des                      Coûts de Coordination                Perte de Contexte
+Une division trop granulaire             Dépendances                             La gestion des interactions          Les agents individuels
+d'un système peut entraîner              L'augmentation des                      entre de nombreux éléments           peuvent manquer d'une
+fragmentation et difficulté de           interconnexions crée un                 distribués devient coûteuse          compréhension globale,
+gestion globale.                         réseau complexe et fragile.             en ressources.                       menant à des décisions sous-
+                                                                                                                      optimales.
+
+
+
+                     5                                                     6                                                 7
+Interfaces Fragiles                                   Dilution de la Responsabilité                       Latence Accrue
+Des connexions faibles ou mal définies                L'imputabilité devient floue lorsque les            Les décalages de communication et de
+entre les composants peuvent provoquer                tâches sont réparties sur plusieurs agents.         traitement peuvent impacter les
+des erreurs.                                                                                              performances des systèmes distribués.
+Exercice 6: Décomposition d'un Problème Complexe
+           Traitement d'une réclamation ou Analyse d'une candidature
+
+
+
+                                  Sous-Problème 1: Collecte d'informations              Sous-Problème 4: Décision finale et
+                                  initiales                                             approbation
+                                  Agent : Représentant Service Client. Décision :       Agent : Gestionnaire / Système d'approbation.
+                                  Saisie de données. Entrées : Formulaire de            Décision : Approbation / Refus. Entrées : Rapport
+                                  réclamation, Données client. Sorties : Réclamation    d'évaluation, Politique de l'entreprise. Sorties :
+                                  enregistrée, ID unique. Dépendances : Aucune /        Décision finale (Approuvé/Rejeté), Montant
+                                  Client disponible.                                    approuvé. Dépendances : Sous-problème 3
+                                                                                        complété.
+                                  Sous-Problème 2: Vérification et
+                                  application des règles                                Sous-Problème 5: Traitement du
+                                  Agent : Système / Analyste de couverture.             paiement et clôture
+                                  Décision : Vérification / Logique métier. Entrées :   Agent : Service comptabilité / Système de
+                                  Réclamation enregistrée, Contrat d'assurance.         paiement. Décision : Transaction / Notification.
+                                  Sorties : Statut de couverture, Règles applicables.   Entrées : Décision finale, Informations de paiement.
+                                  Dépendances : Sous-problème 1 complété.               Sorties : Paiement effectué / Notification envoyée,
+                                                                                        Statut de clôture. Dépendances : Sous-problème 4
+                                  Sous-Problème 3: Évaluation et expertise              complété.
+                                  Agent : Expert en sinistres / Analyste. Décision :
+                                  Évaluation / Jugement. Entrées : Statut de
+                                  couverture, Preuves, Évaluation des dommages.
+                                  Sorties : Rapport d'évaluation, Recommandation.
+                                  Dépendances : Sous-problème 2 complété.
+                              Diffusion du Risque : Définition
+                                          Principe de diversification des approches
+
+
+
+
+             Principe                                    Méthodologie                                       Objectif
+ Plusieurs agents traitent le même             Chaque agent utilise des approches            Réduire la dépendance à une seule voie
+problème, ou une partie critique, en          différentes pour résoudre le problème.          de décision et augmenter la résilience
+             parallèle.                                                                                      globale.
+
+
+
+
+                          La diffusion du risque repose sur un principe de diversification des approches.
+                                 Exemple de diffusion du risque
+                                 Trois agents concurrents et un arbitre pour une décision finale
+
+
+
+
+     Moteur de règles                 Modèle statistique                   Agent LLM                        Arbitre
+Vérification de la conformité.        Estimation du risque.             Analyse qualitative.       Compare les trois résultats
+                                                                                                    pour une décision finale.
+La seule vraie sagesse est de
+savoir que vous ne savez rien.
+             SOCRATE
+                      Avantages de la Diffusion du Risque
+
+
+    Réduction du risque d erreur unique                         Possibilité de désaccord utile
+    Diminue la probabilité qu'une seule défaillance entraîne    Encourage des perspectives divergentes qui peuvent
+    une panne complète.                                         mener à des améliorations.
+
+    Meilleure capacité à détecter les contradictions            Audit plus riche
+    Facilite l'identification des divergences et des            Permet des examens plus approfondis et détaillés grâce
+    incohérences dans les données ou les processus.             à une dispersion des informations.
+
+
+    Robustesse accrue sur cas sensibles                         Arbitrage informé
+    Renforce la résilience face à des situations critiques ou   Facilite la prise de décision éclairée par la disponibilité de
+    potentiellement problématiques.                             multiples points de vue.
+
+
+
+
+’
+                 Limites de la diffusion du risque
+
+    Coûts élevés                                      Risque de conflit non résolu
+    La mise en place et la gestion de systèmes de     Des désaccords peuvent survenir et ne pas
+    diffusion du risque peuvent entraîner des         être résolus efficacement entre les parties.
+    dépenses considérables.
+
+                                                      Difficulté à expliquer la fusion des
+    Latence accrue                                    résultats
+    Il peut y avoir un délai supplémentaire dans la   Il peut être complexe de synthétiser et de
+    transmission et le traitement des informations.   communiquer les résultats agrégés de manière
+                                                      compréhensible.
+
+    Besoin d un arbitre crédible
+    Une tierce partie de confiance est souvent        Sur-ingénierie
+    nécessaire pour valider et gérer les              Risque de développer des solutions trop
+    transactions.                                     complexes si la valeur de la diffusion du risque
+                                                      n'est pas justifiée.
+
+
+’
+Architecture Hybride : Complexité et Risque
+Dans de nombreux systèmes, on décompose globalement le problème, puis on applique de la diffusion du risque sur
+certaines étapes critiques. On combine alors modularité et robustesse ciblée.
+
+  Décomposition du Problème (Diffusion de la Complexité)
+    Découpage d'un problème complexe en sous-problèmes plus gérables.
+
+    Assignation de chaque sous-problème à des agents spécialisés.
+
+    Objectif : Améliorer la modularité et la maintenabilité.
+
+  Robustesse Ciblée (Diffusion du Risque)
+    Application d'approches multiples et diverses sur des étapes critiques du processus.
+
+    Objectif : Réduire la dépendance à une seule voie de décision et minimiser les erreurs critiques.
+
+  Avantages Combinés
+    Bénéficie de la modularité offerte par la diffusion de la complexité.
+
+    Accroît la fiabilité et la robustesse sur les points névralgiques du système.
+                    Exercice 7 — Choisir le bon régime d architecture
+                                Déterminez le régime d architecture le plus adapté pour chaque scénario.
+
+
+
+                                  Cas d'utilisation                                               Régime d architecture
+
+
+                               Synthèse d un rapport                                                   Mono-agent
+
+
+                       Examen de conformité réglementaire                                           Diffusion du Risque
+
+
+                             Allocation de ressources                                           Diffusion de la Complexité
+
+
+                           Analyse d un dossier médical                                                Mono-agent
+
+
+                           Traitement de support client                                            Architecture Hybride
+
+
+
+            ’
+        ’
+                     Chaque scénario nécessite une évaluation attentive pour sélectionner l'architecture la plus appropriée.
+                ’
+    ’
+’
+Partie VI — Routage,
+Arbitrage et
+Modération
+Des Rôles Distincts dans la Gestion des Flux
+                               Le routage conditionnel
+
+
+
+Orientation des demandes et tâches                   Utilisation de classifieurs et LLMs
+S'assure que les demandes, documents, signaux ou     Peut employer des classifieurs ou des modèles de
+tâches sont dirigés vers le bon agent, workflow ou   langage (LLM) pour une orientation plus sophistiquée.
+politique de traitement.
+                                                     Approche combinée
+Basé sur des règles et des scores                    Combine plusieurs méthodes (règles, scores,
+Le routage peut être déterminé par des règles        classifieurs, LLM) pour une flexibilité maximale.
+prédéfinies ou des scores attribués.
+                                  Exemple de routeur simple
+
+
+
+
+Classes de routage d'e-mails                                          Critères de décision
+Les messages peuvent être acheminés selon trois                       Les décisions de routage s'appuient sur des mots-clés, des
+catégories principales : administratif, commercial ou incident        modèles statistiques prédictifs ou des modèles de langage
+technique.                                                            avancés (LLM).
+
+
+
+
+           La performance et la qualité du routeur sont cruciales car elles affectent directement l'architecture en aval.
+                                         Larbitrage : définition rigoureuse
+
+
+
+
+            Intervention de plusieurs réponses                                    Objectif : choisir ou combiner
+            L arbitrage intervient lorsqu'il existe plusieurs réponses,           Il ne s agit pas d orienter vers un seul chemin, mais de
+            hypothèses, recommandations ou verdicts concurrents.                  choisir, combiner, pondérer ou escalader entre plusieurs
+                                                                                  résultats.
+
+
+
+
+    ’
+’       ’   ’
+                                         Larbitrage consiste à évaluer et sélectionner parmi des options multiples.
+    ’
+                                         Méthodes d arbitrage
+
+    Priorité à une source métier             Règle de domination                   Arbitre humain
+    Attribue la décision finale à l'expert   Un critère ou une source prévaut      Intervention d'une personne pour
+    ou à la source ayant la meilleure        sur les autres selon des règles       trancher le différend.
+    connaissance du domaine                  prédéfinies.
+    concerné.                                                                      Consensus conditionnel
+                                             Arbitrage hiérarchique                Accord atteint sous certaines
+    Vote majoritaire                         La décision remonte une chaîne de     conditions spécifiques.
+    La décision est prise par la majorité    commandement ou d'expertise
+    des votants.                             jusqu'à un niveau d'arbitrage         Désaccord menant à
+                                             approprié.                            escalade
+    Vote pondéré par confiance                                                     En cas de désaccord, le problème
+    Les votes sont pondérés en               Arbitre LLM                           est transmis à un niveau supérieur
+    fonction du niveau de confiance          Utilisation d'un modèle de langage    pour résolution.
+    attribué à chaque votant.                (IA) pour analyser les informations
+                                             et proposer une décision.
+’
+         Exemple détaillé d arbitrage multi-approches
+
+
+                                                          Conformité signalée par le moteur de règles
+                                                          Le moteur de règles indique que le contenu est conforme.
+
+
+                                                          Risque moyen identifié par le score statistique
+                                                          L'analyse statistique évalue le risque comme étant moyen.
+
+                                                          Incohérence détectée par l'agent LLM
+                                                          L'agent LLM identifie une incohérence dans le récit.
+
+
+
+
+’
+    En cas de forte disparité entre la conformité explicite et l'analyse qualitative, une escalade humaine est obligatoire.
+                              La modération : définition
+
+
+        Contrôle de l'application                       Exigence de validation
+        La modération contrôle le degré d application
+                                                        Elle peut exiger une validation.
+        d une sortie ou sa recevabilité.
+
+
+
+        Filtrage de contenu                             Reformulation de réponses
+        Elle peut filtrer des contenus.                 Elle peut reformuler une réponse.
+
+
+
+        Prévention d'actions                            Blocage d'exécution
+        Elle peut empêcher une action.                  Elle peut bloquer une exécution.
+
+
+
+
+    ’
+’
+Modération : En Entrée, Pendant l'Exécution, En Sortie
+
+
+
+  En Entrée : Filtrage et      Pendant l'Exécution :          En Sortie : Sécurité et
+  Prévention                   Contrôle et Validation         Conformité
+  Filtrer les demandes         Empêcher les appels d'outils   Bloquer les contenus à risque,
+  malveillantes ou hors        non autorisés et valider       exiger une validation humaine
+  périmètre, et prévenir les   l'utilisation des API et des   pour les réponses sensibles,
+  attaques par injection de    fonctions.                     censurer les données
+  prompt.                                                     sensibles (PII), et imposer une
+                                                              reformulation si nécessaire.
+                                    Degré d application d une décision
+                                       À chaque étape, une application graduée de la décision agentique.
+
+
+                             1                                              2                                              3
+
+            Suggestion                                    Recommandation                                 Pré-remplissage
+            Une idée proposée, nécessitant une            Une suggestion plus forte, avec une            L'action est préparée, attendant une
+            validation humaine.                           justification.                                 confirmation finale.
+
+
+
+                             4                                              5                                              6
+
+            Proposition validable                         Exécution conditionnelle                       Exécution automatique
+            L'agent soumet une action prête à             L'action est exécutée si des                   L'action est exécutée sans
+            être validée et exécutée.                     conditions prédéfinies sont remplies.          intervention humaine.
+
+
+
+
+    ’
+’
+                 Le choix du niveau approprié dépend de facteurs critiques : risque, coût d erreur, réversibilité et maturité du système.
+        ’
+            Routage, Arbitrage, Modération : Tableau Comparatif
+
+
+                  Rôle                                                         Description
+
+
+
+
+                Routage                                              Oriente vers le bon traitement.
+
+
+
+               Arbitrage                                      Tranche entre plusieurs résultats concurrents.
+
+
+
+               Modération                                 Contrôle ce qu il est permis de produire ou d exécuter.
+
+
+
+
+                            Un système mûr doit savoir où commence et où s arrête chacun de ces rôles.
+        ’
+’
+    ’
+Exercice 8: Classification des Mécanismes
+      Identifier et justifier les mécanismes dans diverses situations
+
+
+
+
+                               1   Objectif de l'exercice
+                                   Pour chaque situation décrite, classifier le mécanisme principal parmi
+                                   Routage, Arbitrage, Modération, ou Combinaison, et justifier le choix en
+                                   expliquant sa fonction réelle dans le flux.
+
+                               2   Mécanismes à considérer
+                                   Routage (dirige le trafic/données), Arbitrage (résout les conflits/priorise),
+                                   Modération (surveille/filtre/approuve), Combinaison (plusieurs
+                                   mécanismes).
+
+                               3   Format de réponse requis
+                                   Pour chaque situation : 1. Mécanisme identifié. 2. Brève justification
+                                   basée sur la fonction réelle dans le flux.
+Partie VII — RAG, Mémoire,
+Données et Connaissances
+ Un aperçu des mécanismes de mémoire et de RAG dans les systèmes agentiques.
+                                    Pourquoi le RAG existe
+
+
+
+
+Données limitées des modèles                              Récupération d'informations externes
+Les modèles génératifs manquent souvent de contexte, de   Injecter des informations pertinentes pour améliorer la
+données à jour ou de mémoire métier.                      précision et la contextualisation des résultats.
+RAG: Un Système à Deux Étages
+Améliorer les modèles de langage par la récupération d'informations.
+
+
+
+
+                            1   1. Récupération d'Information
+                                Consultation de sources de données externes (base documentaire,
+                                index, etc.) pour identifier et extraire les informations pertinentes à la
+                                requête.
+
+                            2   2. Génération Augmentée
+                                Synthèse des informations récupérées, application d'un
+                                raisonnement contextuel et formulation d'une réponse précise et
+                                informée.
+                                         Découpage des
+                                          documents
+
+                                             25%             Métadonnées
+Embeddings,                                                  19%
+Similarité et
+Recherche                             Ré-
+                                ordonnancement
+
+                                     25%
+Composants clés pour une
+recherche sémantique efficace                            Stratégie de
+                                                           requête
+
+                                                         31%
+Types de Mémoire
+
+
+Types de Mémoire dans
+les Systèmes Agentiques
+Mémoire de Travail
+
+  Définition : Contexte immédiat et informations nécessaires à l'exécution d'une tâche en cours.
+
+  Rôle : Permet à l'agent de suivre l'état actuel, les données récentes et les étapes intermédiaires.
+
+Mémoire d'Épisode
+
+  Définition : Historique des interactions passées, des décisions prises et des événements vécus par
+  l'agent.
+
+  Rôle : Fournit un contexte temporel et séquentiel, essentiel pour l'apprentissage, la cohérence des
+  conversations et l'adaptation.
+
+Mémoire Métier
+
+  Définition : Ensemble des connaissances stables, procédures, référentiels, documents, règles et index
+  propres au domaine d'application.
+
+  Rôle : Représente le savoir-faire et les données structurées sur lesquels l'agent s'appuie pour ses
+  décisions et actions.
+             RAG et Multi-Agents : Spécialisation des Rôles
+                               Optimisation de la génération d'informations par la division des tâches
+
+
+
+
+  Agent Récupérateur                   Agent Synthétiseur                 Agent Vérificateur                    Agent Arbitre
+   Recherche et extrait les            Consolide et formule les            Assure la qualité, la                Documentaire
+informations pertinentes des         informations récupérées en       cohérence et la factualité des     Gère les contradictions ou les
+     sources externes.                 une réponse cohérente.            informations générées.                lacunes dans les
+                                                                                                          connaissances externes et
+                                                                                                          apporte une résolution ou
+                                                                                                                une clarification.
+
+
+
+                        Ce pattern est idéal lorsque la précision et la fiabilité des informations externes sont
+                    primordiales, réduisant ainsi les risques liés à des connaissances externes contradictoires ou
+                                                              incomplètes.
+The important thing is to
+never stop questioning.
+         ALBERT EINSTEIN
+            Système d'Agent Documentaire Robuste
+                            Une Approche Multi-Agents pour une Analyse Approfondie
+
+
+
+
+Agent 1 : Recherche de Pertinence                            Modérateur : Contrôle de Conformité
+Identifie et extrait les passages les plus pertinents au     Assure que le processus et le résultat final respectent les
+sein des documents.                                          directives et normes établies.
+
+
+Agent 2 : Synthèse Structurée                                Arbitre : Évaluation de la Complétude
+Organise et résume les informations extraites dans un        Juge si la réponse est suffisamment étayée et
+format cohérent et structuré.                                documentée, et décide si des informations
+                                                             supplémentaires sont nécessaires.
+Agent 3 : Vérification des Citations
+Valide l'exactitude des sources et des citations utilisées
+dans le contenu généré.
+          Exercice 9 — Concevoir un mini système RAG
+                             Créer un système de questions-réponses sur un corpus interne.
+
+
+    Sources                                  Mode d Indexation                       Vérification
+    Définir les origines des données         Choisir la méthode pour rendre les      Mettre en place des mécanismes
+    internes (documents, bases de            chunks recherchables,                   pour valider l'exactitude et la
+    données, wikis, etc.).                   typiquement via des embeddings          pertinence de la réponse générée
+                                             vectoriels stockés dans une base        (cohérence factuelle, confiance).
+    Stratégie de Segmentation                de données vectorielle.
+    Déterminer comment diviser le                                                    Rôle de l'Arbitre (Optionnel)
+    corpus en morceaux gérables              Récupération (Retrieval)                Introduire un mécanisme (humain
+    (chunks) pour l'indexation et la         Utiliser la question de l'utilisateur   ou IA) pour gérer les ambiguïtés,
+    recherche (taille fixe, sémantique,      pour rechercher les chunks les plus     les informations contradictoires ou
+    par phrase).                             pertinents dans l'index.                les réponses à faible confiance
+                                                                                     avant présentation finale.
+                                             Synthèse (Generation)
+                                             Alimenter un LLM avec la question
+                                             et les chunks récupérés pour
+                                             générer une réponse cohérente.
+’
+Partie VIII — Design Patterns
+ des Systèmes Agentiques
+ Fournir un vocabulaire architectural réutilisable dans la conception de systèmes agentiques.
+                            Pattern 1: Pipeline Linéaire
+                                       Une séquence d'étapes ordonnées
+
+
+
+                                                  Pipeline Linéaire
+
+
+
+
+   Avantages              Lisibilité                 Traçabilité               Mise en œuvre             Limites
+
+     Facile à            Facile à                Simple de suivre la              simple            Faible adaptabilité,
+                                                                                                           forte
+  comprendre, à      comprendre le flux.            progression et           Facile à configurer
+                                                                                                   interdépendance et
+tracer et simple à                                d'identifier où se             et à gérer.           propagation
+mettre en œuvre.                                 trouve un élément.                                      d'erreurs.
+
+
+
+                              CHAQUE ÉTAPE EST CONNECTÉE SÉQUENTIELLEMENT.
+
+
+
+
+                                   Idéal pour les processus simples et prévisibles.
+Architecture
+
+
+Pattern 2: Superviseur Central
+  Agent Central/Orchestrateur
+     Gère le flux de travail en distribuant les tâches, en collectant les résultats et en
+     appliquant les règles de contrôle.
+
+Fonctions Clés
+
+      Distribution des tâches
+
+      Collecte des résultats
+
+      Application des règles de contrôle
+
+      Production de la sortie finale
+
+Avantages
+
+      Gouvernance claire et contrôle centralisé.
+
+Limites
+
+      Peut devenir un point central de complexité.
+     Réseau d'Agents Spécialisés
+               Communication Décentralisée et Flexibilité
+
+
+
+
+                                 Communication Décentralisée
+                                 Les agents communiquent directement en fonction de leurs besoins,
+                                 sans intermédiaire central.
+
+
+                                 Flexibilité Accrue
+                                 Adaptable aux environnements dynamiques et aux exigences
+                                 évolutives.
+
+                                 Défis de Gouvernance
+                                 Plus difficile à gérer, surveiller et contrôler en raison de la nature
+                                 distribuée.
+
+
+
+
+La nature distribuée du réseau rend la gestion et le contrôle plus complexes.
+Rôle et Objectif
+
+
+Modèle 4 : Contradicteur Dédié
+Rôle
+Un agent secondaire explicitement chargé de contester, vérifier ou critiquer la
+proposition d'un agent principal.
+
+Objectif
+Augmenter la robustesse en détectant les erreurs avant l'exécution.
+
+Bénéfice
+Améliore la fiabilité et la sécurité dans les processus de prise de décision
+critiques.
+Pattern 5: Double Validation
+  Assurer la robustesse grâce à un double accord
+
+
+
+
+                    Concept
+                    Deux agents distincts doivent s'accorder avant qu'une action puisse
+                    être exécutée.
+
+
+                    Agent 1
+                    Règle métier (Valide la conformité aux réglementations)
+
+
+                    Agent 2
+                    Score statistique (Confirme l'absence de risque élevé)
+
+
+                    Action Appliquée UNIQUEMENT SI
+                    Les deux agents sont d'accord.
+Pattern 6: Final Arbitrator
+
+
+           Réception des entrées
+           Collecte les sorties multiples de divers chemins de décision.
+
+
+           Application de la politique
+           Applique une politique définie pour fusionner ou sélectionner la sortie
+           définitive.
+
+           Résolution des conflits
+           Gère les systèmes avec des voies de décision coexistantes et
+           potentiellement conflictuelles.
+
+
+           Unification des résultats
+           Assure un résultat cohérent et unifié à partir d'entrées variées.
+       Schéma 7 : Suggestion puis Validation Humaine
+                             Combiner l'efficacité automatisée avec le jugement humain
+
+
+                                                        Le système génère une suggestion
+                                                        Le système produit une proposition ou une suggestion complète.
+
+                                                        Validation humaine requise
+                                                        La mise en œuvre dépend d'une validation explicite par un opérateur
+                                                        humain.
+
+
+                                                        Applicabilité
+                                                        Convient aux scénarios à risque modéré où l'automatisation complète n'est
+                                                        pas encore réalisable ou souhaitée, mais où l'efficacité est un objectif.
+
+
+                                                        Bénéfice
+                                                        Combine l'efficacité des suggestions automatisées avec le jugement
+                                                        critique et la responsabilité de la supervision humaine.
+
+
+
+
+Combine l'efficacité des suggestions automatisées avec le jugement critique et la responsabilité de la supervision humaine.
+Situations et Patterns
+
+
+Exercice 10 — Choisir un pattern
+Pour chaque situation métier, choisissez un pattern de conception d'agent
+principal et un éventuel pattern secondaire. Justifiez votre choix en
+considérant la nature des entrées, le coût d'une erreur, le besoin d'explication
+et la fréquence des cas ambigus.
+
+   Situation 1 : Traitement d'une demande de prêt bancaire, avec validation de
+   documents, scoring de risque et décision finale.
+
+   Situation 2 : Ordonnancement de la maintenance prédictive sur une flotte de
+   machines industrielles, nécessitant l'analyse de multiples capteurs et la
+   priorisation des interventions.
+
+   Situation 3 : Système de recommandation de contenu personnalisé pour une
+   plateforme de streaming, basé sur l'historique de visionnage et les préférences
+   de l'utilisateur.
+
+   Situation 4 : Assistant virtuel pour la gestion d'un calendrier complexe, intégrant
+   des réunions, des rappels et des conflits potentiels.
+Partie IX — Implémentation
+    pratique en Python
+        Une logique de réalisation concrète
+       Principe d implémentation : Séparer les couches
+                   Distinguer clairement les responsabilités pour une meilleure organisation du code.
+
+
+
+    Configuration                            Routeurs                               API d'entrée
+    Gérer les paramètres et les              Gérer les requêtes entrantes et        Définir les points d'accès pour les
+    réglages de l'application.               diriger le trafic.                     interactions externes.
+
+
+    Logique métier                           Arbitres et Modérateurs                Journalisation (Logging)
+    Implémenter les règles et les            Contrôler l'accès et le flux des       Enregistrer les événements et les
+    fonctionnalités principales.             opérations.                            informations importantes.
+
+    Modèles (données)                        Gestion de la mémoire                  Tests
+    Définir la structure des données         Implémenter la persistance des         Mettre en place les procédures de
+    utilisées.                               données et le cache.                   vérification et de validation.
+
+
+    Outils et Frameworks
+    Intégrer les bibliothèques et les
+    outils de développement.
+’
+           Implémentation d'un Agent Basé sur des Règles
+                                         Étapes Clés et Bonnes Pratiques
+
+
+
+
+                                                                                Enregistrer les
+  Formaliser les          Écrire les       Définir les        Planifier les                           Écrire des
+                                                                                   Règles
+Variables d'Entrée         Règles          Priorités          Exceptions                            Tests Unitaires
+                                                                                Déclenchées
+
+
+Définir              Développer les    Établir un ordre   Anticiper et        Consigner           Créer des tests
+clairement et        conditions        d'exécution des    concevoir           quelles règles      pour vérifier que
+structurer           logiques et les   règles, surtout    comment             sont activées et    chaque règle et
+toutes les           actions qui       lorsque            l'agent gérera      pourquoi, à des     la logique
+données que          régissent le      plusieurs règles   les situations      fins de             globale de
+l'agent utilisera    comportement      peuvent            imprévues ou        surveillance et     l'agent
+pour prendre         de l'agent.       s'appliquer        irrégulières.       de débogage.        fonctionnent
+des décisions.                         simultanément.                                             correctement.
+                                 Pseudo-code d un agent à règles
+                                                      Logique de traitement
+
+
+
+
+    Normaliser le dossier             Vérifier les champs           Appliquer les règles de           Décision
+    Standardize the case file.            obligatoires                   conformité            Determine the case status
+                                   Check for mandatory fields.       Apply compliance rules.        based on rules.
+
+
+
+
+’
+                                                  Chargement du modèle
+
+                                                             17%
+
+
+                           Calcul du score                                                       Préparation des variables
+
+                                17%                                                              17%
+
+Implémenter
+un agent
+statistique                                  Calibration
+Étapes clés du processus                      17%
+                                                                                                 Journalisation
+
+                                                                                                 17%
+
+
+                                                                         Décision selon seuils
+
+                                                                         17%
+                      Implémenter un agent LLM outillé
+
+
+Prompt Système                           Exécution Contrôlée                   Synthèse Finale
+Définir la personnalité, les objectifs   Déterminer quels outils utiliser et   Combiner les informations pour
+et les contraintes de l'agent.           comment les appeler.                  générer une réponse cohérente.
+
+Schéma des Outils                        Récupération des Résultats            Modération de Sortie
+Lister et décrire les outils             Collecter les sorties des outils      Assurer la sécurité, la pertinence et
+disponibles et leurs fonctions.          exécutés.                             la précision de la réponse finale.
+
+
+Validation des Paramètres
+Vérifier et corriger les entrées pour
+l'utilisation des outils.
+                      Mise en œuvre d'un routeur
+
+
+                                                 Fonctionnalité du routeur
+                                                 Reçoit un objet normalisé et sélectionne un chemin approprié.
+
+                                                 Options de logique de routage
+                                                 Approches purement déterministes, basées sur des scores ou assistées
+                                                 par modèle.
+
+
+                                                 Considérations clés
+                                                 Enregistrez la raison de la décision de routage et implémentez des
+                                                 mécanismes de secours pour la résilience.
+
+
+
+
+Enregistrez la raison de la décision de routage et implémentez des mécanismes de secours pour la résilience.
+Mise en œuvre d'un Arbitre
+   Processus de résolution des divergences
+
+
+
+
+                  Comparaison
+                  Compare plusieurs sorties structurées pour identifier les accords.
+
+                  Détection de Contradiction
+                  Identifie les écarts et les conflits entre différentes sorties.
+
+                  Application des Politiques
+                  Applique des règles prédéfinies pour résoudre les conflits, en priorisant
+                  ou en recherchant un consensus.
+
+
+                  Sortie de Décision
+                  Génère une décision finale ou détermine si une escalade est nécessaire.
+    Implémenter un modérateur
+Gardiens des systèmes : contrôle des entrées, circulations et sorties.
+
+
+                              Vérification des                      Contraintes métier
+                              permissions                           Veiller à la conformité avec les
+                              S'assurer que les accès et les        règles, les politiques et les
+                              actions sont autorisés                objectifs spécifiques de
+                              conformément aux rôles et aux         l'entreprise.
+                              droits définis.
+                                                                    Degré d'application autorisé
+                              Seuils de confiance                   Déterminer le niveau
+                              Évaluer et valider les éléments       d'intervention ou d'application
+                              selon des critères de fiabilité       permis pour chaque cas afin de
+                              prédéfinis pour garantir la qualité   gérer les actions de manière
+                              et la sécurité.                       appropriée.
+
+
+                              Règles de sécurité
+                              Appliquer les protocoles de
+                              sécurité établis pour prévenir les
+                              menaces potentielles et protéger
+                              le système.
+Implémenter une architecture de diffusion de la complexité
+
+                          Décomposer en sous-                  Éviter les dépendances
+                          problèmes                            implicites
+                          Diviser le système complexe en       S'assurer que toutes les
+                          unités plus petites et gérables.     dépendances sont explicites et
+                                                               bien comprises.
+                          Définir les contrats des
+                          agents                               Tester en isolation
+                          Établir des spécifications claires   Valider chaque agent
+                          d'entrée et de sortie pour           individuellement avant
+                          chaque composant (agent).            l'intégration.
+
+
+                          Concevoir un état partagé            Tester la chaîne complète
+                          minimal                              Vérifier la fonctionnalité
+                          Créer un état partagé allégé et      complète du système après
+                          essentiel pour réduire les           l'intégration de tous les
+                          interdépendances.                    composants.
+    Implémenter une architecture de diffusion du risque
+                                                  Approche pratique
+
+
+
+
+1    Choisir des agents réellement différents                4   Tracer les désaccords
+     Sélectionnez des agents distincts pour assurer une          Documentez systématiquement les points de
+     diversité d'analyses et d'expertises.                       divergence entre les agents pour une analyse
+                                                                 approfondie.
+2    Uniformiser leurs sorties pour comparaison
+     Standardisez les formats de sortie des agents afin de   5   Définir quand une divergence entraîne une
+     faciliter la comparaison directe de leurs résultats.        escalade
+                                                                 Établissez des seuils ou des critères clairs pour
+3    Concevoir un arbitre explicite                              déclencher une procédure d'escalade en cas de
+     Mettez en place un mécanisme d'arbitrage clair pour         désaccord significatif.
+     évaluer et réconcilier les différentes sorties.
+                             Journalisation et Observabilité
+          Une architecture agentique sérieuse nécessite des logs structurés pour une observabilité complète.
+
+
+
+
+Entrées et Sorties                        Processus Décisionnel                     Interactions Externes
+Données brutes reçues et résultat         Décisions intermédiaires, règles          Appels d'outils, temps de réponse,
+final.                                    déclenchées, scores associés.             résultats des outils.
+
+
+
+
+Gestion des Désaccords                    Validation Humaine                        Métriques de Performance
+Désaccords internes, arbitrages,          Points d'intervention et validation par   Temps de réponse globaux et par
+refus de modération.                      des humains.                              étape.
+                       Tests et Reproductibilité
+
+
+Tests Unitaires                                Tests d'Intégration
+Pour les règles et composants déterministes.   Pour vérifier les flux inter-agents.
+
+
+                                               Tests de Non-Régression
+Jeux de Cas
+                                               Pour garantir la stabilité des fonctionnalités
+Pour évaluer les seuils statistiques.
+                                               existantes.
+
+
+Jeux d'Évaluation                              Scénarios Spécifiques
+Spécifiquement pour les LLM (Large Language    Incluant les désaccords et l'escalade pour
+Models).                                       tester les comportements complexes.
+     Structurer un mini projet Python
+                   Arborescence Proposée et Responsabilités
+
+
+                                       Arborescence du Projet
+                                       Structure organisée avec `src/` pour le code source, `tests/` pour les
+                                       tests, `main.py` comme point d'entrée, et `README.md` pour la
+                                       documentation.
+
+                                       Rôle des Modules Clés
+                                       Détaille les responsabilités de `router.py` (routage), `agents/` (modules
+                                       spécialisés), `arbiter.py` (orchestration), `moderator.py` (supervision), et
+                                       `utils/logger.py` (journalisation).
+
+                                       Gestion des Tests
+                                       La section `tests/` regroupe les tests unitaires, d'intégration et end-to-
+                                       end pour assurer la qualité et la fiabilité du code.
+
+
+
+
+La structure proposée vise à favoriser la modularité, la maintenabilité et la testabilité
+du projet Python, en séparant clairement les responsabilités de chaque composant.
+                           Partie X — Évaluation,
+                        robustesse et gouvernance
+        Aucun système agentique n est crédible sans critères d évaluation. Il faut mesurer la réussite des tâches, la robustesse, le coût, la
+                                  latence, l explicabilité, la sécurité et l intérêt réel de l architecture choisie.
+         ’
+’
+                 ’
+             ’
+    ’
+                  Évaluation d'un Système Agentique
+                                     Critères Clés de Performance
+
+
+
+
+Exactitude                           Robustesse aux Cas Limites          Auditabilité
+Précision des résultats et des       Performance face à des situations   Possibilité de retracer et
+prédictions.                         rares ou imprévues.                 comprendre les décisions prises.
+
+Réussite de Tâche                    Gestion du Bruit                    Facilité de Correction
+Capacité à accomplir les objectifs   Résistance aux données erronées     Simplicité de mise à jour et de
+définis.                             ou non pertinentes.                 réparation du système.
+
+
+Stabilité                            Coût par Traitement                 Besoin de Supervision
+Consistance des performances au      Efficacité économique des           Humaine
+fil du temps.                        opérations.                         Niveau d'intervention requis par les
+                                                                         opérateurs.
+                                     Latence
+                                     Délai de réponse du système.
+Évaluer la Diffusion de la Complexité
+          Questions Clés pour l'Évaluation
+
+
+
+                        Maintenabilité
+                        Le découpage en agents améliore-t-il réellement la maintenabilité du
+                        système ?
+
+
+                        Clarté des Interfaces
+                        Les interfaces entre les agents sont-elles clairement définies et
+                        comprises ?
+
+                        Coût de Coordination
+                        Le coût de coordination entre les agents est-il justifié par les
+                        bénéfices apportés ?
+
+
+                        Utilité des Agents
+                        Certains agents sont-ils devenus inutiles ou redondants dans le
+                        système ?
+Évaluation de la Diffusion du Risque
+
+               Différence d'Approches
+               Analyser les divergences significatives dans les résultats ou les
+               processus entre les différentes méthodologies de diffusion du risque.
+
+               Détection d'Erreurs
+               Évaluer si les approches basées sur le désaccord entre agents
+               identifient des erreurs ou biais que l'analyse par agent unique pourrait
+               manquer.
+
+               Amélioration par l'Arbitrage
+               Déterminer si l'intervention d'un arbitre améliore concrètement la qualité
+               ou la robustesse de la décision finale concernant le risque.
+
+               Justification des Coûts
+               Vérifier si les bénéfices (précision, réduction des erreurs) des systèmes
+               complexes de diffusion du risque justifient leurs coûts supplémentaires.
+                          Mesurer l'utilité du routage
+                           Indicateurs clés pour évaluer l'efficacité du routage
+
+
+
+
+ 85% 90%
+Taux de routage correct                                 Taux de succès des agents cibles
+
+
+
+
+ 70 ms 80%
+Latence moyenne                                         Taux de retour (erreurs de routage)
+Mesurer l'utilité de l'arbitrage
+     Indicateurs clés pour évaluer l'efficacité
+
+
+
+
+                     Désaccords Détectés                Escalades Utiles
+                     Nombre total de désaccords         Nombre de situations où
+                     identifiés dans la période.        l'arbitrage a résolu efficacement
+                                                        un conflit.
+                     Désaccords Pertinents
+                     Nombre de désaccords jugés         Taux d'Accord Trompeur
+                     significatifs ou nécessitant une   Pourcentage d'accords
+                     intervention.                      apparemment satisfaisants mais
+                                                        potentiellement erronés ou non
+                     Réduction des Erreurs              optimaux.
+                     Finales
+                     Pourcentage d'erreurs éliminées    Coût de la Confrontation
+                     grâce au processus d'arbitrage.    Estimation des ressources
+                                                        (temps, argent) dépensées dans
+                                                        le processus d'arbitrage.
+    Mesurer l utilité de la modération
+
+                  Actions bloquées à juste           Cas nécessitant validation
+                  titre                              humaine
+                  Nombre de contenus ou d'actions    Nombre de situations où la
+                  qui ont été correctement bloqués   décision de modération a dû être
+                  par le système de modération.      revue ou prise par un humain.
+
+
+                  Faux positifs de blocage           Conformité aux politiques
+                  Nombre de contenus ou d'actions    Mesure dans laquelle les actions
+                  légitimes qui ont été              de modération respectent les
+                  incorrectement bloqués par le      politiques établies.
+                  système de modération.
+
+                  Incidents évités
+                  Estimation du nombre d'incidents
+                  potentiels (par exemple, abus,
+                  désinformation) qui ont été
+                  empêchés par la modération.
+’
+Gouvernance et Responsabilité
+                  Clarifier le Pouvoir et l'Imputabilité
+
+
+                                Prise de Décision                       Modification des Règles
+                                Identifier qui a l'autorité pour        Identifier la partie prenante ayant
+                                prendre les décisions clés.             le pouvoir de changer les règles
+                                                                        établies.
+                                Validation des Orientations
+                                Déterminer qui approuve les             Révision des Seuils
+                                stratégies et les grandes               Qui est responsable de réévaluer
+                                orientations.                           les critères de performance ou de
+                                                                        conformité ?
+                                Assomption des Risques
+                                Clarifier qui porte la responsabilité   Surveillance des Dérives
+                                des risques associés aux                Qui est chargé de repérer et de
+                                décisions prises.                       signaler les écarts ou les
+                                                                        problèmes potentiels ?
+
+
+
+
+Une gouvernance explicite est le rempart contre l'irresponsabilité diffuse.
+    Contrôle Humain : L'Humain dans la Boucle
+                   Une vision des rôles humains clés dans les systèmes agentiques
+
+
+
+
+   Superviseur                                    Validateur Final                                Arbitre de Dernier Recours
+   Surveille les                                  Fournit l'approbation                           Résout les impasses ou
+   performances globales                          ultime pour les décisions                       les prédictions
+   de l'IA.                                       critiques.                                      incertaines.
+
+
+
+   Réviseur de Règles
+                                                  Annotateur de Données                           Gestionnaire d'Exceptions
+   Ajuste le comportement                         Étiquette et catégorise                         Gère les situations hors
+   de l'IA en fonction de                         les données pour                                des paramètres
+   nouvelles informations
+                                                  l'entraînement de l'IA.                         normaux de l'IA.
+   ou conditions.
+
+
+
+
+Ces rôles sont essentiels pour garantir la performance, la sécurité et l'adaptabilité des systèmes agentiques.
+                       Grille d'Évaluation pour un Système
+                      de Traitement de Dossiers Agentique
+                                   Dimensions Critiques pour une Évaluation Complète
+
+
+
+                                                      Détails                              Critères d'Évaluation
+
+                                          Vitesse de Traitement, Taux de
+                                                                                    Mesurer la rapidité, l'autonomie et
+ Performance &amp; Efficacité          Résolution Automatique, Précision des
+                                                                                       l'exactitude du système.
+                                                     Décisions
+                                      Temps de Disponibilité (Uptime), Gestion     Assurer la disponibilité continue et la
+   Robustesse &amp; Fiabilité
+                                             des Erreurs et Exceptions                   gestion des imprévus.
+                                           Coût d'Implémentation, Coût           Analyser les investissements initiaux et
+             Coût
+                                                   Opérationnel                        les dépenses récurrentes.
+                                                                                      Permettre de comprendre le
+                                        Traçabilité des Décisions, Clarté des
+Explicabilité &amp; Transparence                                                   fonctionnement et les résultats du
+                                                      Rapports
+                                                                                                 système.
+                                         Protection des Données, Contrôle        Garantir la confidentialité et la gestion
+           Sécurité
+                                                      d'Accès                             sécurisée des accès.
+                                                                                 S'assurer du respect des normes et de la
+         Gouvernance                   Conformité Réglementaire, Auditabilité
+                                                                                              facilité d'audit.
+                                      Partie XI — Cas
+                                      d usage détaillés
+                Les concepts prennent tout leur sens lorsqu ils sont replacés dans des scénarios métier. Nous examinons
+                maintenant des cas d usage typiques pour chaque famille d agents et pour chaque logique d architecture.
+
+
+
+
+    ’
+        ’
+                ’
+            ’
+’
+                      Cas d usage 1 : Conformité documentaire
+                                   Processus de vérification et d'automatisation
+
+
+
+
+       Agent dominant               Modérateur                LLM (Large Language                 Arbitre humain
+     (Règles/Symbolique)          Contrôle le degré                 Model)                  Traite les cas contradictoires
+      Vérifie la présence, la    d'automatisation du         Assiste dans l'extraction de         ou exceptionnels.
+     cohérence, les dates, les       processus.                 champs spécifiques.
+    dépendances et les seuils.
+
+
+
+’
+    Cas d usage 2 : Tri et Routage de Tickets
+        Architecture typique pour l'automatisation du traitement des tickets
+
+
+                                     Compréhension de                      Ordonnancement par
+                                     l'intention                           heuristiques
+                                     Analyse du contenu du ticket          Utilisation d'heuristiques pour
+                                     par un LLM ou un classifieur          déterminer l'ordre de traitement
+                                     pour déterminer l'intention de        des tickets et optimiser
+                                     l'utilisateur.                        l'efficacité.
+
+
+                                     Routage intelligent                   Modération
+                                     Attribution du ticket au service      Identification et gestion des
+                                     ou à la personne appropriée en        demandes hors périmètre
+                                     fonction de l'intention identifiée.   automatisé ou définition des
+                                                                           étapes de validation.
+                                     Priorisation par règles
+                                     Application de règles
+                                     prédéfinies pour définir la
+                                     priorité du ticket (urgence, type
+’
+                                     de client, etc.).
+                                              Rôles Clés et Objectifs
+
+
+                                              Cas d usage 3 : Allocation de ressources
+                                              Les agents d'optimisation et les heuristiques sont centraux pour résoudre les
+                                              problèmes d'allocation de ressources.
+
+                                              Rôles Clés :
+
+                                                 Agents d'Optimisation & Heuristiques : Ils sont au cœur du processus, chargés de
+                                                 trouver la meilleure solution (maximiser objectifs, satisfaire contraintes) ou une solution
+                                                 satisfaisante et rapide.
+
+                                                 LLM (Agent Conversationnel/Explicatif) : Utile pour :
+                                                   Reformuler la demande initiale de l'utilisateur.
+
+                                                   Expliquer la décision finale ou le raisonnement derrière l'allocation.
+
+                                                   Fournir une interface plus intuitive.
+
+                                                 Le Moteur Principal : La décision d'allocation elle-même doit être gérée par le moteur de
+                                                 calcul (optimisation ou heuristique), et non par le LLM, pour garantir précision et fiabilité.
+
+
+
+’
+    Assurer une affectation efficace des ressources tout en maintenant la précision et la fiabilité des décisions critiques.
+    Cas d usage 4 : Analyse de Dossiers Complexes
+                         Processus séquentiel de diffusion de la complexité
+
+
+
+
+                                                1   Extraction                            4    Scoring
+                                                    Collecte initiale des données.             Attribution d'un score basé sur
+                                                                                               des critères définis.
+                                               2    Enrichissement
+                                                    Ajout d'informations                  5    Synthèse
+                                                    complémentaires.                           Consolidation des résultats.
+
+                                               3    Validation
+                                                    Vérification de l'exactitude et
+                                                    de la cohérence des données.
+
+
+
+
+’
+         Conditionnel : Si le risque est élevé, une diffusion du risque est ajoutée à l'étape finale.
+    Cas d usage 5 : Revue Critique de Contenu
+
+
+                                   Générateur
+                                   Crée le contenu initial.
+
+                                   Contradicteur
+                                   Effectue une critique constructive du contenu généré.
+
+                                   Vérificateur documentaire
+                                   Contrôle la validité et la provenance des sources utilisées.
+
+                                   Arbitre
+                                   Décide si la réponse peut être validée, reformulée, ou bloquée.
+
+
+
+
+’
+            La diffusion du risque est pertinente dans ce processus.
+    Cas d usage 6 : Assistant Métier Supervisé
+        Interaction intuitive et cadre de contrôle robuste pour les agents LLM.
+
+
+
+                                      Interface                             Restrictions de
+                                      Conversationnelle                     Permissions
+                                      L'agent LLM sert d'interface          Contrôle d'accès basé sur les
+                                      conversationnelle pour une            rôles et les autorisations.
+                                      interaction intuitive.
+                                                                            Validation Humaine
+                                      Règles Métier                         Intervention humaine pour
+                                      Logique métier prédéfinie             approbation finale et
+                                      assurant la cohérence et la           supervision.
+                                      conformité.
+
+
+                                      Vérifications
+                                      Documentaires
+                                      Analyse et validation des
+                                      documents pertinents.
+’
+        Cas d usage 7 : Cybersécurité et Détection
+
+
+
+                          Monitoring, Détection d anomalies et Alerte
+                          Agents statistiques et moteurs de règles pour le suivi en temps réel,
+                          l'identification des comportements suspects et le déclenchement
+                          d'alertes.
+
+                          Augmentation par les LLM
+                          Utilisation des LLM pour le résumé d'alertes complexes, l'explication du
+                          contexte des anomalies, et l'assistance à l'investigation d'incidents.
+
+
+
+
+’
+    ’
+                              Support Décisionnel à Fort Enjeu
+                                 Diffusion du risque pour des choix éclairés et résilients
+
+
+
+                                           Principes Clés du Support Décisionnel
+
+
+
+
+Analyse Multi-Approches              Désaccord Utile                 Arbitrage Explicite        Escalade Humaine
+Examiner le problème sous         Encourager les débats              Mettre en place des     Savoir référer la décision à
+ différents angles pour une          constructifs et les           mécanismes clairs pour    une autorité supérieure ou
+compréhension exhaustive.        perspectives divergentes.        trancher les désaccords.         à des experts.
+
+
+
+
+                       DES ÉLÉMENTS FONDAMENTAUX POUR NAVIGUER LA COMPLEXITÉ DÉCISIONNELLE.
+Exercice 13 — Concevoir une architecture complète
+                   Système de recommandation personnalisé pour une plateforme e-commerce
+
+
+
+
+Type d'agent dominant                                              Mode d'arbitrage éventuel
+Agent d'intelligence artificielle (IA) spécialisé dans l'analyse   Un panel d'experts humains intervient en cas de désaccord
+comportementale des utilisateurs et la prédiction des              significatif sur une recommandation ou en cas de
+intentions d'achat.                                                réclamation client persistante.
+
+
+Mécanisme de routage                                               Niveau d'autonomie défini
+Système basé sur des règles et des scores de pertinence            Les agents IA ont une autonomie pour générer des
+pour acheminer les requêtes vers l'agent IA approprié ou           recommandations, mais les actions d'achat importantes
+vers un agent humain pour les cas complexes.                       nécessitent une validation humaine ou un contrôle a
+                                                                   posteriori.
+Politique de modération
+Vérification automatique des recommandations pour                  Stratégie d'évaluation
+s'assurer du respect des directives éthiques, de l'absence         Mesure continue des métriques clés (taux de conversion,
+de biais et de la conformité aux politiques commerciales.          satisfaction client, clics) et ajustement des politiques et
+                                                                   algorithmes en fonction des performances.
+Partie XII —
+Synthèses
+Comparatives
+Majeures
+Contrastes Fondamentaux et Architectures d'Intelligence Artificielle
+ Synthèse A : Agents non LLM vs. Agents LLM
+
+
+
+
+              Agents non LLM                                                    Agents LLM
+  Idéaux pour les tâches nécessitant une                       Parfaits pour l'exploration, l'itération rapide et
+précision rigoureuse, une traçabilité claire et                 la gestion de tâches complexes nécessitant
+   une performance constante. Forces :                            une compréhension nuancée du langage.
+Contrôle, Audit, Vitesse, Stabilité, Conformité,                   Forces : Langage, Ambiguïté, Synthèse,
+            Optimisation précise.                              Flexibilité, Prototypage, Orchestration souple.
+
+
+
+
+      Les agents non LLM excellent dans les tâches précises et contrôlées, tandis que les agents LLM
+         sont les meilleurs pour la flexibilité, la compréhension du langage et le prototypage rapide.
+  Synthèse B — Diffusion de la
+Complexité vs. Diffusion du Risque
+   Comprendre et Appliquer Deux Approches Stratégiques
+
+
+
+
+                        Diffusion de la Complexité
+                        Décomposition d'un système complexe en sous-systèmes gérables
+                        pour améliorer le traitement et la modularité.
+
+
+                        Diffusion du Risque
+                        Utilisation de multiples approches ou solutions pour accroître la
+                        robustesse et la résilience face aux erreurs uniques.
+Synthèse C — Routage, Arbitrage et Modération
+
+
+
+                    Routage
+                    Choisir le bon chemin de traitement.
+
+
+                    Arbitrage
+                    Choisir ou combiner parmi plusieurs résultats.
+
+                    Modération
+                    Autoriser, bloquer, borner ou exiger validation.
+        Synthèse D — Déterminisme versus flexibilité
+
+
+
+                                           Déterminisme
+                                           Protège la prévisibilité et l auditabilité.
+
+                                           Flexibilité
+                                           Permet de traiter l ambiguïté et le langage naturel.
+
+
+
+
+’
+    ’
+                Toute architecture réaliste est un équilibre entre ces deux pôles.
+                  Checklist de conception d un système agentique
+                                                 Questions clés pour guider votre conception
+
+
+
+
+        Quel problème exact veut-on                   Quel niveau d autonomie est                   Quelles données sont disponibles
+        résoudre ?                                    souhaitable ?                                 ?
+        Définir clairement les objectifs et le        Identifier le degré de prise de décision et   Évaluer la qualité, la quantité et la
+        périmètre.                                    d'interaction.                                pertinence des données.
+
+
+
+
+        Quelles parties exigent un                    Où la souplesse est-elle utile ?              Faut-il diffuser la complexité, le
+        comportement déterministe ?                   Déterminer les domaines où                    risque, ou les deux ?
+        Identifier les fonctions critiques            l'adaptabilité est primordiale.               Considérer la distribution de la charge
+        nécessitant une prédictibilité.                                                             computationnelle et des responsabilités.
+    ’
+’
+                               Checklist d industrialisation
+
+
+    Observabilité                       Gouvernance                        Garde-fous
+    Vérifier si l'observabilité est     Vérifier l'existence d'une         Vérifier si des garde-fous
+    suffisante.                         gouvernance claire.                adéquats sont en place.
+
+    Tests                               Évaluation                         Récupération d'erreur
+    Confirmer la mise en place des      Confirmer la présence d'une        S'assurer qu'un plan de
+    tests unitaires et d'intégration.   stratégie d'évaluation continue.   récupération d'erreur est défini.
+
+
+    Journalisation
+    S'assurer qu'une politique de
+    journalisation définie existe.
+
+
+
+’
+Étude de Cas Intégrative : Atelier Final
+  Conception d'un Système Agentique pour le Traitement de Dossiers
+
+
+                             Objectif Principal                 Composants Clés du
+                             Concevoir un système               Système
+                             agentique pour le traitement       Définir le rôle et le
+                             complet de dossiers entrants.      fonctionnement du routeur, de
+                                                                l'arbitre et du modérateur.
+                             Choix de la Famille
+                             d'Agents                           Niveau d'Autonomie des
+                             Identifier la famille d'agents     Agents
+                             dominante pour chaque étape        Spécifier le degré d'autonomie
+                             du traitement.                     accordé à chaque agent dans
+                                                                ses fonctions.
+                             Gestion de la Complexité
+                             et du Risque                       Métriques d'Évaluation
+                             Décider de la stratégie de         Établir les indicateurs clés pour
+                             diffusion des agents :             mesurer la performance globale
+                             centralisée ou distribuée.         du système.
+        Questions de révision
+
+                Pourquoi un agent nest-il pas nécessairement un LLM ?
+                Explorez les distinctions entre un agent et un Large Language Model
+                (LLM).
+
+                Dans quel cas un moteur de règles est-il préférable ?
+                Identifiez les scénarios où un moteur de règles surpasse les LLM ou
+                autres approches.
+
+
+                Comment distinguer diffusion de la complexité et diffusion
+                du risque ?
+                Comprenez la différence entre la propagation de la complexité et la
+                propagation du risque.
+
+                Pourquoi l arbitrage est-il central en réduction du risque ?
+                Analysez le rôle fondamental de l'arbitrage dans les stratégies de
+                mitigation des risques.
+    ’
+’
+                                                                   Glossaire Essentiel
+
+Agent                                                               Moteur de règles                                                       RAG (Retrieval-Augmented Generation)
+Un acteur autonome dans un système, capable de percevoir son        Un système qui exécute une ou plusieurs règles de politique de         Une technique qui améliore les modèles de langage génératifs en
+environnement et d'agir pour atteindre des objectifs.               décision.                                                              leur permettant d'accéder et de récupérer des informations à partir
+                                                                                                                                           d'une source de données externe avant de générer une réponse.
+Automatisation                                                      Scoring
+L'utilisation de la technologie pour exécuter des tâches ou des     Le processus d'attribution d'une valeur numérique ou d'un score à      Mémoire de travail
+processus avec une intervention humaine minimale.                   un élément pour évaluer sa pertinence, sa qualité ou son risque.       La capacité d'un système à stocker et à manipuler temporairement
+                                                                                                                                           des informations pour effectuer des tâches cognitives.
+Outil                                                               Arbitrage
+Un composant logiciel ou matériel conçu pour effectuer une tâche    Le processus de sélection de la meilleure option parmi plusieurs       Arbitre
+spécifique dans un système.                                         alternatives, souvent basé sur des scores ou des critères              Un agent ou un système responsable de la prise de décisions
+                                                                    prédéfinis.                                                            finales ou de la résolution des conflits entre d'autres agents.
+Workflow
+Une séquence définie d'étapes ou d'actions pour accomplir une       Routage                                                                Superviseur
+tâche ou un processus métier.                                       Le processus d'acheminement d'une requête ou d'une tâche vers          Un agent ou un système chargé de surveiller, de guider et de gérer
+                                                                    le composant ou l'agent le plus approprié.                             d'autres agents ou processus.
+État
+La condition ou la configuration actuelle d'un système ou d'un      Modération                                                             Garde-fou
+composant à un moment donné.                                        Le processus de supervision et de contrôle des interactions ou du      Un mécanisme ou une politique conçu pour prévenir les
+                                                                    contenu pour assurer la conformité avec les politiques ou les          comportements indésirables ou dangereux d'un système ou d'un
+Politique de décision                                               normes.                                                                agent.
+Un ensemble de règles ou de critères qui guident la prise de
+décision au sein d'un système.                                      Diffusion de la complexité                                             Validation humaine
+                                                                    La stratégie consistant à répartir des tâches complexes entre          Le processus d'examen et d'approbation des décisions ou des
+Heuristique                                                         plusieurs agents ou systèmes plus simples.                             actions d'un système automatisé par un humain.
+Une approche pratique ou une règle empirique pour résoudre des
+problèmes ou prendre des décisions, souvent rapide mais pas         Diffusion du risque
+nécessairement optimale.                                            La stratégie consistant à répartir le risque potentiel sur plusieurs
+                                                                    agents ou systèmes pour en atténuer l'impact global.
+                          Conclusion générale
+                 L'agentique : Plus qu'une tendance, une conception réfléchie.
+
+
+
+
+                                             Au-delà des LLM
+                                             L'agentique transcende les simples modèles de langage.
+
+
+                                             Conception stratégique
+                                             Créer un système agentique efficace repose sur le choix judicieux de
+                                             mécanismes clés.
+
+                                             Mécanismes clés
+                                             Perception, Décision, Action, Contrôle, Coopération
+
+
+
+
+L'agentique est une conception réfléchie qui va au-delà des simples modèles de langage, nécessitant
+      une stratégie clé axée sur la perception, la décision, l'action, le contrôle et la coopération.
+

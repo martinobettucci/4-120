@@ -47,6 +47,7 @@ for (const n of NOTIONS) {
 const ids = new Set(NOTIONS.map((n) => n.id));
 for (const [m, p] of Object.entries(PEDAGOGIE)) {
   p.prerequis.forEach((i) => { if (!ids.has(i)) dire(`module ${m}`, `prérequis inconnu : ${i}`); });
+  (p.suite || []).forEach((i) => { if (!ids.has(i)) dire(`module ${m}`, `prolongement inconnu : ${i}`); });
   p.quiz.forEach((q, k) => qcm(`module ${m}`, `quiz ${k + 1}`, q));
   if (p.objectifs.length < 4) dire(`module ${m}`, 'moins de quatre objectifs');
   if (interdits.test(JSON.stringify(p))) dire(`module ${m}`, 'caractère ou mot proscrit');

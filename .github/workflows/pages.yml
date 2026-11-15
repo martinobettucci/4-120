@@ -55,7 +55,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Controle complet du contenu pedagogique (25 lecons, questions, ateliers)
+      - name: Controle complet du contenu pedagogique (39 lecons, questions, ateliers)
         run: |
           cd web && npm ci --no-audit --no-fund && cd ..
           node tools/verifier_contenu.cjs

@@ -16,6 +16,12 @@ LECONS = {
     "utilite": "Décider sous incertitude : le coût espéré", "neurone": "Du neurone au réseau de neurones", "gradient": "Entraîner : la descente de gradient",
     "recommandation": "Système de recommandation", "mdp": "Processus de décision markovien et politique",
     "confiance": "Distribution des résultats et intervalle de confiance", "robustesse": "Robustesse", "graine": "Reproductibilité et rejeu",
+    "autonomie": "Niveaux d'autonomie d'un agent", "familles": "Familles d'agents et grille de choix", "llm": "Agent LLM et hybridation",
+    "complexite": "Diffusion de la complexité", "risque": "Diffusion du risque", "routage": "Routage, arbitrage et modération",
+    "rag": "RAG et mémoire", "gouvernance": "Gouvernance, contrôle humain et journalisation",
+    "composantes": "Agent et système agentique : composantes et vocabulaire", "nonllm": "Agents à règles, heuristiques et statistiques en profondeur",
+    "patterns": "Design patterns des systèmes agentiques", "implementation": "Implémenter un système agentique en Python",
+    "evaluation": "Évaluer un système agentique", "casusage": "Cas d'usage et conception d'un système complet",
 }
 
 NOTEBOOKS = {
@@ -42,6 +48,10 @@ NOTEBOOKS = {
     "06": {
         "prerequis": ["confiance", "robustesse", "graine"],
         "acquis": ["concevoir une grille de scénarios de test, du nominal aux limites", "lancer une campagne de simulations et présenter un taux de réussite avec son intervalle de confiance", "rejouer un échec à partir de sa graine et de sa trace", "rédiger un rapport de validation avec des seuils d'acceptation"],
+    },
+    "07": {
+        "prerequis": ["composantes", "autonomie", "familles", "nonllm", "llm", "complexite", "risque", "routage", "rag", "patterns", "implementation", "evaluation", "gouvernance", "casusage"],
+        "acquis": ["écrire un routeur et mesurer son exactitude sur un jeu de courriers", "placer un LLM en interface et des règles en contrôle, puis mesurer ce que le contrôle rattrape", "calculer la fiabilité d'une chaîne d'agents et l'erreur d'un vote entre trois sources, indépendantes ou non", "régler un arbitre et déduire des coûts d'erreur les seuils de passage à l'humain", "mesurer le rappel d'un mini-RAG et tenir un journal qui explique chaque décision"],
     },
 }
 

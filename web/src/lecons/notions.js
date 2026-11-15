@@ -1,10 +1,13 @@
-// Module 0 : les 20 leçons. Chaque leçon suit la même progression pédagogique :
+// Module 0 : les leçons. Chaque leçon suit la même progression pédagogique :
 // situation et objectif, vocabulaire, prédiction, démonstration segmentée et commentée,
 // exemple résolu pas à pas, erreur fréquente, exercice guidé, transfert, point à retenir.
 // `etapes[].fin` est la position (entre 0 et 1) où l'animation s'arrête à la fin de l'étape.
 import * as M from '../animations/Mini.jsx';
 import { THEORIE, ATELIER } from './cours.js';
 import { NOUVELLES } from './nouvelles.js';
+import { AGENTIQUE_A } from './agentique-a.js';
+import { AGENTIQUE_B } from './agentique-b.js';
+import { AGENTIQUE_C } from './agentique-c.js';
 
 export const BLOCS = [
   { module: 1, titre: 'Décider : trois familles de solutions IA' },
@@ -13,6 +16,7 @@ export const BLOCS = [
   { module: 4, titre: 'Optimiser sous contraintes' },
   { module: 5, titre: "Rester autonome dans l'incertitude" },
   { module: 6, titre: 'Tester et valider' },
+  { module: 7, titre: 'Systèmes agentiques : organiser plusieurs décideurs' },
 ];
 
 const BASE = [
@@ -389,7 +393,12 @@ const BASE = [
 export const NOTIONS = (() => {
   const liste = BASE.map((n) => ({ ...n, theorie: THEORIE[n.id], atelier: ATELIER[n.id] }));
   for (const n of NOUVELLES) liste.splice(liste.findIndex((x) => x.id === n.apres) + 1, 0, n);
-  return liste;
+  // Bloc « Systèmes agentiques », dans l'ordre du support : composantes, autonomie, familles, agents non LLM, LLM,
+  // complexité, risque, routage, RAG, design patterns, implémentation, évaluation, gouvernance, cas d'usage.
+  const [autonomie, routage, rag, gouvernance] = AGENTIQUE_B;
+  const [familles, ...architectures] = AGENTIQUE_A;
+  const [composantes, nonllm, patterns, implementation, evaluation, casusage] = AGENTIQUE_C;
+  return [...liste, composantes, autonomie, familles, nonllm, ...architectures, routage, rag, patterns, implementation, evaluation, gouvernance, casusage];
 })();
 
 export const notion = (id) => NOTIONS.find((n) => n.id === id);

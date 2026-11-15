@@ -31,7 +31,7 @@ if (!webgl) console.warn('AVERTISSEMENT : WebGL indisponible dans ce navigateur 
 await page.waitForSelector(webgl ? '[data-testid=vue3d] canvas' : '[data-testid=vue3d]');
 await page.waitForTimeout(1500);
 verifier((await page.textContent('h1')).includes('agents autonomes'), 'accueil : titre de la formation');
-verifier((await page.locator('.carte.module').count()) === 7, 'accueil : module 0 et six modules');
+verifier((await page.locator('.carte.module').count()) === 8, 'accueil : module 0, six modules du syllabus et module 7 en prolongement');
 await capture('01-accueil');
 await page.locator('[data-testid=lecture]').first().click();
 await page.waitForTimeout(3500);
@@ -45,7 +45,7 @@ else verifier((await page.textContent('main')).includes('demande WebGL'), 'accue
 await page.goto(`${base}/#/module/0`);
 await page.waitForSelector('.lecon-carte');
 const nbLecons = await page.locator('.lecon-carte').count();
-verifier(nbLecons === 25, `module 0 : ${nbLecons} leçons au sommaire`);
+verifier(nbLecons === 39, `module 0 : ${nbLecons} leçons au sommaire`);
 await capture('m0-sommaire');
 const allerAuTemps = async (id, k) => { await page.goto(`${base}/#/module/0/${id}`); await page.waitForSelector('.temps'); await page.locator('.temps button').nth(k).click(); };
 await page.goto(`${base}/#/module/0/bayes`);
@@ -157,14 +157,23 @@ await page.getByLabel('Température initiale').fill('1');
 await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier recuit : le réglage trouvé atteint l\'objectif');
 // 9. Tous les autres ateliers, leçon par leçon : calculs complets et assemblage de programmes.
-//    Avec les huit ateliers ci-dessus, les 25 leçons sont validées par une construction réelle.
+//    Avec les huit ateliers ci-dessus et les dix du bloc « Systèmes agentiques », les 39 leçons sont validées par une construction réelle.
 const chemin = require('node:path'); const tmpdir = fs.mkdtempSync(chemin.join(require('node:os').tmpdir(), 'e2e-'));
 fs.writeFileSync(chemin.join(tmpdir, 'e.js'), `export { NOTIONS } from ${JSON.stringify(chemin.resolve('web/src/lecons/notions.js'))};`);
 require(chemin.resolve('web/node_modules/esbuild')).buildSync({ entryPoints: [chemin.join(tmpdir, 'e.js')], bundle: true, format: 'cjs', platform: 'node', outfile: chemin.join(tmpdir, 'n.cjs'), jsx: 'automatic', logLevel: 'error', nodePaths: [chemin.resolve('web/node_modules')] });
 const { NOTIONS } = require(chemin.join(tmpdir, 'n.cjs'));
 const construits = new Set(['regles', 'contraintes', 'reactif', 'gradient', 'neurone', 'mdp', 'qlearning', 'recuit']);
+const agentique = { ...require('./e2e_agentique_a.cjs'), ...require('./e2e_agentique_b.cjs'), ...require('./e2e_agentique_c.cjs') };
 for (const n of NOTIONS) {
   const a = n.atelier;
+  if (agentique[n.id]) {
+    await allerAuTemps(n.id, 4);
+    const r = await agentique[n.id](page);
+    verifier(r.refuse && r.valide, `atelier « ${n.id} » (${a.type}) : essai insuffisant refusé, construction correcte validée`);
+    await page.locator('.atelier').screenshot({ path: `${sortie}/atelier-m7-${n.id}.jpg`, type: 'jpeg', quality: 82 });
+    if (r.refuse && r.valide) construits.add(n.id);
+    continue;
+  }
   if (a.type !== 'formulaire' && a.type !== 'parsons') continue;
   await allerAuTemps(n.id, 4);
   await page.locator('[data-testid=verifier]').click();
@@ -202,8 +211,8 @@ for (const id of ids) {
 }
 verifier(true, `les ${ids.length} leçons affichent cours, démonstration et atelier`);
 
-// Les six modules
-for (let n = 1; n <= 6; n++) {
+// Les six modules du syllabus et le module 7, sans scène 3D
+for (let n = 1; n <= 7; n++) {
   await page.goto(`${base}/#/module/${n}`);
   await page.waitForSelector('.animation');
   await page.waitForTimeout(700);
@@ -226,12 +235,21 @@ for (let n = 1; n <= 6; n++) {
     verifier((await page.locator('.decision .raison').first().textContent()).length > 5, `module ${n} : la décision est expliquée`);
     await page.locator('.lecteur').screenshot({ path: `${sortie}/m${n}-scene3d.jpg`, type: 'jpeg', quality: 82 });
   }
+  const liensNotebook = await page.locator('.carte.notebook a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
   verifier((await page.locator('.objectifs li').count()) >= 3 && (await page.locator('.prerequis a').count()) >= 3, `module ${n} : objectifs et prérequis`);
   verifier((await page.locator('.cours-notion').count()) >= 3, `module ${n} : cours théorique à déplier`);
   verifier((await page.locator('.quiz .exercice').count()) === 3, `module ${n} : quiz de fin`);
+  const suite = { 1: 3, 2: 1, 3: 4, 5: 1, 6: 3 }[n] || 0;
+  verifier((await page.locator('.suite-agentique a').count()) === suite, `module ${n} : ${suite ? `${suite} leçon(s) du module 7 en prolongement` : 'pas de carte de prolongement'}`);
+  if (n === 7) {
+    verifier((await page.locator('.surtitre').textContent()).trim() === 'Module 7 · Prolongement du programme', 'module 7 : surtitre sans jour ni durée');
+    verifier((await page.locator('.cours-notion').count()) === 14, 'module 7 : quatorze leçons au cours du module');
+    verifier((await page.locator('[data-testid=vue3d]').count()) === 0, 'module 7 : pas de scène 3D');
+    verifier(liensNotebook.includes('notebooks/07_systemes_agentiques.html'), 'module 7 : notebook 07 proposé');
+    await capture('m7-page', { fullPage: true });
+  }
   if (n === 3) { await page.locator('.mission').scrollIntoViewIfNeeded(); await page.locator('.mission').screenshot({ path: `${sortie}/m3-mission.jpg`, type: 'jpeg', quality: 82 }); }
-  const liens = await page.locator('.carte.notebook a').evaluateAll((as) => as.map((a) => a.getAttribute('href')));
-  for (const lien of liens.filter((l) => l.startsWith('notebooks/'))) {
+  for (const lien of liensNotebook.filter((l) => l.startsWith('notebooks/'))) {
     const r = await page.request.get(`${base}/${lien}`);
     verifier(r.ok(), `module ${n} : ${lien} disponible`);
   }

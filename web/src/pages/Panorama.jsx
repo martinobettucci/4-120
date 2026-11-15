@@ -7,7 +7,7 @@ const METHODE = [
   ['Prédire', "Vous vous engagez sur une réponse avant de voir. Se tromper ici est utile : c'est ce qui rend la suite mémorable."],
   ['Observer', "La démonstration est découpée en étapes courtes, chacune commentée, avec l'endroit précis à regarder. Vous avancez à votre rythme."],
   ['Le cours', "La théorie est exposée : définition, modèle, formule, algorithme, limites. Un exemple chiffré est ensuite résolu pas à pas."],
-  ['Construire', "Vous fabriquez l'objet étudié : une base de règles, un neurone, un modèle de contraintes, une politique, un programme. Le système le met à l'épreuve et vous dit quoi corriger."],
+  ['Construire', "Vous fabriquez l'objet étudié : une base de règles, un neurone, un modèle de contraintes, une politique, un programme, un routeur, un arbitre. Le système le met à l'épreuve et vous dit quoi corriger."],
   ['Retenir', "L'idée tient en une phrase, reliée à d'autres domaines et au module où vous la programmerez."],
 ];
 

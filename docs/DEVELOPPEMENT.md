@@ -44,11 +44,11 @@ Les sources sont les fichiers `notebooks/src/NN_nom.py`, au format « percent »
 ## Tests
 
 ```bash
-./runDev.sh tests   # pytest : noyau, décision, optimisation
+./runDev.sh tests   # pytest : noyau, décision, optimisation, dossiers
 ./runDev.sh e2e     # Playwright : navigation, animations, scènes 3D, notebooks
 ```
 
-Le parcours de bout en bout (`tools/e2e.cjs`) vérifie les six modules, fait avancer chaque animation et chaque scène 3D, contrôle la présence des notebooks, puis enregistre des captures JPEG et une vidéo WebM dans `docs/captures/`.
+Le parcours de bout en bout (`tools/e2e.cjs`) vérifie les sept modules, résout l'atelier de chacune des 39 leçons, fait avancer chaque animation et chaque scène 3D, contrôle la présence des notebooks, puis enregistre des captures JPEG et une vidéo WebM dans `docs/captures/`.
 
 Contrôle complet du contenu pédagogique, à lancer après toute modification d'une leçon :
 

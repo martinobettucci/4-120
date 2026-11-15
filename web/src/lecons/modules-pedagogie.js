@@ -4,6 +4,7 @@ export const PEDAGOGIE = {
   1: {
     objectifs: ["Écrire un petit système à règles et expliquer la décision qu'il rend", "Calculer une probabilité a posteriori et la relier à la prévalence", "Entraîner un classifieur et l'évaluer sur des données jamais vues", "Choisir, pour un problème donné, l'approche la plus adaptée et justifier ce choix"],
     prerequis: ['regles', 'bayes', 'reseau', 'utilite', 'supervise', 'neurone', 'gradient', 'recommandation'],
+    suite: ['familles', 'nonllm', 'llm'],
     avant: "Choisissez le cas « Vibration forte, moteur tiède » dans la liste. Avant de lancer l'animation, notez la décision que vous prendriez vous-même. Vous la comparerez aux trois approches.",
     pieges: ["Chercher « la meilleure approche » dans l'absolu. Le bon choix dépend des données disponibles, du besoin d'explication et du coût d'une erreur.", "Comparer des exactitudes sans regarder quelles erreurs sont commises : arrêter un robot sain coûte moins cher que laisser rouler un robot dangereux."],
     quiz: [
@@ -15,6 +16,7 @@ export const PEDAGOGIE = {
   2: {
     objectifs: ["Décrire un agent par son environnement, ses capteurs, ses effecteurs et son objectif", "Lire une observation de lidar et en déduire les mouvements possibles", "Programmer une boucle perception, décision, action et l'exécuter pas à pas", "Mettre en évidence l'écart entre état réel et observation, et ses conséquences"],
     prerequis: ['agent', 'lidar', 'etat', 'boucle'],
+    suite: ['composantes'],
     avant: "Avant de lancer l'animation, dessinez de mémoire le schéma d'un agent avec ses deux flux. Vous le comparerez à l'étape 1.",
     mission: [
       { faire: "Chargez « Agent complet, entrepôt de référence », cochez « Vue éclatée du robot » puis cliquez sur « Près du robot ».", question: "Quels composants du robot correspondent aux capteurs, à la décision et aux effecteurs ?", reponse: "Le lidar jaune au sommet est le capteur, le calculateur blanc porte la décision, les roues sont les effecteurs. La batterie fournit l'énergie." },
@@ -31,6 +33,7 @@ export const PEDAGOGIE = {
   3: {
     objectifs: ["Programmer un contrôleur réactif, un contrôleur délibératif (A*) et un contrôleur hybride", "Prévoir lequel échoue dans un scénario donné et expliquer pourquoi", "Comparer des architectures sur des mesures : réussite, collisions, temps de décision", "Proposer une architecture adaptée à un cas pratique"],
     prerequis: ['boucle', 'reactif', 'astar', 'hybride'],
+    suite: ['complexite', 'risque', 'routage', 'patterns'],
     avant: "Avant l'étape 4 de l'animation, remplissez mentalement le tableau : pour chaque architecture, réussite ou échec dans le cul-de-sac, puis face à la palette imprévue.",
     mission: [
       { faire: "Laissez « Agent hybride » en A et « Agent délibératif » en B. Avant de lancer la lecture, lisez la question.", question: "Prédisez : à l'étape 6, une palette tombe sur le trajet. Que fera chacun des deux robots ?", reponse: "L'hybride détecte la palette au lidar et replanifie. Le délibératif suit son plan initial sans regarder ses capteurs : il heurte la palette, puis reste décalé par rapport à son plan." },
@@ -58,6 +61,7 @@ export const PEDAGOGIE = {
   5: {
     objectifs: ["Programmer une boucle d'autonomie qui tient compte de l'incertitude", "Mettre à jour une croyance après une mesure et après un déplacement", "Comparer une politique naïve et une politique filtrée sur plusieurs graines", "Entraîner une politique par Q-learning et l'encadrer par une garde de sécurité"],
     prerequis: ['etat', 'croyance', 'mdp', 'qlearning', 'exploration'],
+    suite: ['autonomie'],
     avant: "Avant l'étape 3 de l'animation, prédisez : après un déplacement, la croyance sera-t-elle plus nette ou plus étalée ?",
     mission: [
       { faire: "Laissez « Politique améliorée » en A (bleu) et « Politique simple » en B (orange). Avancez de cinq étapes.", question: "Repérez l'anneau rouge (position mesurée) et l'anneau vert (position estimée par le filtre). Lequel est le plus proche du robot bleu ?", reponse: "L'anneau vert. La mesure brute saute d'une case à l'autre, l'estimation filtrée reste collée à la position réelle." },
@@ -74,6 +78,7 @@ export const PEDAGOGIE = {
   6: {
     objectifs: ["Concevoir une grille de scénarios de test, du nominal aux limites", "Lancer une campagne de simulations et en mesurer les résultats", "Présenter un taux de réussite avec son intervalle de confiance", "Rejouer un échec et rédiger un rapport de validation"],
     prerequis: ['confiance', 'robustesse', 'graine'],
+    suite: ['implementation', 'evaluation', 'gouvernance'],
     avant: "Avant l'étape 4, tracez à main levée la courbe du taux de réussite que vous attendez quand les perturbations augmentent : droite, courbe douce ou chute brutale ?",
     mission: [
       { faire: "Laissez « Scénario limite, après correction » en A et « avant correction » en B. Lancez la lecture.", question: "Prédisez d'abord : lequel des deux robots aura des collisions ? Repérez-les : le châssis devient rouge.", reponse: "Le robot orange (avant correction) subit plusieurs collisions et met environ deux fois plus d'étapes. Le robot bleu arrive sans collision." },
@@ -85,6 +90,17 @@ export const PEDAGOGIE = {
       { q: "Votre agent réussit 19 simulations sur 20. Que pouvez-vous affirmer ?", ok: 1, choix: [['Son taux de réussite est de 95 %', "C'est le taux mesuré, mais avec 20 essais l'incertitude est très large."], ["Trop peu d'essais pour conclure : il faut une campagne plus large", "Exact : avec 20 essais, le vrai taux peut être très inférieur à 95 %."], ['Il est validé', "Aucune validation ne repose sur 20 essais en conditions nominales."]] },
       { q: "Que doit contenir un scénario de test de niveau « limite » ?", ok: 2, choix: [['Les conditions habituelles', "Ce sont les conditions nominales."], ['Des conditions impossibles', "Un test irréaliste n'apprend rien sur le comportement en service."], ['Les pires conditions réalistes : bruit fort, glissement, obstacles nombreux', "Exact : on cherche le point où les performances se dégradent."]] },
       { q: "Après une correction, comment vérifier qu'elle n'a rien cassé ?", ok: 0, choix: [['Relancer toute la campagne avec les mêmes graines et comparer aux seuils', "Exact : c'est un test de non-régression, rendu possible par la reproductibilité."], ["Tester seulement le cas qui échouait", "La correction peut dégrader d'autres scénarios."], ['Faire confiance à la correction', "Seule la mesure permet de l'affirmer."]] },
+    ],
+  },
+  7: {
+    objectifs: ["Attribuer à chaque étape d'un traitement la famille d'agent adaptée, mesures à l'appui", "Encadrer un LLM par des contrôles déterministes avant toute action", "Calculer la fiabilité d'une chaîne d'agents et le taux d'erreur d'un vote, et dire quand ces calculs ne tiennent plus", "Écrire un routeur, régler un arbitre et fixer des seuils de passage à l'humain à partir des coûts", "Mesurer le rappel d'un système RAG et concevoir le journal qui rend un système auditable", "Composer une architecture à partir des design patterns et la structurer en couches testables", "Évaluer un routeur, un arbitre et un modérateur par leurs indicateurs"],
+    prerequis: ['composantes', 'autonomie', 'familles', 'nonllm', 'llm', 'complexite', 'risque', 'routage', 'rag', 'patterns', 'implementation', 'evaluation', 'gouvernance', 'casusage'],
+    avant: "Avant de lancer l'animation, répondez pour vous-même : si vous deviez automatiser l'instruction d'un dossier dans votre service, combien d'agents mettriez-vous, et lequel aurait le dernier mot ? Vous comparerez votre réponse à l'étape 5.",
+    pieges: ["Réduire « agent » à « LLM ». Règles, scores et solveurs sont des agents, souvent meilleurs, moins chers et plus justifiables sur leur étape.", "Ajouter des agents pour « fiabiliser » sans vérifier que leurs erreurs sont indépendantes : trois copies du même modèle se trompent ensemble.", "Laisser une sortie de modèle déclencher une action sans contrôle déterministe ni trace dans un journal."],
+    quiz: [
+      { q: "Deux agents se trompent chacun une fois sur dix, et rendent le même avis dans 96 % des cas. Que faut-il en conclure ?", ok: 1, choix: [['Ils sont très fiables : leur accord le prouve', "Deux agents indépendants à 10 % d'erreur ne seraient d'accord que dans 82 % des cas."], ['Leurs erreurs sont corrélées : leur accord ne vaut pas deux avis', "Exact : un accord bien supérieur aux 82 % attendus signale qu'ils se trompent sur les mêmes cas."], ["Il faut en ajouter un troisième identique", "Un troisième agent du même type partagerait les mêmes erreurs."]] },
+      { q: "Une chaîne enchaîne six agents, chacun fiable à 97 %. Quelle part des dossiers en sort sans erreur ?", ok: 2, choix: [['97 %', "Ce serait la fiabilité d'un seul agent : les six fiabilités se multiplient."], ['Environ 91 %', "C'est la fiabilité d'une chaîne de trois agents à 97 %, pas de six."], ['Environ 83 %', "Exact : 0,97 multiplié six fois par lui-même donne 0,833."]] },
+      { q: "Un LLM extrait le montant d'une demande d'aide, et ce montant déclenche un versement. Où placer la décision de verser ?", ok: 0, choix: [['Dans des règles de contrôle appliquées à la sortie du LLM', "Exact : le LLM lit et propose, des contrôles déterministes décident de ce qui peut être exécuté."], ['Dans le LLM, en lui demandant de se relire', "Une relecture par le même modèle partage ses erreurs et reste impossible à auditer."], ["Nulle part : 88 % d'extractions justes suffisent", "Les 12 % restants deviendraient autant de versements erronés."]] },
     ],
   },
 };

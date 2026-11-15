@@ -2,6 +2,22 @@
 
 Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémantique.
 
+## [1.4.0] 2026-11-15
+
+### Ajouté
+
+- Module 7, « Systèmes agentiques », en prolongement du programme. Il reprend le support de l'autrice « Systèmes agentiques : une exploration approfondie » (`docs/sources/`), refait au format du site. Rien n'est retiré du programme existant.
+- Quatorze leçons en six temps, chacune avec son cours, son exemple résolu et son atelier : composantes et vocabulaire, niveaux d'autonomie, familles d'agents, agents à règles, heuristiques et statistiques, agent LLM et hybridation, diffusion de la complexité, diffusion du risque, routage, arbitrage et modération, RAG et mémoire, design patterns, implémentation en Python, évaluation, gouvernance et journalisation, cas d'usage et conception complète. Le module 0 compte 39 leçons.
+- Dix ateliers de construction propres au module 7 (composition d'un agent, contrôles d'un LLM, contrôles d'une chaîne, arbitre, seuils de délégation, routeur, étage de recherche d'un RAG, schéma de journal, heuristique de priorité, architecture par design patterns), et quatre ateliers de calcul ou d'assemblage de programme.
+- Notebook `07_systemes_agentiques` : un système de traitement de dossiers construit brique par brique, avec une mesure après chaque ajout. La lecture du courrier est confiée à `Qwen/Qwen3.5-0.8B` quand il est disponible, à un extracteur simulé sinon, et le mode utilisé est affiché.
+- Bibliothèque : module `ascent_agents.dossiers` (dossiers synthétiques, routeur, agent à règles, score d'anomalie, extracteur, arbitre, modérateur, mini-RAG, journal) et ses tests.
+- Page du module 7 et son animation en cinq étapes. Carte « Pour aller plus loin » sur les modules 1, 2, 3, 5 et 6, qui renvoie vers les leçons du module 7.
+- Parcours automatisé : les 39 ateliers sont résolus de bout en bout, le module 7 est vérifié comme les autres (`tools/e2e_agentique_a.cjs`, `_b.cjs`, `_c.cjs`).
+
+### Modifié
+
+- Accueil, page des notebooks et panorama : compteurs et textes mis à jour (39 leçons, 7 notebooks). Les mentions du programme de 12 heures en 6 modules sont inchangées.
+
 ## [1.3.1] 2026-11-14
 
 ### Corrigé

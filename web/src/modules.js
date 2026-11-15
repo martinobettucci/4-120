@@ -73,6 +73,18 @@ export const MODULES = [
     scene: { traces: ['m6_nominal_naif', 'm6_nominal_robuste', 'm6_degrade_naif', 'm6_degrade_robuste', 'm6_limite_naif', 'm6_limite_robuste'], a: 'm6_limite_robuste', b: 'm6_limite_naif', consigne: "Scénario limite : capteurs très bruités et roues qui glissent. L'agent corrigé est en bleu, l'agent d'origine en orange. Repérez les collisions (le châssis devient rouge) et rejouez-les étape par étape." },
     synthese: ["Une exécution réussie ne valide rien : il faut une distribution de résultats.", "Les scénarios de test couvrent le nominal, le dégradé et les limites.", "Un taux de réussite s'accompagne toujours d'un intervalle de confiance.", "Tout échec doit être rejouable : graine, paramètres et trace sont conservés."],
   },
+  {
+    n: 7, jour: null, horaire: 'Prolongement du programme',
+    titre: 'Systèmes agentiques',
+    court: "Familles d'agents, LLM et hybridation, diffusion de la complexité et du risque, routage, RAG, design patterns, évaluation, gouvernance",
+    notebook: '07_systemes_agentiques', dureeTp: 'Travaux pratiques',
+    probleme: "Un service instruit chaque année des milliers de dossiers : des pièces à lire, des règles à vérifier, un risque à estimer, une décision à rendre et à justifier. Un seul agent ne suffit plus. Combien en faut-il, de quelles familles, qui tranche quand ils sont en désaccord, que peuvent-ils exécuter seuls, et qui en répond ?",
+    syllabus: ["Fondements : agent, système agentique, composantes, niveaux d'autonomie", "Typologie des agents par régime de décision et grille de choix, agents à règles, heuristiques et statistiques en profondeur", "Agents LLM : apports, limites, hybridation avec des règles et des modèles statistiques", "Architectures : diffusion de la complexité, diffusion du risque, routage, arbitrage et modération", "RAG et mémoire, design patterns, implémentation en Python", "Évaluation, gouvernance, contrôle humain et journalisation, cas d'usage et conception complète"],
+    tp: "Construire un système complet de traitement de dossiers et mesurer l'effet de chaque composant ajouté.",
+    notebookPoints: ["Dossiers synthétiques, agent à règles et agent statistique mesurés séparément", "Extraction par un petit modèle de langage (Qwen3.5-0.8B sur Colab) ou par un extracteur simulé, contrôlée par des règles", "Chaîne d'agents : fiabilité de bout en bout, avec et sans contrôles", "Trois décideurs et un arbitre : erreurs indépendantes contre erreurs corrélées", "Routeur, modérateur et seuils de passage à l'humain déduits des coûts", "Mini-RAG mesuré par son rappel, journal structuré de chaque décision"],
+    scene: null,
+    synthese: ["Un agent n'est pas forcément un LLM : on choisit le régime de décision étape par étape.", "Décomposer rend le système testable, mais les fiabilités se multiplient : on contrôle les maillons fragiles.", "Plusieurs avis ne réduisent le risque que si leurs erreurs sont indépendantes.", "Le niveau d'autonomie se règle par des seuils déduits des coûts d'erreur, et toute décision est journalisée."],
+  },
 ];
 
 export const DEPOT = import.meta.env.VITE_DEPOT || 'martinobettucci/4-120';
