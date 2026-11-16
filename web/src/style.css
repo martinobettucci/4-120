@@ -352,3 +352,37 @@ button.lien { border: none; background: none; color: var(--accent); text-decorat
 .cours-notion summary span { color: var(--texte-doux); font-weight: 400; font-size: 0.9rem; }
 .cours-notion[open] summary { margin-bottom: 8px; }
 @media (max-width: 900px) { .atelier.deux { grid-template-columns: 1fr; } .curseur { grid-template-columns: minmax(0, 1fr); } .explications .explication { grid-template-columns: 1fr; gap: 4px; } }
+
+/* Vocabulaire de Situer : des exemples concrets que l'apprenant fait avancer. */
+.etiquette-base { display: block; width: fit-content; color: var(--texte-doux); font-size: .72rem; letter-spacing: .05em; margin-bottom: 5px; text-transform: uppercase; }
+.parcours-bases { border-left: 4px solid var(--accent); padding: 10px 14px; background: var(--fond); border-radius: 0 8px 8px 0; }
+.mots.mots-animes-choix { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 14px 0; }
+.mots.mots-animes-choix > div { display: block; border: 1px solid var(--bord); border-radius: 10px; padding: 12px; background: var(--fond); }
+.mots.mots-animes-choix > .mot-choisi { border: 2px solid var(--accent); padding: 11px; background: var(--carte); }
+.mots-animes-choix dt button { border: 0; background: none; color: var(--accent); font: inherit; text-align: left; padding: 4px 0 8px; width: 100%; cursor: pointer; }
+.mots-animes-choix dd { font-size: .92rem; line-height: 1.5; }
+.mot-panneau { border: 1px solid var(--bord); border-radius: 14px; overflow: hidden; padding: 18px; margin-bottom: 20px; }
+.mot-panneau h4 { font-size: 1.15rem; margin-bottom: 16px; }
+.mot-etapes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; padding: 0; margin: 0 0 14px; list-style: none; }
+.mot-etapes button { display: flex; align-items: center; gap: 8px; width: 100%; height: 100%; border: 1px solid var(--bord); border-radius: 9px; padding: 10px; text-align: left; background: var(--fond); color: var(--texte); font: inherit; font-size: .85rem; cursor: pointer; }
+.mot-etapes button[aria-current] { border-color: var(--accent); box-shadow: inset 0 -3px var(--accent); font-weight: 700; }
+.mot-etapes span { border-radius: 50%; display: grid; place-items: center; background: var(--plan-sol); min-width: 24px; height: 24px; font-weight: 700; }
+.mot-visuel { background: #fafbfe; border: 1px solid var(--bord); border-radius: 12px; max-width: 700px; margin: 0 auto 16px; }
+.mot-dessin { width: 100%; display: block; font-family: system-ui, sans-serif; }
+.mot-commentaire p { margin: 8px 0; }
+.mot-etape-titre { font-weight: 750; color: var(--accent); }
+.mot-bilan { border-left: 4px solid var(--jaune); background: var(--fond); border-radius: 0 8px 8px 0; padding: 10px 12px; }
+.mot-commandes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.mot-commandes button { flex: 1; }
+.mots-animes button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.mot-prochain { margin-top: 14px; }
+@media (max-width: 600px) {
+  .mots.mots-animes-choix { grid-template-columns: 1fr; }
+  .lecon .temps-carte { padding: 16px 12px; }
+  .mot-panneau { padding: 12px 8px; }
+  .mot-etapes { grid-template-columns: 1fr; gap: 5px; }
+  .mot-etapes button { padding: 7px 10px; }
+  .mot-commandes { display: grid; grid-template-columns: 1fr 1fr; }
+  .mot-commandes button:last-child { grid-column: 1 / -1; }
+  .mot-commandes .bouton { padding: 8px; font-size: .87rem; }
+}

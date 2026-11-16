@@ -40,11 +40,11 @@ La théorie de la charge cognitive (John Sweller) établit qu'un débutant appre
 
 https://en.wikipedia.org/wiki/Worked-example_effect
 
-### Récupération en mémoire et retour explicatif
+### Rappels disponibles et retour explicatif
 
-Retrouver une réponse de mémoire consolide davantage l'apprentissage que relire. La méta-analyse de Pan et Rickard (Psychological Bulletin, 2018) montre que cet effet se transfère à de nouvelles situations, et qu'un retour qui explique (et non un simple « juste » ou « faux ») le renforce.
+Le support doit permettre de raisonner sans exiger de mémoriser les pages précédentes. Lorsqu'une notion antérieure est nécessaire, un bref repère la redonne directement dans la page concernée, avec un accès facultatif aux bases. Aucun quiz de restitution n'est imposé pour ce rappel. Les exercices restent des occasions d'appliquer et de transférer, avec un retour qui explique le raisonnement.
 
-https://sc-pan.github.io/pdf/PR_2018.pdf
+Les exemples résolus du PDF utilisent des situations et des données différentes des exercices. Ils enseignent la méthode sans donner à l'avance le cas, les valeurs et le résultat qui seront demandés dans l'atelier. Cette consigne explicite du formateur remplace le choix antérieur de récupération espacée.
 
 ### Prédire, observer, expliquer
 
@@ -76,8 +76,8 @@ Chaque notion est une page, structurée de la même façon. Les données sont da
 
 | Temps | Contenu | Principes appliqués |
 | --- | --- | --- |
-| 0. La notion | Deux paragraphes de définition avec les mots du cours, puis un ou deux liens vers Wikipédia pour en savoir plus | Pré-apprentissage (Mayer), vocabulaire avant la démonstration |
-| 1. Situer | Situation concrète, objectif formulé en « vous saurez… », vocabulaire défini, rappel d'une leçon antérieure | Problème (Merrill), attention, objectif et rappel (Gagné), pré-apprentissage (Mayer), récupération espacée |
+| 0. La notion | Définition, liens Wikipédia et prérequis animés avant les notions spécialisées | Pré-apprentissage (Mayer), vocabulaire avant la démonstration |
+| 1. Situer | Situation concrète, objectif formulé en « vous saurez… », bref repère utile directement disponible | Problème (Merrill), attention, objectif et rappel (Gagné), rappel explicite des prérequis |
 | 2. Prédire | Une question à laquelle l'apprenant répond avant de voir | Prédire, observer, expliquer |
 | 3. Observer | Animation découpée en étapes qui s'arrêtent, commentaire à côté de l'image, consigne « Regardez : … » | Démonstration (Merrill), segmentation, signalement, contiguïté (Mayer) |
 | 4. Le cours | Retour sur la prédiction, théorie (définition, modèle, formule, algorithme, propriétés, limites), exemple chiffré révélé pas à pas, erreur fréquente | Présentation du contenu et guidage (Gagné), exemple résolu |
@@ -185,9 +185,9 @@ Dans les trente-neuf ateliers, la vérification réussie ouvre un encadré « Po
 Choix de conception :
 
 - **L'animation ne tourne plus en boucle.** Elle joue une étape, s'arrête, et attend l'apprenant.
-- **Les chiffres de l'animation sont ceux de l'exemple résolu.** L'apprenant peut refaire le calcul et retrouver ce qu'il a vu.
+- **La figure et son exemple restent cohérents.** Dans le PDF, les cas et chiffres sont propres au support ; ils ne reproduisent pas les réponses des exercices du site.
 - **La démonstration attend une prédiction**, et la leçon n'est acquise qu'une fois l'atelier réussi. La notion en bref et les six temps restent accessibles par leurs onglets : le guidage oriente sans enfermer.
-- **Le rappel de début de leçon** repose une question de l'avant-dernière leçon, pour espacer la récupération.
+- **Le rappel de début de leçon** redonne immédiatement le prérequis utile dans la page, sans question de mémoire. Les textes sont dans `web/src/lecons/rappels.js`.
 - **Le mode formateur** affiche la notion en bref et les six temps d'un coup, pour la projection en salle.
 - **La progression** est conservée dans le navigateur de l'apprenant, sans aucun envoi de données.
 

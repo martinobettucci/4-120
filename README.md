@@ -18,7 +18,17 @@ Site publié : https://martinobettucci.github.io/4-120/
 | Documentation | `docs/` | Syllabus, consignes de production, dossier d'architecture, journal |
 | Support PDF illustré | [PDF du programme](output/pdf/ASCENT-4-130-support-illustre.pdf) · [sources et fabrication](supports/pdf-programme/README.md) | Théorie, exemples commentés, illustrations et liens vers les 39 fondamentaux et les sept modules de pratique |
 
-Les trois supports partagent les mêmes exemples et un format commun de traces (`ascent-4130-trace/1`) : une expérience lancée dans un notebook se rejoue dans la scène 3D du site.
+Les notebooks et les simulations partagent un format commun de traces (`ascent-4130-trace/1`) : une expérience lancée dans un notebook se rejoue dans la scène 3D du site.
+
+Avant « Situer », le bloc 0 introduit les prérequis des 39 leçons : 91 bases animées précèdent les notions spécialisées, même lorsqu'elles ne figuraient pas dans le glossaire initial. Pour Bayes, le parcours part des proportions, construit les quatre cases de la matrice de confusion, puis distingue prévalence, sensibilité, taux de fausses alertes et probabilité sachant une alerte sur les mêmes 20 robots. Les autres leçons introduisent notamment la logique ET/OU, les données et la cible, les graphes, l'échantillonnage, les permissions et les sources.
+
+Au total, les 224 concepts disposent de 675 étapes commentées (trois par concept, six pour construire la matrice). L'apprenant avance à son rythme, met en pause ou rejoue le mouvement. Les proportions se comptent sur des jetons, les quantités se comparent sur des barres et les déplacements se suivent sur une grille. Les explications restent lisibles sans animation, y compris avec la préférence de réduction des mouvements.
+
+La [carte des prérequis des 39 leçons](docs/prerequis-lecons.md) précise ce que chaque parcours enseigne avant d'aborder le cours. Ce principe vaut pour toutes les leçons et tous les futurs sujets de formation, y compris les concepts absents du glossaire.
+
+## Réutiliser ce dépôt pour une formation
+
+Lire les [consignes de production pédagogique](docs/consignes-production.md), notamment les règles durables du formateur : prérequis animés, rappels courts directement dans la page, exemples du PDF distincts des exercices, justifications des solutions et relecture des livrables. Les exercices existants restent la référence ; le support utilise ses propres cas pour faire travailler le transfert.
 
 ## Démarrage rapide
 

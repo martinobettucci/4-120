@@ -2,6 +2,21 @@
 
 **ASCENT 4-130, Les agents autonomes et aide à la décision**
 
+## Règles durables pour réutiliser ce dépôt
+
+Consignes explicites du formateur, consolidées le 16 novembre 2026. Elles s'appliquent aussi lorsque le sujet de la formation change et priment sur une ancienne justification pédagogique ou un exemple déjà présent.
+
+- Ouvrir chaque leçon par un bloc 0 de théorie avant « Situer », avec un lien Wikipédia pertinent en français, ou en anglais si plus pertinent ou absent en français.
+- Introduire et animer les prérequis nécessaires à toutes les leçons, même hors du glossaire initial. Pour Bayes : proportions, réalité et résultat du test, quatre cases de la matrice de confusion, prévalence, sensibilité, fausses alertes puis probabilité conditionnelle. Un corrigé détaillé ne remplace pas cet apprentissage initial.
+- Maintenir une [carte des prérequis par leçon](prerequis-lecons.md), à revoir à partir du contenu réel lorsque le sujet ou le programme change.
+- Présenter des animations explicatives, progressives, commentées, rejouables et suspendables, lisibles aussi sur mobile et sans mouvement.
+- Rendre chaque page autonome : lorsqu'une connaissance précédente est utile, la rappeler brièvement dans la page concernée. Ne pas exiger de la retrouver de mémoire ni ajouter un quiz de restitution d'une ancienne leçon comme préalable.
+- Faire travailler le raisonnement et le transfert. Les exemples résolus du support PDF doivent avoir des scénarios, données et résultats propres, distincts de ceux des exercices. Changer seulement les noms ou l'ordre ne suffit pas. Une figure et l'exemple qu'elle accompagne doivent toutefois être cohérents entre eux.
+- Conserver les exercices qui fonctionnent : corriger les exemples du support pour supprimer la répétition des réponses. Dans cette correction, les scénarios, données, solutions et évaluateurs des exercices restent inchangés.
+- Après une réponse correcte, saisie directement ou obtenue avec « Voir la solution », expliquer chaque ligne de solution avec les faits du cas, dans un encadré proche de cette ligne. Ne pas simplement reformuler la réponse.
+- Livrer des supports complets et modifiables ; reconstruire le PDF à partir de ses sources et relire toutes les pages rendues. Distinguer validation technique, relecture visuelle et publication.
+- Lire les README du projet avant intervention. Travailler en développement uniquement ; ne jamais lancer PREPROD ou PROD. Préserver les modifications existantes ; ne pas committer, pousser ou publier sans instruction.
+
 ## 1. Objectif
 
 Concevoir une expérience pédagogique de 12 heures sur deux jours, fidèle au syllabus officiel 4-130. La formation articule :
@@ -82,7 +97,7 @@ Les scènes sont explicatives et explorables : rotation et zoom de la caméra, i
 
 ## 9. Synchronisation des supports
 
-Notebooks, animations et simulations utilisent les mêmes exemples. Une même expérimentation peut être expliquée par une animation, exécutée dans un notebook, visualisée dans la scène 3D, modifiée par les apprenants, puis réexécutée et comparée.
+Les traces d'une même expérimentation restent synchronisées entre notebooks, animations et simulations. Cette cohérence technique n'impose pas de reprendre les cas et réponses des exercices dans le support de cours : le PDF dispose d'exemples résolus distincts. Une même expérimentation peut être expliquée par une animation, exécutée dans un notebook, visualisée dans la scène 3D, modifiée par les apprenants, puis réexécutée et comparée.
 
 Le format commun de traces (`ascent-4130-trace/1`) contient, pour chaque étape : le numéro d'étape, l'état de l'environnement, les observations, la décision de l'agent, l'action exécutée, le résultat et les métriques de performance. Une trace exportée depuis un notebook se rejoue dans l'atelier 3D du site.
 

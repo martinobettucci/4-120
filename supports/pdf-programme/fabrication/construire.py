@@ -12,6 +12,7 @@ from reportlab.platypus import Paragraph
 from reportlab.lib.utils import ImageReader
 from PIL import Image
 from editorial import NOTES, CHAPTERS
+from exemples_pdf import EXEMPLES
 
 ROOT = Path(__file__).resolve().parents[3]
 BASE = ROOT / 'supports/pdf-programme'
@@ -19,6 +20,7 @@ OUT = ROOT / 'output/pdf/ASCENT-4-130-support-illustre.pdf'
 TMP = ROOT / '.tmp/pdf-programme'
 DATA = json.loads((BASE/'sources/programme.json').read_text())
 NOTIONS, MODULES = DATA['notions'], DATA['modules']
+assert set(EXEMPLES) == {n['id'] for n in NOTIONS}, 'Chaque notion doit avoir son propre exemple PDF'
 SITE = 'https://martinobettucci.github.io/4-120/'
 W,H = 1280,720
 NAVY, BLUE, GREEN, LIME, INK, MUTED, PAPER, LINE = map(HexColor, ['#111C35','#23468C','#238C33','#D9CF4A','#19253D','#556079','#F7F7F3','#DDE1E8'])
@@ -44,7 +46,7 @@ def p(txt,x,y,w,size=21,color=INK,bold=False,maxh=None,markup=False,leading=1.32
     """Coordonnées depuis le haut. Refuse tout débordement, sans tronquer."""
     raw=clean(txt)
     text=raw if markup else escape(raw).replace('\n','<br/>')
-    text=re.sub(r'[←→√∝]',lambda m:'<font name="Math">'+m.group(0)+'</font>',text)
+    text=re.sub(r'[←→√∝≈≥≤≠]',lambda m:'<font name="Math">'+m.group(0)+'</font>',text)
     original=size
     while True:
         obj=Paragraph(text, ParagraphStyle('p',fontName='NotoB' if bold else 'Noto',fontSize=size,leading=size*leading,textColor=color,spaceAfter=0,splitLongWords=False))
@@ -125,6 +127,55 @@ def voile_titre():
         c.setFillAlpha(alpha);c.rect(x,0,4,H,fill=1,stroke=0)
     c.restoreState()
 
+def figure_exemple(ex):
+    """Schéma vectoriel fondé sur le cas PDF, jamais sur les données d'atelier."""
+    genre, titre, valeurs = ex['figure']
+    x, y, w = 52, 244, 658
+    if genre == 'table':
+        col=350
+        rect(x,y,w,48,BLUE,4)
+        p(titre[0],x+16,y+10,col-25,18,white,bold=True,maxh=32,minsize=16)
+        p(titre[1],x+col+14,y+10,w-col-28,18,white,bold=True,maxh=32,minsize=16)
+        for i,(a,b) in enumerate(valeurs):
+            yy=y+54+i*80
+            rect(x,yy,w,74,HexColor('#E9EEF7') if i%2==0 else white,4)
+            p(a,x+16,yy+15,col-30,19,maxh=52,minsize=16)
+            p(b,x+col+14,yy+15,w-col-28,19,BLUE,bold=True,maxh=52,minsize=16)
+    elif genre == 'barres':
+        maxi=max(v for _,v in valeurs)
+        for i,(nom,v) in enumerate(valeurs):
+            yy=y+12+i*102
+            nombre=f'{v:g}'.replace('.',',')
+            p(f'{nom} : {nombre}',x+16,yy,w-32,20,BLUE,bold=True,maxh=55,minsize=17)
+            rect(x+16,yy+58,w-32,22,LINE,4)
+            if v: rect(x+16,yy+58,(w-32)*v/maxi,22,GREEN if i==len(valeurs)-1 else BLUE,4)
+        p(f'Unité : {titre} · échelle commune de 0 à {maxi:g}'.replace('.',','),x+16,565,w-32,14,MUTED,maxh=30,minsize=12)
+    elif genre == 'flux':
+        for i,label in enumerate(valeurs):
+            yy=y+6+i*108
+            rect(x+74,yy,w-148,75,HexColor('#E9EEF7'),8)
+            p(label,x+94,yy+21,w-188,23,BLUE,bold=True,maxh=52,minsize=19)
+            if i<len(valeurs)-1: arrow(x+w/2,yy+80,x+w/2,yy+102)
+    elif genre == 'matrice':
+        p('Réalité',x+108,y,w-108,16,MUTED,bold=True)
+        for j,nom in enumerate(valeurs[0]): p(nom,x+120+j*258,y+29,240,20,BLUE,bold=True)
+        for i,ligne in enumerate(valeurs[1:]):
+            yy=y+70+i*122
+            p('Alerte' if i==0 else 'Silence',x,yy+41,102,18,BLUE,bold=True)
+            for j,nb in enumerate(ligne):
+                xx=x+108+j*265;rect(xx,yy,252,111,HexColor('#E7F0E7') if i==j else HexColor('#FFF0DE'),6)
+                nom=[['Vrais positifs','Faux positifs'],['Faux négatifs','Vrais négatifs']][i][j]
+                p(nom,xx+14,yy+15,224,17,bold=True)
+                p(str(nb),xx+14,yy+48,224,33,BLUE,bold=True)
+    elif genre == 'reseau':
+        positions=[(271,250),(70,440),(472,440)]
+        arrow(350,350,180,432);arrow(412,350,582,432)
+        for (xx,yy),(nom,detail) in zip(positions,valeurs):
+            rect(xx,yy,220,101,HexColor('#E9EEF7'),7)
+            p(nom,xx+14,yy+17,192,23,BLUE,bold=True,maxh=35,minsize=20)
+            p(detail,xx+14,yy+59,192,18,maxh=35,minsize=16)
+    else: raise ValueError('Figure inconnue : '+genre)
+
 # Couverture : illustration intégrale, titre composé dans le PDF.
 start('Les agents autonomes et aide à la décision','couverture',bg=NAVY,bookmark='couverture',outline=0)
 image(BASE/'assets/couverture.png',0,0,W,H,True)
@@ -138,7 +189,7 @@ end(True)
 
 start('De la théorie à la pratique argumentée','introduction',bookmark='usage',outline=0)
 header('Lire, discuter, expérimenter','De la théorie à la pratique argumentée')
-p('Ce support accompagne l’explication orale. Chaque notion relie un modèle, un schéma et un exemple résolu ; l’atelier en ligne permet ensuite de construire, tester et justifier une solution.',52,145,1160,24,maxh=105)
+p('Ce support relie modèles, schémas et exemples résolus. Les ateliers utilisent d’autres cas et données : vous y appliquez le raisonnement. Les repères nécessaires restent disponibles dans les pages concernées.',52,145,1160,24,maxh=105)
 steps=[('Comprendre','Identifier ce que le modèle représente et ce qu’il laisse de côté.'),('Prévoir','Annoncer une décision ou un résultat avant de lancer l’expérience.'),('Expérimenter','Modifier une hypothèse, conserver les mesures et rejouer un cas.'),('Argumenter','Relier l’observation au modèle, à ses limites et au besoin métier.')]
 for i,(a,b) in enumerate(steps):
     x=52+i*300
@@ -189,16 +240,18 @@ for m in MODULES:
     p(f'{len(group)} notions · théorie et exemples commentés',58,585,500,16,white)
     end(True,module=num)
     for n in group:
-        nid=n['id']; formula,mechanism,question,limit=NOTES[nid]
+        nid=n['id']; formula,mechanism,_,_=NOTES[nid]
+        ex=EXEMPLES[nid]
+        formula=ex['relation'] or formula; mechanism=ex['mecanisme'] or mechanism
+        question,limit=ex['question'],ex['hypothese']
         # Théorie : un schéma exact suffisamment grand pour être projeté.
         start(n['nom'],'theorie',num,nid,bookmark='notion-'+nid,outline=1)
         header(f'Chapitre {num} · Comprendre',n['nom'])
         rect(52,159,658,66,HexColor('#E9EEF7'),3)
         p(formula,68,174,626,21,BLUE,bold=True,maxh=45,minsize=16)
-        last=len(n['etapes']); image(BASE/f'assets/figures/{nid}-{last}.png',52,244,658,344)
-        e=n['etapes'][-1]
+        figure_exemple(ex)
         p('À lire dans le schéma',66,600,634,14,BLUE,bold=True)
-        p(e['regard'][0].upper()+e['regard'][1:],66,623,634,15,MUTED,maxh=42,minsize=13)
+        p(ex['lecture'],66,623,634,15,MUTED,maxh=42,minsize=13)
         y=160
         p('LA NOTION',758,y,470,14,BLUE,bold=True);y+=29
         h=p(n['definition']['texte'][0],758,y,470,19.5,maxh=240,minsize=17);y+=h+27
@@ -208,22 +261,22 @@ for m in MODULES:
         # Exemple : chaque opération est lisible ; les hypothèses sont explicites.
         start(n['nom']+' - exemple','exemple',num,nid)
         header(f'Chapitre {num} · Exemple résolu',n['nom'])
-        enonce=n['exemple']['enonce'].replace('Même test, mais les pannes sont plus fréquentes : 100 robots en panne sur 200.', 'Sur 200 robots, 100 sont en panne. Le test détecte 90 % des pannes et déclenche une fausse alerte pour 10 % des robots sains.')
+        enonce=ex['enonce']
         h=p(enonce,52,150,1176,21,maxh=112,minsize=19)
         y=150+h+26
-        step_count=len(n['exemple']['pas']); available=548-y
+        step_count=len(ex['pas']); available=548-y
         # Choisir une taille commune à tous les pas, sans déséquilibrer la page.
         size=20
         while True:
             heights=[]
-            for s in n['exemple']['pas']:
+            for s in ex['pas']:
                 pp=Paragraph(escape(clean(s)),ParagraphStyle('measure',fontName='Noto',fontSize=size,leading=size*1.3))
                 heights.append(pp.wrap(657,10000)[1])
             if sum(heights)+18*(step_count-1)<=available: break
             size-=0.5
             if size<16: raise ValueError('Example too dense '+nid)
         sy=y
-        for i,(s,hh) in enumerate(zip(n['exemple']['pas'],heights)):
+        for i,(s,hh) in enumerate(zip(ex['pas'],heights)):
             rect(53,sy+1,31,31,BLUE,15)
             p(str(i+1),63,sy+5,22,15,white,bold=True)
             p(s,101,sy,657,size,maxh=hh+.1,leading=1.3)
@@ -236,16 +289,7 @@ for m in MODULES:
         p('À discuter',826,qy,402,15,GREEN,bold=True)
         p(question,826,qy+26,402,19,maxh=543-(qy+26),minsize=16)
         rect(52,557,1176,100,HexColor('#E7F0E7'),4)
-        resultats={
-            'bayes': '90 % des alertes correspondent ici à une panne réelle. Avec le même détecteur, la prévalence change la valeur d’une alerte.',
-            'reseau': 'P(usure | vibration) = 0,73 : la vibration observée fait passer la probabilité d’usure de 25 % à environ 73 %.',
-            'supervise': '85 % d’exactitude sur des situations non vues : une estimation du comportement dans les conditions représentées par ce test.',
-            'croyance': 'Après cette première correction : 38 % pour chacune des deux cases avec porte, 8 % pour chacune des trois autres.',
-            'mdp': 'Valeur : 7,4. Si la fosse était remplacée par une case de valeur 4, on obtiendrait 8,8. Ce danger fait perdre 1,4 point et peut justifier un détour.',
-            'robustesse': 'On retient A pour les niveaux testés : il conserve 81 % de réussite au niveau sévère, contre 35 % pour B.',
-            'graine': 'Dans ce simulateur déterministe fixé : graine, paramètres et version permettent de retrouver l’échec et d’en expliquer la trajectoire.',
-        }
-        p(resultats.get(nid,n['exemple']['resultat']),72,570,1136,21,GREEN,bold=True,maxh=78,minsize=17)
+        p(ex['resultat'],72,570,1136,21,GREEN,bold=True,maxh=78,minsize=17)
         end(notion=n,module=num)
     # Passage à la pratique, une illustration originale par chapitre.
     start(practice,'pratique',num,bookmark=f'pratique-{num}',outline=1)
@@ -322,9 +366,9 @@ header('Crédits et prolongements','Sources, repères et accès')
 p('Conception et formation',52,159,550,22,BLUE,bold=True)
 p('Martino Bettucci · P2Enjoy\nASCENT 4-130 · 16 et 17 novembre 2026\nLes six modules du programme initial sont complétés par le chapitre 7 sur les systèmes agentiques.',52,201,550,21,maxh=155)
 p('Contenus et exemples',52,383,550,22,BLUE,bold=True)
-p('Leçons du module 0, ateliers et notebooks du programme. Le chapitre 7 reprend le support « Systèmes agentiques : une exploration approfondie ». Les situations et chiffres pédagogiques sont synthétiques.',52,425,550,21,maxh=165)
+p('Notions du programme et cas résolus propres à ce PDF. Les scénarios et données diffèrent des exercices en ligne. Le chapitre 7 reprend les concepts du support « Systèmes agentiques : une exploration approfondie ». Les chiffres sont synthétiques.',52,425,550,21,maxh=165)
 p('Illustrations et schémas',668,159,560,22,BLUE,bold=True)
-p('Illustrations de contexte réalisées avec imagegen. Les schémas de mécanismes proviennent des animations du cours ; leurs valeurs sont distinctes, lorsque précisé, de celles des exemples résolus. Les images d’ouverture sont des métaphores visuelles.',668,201,560,21,maxh=191)
+p('Illustrations de contexte réalisées avec imagegen. Les schémas vectoriels sont construits à partir des cas propres à ce PDF et utilisent les mêmes valeurs que l’exemple qui les accompagne. Les ouvertures sont des métaphores visuelles.',668,201,560,21,maxh=191)
 p('Pour approfondir',668,414,560,22,BLUE,bold=True)
 p('Les références Wikipédia de l’index donnent des portes d’entrée en français, ou en anglais selon la notion. Les modèles simplifiés sont accompagnés de leurs hypothèses dans les pages d’exemples.',668,456,560,20,maxh=139)
 button('Accéder au programme en ligne',SITE,52,607,550)

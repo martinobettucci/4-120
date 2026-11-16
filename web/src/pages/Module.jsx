@@ -116,7 +116,7 @@ export default function Module() {
 
       <section>
         <h2><span className="etape-cycle">{m.scene ? 5 : 4}</span> Vérifiez vos acquis</h2>
-        <p className="intro">Trois questions sans regarder vos notes. Chaque réponse reçoit une explication.</p>
+        <p className="intro">Trois questions pour appliquer les notions du module. Vous pouvez consulter le cours ; chaque réponse reçoit une explication.</p>
         <div className="carte quiz">{ped.quiz.map((x) => <Qcm key={x.q} {...x} etiquette="Question" />)}</div>
         <h3 className="sous-titre">Erreurs fréquentes</h3>
         <ul className="pieges">{ped.pieges.map((x) => <li key={x}>{x}</li>)}</ul>

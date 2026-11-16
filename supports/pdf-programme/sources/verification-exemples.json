@@ -1,0 +1,284 @@
+{
+  "notions": 39,
+  "exemples_distincts_du_site": 39,
+  "calculs_verifies": 55,
+  "calculs": [
+    {
+      "notion": "regles",
+      "valeur": 2,
+      "texte_verifie": "deux conditions vraies"
+    },
+    {
+      "notion": "bayes",
+      "valeur": 36.0,
+      "texte_verifie": "36"
+    },
+    {
+      "notion": "bayes",
+      "valeur": 48.0,
+      "texte_verifie": "48"
+    },
+    {
+      "notion": "bayes",
+      "valeur": 42.857142857142854,
+      "texte_verifie": "42,9 %"
+    },
+    {
+      "notion": "reseau",
+      "valeur": 43.74999999999999,
+      "texte_verifie": "43,75 %"
+    },
+    {
+      "notion": "utilite",
+      "valeur": 24.0,
+      "texte_verifie": "24 €"
+    },
+    {
+      "notion": "utilite",
+      "valeur": 3.0,
+      "texte_verifie": "3 %"
+    },
+    {
+      "notion": "supervise",
+      "valeur": 80.0,
+      "texte_verifie": "80 %"
+    },
+    {
+      "notion": "neurone",
+      "valeur": 0.03999999999999998,
+      "texte_verifie": "0,04"
+    },
+    {
+      "notion": "gradient",
+      "valeur": 3.0,
+      "texte_verifie": "= 3"
+    },
+    {
+      "notion": "gradient",
+      "valeur": 4.0,
+      "texte_verifie": "= 4"
+    },
+    {
+      "notion": "gradient",
+      "valeur": 1.0,
+      "texte_verifie": "perte vaut maintenant 1"
+    },
+    {
+      "notion": "recommandation",
+      "valeur": 3.0,
+      "texte_verifie": "3 sur 5"
+    },
+    {
+      "notion": "lidar",
+      "valeur": 6.0,
+      "texte_verifie": "6 mètres"
+    },
+    {
+      "notion": "etat",
+      "valeur": 48.0,
+      "texte_verifie": "48 cm"
+    },
+    {
+      "notion": "astar",
+      "valeur": 9,
+      "texte_verifie": "9 minutes"
+    },
+    {
+      "notion": "astar",
+      "valeur": 10,
+      "texte_verifie": "10 minutes"
+    },
+    {
+      "notion": "espace",
+      "valeur": 720,
+      "texte_verifie": "720"
+    },
+    {
+      "notion": "contraintes",
+      "valeur": 2,
+      "texte_verifie": "deux plannings"
+    },
+    {
+      "notion": "recuit",
+      "valeur": 60.653065971263345,
+      "texte_verifie": "60,7 %"
+    },
+    {
+      "notion": "recuit",
+      "valeur": 13.53352832366127,
+      "texte_verifie": "13,5 %"
+    },
+    {
+      "notion": "recuit",
+      "valeur": 0.004539992976248485,
+      "texte_verifie": "0,00454 %"
+    },
+    {
+      "notion": "croyance",
+      "valeur": 62.5,
+      "texte_verifie": "62,5 %"
+    },
+    {
+      "notion": "croyance",
+      "valeur": 100.0,
+      "texte_verifie": "100 %"
+    },
+    {
+      "notion": "mdp",
+      "valeur": 6.2,
+      "texte_verifie": "6,2"
+    },
+    {
+      "notion": "qlearning",
+      "valeur": 2.75,
+      "texte_verifie": "2,75"
+    },
+    {
+      "notion": "exploration",
+      "valeur": 76.0,
+      "texte_verifie": "76 %"
+    },
+    {
+      "notion": "confiance",
+      "valeur": 5.226666666666667,
+      "texte_verifie": "5,23 points"
+    },
+    {
+      "notion": "confiance",
+      "valeur": 74.8,
+      "texte_verifie": "74,8 %"
+    },
+    {
+      "notion": "confiance",
+      "valeur": 85.2,
+      "texte_verifie": "85,2 %"
+    },
+    {
+      "notion": "autonomie",
+      "valeur": 6.0,
+      "texte_verifie": "6 €"
+    },
+    {
+      "notion": "autonomie",
+      "valeur": 18.0,
+      "texte_verifie": "18 €"
+    },
+    {
+      "notion": "autonomie",
+      "valeur": 6.0,
+      "texte_verifie": "6 %"
+    },
+    {
+      "notion": "familles",
+      "valeur": 0.897092,
+      "texte_verifie": "0,897092"
+    },
+    {
+      "notion": "familles",
+      "valeur": 1.2999999999999998,
+      "texte_verifie": "1,3 centime"
+    },
+    {
+      "notion": "familles",
+      "valeur": 124,
+      "texte_verifie": "124 ms"
+    },
+    {
+      "notion": "llm",
+      "valeur": 540,
+      "texte_verifie": "540 €"
+    },
+    {
+      "notion": "llm",
+      "valeur": 216,
+      "texte_verifie": "216 €"
+    },
+    {
+      "notion": "llm",
+      "valeur": 3.7,
+      "texte_verifie": "3,7 %"
+    },
+    {
+      "notion": "complexite",
+      "valeur": 0.81092,
+      "texte_verifie": "0,81092"
+    },
+    {
+      "notion": "complexite",
+      "valeur": 0.8662099999999999,
+      "texte_verifie": "0,86621"
+    },
+    {
+      "notion": "risque",
+      "valeur": 10.400000000000004,
+      "texte_verifie": "10,4 %"
+    },
+    {
+      "notion": "routage",
+      "valeur": 80.0,
+      "texte_verifie": "80 %"
+    },
+    {
+      "notion": "rag",
+      "valeur": 3.0,
+      "texte_verifie": "score 3"
+    },
+    {
+      "notion": "patterns",
+      "valeur": 6.0,
+      "texte_verifie": "= 6"
+    },
+    {
+      "notion": "patterns",
+      "valeur": 188.0,
+      "texte_verifie": "188"
+    },
+    {
+      "notion": "patterns",
+      "valeur": 800,
+      "texte_verifie": "= 800"
+    },
+    {
+      "notion": "implementation",
+      "valeur": 20,
+      "texte_verifie": "20"
+    },
+    {
+      "notion": "evaluation",
+      "valeur": 4.0,
+      "texte_verifie": "4 %"
+    },
+    {
+      "notion": "evaluation",
+      "valeur": 280.0,
+      "texte_verifie": "280 €"
+    },
+    {
+      "notion": "evaluation",
+      "valeur": 9.33,
+      "texte_verifie": "9,33 €"
+    },
+    {
+      "notion": "gouvernance",
+      "valeur": 70,
+      "texte_verifie": "70 lux"
+    },
+    {
+      "notion": "gouvernance",
+      "valeur": 45,
+      "texte_verifie": "45 minutes"
+    },
+    {
+      "notion": "casusage",
+      "valeur": 1200,
+      "texte_verifie": "1 200"
+    },
+    {
+      "notion": "casusage",
+      "valeur": 19.200000000000003,
+      "texte_verifie": "19,2"
+    }
+  ],
+  "controle_editorial": "Scénarios et jeux de données distincts ; relecture visuelle séparée requise.",
+  "erreurs": []
+}

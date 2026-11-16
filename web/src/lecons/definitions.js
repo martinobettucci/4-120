@@ -18,7 +18,7 @@ export const DEFINITIONS = {
       "Le théorème de Bayes est une formule de la théorie des probabilités qui indique comment réviser une probabilité à la lumière d'une observation. Il relie la probabilité d'une cause, sachant qu'un effet a été observé, à la probabilité de cet effet sachant la cause, en tenant compte de la fréquence de la cause avant toute observation.",
       "Il doit son nom au pasteur anglais Thomas Bayes, dont le mémoire a été publié en 1763, après sa mort. Pierre-Simon Laplace lui a donné sa forme générale. On s'en sert dès qu'il faut interpréter un test, un capteur ou une alerte : diagnostic médical, filtrage des courriers indésirables, maintenance.",
     ],
-    liens: [W('Théorème de Bayes'), W('Sensibilité et spécificité')],
+    liens: [W('Théorème de Bayes'), W('Matrice de confusion'), W('Sensibilité et spécificité')],
   },
   reseau: {
     texte: [

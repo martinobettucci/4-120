@@ -50,6 +50,18 @@ Les sources sont les fichiers `notebooks/src/NN_nom.py`, au format « percent »
 
 Le parcours de bout en bout (`tools/e2e.cjs`) vérifie les sept modules, ouvre la notion en bref de chaque leçon, résout l'atelier de chacune des 39 leçons (conceptions insuffisantes refusées, puis conception correcte validée), rejoue sur chacun le parcours « trois échecs, Voir la solution, vérification », contrôle que les 39 ateliers expliquent alors leur solution ligne par ligne, fait avancer chaque animation et chaque scène 3D, contrôle la présence des notebooks, puis enregistre des captures JPEG et une vidéo WebM dans `docs/captures/`.
 
+Il lance ensuite, successivement, les deux contrôles des prérequis et du vocabulaire animé du bloc 0 : présence de bases dans les 39 leçons, couverture des 224 concepts, rendu de leurs 675 étapes sur ordinateur et mobile, commandes de lecture, clavier et réduction des mouvements. Le parcours vérifie aussi les vingt robots de Bayes, leur classement progressif dans les quatre cases, puis les groupes effectivement encadrés pour les quatre proportions. Pour une vérification ciblée (Playwright disponible dans `NODE_PATH`, comme dans le conteneur de test) :
+
+```bash
+node tools/verifier_mots.cjs --planches   # tous les dessins, textes, débordements et planches de relecture
+node tools/verifier_mots.cjs --planches --bases # mêmes contrôles, planches limitées aux 91 bases
+node tools/verifier_mots.cjs --planches --complements # planches des 47 séquences ajoutées lors de l'audit de toutes les leçons
+node tools/e2e_mots.cjs http://localhost:5173  # toutes les étapes dans l'application de développement
+node tools/e2e_mots.cjs http://localhost:5173 --complements # les 47 ajouts, avec contrôles de Bayes et des commandes de lecture
+```
+
+Les résultats et captures sont écrits dans `.tmp/situer/verification` et `.tmp/situer/parcours` ; `MOTS_SORTIE` permet de choisir un autre dossier. Les scénarios sont dans `web/src/lecons/mots/`, en correspondance exacte avec le vocabulaire des leçons. `bases.js` assemble les prérequis scientifiques, agentiques, leurs compléments et le parcours continu de Bayes ; ils précèdent le vocabulaire spécialisé. La carte de couverture pédagogique est dans `docs/prerequis-lecons.md`. Chaque concept doit avoir un exemple concret, au moins trois étapes commentées et une évolution visuelle ; les dessins possèdent une disposition spécifique aux petits écrans. Les tableaux des compléments deviennent des groupes de champs nommés sur téléphone pour conserver une taille de caractères lisible. Ajouter des explications de corrigé ne remplace pas l'introduction des prérequis.
+
 Contrôle complet du contenu pédagogique, à lancer après toute modification d'une leçon :
 
 ```bash
@@ -59,7 +71,7 @@ node tools/verifier_contenu.cjs --planches   # structure, questions, animations,
 
 Écrire ou modifier un atelier : un composant `({ surReussite })` dans `web/src/ateliers/`, dont l'évaluation est une fonction pure exportée (`evaluerXxx(conception)`), reproductible (générateur `alea`, jamais `Math.random`). L'atelier appelle `sol.noter(reussi)` à chaque vérification et place `sol.bouton(appliquer)` à côté du bouton de vérification (`useSolution`, dans `Solution.jsx`). Sa recette de bout en bout va dans `tools/e2e_conception_*.cjs` ou `tools/e2e_agentique_*.cjs`. Avant de publier, énumérer les conceptions possibles avec la fonction d'évaluation : l'état de départ et l'essai tentant doivent échouer, et les conceptions valides rester rares.
 
-Pour conserver les captures d’un contrôle local hors des fichiers versionnés, définir `E2E_SORTIE=.tmp/captures`.
+Pour conserver les captures d’un contrôle local hors des fichiers versionnés, définir `E2E_SORTIE=.tmp/captures`. Pour les planches du contrôle pédagogique, définir `CONTENU_SORTIE=.tmp/planches`.
 
 Les planches écrites dans `docs/captures/planches` montrent chaque étape de chaque leçon à côté de son commentaire : elles sont à relire en entier avant publication.
 

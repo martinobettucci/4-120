@@ -4,6 +4,7 @@
 // `etapes[].fin` est la position (entre 0 et 1) où l'animation s'arrête à la fin de l'étape.
 import * as M from '../animations/Mini.jsx';
 import { THEORIE, ATELIER } from './cours.js';
+import { BASES } from './mots/bases.js';
 import { DEFINITIONS } from './definitions.js';
 import { NOUVELLES } from './nouvelles.js';
 import { AGENTIQUE_A } from './agentique-a.js';
@@ -66,7 +67,7 @@ const BASE = [
     id: 'reseau', module: 1, nom: 'Réseau bayésien', anim: M.Reseau, duree: 10,
     accroche: "Un robot vibre anormalement. Vous ne pouvez pas ouvrir le moteur pour vérifier s'il est usé, mais vous savez que l'usure provoque des vibrations et des surchauffes. Que pouvez-vous déduire de cette seule vibration ?",
     objectif: "lire un réseau bayésien, prévoir dans quel sens une observation modifie les autres probabilités, et composer les dépendances d'un réseau à partir de constats mesurés",
-    mots: [['Nœud', "une variable du problème (usure, vibration, surchauffe)."], ['Arc', "une flèche de la cause vers l'effet."], ['A priori, a posteriori', "la probabilité avant, puis après, avoir observé quelque chose."]],
+    mots: [['Nœud', "une variable du problème (usure, vibration, surchauffe)."], ['Arc', "une flèche représentant une dépendance entre deux variables ; ici, de la cause vers l'effet."], ['A priori, a posteriori', "la probabilité avant, puis après, avoir observé quelque chose."]],
     prediction: { q: "On observe une vibration. Que devient la probabilité d'une surchauffe, que l'on n'a pas encore mesurée ?", choix: ['Elle baisse', 'Elle reste la même', 'Elle augmente'], ok: 2 },
     etapes: [
       { fin: 0.2, titre: 'Avant toute observation', texte: "Le réseau relie une cause cachée, l'usure, à deux effets mesurables. Chaque barre orange est une probabilité a priori : 25 % des moteurs sont usés.", regard: "les trois barres orange et leur pourcentage." },
@@ -157,7 +158,7 @@ const BASE = [
     id: 'boucle', module: 2, nom: 'Boucle perception, décision, action', anim: M.Boucle, duree: 8,
     accroche: "Quand vous marchez dans la foule, vous ne calculez pas votre trajet une fois pour toutes. Vous regardez, vous ajustez, vous avancez, et vous recommencez plusieurs fois par seconde. Un agent autonome fait de même.",
     objectif: "décrire les trois temps de la boucle, expliquer pourquoi elle doit se répéter sans cesse, et programmer une boucle qui résiste aux perturbations",
-    mots: [['Pas de temps', "un tour complet de la boucle."], ['Boucle fermée', "chaque action est suivie d'une nouvelle perception, qui permet de corriger."], ['Boucle ouverte', "l'agent agit sans vérifier le résultat."]],
+    mots: [['Pas de temps', "la durée entre deux tours successifs de la boucle."], ['Boucle fermée', "chaque action est suivie d'une nouvelle perception, qui permet de corriger."], ['Boucle ouverte', "l'agent agit sans vérifier le résultat."]],
     prediction: { q: "Après avoir agi, que fait l'agent ?", choix: ["Il s'arrête, sa tâche est finie", 'Il perçoit de nouveau, car la situation a changé', 'Il répète la même action'], ok: 1 },
     etapes: [
       { fin: 0.33, titre: 'Percevoir', texte: "Le tour commence par une lecture des capteurs. L'agent prend une « photo » de la situation à cet instant.", regard: "le bloc Percevoir qui s'allume." },
@@ -343,7 +344,7 @@ const BASE = [
     id: 'confiance', module: 6, nom: 'Distribution des résultats et intervalle de confiance', anim: M.Confiance, duree: 11,
     accroche: "Votre robot réussit sa mission 8 fois sur 10 en démonstration. Un concurrent annonce 82 % sur 2 000 essais. Les deux chiffres se ressemblent. Vous inspirent-ils la même confiance ?",
     objectif: "expliquer pourquoi un taux de réussite doit être accompagné d'un intervalle de confiance, comment cet intervalle dépend du nombre d'essais, et concevoir la campagne et la règle d'acceptation qui valident un agent",
-    mots: [['Distribution', "l'ensemble des résultats obtenus quand on répète une expérience soumise au hasard."], ['Intervalle de confiance', "la fourchette dans laquelle se trouve très probablement la vraie valeur."], ['Taille d\'échantillon', "le nombre d'essais, noté n."]],
+    mots: [['Distribution', "l'ensemble des résultats obtenus quand on répète une expérience soumise au hasard."], ['Intervalle de confiance', "une fourchette estimée à partir d'un échantillon, avec un niveau de confiance lié à la méthode de calcul."], ['Taille d\'échantillon', "le nombre d'essais, noté n."]],
     prediction: { q: "On passe de 10 à 2 000 simulations, avec le même taux de réussite mesuré. Que devient la fourchette d'incertitude ?", choix: ['Elle reste la même', 'Elle se resserre fortement', "Elle s'élargit"], ok: 1 },
     etapes: [
       { fin: 0.02, titre: 'Dix simulations', texte: "Chaque petit carré est une simulation : vert pour une réussite, rouge pour un échec. Avec 10 essais seulement, la bande bleue, qui représente l'intervalle de confiance, couvre une large part de l'axe.", regard: "la largeur de la bande bleue sous les carrés." },
@@ -394,6 +395,7 @@ const BASE = [
   },
 ];
 
+
 // Ateliers de conception des leçons de base : l'apprenant décide, le système exécute et confronte au cahier des charges.
 const CONCEPTION = { ...FICHES_CONCEPTION_M1, ...FICHES_CONCEPTION_M2, ...FICHES_CONCEPTION_M3, ...FICHES_CONCEPTION_M6 };
 
@@ -406,7 +408,11 @@ export const NOTIONS = (() => {
   const [autonomie, routage, rag, gouvernance] = AGENTIQUE_B;
   const [familles, ...architectures] = AGENTIQUE_A;
   const [composantes, nonllm, patterns, implementation, evaluation, casusage] = AGENTIQUE_C;
-  return [...liste, composantes, autonomie, familles, nonllm, ...architectures, routage, rag, patterns, implementation, evaluation, gouvernance, casusage].map((n) => ({ ...n, definition: DEFINITIONS[n.id] }));
+  return [...liste, composantes, autonomie, familles, nonllm, ...architectures, routage, rag, patterns, implementation, evaluation, gouvernance, casusage].map((n) => {
+    const bases = BASES[n.id] || [];
+    return { ...n, definition: DEFINITIONS[n.id], nombreBases: bases.length,
+      mots: [...bases.map((b) => [b.nom, b.definition]), ...n.mots.filter(([nom]) => !bases.some((b) => b.nom === nom))] };
+  });
 })();
 
 export const notion = (id) => NOTIONS.find((n) => n.id === id);

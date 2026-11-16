@@ -3,6 +3,14 @@
 // Usage : node tools/e2e.cjs [url de base] [--video]
 const { chromium } = require('playwright');
 const fs = require('node:fs');
+const chemin = require('node:path');
+
+// La couverture est comparée au contenu réel : aucune ligne du corrigé ne doit manquer.
+const tmpdir = fs.mkdtempSync(chemin.join(require('node:os').tmpdir(), 'e2e-'));
+fs.writeFileSync(chemin.join(tmpdir, 'e.js'), `export { NOTIONS } from ${JSON.stringify(chemin.resolve('web/src/lecons/notions.js'))};\nexport { EXPLICATIONS } from ${JSON.stringify(chemin.resolve('web/src/ateliers/explications.js'))};`);
+require(chemin.resolve('web/node_modules/esbuild')).buildSync({ entryPoints: [chemin.join(tmpdir, 'e.js')], bundle: true, format: 'cjs', platform: 'node', outfile: chemin.join(tmpdir, 'n.cjs'), jsx: 'automatic', logLevel: 'error', nodePaths: [chemin.resolve('web/node_modules')] });
+const { NOTIONS, EXPLICATIONS } = require(chemin.join(tmpdir, 'n.cjs'));
+fs.rmSync(tmpdir, { recursive: true, force: true });
 
 (async () => {
 const erreurs = [];
@@ -49,19 +57,33 @@ verifier(nbLecons === 39, `module 0 : ${nbLecons} leçons au sommaire`);
 await capture('m0-sommaire');
 // Les temps d'une leçon portent leur numéro affiché : 0 pour la notion en bref, 1 à 6 pour les six temps (5 : Construire).
 const explications = () => page.locator('[data-testid=explications] .explication, [data-testid=explication-ligne]');
+const expliqueesParSaisie = new Set();
+const corrigesComplets = async (id) => {
+  const n = NOTIONS.find((x) => x.id === id);
+  const attendues = EXPLICATIONS[n.atelier.type.replace(/^conception_/, '')].lignes;
+  const affichees = await explications().evaluateAll((lignes) => lignes.map((l) => ({
+    choix: (l.querySelector('dt') || l.querySelector('b')).textContent.replace(/^Corrigé : /, ''),
+    pourquoi: (l.querySelector('dd') || l.querySelector('p')).textContent,
+  })));
+  return affichees.length === attendues.length && attendues.every((a, i) =>
+    affichees[i].choix === a.choix && affichees[i].pourquoi === a.pourquoi);
+};
 const verifierExplications = async () => {
   if (await page.locator('.atelier .bilan.juste').count()) {
-    verifier(await explications().count() >= 2, `solution saisie expliquée : ${page.url().split('/').pop()}`);
+    const id = page.url().split('/').pop();
+    const complet = await corrigesComplets(id);
+    verifier(complet, `solution saisie expliquée intégralement : ${id}`);
+    if (complet) expliqueesParSaisie.add(id);
   }
 };
 const allerAuTemps = async (id, k) => { await verifierExplications(); await page.goto(`${base}/#/module/0/${id}`); await page.waitForSelector('.temps'); await page.locator(`.temps button[data-temps="${k}"]`).click(); };
 await page.goto(`${base}/#/module/0/bayes`);
 await page.waitForSelector('[data-testid=bloc-notion]');
+verifier((await page.locator('[data-testid=bloc-notion] .mots div').count()) >= 3, 'leçon : prérequis animés disponibles dans le bloc 0 avant Situer');
 verifier((await page.locator('[data-testid=bloc-notion] .definition > p').count()) >= 3 && (await page.locator('[data-testid=bloc-notion] .en-savoir-plus a[href*="wikipedia.org/wiki/"]').count()) >= 1, 'leçon : le bloc 0 définit la notion et renvoie vers Wikipédia');
 await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-0-notion.jpg`, type: 'jpeg', quality: 82 });
 await page.locator('[data-testid=continuer]').click();
 await page.waitForSelector('.accroche');
-verifier((await page.locator('.mots div').count()) >= 3, 'leçon : vocabulaire défini avant la démonstration');
 await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-1-situer.jpg`, type: 'jpeg', quality: 82 });
 await page.locator('[data-testid=continuer]').click();
 verifier(await page.locator('[data-testid=continuer]').isDisabled(), 'leçon : la démonstration attend une prédiction');
@@ -89,6 +111,7 @@ verifier(premier.refuse, 'atelier : les conceptions insuffisantes sont exécuté
 verifier(premier.valide, 'atelier de conception : le dispositif conçu tient le cahier des charges');
 const raisonsDevinée = await page.locator('[data-testid=explications] .explication, [data-testid=explication-ligne]').count();
 verifier(raisonsDevinée >= 3, `atelier de conception : la solution devinée est expliquée ligne par ligne (${raisonsDevinée} lignes)`);
+await verifierExplications();
 await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-5-construire.jpg`, type: 'jpeg', quality: 82 });
 await page.locator('[data-testid=continuer]').click();
 verifier((await page.locator('.a-retenir').count()) === 1, 'leçon : point à retenir');
@@ -169,10 +192,6 @@ await page.locator('[data-testid=verifier]').click();
 verifier((await page.locator('.bilan.juste').count()) === 1, 'atelier recuit : le réglage trouvé atteint l\'objectif');
 // 9. Tous les autres ateliers, leçon par leçon : ateliers du bloc « Systèmes agentiques » et ateliers de conception.
 //    Avec les huit ateliers ci-dessus, les 39 leçons sont validées par une conception que le système exécute.
-const chemin = require('node:path'); const tmpdir = fs.mkdtempSync(chemin.join(require('node:os').tmpdir(), 'e2e-'));
-fs.writeFileSync(chemin.join(tmpdir, 'e.js'), `export { NOTIONS } from ${JSON.stringify(chemin.resolve('web/src/lecons/notions.js'))};`);
-require(chemin.resolve('web/node_modules/esbuild')).buildSync({ entryPoints: [chemin.join(tmpdir, 'e.js')], bundle: true, format: 'cjs', platform: 'node', outfile: chemin.join(tmpdir, 'n.cjs'), jsx: 'automatic', logLevel: 'error', nodePaths: [chemin.resolve('web/node_modules')] });
-const { NOTIONS } = require(chemin.join(tmpdir, 'n.cjs'));
 const construits = new Set(['regles', 'contraintes', 'reactif', 'gradient', 'neurone', 'mdp', 'qlearning', 'recuit', ...(premier.refuse && premier.valide ? ['bayes'] : [])]);
 const agentique = { ...require('./e2e_agentique_a.cjs'), ...require('./e2e_agentique_b.cjs'), ...require('./e2e_agentique_c.cjs') };
 for (const n of NOTIONS) {
@@ -195,6 +214,7 @@ for (const n of NOTIONS) {
 }
 await verifierExplications();
 verifier(construits.size === NOTIONS.length, `les ${NOTIONS.length} leçons ont chacune leur atelier résolu de bout en bout (${construits.size})`);
+verifier(expliqueesParSaisie.size === NOTIONS.length, `les ${NOTIONS.length} corrigés sont complets après saisie de la bonne réponse (${expliqueesParSaisie.size})`);
 await page.goto(`${base}/#/module/0`);
 const acquises = await page.locator('.lecon-carte.acquise').count();
 verifier(acquises === NOTIONS.length, `module 0 : ${acquises} leçons marquées acquises après résolution de tous les ateliers`);
@@ -206,13 +226,15 @@ let sansSolution = 0; let expliques = 0;
 for (const n of NOTIONS) {
   await allerAuTemps(n.id, 5); await page.waitForSelector('.atelier');
   const bouton = page.locator('[data-testid=verifier]'); const solution = page.locator('[data-testid=solution]');
+  verifier(await explications().count() === 0, `atelier « ${n.id} » : corrigé masqué avant réussite`);
   await bouton.click(); await bouton.click();
   const avant = await solution.count();
   await bouton.click();
+  verifier(await explications().count() === 0, `atelier « ${n.id} » : corrigé masqué après les essais infructueux`);
   const apres = await solution.count(); let reussi = false;
   if (apres === 1) { await solution.click(); await bouton.click(); reussi = (await page.locator('.bilan.juste').count()) === 1; }
   const lignes = reussi ? await page.locator('[data-testid=explications] .explication, [data-testid=explication-ligne]').count() : 0;
-  if (lignes >= 2) expliques++; else verifier(false, `atelier « ${n.id} » : solution appliquée sans explication ligne par ligne (${lignes} ligne(s))`);
+  if (reussi && await corrigesComplets(n.id)) expliques++; else verifier(false, `atelier « ${n.id} » : corrigé incomplet après application (${lignes} ligne(s))`);
   if (avant !== 0 || apres !== 1 || !reussi) { sansSolution++; verifier(false, `atelier « ${n.id} » : solution proposée après 2 échecs (${avant}), après 3 (${apres}), validée (${reussi})`); }
 }
 verifier(sansSolution === 0, `les ${NOTIONS.length} ateliers proposent « Voir la solution » après trois essais infructueux, et la solution appliquée est validée`);
@@ -240,9 +262,15 @@ await page.setViewportSize({ width: 1440, height: 900 });
 const ids = await page.evaluate(() => 0).then(async () => { await page.goto(`${base}/#/module/0`); return page.locator('.lecon-carte').evaluateAll((els) => els.map((e) => e.getAttribute('data-lecon'))); });
 for (const id of ids) {
   await page.goto(`${base}/#/module/0/${id}`);
+  verifier(await page.locator('[data-testid=bloc-notion]').count() === 1 && await page.locator('.temps-carte').count() === 1 && await page.locator('.temps button').first().getAttribute('data-temps') === '0', `leçon ${id} : ouverture sur le bloc 0 avant Situer`);
+  await page.locator('.temps button[data-temps="1"]').click();
+  verifier(await page.locator('[data-testid=rappel-inline]').count() === 1 && await page.locator('[data-testid=rappel-inline] p').evaluate(e => e.textContent.length > 80) && await page.locator('[data-testid=rappel-inline] .qcm').count() === 0, `leçon ${id} : repère disponible sans restitution de mémoire`);
+  await page.getByRole('button', { name: 'Revoir les bases de cette leçon' }).click();
+  verifier(await page.locator('[data-testid=bloc-notion]').count() === 1, `leçon ${id} : accès facultatif aux bases depuis le rappel`);
   await page.getByLabel('Tout afficher (mode formateur)').check();
   const ok = (await page.locator('.demo-scene svg').count()) === 1 && (await page.locator('.temps-carte').count()) === 7 && (await page.locator('[data-testid=bloc-notion] .en-savoir-plus a').count()) >= 1 && (await page.locator('.theorie section').count()) >= 3 && (await page.locator('.atelier').count()) === 1;
   if (!ok) verifier(false, `leçon ${id} : notion en bref, cours, démonstration ou atelier manquant`);
+  await page.getByLabel('Tout afficher (mode formateur)').uncheck();
 }
 verifier(true, `les ${ids.length} leçons affichent la notion en bref, le cours, la démonstration et l'atelier`);
 
@@ -327,6 +355,11 @@ if (video) {
 }
 await navigateur.close();
 if (erreurs.length) { console.error(`\n${erreurs.length} problème(s) :\n` + erreurs.join('\n')); process.exit(1); }
+// Même commande de validation pour le vocabulaire animé : contrôles strictement successifs.
+for (const [script, args] of [['verifier_mots.cjs', []], ['e2e_mots.cjs', [base]]]) {
+  const resultat = require('node:child_process').spawnSync(process.execPath, [chemin.join(__dirname, script), ...args], { stdio: 'inherit', env: process.env });
+  if (resultat.status !== 0) { console.error(`Échec du contrôle ${script}`, resultat.error?.message || resultat.signal || ''); process.exit(1); }
+}
 console.log('\nToutes les vérifications passent.');
 } catch (e) {
   console.error(e.message);

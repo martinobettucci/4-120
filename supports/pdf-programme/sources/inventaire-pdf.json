@@ -2255,9 +2255,9 @@
       "x": 52,
       "y": 145,
       "w": 1160,
-      "h": 63.36,
+      "h": 95.03999999999999,
       "size": 24,
-      "text": "Ce support accompagne l’explication orale. Chaque notion relie un modèle, un schéma et un exemple résolu ; l’atelier en ligne permet ensuite de construire, tester et justifier une solution."
+      "text": "Ce support relie modèles, schémas et exemples résolus. Les ateliers utilisent d’autres cas et données : vous y appliquez le raisonnement. Les repères nécessaires restent disponibles dans les pages concernées."
     },
     {
       "page": 2,
@@ -2909,6 +2909,78 @@
     },
     {
       "page": 6,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Condition"
+    },
+    {
+      "page": 6,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Constat"
+    },
+    {
+      "page": 6,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Température > 30 °C"
+    },
+    {
+      "page": 6,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "31 °C : vrai"
+    },
+    {
+      "page": 6,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Humidité > 75 %"
+    },
+    {
+      "page": 6,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "82 % : vrai"
+    },
+    {
+      "page": 6,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Priorité R1 puis R2"
+    },
+    {
+      "page": 6,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Ventiler"
+    },
+    {
+      "page": 6,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -2923,7 +2995,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La barre devient rouge et le surlignage saute de R3 à R1."
+      "text": "Deux conditions vraies ; l’ordre des règles tranche."
     },
     {
       "page": 6,
@@ -3029,14 +3101,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Mesures reçues : température 88 °C, batterie 15 %. Quelle décision ?"
+      "text": "Une serre fictive mesure 31 °C et 82 % d’humidité. R1 : au-dessus de 30 °C, ventiler. R2 : au-dessus de 75 % d’humidité, déshumidifier. Une seule action peut être lancée ; R1 est prioritaire."
     },
     {
       "page": 7,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -3045,16 +3117,16 @@
     {
       "page": 7,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "On lit R1 : « si température > 85 °C ». 88 > 85, la condition est vraie."
+      "text": "Comparer la température : 31 > 30. R1 est applicable."
     },
     {
       "page": 7,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -3063,16 +3135,16 @@
     {
       "page": 7,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "R1 se déclenche : décision ARRÊT. On s'arrête là, les règles suivantes ne sont pas lues."
+      "text": "Comparer l’humidité : 82 > 75. R2 est aussi applicable."
     },
     {
       "page": 7,
       "x": 63,
-      "y": 322.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -3081,16 +3153,16 @@
     {
       "page": 7,
       "x": 101,
-      "y": 317.72,
+      "y": 319.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "R2 (batterie < 20 %) était vraie aussi, mais elle vient après. L'ordre des règles exprime la priorité : la sécurité d'abord."
+      "text": "Appliquer la priorité annoncée : exécuter R1 et ventiler. La priorité tranche entre deux conditions vraies."
     },
     {
       "page": 7,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -3099,16 +3171,16 @@
     {
       "page": 7,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Une règle explicable peut être incomplète. Tester les valeurs juste sous le seuil, au seuil et juste au-dessus révèle les ambiguïtés de spécification."
+      "text": "Règles fictives pour illustrer la logique, sans prescription horticole. L’ordre est fixé avant l’exécution."
     },
     {
       "page": 7,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -3117,11 +3189,11 @@
     {
       "page": 7,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Si la batterie est faible et le moteur trop chaud, quelle priorité faut-il écrire ?"
+      "text": "Que se passe-t-il à exactement 30 °C avec le symbole > ?"
     },
     {
       "page": 7,
@@ -3130,7 +3202,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Décision : ARRÊT, justifiée par la règle R1."
+      "text": "Ventiler. Inverser la priorité ferait choisir la déshumidification avec les mêmes mesures."
     },
     {
       "page": 7,
@@ -3202,7 +3274,124 @@
       "w": 626,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "P(panne | alerte) = vraies alertes / toutes les alertes"
+      "text": "P(fuite | alerte) = 36 / (36 + 48)"
+    },
+    {
+      "page": 8,
+      "x": 160,
+      "y": 244,
+      "w": 550,
+      "h": 21.12,
+      "size": 16,
+      "text": "Réalité"
+    },
+    {
+      "page": 8,
+      "x": 172,
+      "y": 273,
+      "w": 240,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Fuite"
+    },
+    {
+      "page": 8,
+      "x": 430,
+      "y": 273,
+      "w": 240,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Intacte"
+    },
+    {
+      "page": 8,
+      "x": 52,
+      "y": 355,
+      "w": 102,
+      "h": 23.76,
+      "size": 18,
+      "text": "Alerte"
+    },
+    {
+      "page": 8,
+      "x": 174,
+      "y": 329,
+      "w": 224,
+      "h": 22.44,
+      "size": 17,
+      "text": "Vrais positifs"
+    },
+    {
+      "page": 8,
+      "x": 174,
+      "y": 362,
+      "w": 224,
+      "h": 43.56,
+      "size": 33,
+      "text": "36"
+    },
+    {
+      "page": 8,
+      "x": 439,
+      "y": 329,
+      "w": 224,
+      "h": 22.44,
+      "size": 17,
+      "text": "Faux positifs"
+    },
+    {
+      "page": 8,
+      "x": 439,
+      "y": 362,
+      "w": 224,
+      "h": 43.56,
+      "size": 33,
+      "text": "48"
+    },
+    {
+      "page": 8,
+      "x": 52,
+      "y": 477,
+      "w": 102,
+      "h": 23.76,
+      "size": 18,
+      "text": "Silence"
+    },
+    {
+      "page": 8,
+      "x": 174,
+      "y": 451,
+      "w": 224,
+      "h": 22.44,
+      "size": 17,
+      "text": "Faux négatifs"
+    },
+    {
+      "page": 8,
+      "x": 174,
+      "y": 484,
+      "w": 224,
+      "h": 43.56,
+      "size": 33,
+      "text": "4"
+    },
+    {
+      "page": 8,
+      "x": 439,
+      "y": 451,
+      "w": 224,
+      "h": 22.44,
+      "size": 17,
+      "text": "Vrais négatifs"
+    },
+    {
+      "page": 8,
+      "x": 439,
+      "y": 484,
+      "w": 224,
+      "h": 43.56,
+      "size": 33,
+      "text": "912"
     },
     {
       "page": 8,
@@ -3220,7 +3409,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Parmi les points restants, comptez les rouges et les gris."
+      "text": "Ligne des alertes : 36 vraies et 48 fausses."
     },
     {
       "page": 8,
@@ -3254,9 +3443,9 @@
       "x": 758,
       "y": 425.18,
       "w": 470,
-      "h": 158.4,
+      "h": 105.60000000000001,
       "size": 20,
-      "text": "On change de population de référence : après l'alerte, on ne regarde plus tous les robots, seulement ceux qui ont déclenché le test. La proportion de pannes dans cette sous-population dépend autant de la fréquence initiale des pannes que du détecteur."
+      "text": "La matrice croise l’état réel et le résultat du détecteur. Après une alerte, le groupe de référence devient la ligne des alertes ; les silences ne font plus partie du dénominateur."
     },
     {
       "page": 8,
@@ -3328,7 +3517,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Sur 200 robots, 100 sont en panne. Le test détecte 90 % des pannes et déclenche une fausse alerte pour 10 % des robots sains."
+      "text": "Sur 1 000 conduites, 40 présentent une fuite. Un détecteur signale 90 % des fuites et déclenche à tort sur 5 % des conduites intactes. Quelle part des alertes correspond à une fuite ?"
     },
     {
       "page": 9,
@@ -3346,7 +3535,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Vraies détections : 90 % de 100 pannes = 90."
+      "text": "Fuites détectées : 40 × 0,90 = 36. Fuites manquées : 40 - 36 = 4."
     },
     {
       "page": 9,
@@ -3362,14 +3551,14 @@
       "x": 101,
       "y": 275.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Fausses alertes : 10 % de 100 robots sains = 10."
+      "text": "Conduites intactes : 960. Fausses alertes : 960 × 0,05 = 48 ; silences corrects : 912."
     },
     {
       "page": 9,
       "x": 63,
-      "y": 324.44,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -3378,16 +3567,16 @@
     {
       "page": 9,
       "x": 101,
-      "y": 319.44,
+      "y": 345.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Total des alertes : 90 + 10 = 100."
+      "text": "Toutes les alertes : 36 + 48 = 84. Parmi elles, 36 correspondent à une fuite."
     },
     {
       "page": 9,
       "x": 63,
-      "y": 368.44,
+      "y": 420.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -3396,11 +3585,11 @@
     {
       "page": 9,
       "x": 101,
-      "y": 363.44,
+      "y": 415.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Probabilité d'une vraie panne : 90 / 100."
+      "text": "Probabilité d’une fuite sachant une alerte : 36 / 84 ≈ 42,9 %."
     },
     {
       "page": 9,
@@ -3416,14 +3605,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Sensibilité et probabilité après alerte sont deux quantités différentes. Pour confirmer par un second test, examiner si les deux tests partagent les mêmes causes d'erreur."
+      "text": "Les taux sont supposés exacts pour cette population fictive. La prévalence est 40 / 1 000 = 4 %."
     },
     {
       "page": 9,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -3432,11 +3621,11 @@
     {
       "page": 9,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Un détecteur sensible à 90 % rend-il toute alerte crédible à 90 % ?"
+      "text": "Pourquoi 36 / 40 répond-il à une autre question que 36 / 84 ?"
     },
     {
       "page": 9,
@@ -3445,7 +3634,7 @@
       "w": 1136,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "90 % des alertes correspondent ici à une panne réelle. Avec le même détecteur, la prévalence change la valeur d’une alerte."
+      "text": "42,9 % des alertes sont fondées dans ce cas, malgré une sensibilité de 90 %. Le dénominateur est celui des alertes."
     },
     {
       "page": 9,
@@ -3517,7 +3706,61 @@
       "w": 626,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "P(U,V,S) = P(U) × P(V|U) × P(S|U)"
+      "text": "P(G,R,C) = P(G) × P(R|G) × P(C|G)"
+    },
+    {
+      "page": 10,
+      "x": 285,
+      "y": 267,
+      "w": 192,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Gel G"
+    },
+    {
+      "page": 10,
+      "x": 285,
+      "y": 309,
+      "w": 192,
+      "h": 23.76,
+      "size": 18,
+      "text": "10 %"
+    },
+    {
+      "page": 10,
+      "x": 84,
+      "y": 457,
+      "w": 192,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Retard R"
+    },
+    {
+      "page": 10,
+      "x": 84,
+      "y": 499,
+      "w": 192,
+      "h": 23.76,
+      "size": 18,
+      "text": "70 % si G"
+    },
+    {
+      "page": 10,
+      "x": 486,
+      "y": 457,
+      "w": 192,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Coupure C"
+    },
+    {
+      "page": 10,
+      "x": 486,
+      "y": 499,
+      "w": 192,
+      "h": 23.76,
+      "size": 18,
+      "text": "autre effet"
     },
     {
       "page": 10,
@@ -3535,7 +3778,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La barre du nœud Surchauffe."
+      "text": "G est parent de R et C ; observer R renseigne sur G."
     },
     {
       "page": 10,
@@ -3571,7 +3814,7 @@
       "w": 470,
       "h": 132.0,
       "size": 20,
-      "text": "Le graphe factorise une loi de probabilité. Ici, usure U explique vibration V et surchauffe S ; V et S sont supposées indépendantes une fois U connu. Observer un effet permet de réviser la croyance sur la cause."
+      "text": "Un réseau exprime des dépendances entre variables. Ici, le gel est une cause commune modélisée du retard et de la coupure. Observer un effet modifie la probabilité attribuée à sa cause."
     },
     {
       "page": 10,
@@ -3643,7 +3886,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Calculons la probabilité d'usure après la vibration. Données : 25 % des moteurs sont usés, un moteur usé vibre dans 80 % des cas, un moteur sain dans 10 % des cas."
+      "text": "Un site subit du gel G dans 10 % des journées. Un retard R survient dans 70 % des journées avec gel et 10 % sans gel. Une coupure C est un autre effet possible du gel. Un retard est observé."
     },
     {
       "page": 11,
@@ -3661,7 +3904,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Moteurs usés qui vibrent : 0,25 × 0,80 = 0,20."
+      "text": "Journées avec gel et retard : 0,10 × 0,70 = 0,07."
     },
     {
       "page": 11,
@@ -3679,7 +3922,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Moteurs sains qui vibrent : 0,75 × 0,10 = 0,075."
+      "text": "Journées sans gel et avec retard : 0,90 × 0,10 = 0,09."
     },
     {
       "page": 11,
@@ -3697,7 +3940,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Tous les moteurs qui vibrent : 0,20 + 0,075 = 0,275."
+      "text": "Probabilité d’un retard : 0,07 + 0,09 = 0,16."
     },
     {
       "page": 11,
@@ -3715,7 +3958,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Part des usés parmi ceux qui vibrent : 0,20 / 0,275."
+      "text": "Gel sachant retard : 0,07 / 0,16 = 43,75 %."
     },
     {
       "page": 11,
@@ -3731,14 +3974,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Une flèche encode une dépendance du modèle. L'interprétation causale demande des hypothèses supplémentaires : une corrélation seule ne prouve pas une cause."
+      "text": "R et C sont supposés indépendants conditionnellement à G. La coupure n’est pas observée et n’intervient pas dans ce calcul."
     },
     {
       "page": 11,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -3747,11 +3990,11 @@
     {
       "page": 11,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Deux symptômes qui apparaissent ensemble imposent-ils une flèche entre eux ?"
+      "text": "Pourquoi l’absence de gel reste-t-elle possible après un retard ?"
     },
     {
       "page": 11,
@@ -3760,7 +4003,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "P(usure | vibration) = 0,73 : la vibration observée fait passer la probabilité d’usure de 25 % à environ 73 %."
+      "text": "Le retard fait passer la croyance en un gel de 10 % à 43,75 %. Il ne prouve pas que le gel a eu lieu."
     },
     {
       "page": 11,
@@ -3832,7 +4075,34 @@
       "w": 626,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "arrêter si p > 10 / (10 + 200)"
+      "text": "protéger si 600 × p > 18"
+    },
+    {
+      "page": 12,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Protéger : 18"
+    },
+    {
+      "page": 12,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Ne pas protéger : 24"
+    },
+    {
+      "page": 12,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : € de coût espéré · échelle commune de 0 à 24"
     },
     {
       "page": 12,
@@ -3850,7 +4120,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La barre « Continuer » s'allonge, la barre verte est passée sur « Arrêter »."
+      "text": "La dépense fixe est comparée à une perte pondérée."
     },
     {
       "page": 12,
@@ -3956,14 +4226,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Probabilité de panne : 6 %. Arrêt inutile : 10 €. Panne non évitée : 200 €. Que décider ?"
+      "text": "Protéger une collection de plantes coûte 18 €, qu’il gèle ou non. Ne pas la protéger coûte 600 € s’il gèle et 0 € sinon. La probabilité de gel est estimée à 4 %."
     },
     {
       "page": 13,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -3972,16 +4242,16 @@
     {
       "page": 13,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Coût espéré de « continuer » : il n'y a un coût que s'il y a panne. 0,06 × 200 = 12 €."
+      "text": "Coût espéré sans protection : 0,04 × 600 + 0,96 × 0 = 24 €."
     },
     {
       "page": 13,
       "x": 63,
-      "y": 278.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -3990,16 +4260,16 @@
     {
       "page": 13,
       "x": 101,
-      "y": 273.72,
+      "y": 275.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Coût espéré de « arrêter » : il n'y a un coût que si l'arrêt était inutile. 0,94 × 10 = 9,40 €."
+      "text": "Coût de la protection : 18 € dans tous les cas."
     },
     {
       "page": 13,
       "x": 63,
-      "y": 348.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4008,16 +4278,16 @@
     {
       "page": 13,
       "x": 101,
-      "y": 343.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "On compare : 9,40 € est inférieur à 12 €."
+      "text": "Comparer : 18 < 24. La protection minimise le coût espéré."
     },
     {
       "page": 13,
       "x": 63,
-      "y": 392.72,
+      "y": 368.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4026,16 +4296,16 @@
     {
       "page": 13,
       "x": 101,
-      "y": 387.72,
+      "y": 363.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Vérification par le seuil : 10 / (10 + 200) = 4,8 %. Or 6 % dépasse 4,8 %."
+      "text": "Égalité des coûts : 600 × p = 18, donc p = 3 %."
     },
     {
       "page": 13,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -4044,16 +4314,16 @@
     {
       "page": 13,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "L'exemple suppose un coût nul pour un arrêt justifié et pour une continuation sans panne. Changer cette table de coûts change le seuil optimal."
+      "text": "La protection est supposée supprimer la perte. Les coûts sont fictifs ; aucune autre conséquence n’est comptée."
     },
     {
       "page": 13,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -4062,11 +4332,11 @@
     {
       "page": 13,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Le seuil doit-il changer si une panne devient dix fois plus coûteuse ?"
+      "text": "À 2 % de risque, quelle action minimise ce même coût ?"
     },
     {
       "page": 13,
@@ -4075,7 +4345,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Décision : arrêter, bien que la panne soit peu probable."
+      "text": "Protéger pour ce cas. Le seuil économique est 3 % ; à l’égalité, les deux actions ont le même coût espéré."
     },
     {
       "page": 13,
@@ -4151,6 +4421,78 @@
     },
     {
       "page": 14,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Ensemble"
+    },
+    {
+      "page": 14,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Rôle"
+    },
+    {
+      "page": 14,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Serre A"
+    },
+    {
+      "page": 14,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Ajuster le modèle"
+    },
+    {
+      "page": 14,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Serre B : 240 photos"
+    },
+    {
+      "page": 14,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Tester sans apprendre"
+    },
+    {
+      "page": 14,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "192 justes / 48 fausses"
+    },
+    {
+      "page": 14,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "80 % sur ce test"
+    },
+    {
+      "page": 14,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -4165,7 +4507,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les quelques points qui restent du mauvais côté : l'erreur n'est pas nulle."
+      "text": "Les plantes du test sont distinctes de celles d’apprentissage."
     },
     {
       "page": 14,
@@ -4271,14 +4613,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 83.16000000000001,
       "size": 21,
-      "text": "On dispose de 1 000 situations étiquetées. Comment savoir si le modèle a vraiment appris ?"
+      "text": "Un classifieur apprend à reconnaître des feuilles abîmées. Les photos d’une serre A servent à l’apprentissage. Un test séparé contient 240 photos de plantes d’une serre B, jamais vues pendant l’apprentissage : 192 réponses sont correctes."
     },
     {
       "page": 15,
       "x": 63,
-      "y": 208.72,
+      "y": 264.16,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4287,16 +4629,16 @@
     {
       "page": 15,
       "x": 101,
-      "y": 203.72,
+      "y": 259.16,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "On met de côté 200 situations, que le modèle ne verra pas : le jeu de test."
+      "text": "Entrées : caractéristiques des photos. Cible : étiquette abîmée ou intacte, établie par une vérification indépendante."
     },
     {
       "page": 15,
       "x": 63,
-      "y": 278.72,
+      "y": 334.16,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4305,16 +4647,16 @@
     {
       "page": 15,
       "x": 101,
-      "y": 273.72,
+      "y": 329.16,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "On entraîne le modèle sur les 800 autres : le jeu d'entraînement."
+      "text": "Séparer les plantes avant de répartir les photos : deux images d’une même plante ne doivent pas traverser apprentissage et test."
     },
     {
       "page": 15,
       "x": 63,
-      "y": 322.72,
+      "y": 404.16,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4323,16 +4665,16 @@
     {
       "page": 15,
       "x": 101,
-      "y": 317.72,
+      "y": 399.16,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "On mesure l'exactitude sur les 200 situations de test. Supposons 170 bonnes réponses."
+      "text": "Exactitude sur le test : 192 / 240 = 80 %. Erreurs : 240 - 192 = 48."
     },
     {
       "page": 15,
       "x": 63,
-      "y": 392.72,
+      "y": 448.16,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4341,16 +4683,16 @@
     {
       "page": 15,
       "x": 101,
-      "y": 387.72,
+      "y": 443.16,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Exactitude de test : 170 / 200."
+      "text": "Examiner ensuite les erreurs par classe et les conditions de prise de vue pour préciser ce que ce score mesure."
     },
     {
       "page": 15,
       "x": 826,
-      "y": 203.72,
+      "y": 259.16,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -4359,16 +4701,16 @@
     {
       "page": 15,
       "x": 826,
-      "y": 234.72,
+      "y": 290.16,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Un doublon n'ajoute aucune situation indépendante. Il peut surpondérer certains cas et, s'il traverse entraînement et test, rendre l'évaluation trop optimiste."
+      "text": "Les étiquettes sont supposées fiables. Le test vise ici le changement de serre ; sa représentativité reste à examiner."
     },
     {
       "page": 15,
       "x": 826,
-      "y": 358.4,
+      "y": 389.42,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -4377,20 +4719,20 @@
     {
       "page": 15,
       "x": 826,
-      "y": 384.4,
+      "y": 415.42,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Réexporter les mêmes tournées produit-il de nouvelles preuves de généralisation ?"
+      "text": "Une autre photo de la même feuille est-elle un cas réellement nouveau ?"
     },
     {
       "page": 15,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 55.440000000000005,
+      "h": 27.720000000000002,
       "size": 21,
-      "text": "85 % d’exactitude sur des situations non vues : une estimation du comportement dans les conditions représentées par ce test."
+      "text": "80 % sur les 240 cas tenus à l’écart. Ce score ne garantit pas la même performance sur toutes les serres."
     },
     {
       "page": 15,
@@ -4462,7 +4804,79 @@
       "w": 626,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "z = 0,9 × température + 0,6 × vibration - 0,8"
+      "text": "z = 0,5s + 0,2l - 0,3"
+    },
+    {
+      "page": 16,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Contribution"
+    },
+    {
+      "page": 16,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Valeur"
+    },
+    {
+      "page": 16,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "0,5 × sécheresse"
+    },
+    {
+      "page": 16,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "0,20"
+    },
+    {
+      "page": 16,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "0,2 × lumière"
+    },
+    {
+      "page": 16,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "0,14"
+    },
+    {
+      "page": 16,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Somme + biais"
+    },
+    {
+      "page": 16,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "0,04 → active"
     },
     {
       "page": 16,
@@ -4480,7 +4894,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La case de sortie devenue rouge."
+      "text": "Deux contributions et un biais produisent le score."
     },
     {
       "page": 16,
@@ -4586,14 +5000,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Mêmes poids (0,9 et 0,6) et même biais (-0,8). Nouvelles mesures : température 0,5, vibration 0,4."
+      "text": "Un neurone fictif reçoit un indice de sécheresse s = 0,4 et de lumière l = 0,7. Il calcule z = 0,5s + 0,2l - 0,3, puis active sa sortie si z est positif ou nul."
     },
     {
       "page": 17,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4602,16 +5016,16 @@
     {
       "page": 17,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Produit de la température : 0,5 × 0,9 = 0,45."
+      "text": "Contribution de la sécheresse : 0,5 × 0,4 = 0,20."
     },
     {
       "page": 17,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4620,16 +5034,16 @@
     {
       "page": 17,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Produit de la vibration : 0,4 × 0,6 = 0,24."
+      "text": "Contribution de la lumière : 0,2 × 0,7 = 0,14."
     },
     {
       "page": 17,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4638,16 +5052,16 @@
     {
       "page": 17,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Somme avec le biais : 0,45 + 0,24 - 0,8 = -0,11."
+      "text": "Ajouter le biais : z = 0,20 + 0,14 - 0,30 = 0,04."
     },
     {
       "page": 17,
       "x": 63,
-      "y": 340.72,
+      "y": 368.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -4656,16 +5070,16 @@
     {
       "page": 17,
       "x": 101,
-      "y": 335.72,
+      "y": 363.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Activation : la somme est négative."
+      "text": "Comme 0,04 ≥ 0, la sortie est active. Le seuil porte sur la somme, pas sur une entrée isolée."
     },
     {
       "page": 17,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -4674,16 +5088,16 @@
     {
       "page": 17,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Les valeurs de température et de vibration sont normalisées. Un poids ne s'interprète qu'avec l'échelle de la variable correspondante."
+      "text": "Entrées normalisées et règle fictive ; ce neurone illustre un calcul, pas une commande agricole validée."
     },
     {
       "page": 17,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -4692,11 +5106,11 @@
     {
       "page": 17,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
-      "h": 50.160000000000004,
+      "h": 25.080000000000002,
       "size": 19,
-      "text": "Que change le biais : l'orientation de la frontière ou sa position ?"
+      "text": "Que devient la sortie si le biais passe à -0,40 ?"
     },
     {
       "page": 17,
@@ -4705,7 +5119,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Sortie 0 : continuer. Le même neurone répond autrement, parce que les mesures sont différentes."
+      "text": "Sortie active. Le biais de -0,30 décale la frontière de décision."
     },
     {
       "page": 17,
@@ -4781,6 +5195,42 @@
     },
     {
       "page": 18,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "w = 1 : 16"
+    },
+    {
+      "page": 18,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "w = 3 : 4"
+    },
+    {
+      "page": 18,
+      "x": 68,
+      "y": 460,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "w = 4 : 1"
+    },
+    {
+      "page": 18,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : perte · échelle commune de 0 à 16"
+    },
+    {
+      "page": 18,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -4795,7 +5245,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les pas de plus en plus petits près du minimum."
+      "text": "Chaque nouveau réglage réduit ici la perte."
     },
     {
       "page": 18,
@@ -4903,7 +5353,7 @@
       "w": 1176,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Perte L(w) = (w - 3)², dont la pente vaut 2 × (w - 3). Départ w = -1, taux d'apprentissage 0,25. Calculons deux pas."
+      "text": "Pour régler un modèle, on minimise L(w) = (w - 5)². On part de w = 1 avec un taux η = 0,25. La pente vaut 2(w - 5)."
     },
     {
       "page": 19,
@@ -4921,7 +5371,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pente en w = -1 : 2 × (-1 - 3) = -8."
+      "text": "Au départ : L(1) = 16 ; pente = 2 × (1 - 5) = -8."
     },
     {
       "page": 19,
@@ -4939,7 +5389,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Premier pas : w = -1 - 0,25 × (-8) = -1 + 2 = 1."
+      "text": "Premier pas : w = 1 - 0,25 × (-8) = 3. La perte devient 4."
     },
     {
       "page": 19,
@@ -4957,7 +5407,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pente en w = 1 : 2 × (1 - 3) = -4."
+      "text": "Nouvelle pente en 3 : -4. Deuxième pas : w = 3 - 0,25 × (-4) = 4."
     },
     {
       "page": 19,
@@ -4975,7 +5425,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Deuxième pas : w = 1 - 0,25 × (-4) = 1 + 1 = 2."
+      "text": "La perte vaut maintenant 1. On se rapproche du minimum en w = 5."
     },
     {
       "page": 19,
@@ -4991,14 +5441,14 @@
       "x": 826,
       "y": 234.72,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "La parabole de l'exemple possède un minimum unique. Les pertes de grands réseaux sont plus complexes ; la descente ne garantit pas d'y trouver le minimum global."
+      "text": "Fonction quadratique à minimum unique. Un pas adapté à cette courbe ne convient pas automatiquement à une autre."
     },
     {
       "page": 19,
       "x": 826,
-      "y": 358.4,
+      "y": 333.98,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -5007,11 +5457,11 @@
     {
       "page": 19,
       "x": 826,
-      "y": 384.4,
+      "y": 359.98,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Une perte qui baisse au début suffit-elle à choisir le taux d'apprentissage ?"
+      "text": "Pourquoi réutiliser indéfiniment la pente -8 serait-il incorrect ?"
     },
     {
       "page": 19,
@@ -5020,7 +5470,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "En deux pas, w est passé de -1 à 2 et la perte de 16 à 1. L'écart au minimum est divisé par deux à chaque pas."
+      "text": "La perte passe de 16 à 4 puis à 1. La pente est recalculée après chaque déplacement."
     },
     {
       "page": 19,
@@ -5096,6 +5546,78 @@
     },
     {
       "page": 20,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Lecteur"
+    },
+    {
+      "page": 20,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Guide botanique"
+    },
+    {
+      "page": 20,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Malik"
+    },
+    {
+      "page": 20,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "2 / 5"
+    },
+    {
+      "page": 20,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Lise"
+    },
+    {
+      "page": 20,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "4 / 5"
+    },
+    {
+      "page": 20,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Nora"
+    },
+    {
+      "page": 20,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "? → estimation 3 / 5"
+    },
+    {
+      "page": 20,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -5110,7 +5632,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La case verte, remplie avec 4,5."
+      "text": "La case inconnue est estimée à partir des voisins."
     },
     {
       "page": 20,
@@ -5216,14 +5738,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Comparons avec une méthode plus simple : recommander ce qui plaît à tout le monde."
+      "text": "Une médiathèque cherche une lecture pour Nora. Malik et Lise ont des goûts proches des siens sur des livres déjà notés. Pour un nouveau guide botanique, leurs notes sont 2 et 4 sur 5 ; Nora ne l’a pas noté."
     },
     {
       "page": 21,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -5232,16 +5754,16 @@
     {
       "page": 21,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Notes du film D : Ana 5, Ben 4, Dan 1."
+      "text": "La case de Nora est inconnue : on ne lui attribue pas la note zéro."
     },
     {
       "page": 21,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -5250,16 +5772,16 @@
     {
       "page": 21,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Moyenne générale : (5 + 4 + 1) / 3 = 3,3."
+      "text": "Les voisins sont choisis sur les autres livres communs, sans utiliser la note à prédire."
     },
     {
       "page": 21,
       "x": 63,
-      "y": 296.72,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -5268,16 +5790,16 @@
     {
       "page": 21,
       "x": 101,
-      "y": 291.72,
+      "y": 345.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Avec les seuls voisins de Chloé : (5 + 4) / 2 = 4,5."
+      "text": "Avec des poids égaux, estimation = (2 + 4) / 2 = 3 sur 5."
     },
     {
       "page": 21,
       "x": 63,
-      "y": 340.72,
+      "y": 394.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -5286,16 +5808,16 @@
     {
       "page": 21,
       "x": 101,
-      "y": 335.72,
+      "y": 389.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "L'écart vient de Dan, dont les goûts sont opposés à ceux de Chloé."
+      "text": "La note prévue est comparée à celles d’autres livres avant de recommander."
     },
     {
       "page": 21,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -5304,16 +5826,16 @@
     {
       "page": 21,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Le démarrage à froid manque d'observations. Les scores mesurent une préférence estimée, pas une vérité sur la qualité du contenu ; évaluer aussi diversité et couverture."
+      "text": "Voisinage supposé pertinent et poids égaux. Une moyenne de notes ne garantit pas l’intérêt réel de la lectrice."
     },
     {
       "page": 21,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -5322,20 +5844,20 @@
     {
       "page": 21,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Comment recommander à un utilisateur qui n'a encore évalué aucun contenu ?"
+      "text": "Que manque-t-il si Nora n’a encore noté aucun livre ?"
     },
     {
       "page": 21,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 55.440000000000005,
+      "h": 27.720000000000002,
       "size": 21,
-      "text": "La popularité prédit 3,3, le filtrage collaboratif 4,5 : tenir compte des goûts de l'utilisateur change la recommandation."
+      "text": "Estimation : 3 sur 5. La qualité dépend du choix des voisins et de la quantité de goûts observés."
     },
     {
       "page": 21,
@@ -5600,6 +6122,33 @@
     },
     {
       "page": 24,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Mesurer 28 °C"
+    },
+    {
+      "page": 24,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Décider de ventiler"
+    },
+    {
+      "page": 24,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Commander puis mesurer"
+    },
+    {
+      "page": 24,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -5614,7 +6163,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Le jeton sur la flèche du bas."
+      "text": "L’action modifie l’environnement ; la mesure suivante vérifie son effet."
     },
     {
       "page": 24,
@@ -5720,14 +6269,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Décrivons un aspirateur autonome avec ce schéma."
+      "text": "Un système de ventilation suit la température d’une salle de musée. Il reçoit 28 °C pour une cible de 24 °C et possède une commande de ventilation autorisée."
     },
     {
       "page": 25,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -5736,16 +6285,16 @@
     {
       "page": 25,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Environnement : les pièces, les meubles, la poussière."
+      "text": "Percevoir : lire 28 °C et l’état de la ventilation."
     },
     {
       "page": 25,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -5754,16 +6303,16 @@
     {
       "page": 25,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Capteurs : détecteurs de choc et de vide, capteur de poussière."
+      "text": "Décider : choisir de ventiler selon la politique définie pour cette salle."
     },
     {
       "page": 25,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -5772,16 +6321,16 @@
     {
       "page": 25,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Effecteurs : roues, brosses, aspiration."
+      "text": "Agir : envoyer la commande ; l’état du ventilateur change."
     },
     {
       "page": 25,
       "x": 63,
-      "y": 340.72,
+      "y": 368.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -5790,16 +6339,16 @@
     {
       "page": 25,
       "x": 101,
-      "y": 335.72,
+      "y": 363.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Objectif : nettoyer toute la surface accessible."
+      "text": "Observer ensuite la température pour vérifier l’effet, sans supposer qu’une commande suffit à atteindre 24 °C."
     },
     {
       "page": 25,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -5808,16 +6357,16 @@
     {
       "page": 25,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Distinguer la fonction de décision et le système qui l'entoure. Les capteurs, les actions autorisées et le contrôle humain font partie de la conception de l'agent."
+      "text": "Politique fictive. Les conditions réelles de conservation demandent des exigences adaptées à la collection."
     },
     {
       "page": 25,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -5826,11 +6375,11 @@
     {
       "page": 25,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
-      "h": 50.160000000000004,
+      "h": 75.24000000000001,
       "size": 19,
-      "text": "Un classifieur qui produit seulement une étiquette est-il déjà un agent complet ?"
+      "text": "Afficher 28 °C sans aucune possibilité d’action suffit-il à décrire ce système complet ?"
     },
     {
       "page": 25,
@@ -5839,7 +6388,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Quatre éléments suffisent à décrire n'importe quel agent : environnement, capteurs, effecteurs, objectif."
+      "text": "Le système est décrit par ses observations, sa décision, son action et le contrôle de son effet."
     },
     {
       "page": 25,
@@ -5915,6 +6464,33 @@
     },
     {
       "page": 26,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Émission"
+    },
+    {
+      "page": 26,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Façade à 6 m"
+    },
+    {
+      "page": 26,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Écho après 40 ns"
+    },
+    {
+      "page": 26,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -5929,7 +6505,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les chiffres le long des rayons."
+      "text": "Les 12 m représentent l’aller et le retour."
     },
     {
       "page": 26,
@@ -6035,14 +6611,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Le lidar rapporte : nord 1, est 4, sud 2, ouest 1. Dans quelles directions le robot peut-il avancer d'une case ?"
+      "text": "Un scanner laser relève une façade. Un écho revient après 40 nanosecondes. Pour ce calcul, la lumière parcourt environ 0,30 mètre par nanoseconde."
     },
     {
       "page": 27,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6051,16 +6627,16 @@
     {
       "page": 27,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Nord : distance 1, la case voisine est occupée. Impossible."
+      "text": "Trajet total du signal : 0,30 × 40 = 12 mètres."
     },
     {
       "page": 27,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6069,16 +6645,16 @@
     {
       "page": 27,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Est : distance 4, les trois premières cases sont libres. Possible."
+      "text": "Le signal a effectué un aller et un retour."
     },
     {
       "page": 27,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6087,34 +6663,16 @@
     {
       "page": 27,
       "x": 101,
-      "y": 291.72,
-      "w": 657,
-      "h": 52.0,
-      "size": 20,
-      "text": "Sud : distance 2, la case voisine est libre, la suivante est occupée. Possible, d'une seule case."
-    },
-    {
-      "page": 27,
-      "x": 63,
-      "y": 366.72,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 27,
-      "x": 101,
-      "y": 361.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Ouest : distance 1. Impossible."
+      "text": "Distance à la façade : 12 / 2 = 6 mètres."
     },
     {
       "page": 27,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -6123,16 +6681,16 @@
     {
       "page": 27,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Les distances de l'exemple sont en cellules, selon la convention du simulateur. Un lidar réel a une portée, une résolution angulaire et des matériaux difficiles à mesurer."
+      "text": "Vitesse arrondie ; délai électronique supposé corrigé. Le premier écho ne décrit pas ce qui se trouve derrière la façade."
     },
     {
       "page": 27,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -6141,11 +6699,11 @@
     {
       "page": 27,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Une zone sans obstacle détecté est-elle nécessairement libre ?"
+      "text": "Un écho plus tardif correspond-il à une distance plus grande ou plus petite ?"
     },
     {
       "page": 27,
@@ -6154,7 +6712,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Deux mouvements possibles : est ou sud."
+      "text": "La façade est à environ 6 m. Oublier le retour donnerait une distance deux fois trop grande."
     },
     {
       "page": 27,
@@ -6230,6 +6788,60 @@
     },
     {
       "page": 28,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Lectures"
+    },
+    {
+      "page": 28,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Estimation"
+    },
+    {
+      "page": 28,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "47 ; 50 ; 48 ; 49 ; 46 cm"
+    },
+    {
+      "page": 28,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Moyenne 48 cm"
+    },
+    {
+      "page": 28,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Même série avec +2 cm"
+    },
+    {
+      "page": 28,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Moyenne 50 cm"
+    },
+    {
+      "page": 28,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -6244,7 +6856,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Seuls les pointillés sont connus du robot."
+      "text": "La moyenne combine les observations, pas une vérité cachée."
     },
     {
       "page": 28,
@@ -6350,14 +6962,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Le robot mesure cinq fois la distance à un mur réellement situé à 4 cellules. Il obtient : 4, 5, 4, 3, 4."
+      "text": "Le niveau réel d’un bassin est stable à 48 cm dans cette expérience contrôlée. Cinq lectures du capteur donnent 47, 50, 48, 49 et 46 cm."
     },
     {
       "page": 29,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6366,16 +6978,16 @@
     {
       "page": 29,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Aucune mesure isolée n'est fiable : la deuxième dit 5, la quatrième dit 3."
+      "text": "Somme des lectures : 47 + 50 + 48 + 49 + 46 = 240 cm."
     },
     {
       "page": 29,
       "x": 63,
-      "y": 278.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6384,16 +6996,16 @@
     {
       "page": 29,
       "x": 101,
-      "y": 273.72,
+      "y": 275.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "On combine les mesures : (4 + 5 + 4 + 3 + 4) / 5 = 20 / 5."
+      "text": "Moyenne : 240 / 5 = 48 cm. Les erreurs de cet échantillon se compensent."
     },
     {
       "page": 29,
       "x": 63,
-      "y": 322.72,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6402,16 +7014,16 @@
     {
       "page": 29,
       "x": 101,
-      "y": 317.72,
+      "y": 345.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "La moyenne vaut 4 : les erreurs se compensent en partie."
+      "text": "Un biais permanent de +2 cm déplacerait aussi la moyenne de +2 cm ; répéter ne le supprimerait pas."
     },
     {
       "page": 29,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -6420,16 +7032,16 @@
     {
       "page": 29,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "La réduction du bruit en 1/√n suppose des erreurs indépendantes et centrées, ainsi qu'un état assez stable pendant la mesure. Le résultat exact de l'exemple est illustratif."
+      "text": "Niveau stable et erreurs illustratives. En général, la moyenne réduit le bruit sous des hypothèses d’indépendance et de centrage."
     },
     {
       "page": 29,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -6438,11 +7050,11 @@
     {
       "page": 29,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
-      "h": 50.160000000000004,
+      "h": 75.24000000000001,
       "size": 19,
-      "text": "Si le capteur ajoute toujours une cellule, que vaut la moyenne de cent mesures ?"
+      "text": "Pourquoi une moyenne exacte sur cet échantillon n’est-elle pas une garantie générale ?"
     },
     {
       "page": 29,
@@ -6451,7 +7063,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Combiner plusieurs observations rapproche de l'état réel. C'est le principe du filtrage, détaillé au module 5."
+      "text": "Le filtrage peut réduire du bruit aléatoire. Il ne supprime ni un biais fixe ni une information jamais mesurée."
     },
     {
       "page": 29,
@@ -6527,6 +7139,33 @@
     },
     {
       "page": 30,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "22 % : ouvrir"
+    },
+    {
+      "page": 30,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Le sol change"
+    },
+    {
+      "page": 30,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "29 % : fermer"
+    },
+    {
+      "page": 30,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -6541,7 +7180,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Le jeton revient vers Percevoir : la boucle est fermée."
+      "text": "Le même cycle prend une décision différente après une nouvelle mesure."
     },
     {
       "page": 30,
@@ -6647,14 +7286,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Déroulons deux pas de temps d'un robot qui veut aller à l'est."
+      "text": "Une irrigation fictive ouvre une vanne si l’humidité mesurée est sous 25 % et la ferme à partir de 25 %. Première lecture : 22 %. Après l’arrosage, la lecture vaut 29 %."
     },
     {
       "page": 31,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6663,16 +7302,16 @@
     {
       "page": 31,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pas 1, percevoir : lidar est = 3, la voie est libre."
+      "text": "Tour 1 : percevoir 22 %, comparer à 25 %, puis ouvrir."
     },
     {
       "page": 31,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6681,16 +7320,16 @@
     {
       "page": 31,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pas 1, décider puis agir : avancer à l'est. Le robot change de case."
+      "text": "L’eau change l’état du sol ; la mesure du tour 1 est devenue ancienne."
     },
     {
       "page": 31,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -6699,34 +7338,16 @@
     {
       "page": 31,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pas 2, percevoir : lidar est = 1. Un chariot vient de s'arrêter devant."
-    },
-    {
-      "page": 31,
-      "x": 63,
-      "y": 340.72,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 31,
-      "x": 101,
-      "y": 335.72,
-      "w": 657,
-      "h": 26.0,
-      "size": 20,
-      "text": "Pas 2, décider puis agir : contourner par le sud."
+      "text": "Tour 2 : percevoir 29 %, comparer à 25 %, puis fermer."
     },
     {
       "page": 31,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -6735,16 +7356,16 @@
     {
       "page": 31,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "La simulation avance par pas. Dans un système réel, latence, fréquence de perception et durée d'action doivent rester compatibles avec la vitesse des dangers."
+      "text": "Politique fictive sans hystérésis. Une commande réelle tient compte des délais, des limites et des défauts du capteur."
     },
     {
       "page": 31,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -6753,20 +7374,20 @@
     {
       "page": 31,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "À quel moment une observation devient-elle trop ancienne pour décider ?"
+      "text": "Que peut provoquer une lecture trop espacée dans le temps ?"
     },
     {
       "page": 31,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Sans la perception du pas 2, le robot aurait heurté le chariot."
+      "text": "La seconde décision dépend de la nouvelle mesure. Répéter seulement « ouvrir » ignorerait l’effet de la première action."
     },
     {
       "page": 31,
@@ -7031,6 +7652,33 @@
     },
     {
       "page": 34,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "90 lux → lumineux"
+    },
+    {
+      "page": 34,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "120 lux → sombre"
+    },
+    {
+      "page": 34,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "90 lux → lumineux"
+    },
+    {
+      "page": 34,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -7045,7 +7693,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Le va-et-vient entre les deux mêmes cases."
+      "text": "L’action modifie la perception qui déclenche l’action opposée."
     },
     {
       "page": 34,
@@ -7151,14 +7799,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Suivons la règle « avancer vers l'objectif si la voie est libre, sinon reculer » sur quatre pas, au fond du cul-de-sac."
+      "text": "Un écran de musée devient lumineux si son capteur voit moins de 100 lux, et sombre sinon. L’écran lui-même éclaire ce capteur : 90 lux en mode sombre, 120 lux en mode lumineux."
     },
     {
       "page": 35,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -7167,16 +7815,16 @@
     {
       "page": 35,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pas 1 : lidar est = 1, bloqué. Règle : reculer. Le robot va à l'ouest."
+      "text": "À 90 lux, la règle choisit le mode lumineux."
     },
     {
       "page": 35,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -7185,16 +7833,16 @@
     {
       "page": 35,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Pas 2 : lidar est = 2, libre. Règle : avancer vers l'objectif. Le robot retourne à l'est."
+      "text": "Le capteur lit alors 120 lux ; la règle choisit le mode sombre."
     },
     {
       "page": 35,
       "x": 63,
-      "y": 322.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -7203,34 +7851,16 @@
     {
       "page": 35,
       "x": 101,
-      "y": 317.72,
-      "w": 657,
-      "h": 52.0,
-      "size": 20,
-      "text": "Pas 3 : lidar est = 1, bloqué. Même situation qu'au pas 1, même décision."
-    },
-    {
-      "page": 35,
-      "x": 63,
-      "y": 392.72,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 35,
-      "x": 101,
-      "y": 387.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pas 4 : même situation qu'au pas 2, même décision."
+      "text": "La lecture revient à 90 lux. Le même cycle recommence."
     },
     {
       "page": 35,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -7239,16 +7869,16 @@
     {
       "page": 35,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Le contre-exemple vise la politique réactive définie ici. Il ne prouve pas que tout contrôleur réactif échoue dans tout cul-de-sac."
+      "text": "Le couplage écran-capteur est supposé stable. Ce cas illustre une limite de cette politique, pas de toutes les architectures réactives."
     },
     {
       "page": 35,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -7257,11 +7887,11 @@
     {
       "page": 35,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Quelle information manque au robot pour sortir du cycle montré ?"
+      "text": "Que changerait un délai minimum avant un nouveau basculement ?"
     },
     {
       "page": 35,
@@ -7270,7 +7900,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Même perception, même action : sans mémoire, l'agent répète indéfiniment le même cycle."
+      "text": "Cette règle réactive oscille. Deux seuils distincts ou un état interne peuvent éviter ce basculement répété."
     },
     {
       "page": 35,
@@ -7346,6 +7976,78 @@
     },
     {
       "page": 36,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Candidat"
+    },
+    {
+      "page": 36,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "g + h"
+    },
+    {
+      "page": 36,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "A"
+    },
+    {
+      "page": 36,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "2 + 7 = 9 min"
+    },
+    {
+      "page": 36,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "B"
+    },
+    {
+      "page": 36,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "4 + 6 = 10 min"
+    },
+    {
+      "page": 36,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Prochain développé"
+    },
+    {
+      "page": 36,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "A"
+    },
+    {
+      "page": 36,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -7360,7 +8062,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les cases restées grises : A* n'a pas eu besoin de les visiter."
+      "text": "Le coût payé et le coût estimé sont additionnés."
     },
     {
       "page": 36,
@@ -7468,7 +8170,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Deux cases candidates. Case A : 3 pas depuis le départ, à 6 cases de l'objectif. Case B : 5 pas depuis le départ, à 3 cases de l'objectif. Laquelle A* explore-t-il d'abord ?"
+      "text": "Un robot de visite prépare son trajet dans une bibliothèque. Le candidat A coûte déjà 2 minutes et son reste estimé vaut 7. B coûte déjà 4 minutes et son reste estimé vaut 6."
     },
     {
       "page": 37,
@@ -7486,7 +8188,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Score de A : 3 (parcouru) + 6 (restant estimé) = 9."
+      "text": "Score de A : g + h = 2 + 7 = 9 minutes."
     },
     {
       "page": 37,
@@ -7504,7 +8206,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Score de B : 5 (parcouru) + 3 (restant estimé) = 8."
+      "text": "Score de B : 4 + 6 = 10 minutes."
     },
     {
       "page": 37,
@@ -7520,9 +8222,9 @@
       "x": 101,
       "y": 319.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "A* choisit le score le plus faible : B."
+      "text": "A* développe A d’abord, car son score est inférieur. Le chemin complet reste à déterminer."
     },
     {
       "page": 37,
@@ -7538,14 +8240,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "L'optimalité dépend des conditions de l'algorithme : coûts non négatifs, heuristique admissible et gestion correcte des états ; la cohérence simplifie la recherche sur graphe."
+      "text": "Coûts non négatifs. Les garanties d’optimalité demandent une heuristique admissible et une gestion correcte des états."
     },
     {
       "page": 37,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -7554,20 +8256,20 @@
     {
       "page": 37,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Pourquoi choisir une case plus éloignée du départ peut-il être raisonnable ?"
+      "text": "Que se passe-t-il si l’estimation de A devient 10 minutes ?"
     },
     {
       "page": 37,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "B est explorée en premier, bien qu'elle soit plus loin du départ : au total, elle promet un trajet plus court."
+      "text": "A est exploré avant B. Un score de frontière guide la recherche ; il ne prouve pas que la destination est déjà atteinte."
     },
     {
       "page": 37,
@@ -7643,6 +8345,33 @@
     },
     {
       "page": 38,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Plan : galerie Nord"
+    },
+    {
+      "page": 38,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Fermeture : arrêt"
+    },
+    {
+      "page": 38,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Nouveau plan : Sud"
+    },
+    {
+      "page": 38,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -7657,7 +8386,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les pointillés ont changé : ils repartent en arrière et contournent par le bas."
+      "text": "L’arrêt et le nouveau trajet répondent à deux besoins complémentaires."
     },
     {
       "page": 38,
@@ -7763,14 +8492,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Déroulons un pas de temps de l'agent hybride quand la palette est juste devant lui."
+      "text": "Un robot guide doit traverser la galerie Nord d’un musée. Une fermeture temporaire apparaît après le calcul du trajet ; une galerie Sud reste accessible."
     },
     {
       "page": 39,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -7779,16 +8508,16 @@
     {
       "page": 39,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Le plan dit : avancer à l'est."
+      "text": "Le plan global propose de poursuivre vers la galerie Nord."
     },
     {
       "page": 39,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -7797,16 +8526,16 @@
     {
       "page": 39,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "La couche réactive vérifie : lidar est = 1, la case est occupée."
+      "text": "La perception locale détecte la fermeture et interdit d’avancer."
     },
     {
       "page": 39,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -7815,16 +8544,16 @@
     {
       "page": 39,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Elle bloque le mouvement et ajoute cette case aux obstacles connus."
+      "text": "Le modèle de circulation est mis à jour. Le planificateur calcule un trajet par la galerie Sud."
     },
     {
       "page": 39,
       "x": 63,
-      "y": 340.72,
+      "y": 394.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -7833,34 +8562,16 @@
     {
       "page": 39,
       "x": 101,
-      "y": 335.72,
+      "y": 389.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "La couche délibérative relance A* depuis la case actuelle, en évitant l'obstacle."
-    },
-    {
-      "page": 39,
-      "x": 63,
-      "y": 410.72,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "5"
-    },
-    {
-      "page": 39,
-      "x": 101,
-      "y": 405.72,
-      "w": 657,
-      "h": 26.0,
-      "size": 20,
-      "text": "Le nouveau plan dit : repartir vers l'ouest pour contourner."
+      "text": "Le robot reprend uniquement après vérification de la prochaine action."
     },
     {
       "page": 39,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -7869,16 +8580,16 @@
     {
       "page": 39,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Les priorités doivent être explicites. Un blocage sans replanification laisse le robot immobile ; une replanification sans veto local peut arriver trop tard."
+      "text": "La galerie Sud est supposée autorisée et libre. La couche locale doit pouvoir suspendre l’action prévue."
     },
     {
       "page": 39,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -7887,11 +8598,11 @@
     {
       "page": 39,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Qui doit avoir le dernier mot lorsqu'un plan traverse un obstacle apparu depuis ?"
+      "text": "Pourquoi un arrêt sans recalcul ne suffit-il pas à terminer la visite ?"
     },
     {
       "page": 39,
@@ -7900,7 +8611,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Le plan propose, la couche réactive dispose : elle a toujours le dernier mot."
+      "text": "La réaction locale protège immédiatement ; le nouveau plan permet ensuite de continuer la mission."
     },
     {
       "page": 39,
@@ -8165,6 +8876,78 @@
     },
     {
       "page": 42,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Opérations distinctes"
+    },
+    {
+      "page": 42,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Ordres possibles"
+    },
+    {
+      "page": 42,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "3"
+    },
+    {
+      "page": 42,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "6"
+    },
+    {
+      "page": 42,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "5"
+    },
+    {
+      "page": 42,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "120"
+    },
+    {
+      "page": 42,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "6"
+    },
+    {
+      "page": 42,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "720"
+    },
+    {
+      "page": 42,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -8179,7 +8962,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La nouvelle barre verte, beaucoup plus basse que les autres."
+      "text": "Ajouter une opération multiplie ici les ordres."
     },
     {
       "page": 42,
@@ -8285,14 +9068,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Combien d'ordres possibles pour 4 stations A, B, C, D ?"
+      "text": "Un atelier doit ordonner six opérations de restauration distinctes, sans contrainte d’antériorité pour ce premier décompte. Le point de départ est fixé."
     },
     {
       "page": 43,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8301,16 +9084,16 @@
     {
       "page": 43,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pour la première visite : 4 choix."
+      "text": "Première opération : 6 choix. Deuxième : 5 choix restants."
     },
     {
       "page": 43,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8319,16 +9102,16 @@
     {
       "page": 43,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pour la deuxième : il reste 3 choix."
+      "text": "Puis 4, 3, 2 et 1 possibilités."
     },
     {
       "page": 43,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8337,34 +9120,16 @@
     {
       "page": 43,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Pour la troisième : 2 choix. Pour la dernière : 1 choix."
-    },
-    {
-      "page": 43,
-      "x": 63,
-      "y": 340.72,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 43,
-      "x": 101,
-      "y": 335.72,
-      "w": 657,
-      "h": 26.0,
-      "size": 20,
-      "text": "Nombre total : 4 × 3 × 2 × 1."
+      "text": "Total : 6 × 5 × 4 × 3 × 2 × 1 = 720 ordres."
     },
     {
       "page": 43,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -8373,16 +9138,16 @@
     {
       "page": 43,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Le décompte considère des ordres distincts avec départ fixé. D'autres conventions peuvent identifier des rotations ou des trajets inverses et réduire ce nombre."
+      "text": "Chaque opération apparaît une fois. Les ordres inverses restent distincts ; aucune symétrie n’est éliminée."
     },
     {
       "page": 43,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -8391,20 +9156,20 @@
     {
       "page": 43,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Une tournée plus courte reste-t-elle préférable si elle livre en retard ?"
+      "text": "Que change une obligation de faire une opération avant une autre ?"
     },
     {
       "page": 43,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "24 ordres pour 4 stations. Pour 9 stations : 9 × 8 × 7 × 6 × 5 × 4 × 3 × 2 × 1 = 362 880."
+      "text": "720 ordres à comparer avant ajout des contraintes. Le nombre de solutions croît bien plus vite que le nombre d’opérations."
     },
     {
       "page": 43,
@@ -8480,6 +9245,78 @@
     },
     {
       "page": 44,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Atelier"
+    },
+    {
+      "page": 44,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 22.44,
+      "size": 17.0,
+      "text": "Horaires possibles après filtrage"
+    },
+    {
+      "page": 44,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "A"
+    },
+    {
+      "page": 44,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "9 h ou 10 h"
+    },
+    {
+      "page": 44,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "B"
+    },
+    {
+      "page": 44,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "11 h"
+    },
+    {
+      "page": 44,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "C"
+    },
+    {
+      "page": 44,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "L’autre créneau"
+    },
+    {
+      "page": 44,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -8494,7 +9331,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Le compteur d'essais : bien moins que 256."
+      "text": "Les contraintes réduisent les domaines sans toujours donner une solution unique."
     },
     {
       "page": 44,
@@ -8600,14 +9437,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Modélisons le problème avant de le résoudre."
+      "text": "Une médiathèque place trois ateliers A, B et C à 9 h, 10 h et 11 h. Un seul atelier par créneau ; A précède B et B ne peut pas commencer à 10 h."
     },
     {
       "page": 45,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8616,16 +9453,16 @@
     {
       "page": 45,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Variables : la colonne de la borne de chaque ligne. Quatre variables."
+      "text": "Variables : les horaires de A, B et C. Domaine de chaque variable : {9, 10, 11}."
     },
     {
       "page": 45,
       "x": 63,
-      "y": 252.72,
+      "y": 306.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8634,16 +9471,16 @@
     {
       "page": 45,
       "x": 101,
-      "y": 247.72,
+      "y": 301.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Domaines : chaque variable vaut 1, 2, 3 ou 4."
+      "text": "Contraintes : tous les horaires diffèrent, A < B et B ≠ 10."
     },
     {
       "page": 45,
       "x": 63,
-      "y": 296.72,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8652,16 +9489,16 @@
     {
       "page": 45,
       "x": 101,
-      "y": 291.72,
+      "y": 345.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Contraintes : deux bornes n'ont jamais la même colonne, ni la même diagonale."
+      "text": "B ne peut pas être à 9 h car A doit le précéder. Donc B = 11 h."
     },
     {
       "page": 45,
       "x": 63,
-      "y": 366.72,
+      "y": 394.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8670,16 +9507,16 @@
     {
       "page": 45,
       "x": 101,
-      "y": 361.72,
+      "y": 389.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Résolution : on confie ce modèle au solveur. On décrit ce qu'on veut, pas comment le trouver."
+      "text": "A et C prennent 9 h et 10 h dans l’un ou l’autre ordre : deux plannings restent possibles."
     },
     {
       "page": 45,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -8688,16 +9525,16 @@
     {
       "page": 45,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Une solution du modèle n'est pertinente que si les contraintes décrivent correctement le besoin. Un solveur ne détecte pas une exigence oubliée."
+      "text": "Ateliers de durée égale à un créneau, sans ressource supplémentaire. Faisabilité et préférence restent séparées."
     },
     {
       "page": 45,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -8706,20 +9543,20 @@
     {
       "page": 45,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Une exigence peut-elle être compensée par un bon score sur un autre critère ?"
+      "text": "Quelle contrainte supplémentaire choisirait A à 9 h ?"
     },
     {
       "page": 45,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Modéliser, c'est répondre à trois questions : quelles variables, quels domaines, quelles contraintes."
+      "text": "Deux solutions admissibles : (A,B,C) = (9,11,10) ou (10,11,9). Le modèle ne donne pas encore de préférence entre elles."
     },
     {
       "page": 45,
@@ -8795,6 +9632,42 @@
     },
     {
       "page": 46,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "T = 6 : 60,65"
+    },
+    {
+      "page": 46,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "T = 1,5 : 13,53"
+    },
+    {
+      "page": 46,
+      "x": 68,
+      "y": 460,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "T = 0,3 : 0,00454"
+    },
+    {
+      "page": 46,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : % d’acceptation · échelle commune de 0 à 60,65"
+    },
+    {
+      "page": 46,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -8809,7 +9682,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La bille immobile au fond d'un creux."
+      "text": "Les valeurs exactes restent indiquées, même pour une barre presque nulle."
     },
     {
       "page": 46,
@@ -8915,14 +9788,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "La nouvelle tournée est plus longue de Δ = 4 pas. Est-elle acceptée ? La probabilité vaut exp(-Δ / T)."
+      "text": "Un ordre d’accrochage d’exposition voisin augmente le coût de 3 unités. Le recuit l’accepte avec une probabilité exp(-3 / T). Comparons trois températures."
     },
     {
       "page": 47,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8931,16 +9804,16 @@
     {
       "page": 47,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "À T = 10 : exp(-4 / 10) = exp(-0,4) = 0,67. Acceptée deux fois sur trois."
+      "text": "À T = 6 : exp(-0,5) ≈ 0,6065, soit 60,7 %."
     },
     {
       "page": 47,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8949,16 +9822,16 @@
     {
       "page": 47,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "À T = 2 : exp(-4 / 2) = exp(-2) = 0,14. Acceptée une fois sur sept."
+      "text": "À T = 1,5 : exp(-2) ≈ 0,1353, soit 13,5 %."
     },
     {
       "page": 47,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -8967,16 +9840,16 @@
     {
       "page": 47,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "À T = 0,5 : exp(-4 / 0,5) = exp(-8) = 0,0003. Presque jamais."
+      "text": "À T = 0,3 : exp(-10) ≈ 0,0000454, soit 0,00454 %."
     },
     {
       "page": 47,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -8985,16 +9858,16 @@
     {
       "page": 47,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "À budget fini, le recuit n'apporte pas une garantie générale d'optimalité. Comparer plusieurs graines et annoncer le temps de calcul, pas seulement le meilleur essai."
+      "text": "T et le coût partagent une échelle compatible. À budget fini, ce mécanisme ne garantit pas le minimum global."
     },
     {
       "page": 47,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -9003,11 +9876,11 @@
     {
       "page": 47,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Pourquoi accepter temporairement une tournée plus longue peut-il aider ?"
+      "text": "Accepter avec 60,7 % de probabilité signifie-t-il accepter à chaque essai ?"
     },
     {
       "page": 47,
@@ -9016,7 +9889,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "La même dégradation est tolérée au début et refusée à la fin : c'est la température qui décide."
+      "text": "La même dégradation devient beaucoup moins souvent acceptable lorsque la température baisse."
     },
     {
       "page": 47,
@@ -9281,6 +10154,33 @@
     },
     {
       "page": 50,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Zone D : 62,5"
+    },
+    {
+      "page": 50,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Chacune des 3 autres : 12,5"
+    },
+    {
+      "page": 50,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : % après la mesure · échelle commune de 0 à 62,5"
+    },
+    {
+      "page": 50,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -9295,7 +10195,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La quatrième barre domine nettement, sans atteindre 100 %."
+      "text": "Une observation renforce D sans annuler toutes les autres possibilités."
     },
     {
       "page": 50,
@@ -9403,7 +10303,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Calculons la première correction. Avant la mesure : 20 % par case. Le capteur annonce une porte dans 95 % des cas devant une porte, et dans 20 % des cas devant un mur."
+      "text": "Un robot d’inventaire peut se trouver dans quatre zones équiprobables. Seule D porte un repère bleu. Le capteur annonce bleu avec une probabilité de 0,75 en D et 0,15 dans chaque autre zone ; il annonce bleu."
     },
     {
       "page": 51,
@@ -9421,7 +10321,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Case avec porte : 0,20 × 0,95 = 0,19."
+      "text": "Poids de D : 0,25 × 0,75 = 0,1875."
     },
     {
       "page": 51,
@@ -9439,7 +10339,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Case sans porte : 0,20 × 0,20 = 0,04."
+      "text": "Poids de chacune des autres zones : 0,25 × 0,15 = 0,0375."
     },
     {
       "page": 51,
@@ -9457,7 +10357,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Total des cinq cases : 2 × 0,19 + 3 × 0,04 = 0,50."
+      "text": "Total : 0,1875 + 3 × 0,0375 = 0,30."
     },
     {
       "page": 51,
@@ -9473,9 +10373,9 @@
       "x": 101,
       "y": 363.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "On divise par ce total pour que la somme fasse 100 % : 0,19 / 0,50 et 0,04 / 0,50."
+      "text": "Normaliser : D = 0,1875 / 0,30 = 62,5 % ; chacune des autres = 12,5 %."
     },
     {
       "page": 51,
@@ -9491,14 +10391,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Une position à probabilité nulle ne revient pas par une simple multiplication. La confiance accordée au capteur doit refléter sa fiabilité effective."
+      "text": "Quatre zones exclusives et exhaustives ; fiabilité du capteur supposée connue et valable dans ce contexte."
     },
     {
       "page": 51,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -9507,20 +10407,20 @@
     {
       "page": 51,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Deux portes identiques permettent-elles de connaître immédiatement la position ?"
+      "text": "Pourquoi ne pas fixer immédiatement la probabilité de D à 100 % ?"
     },
     {
       "page": 51,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 55.440000000000005,
+      "h": 27.720000000000002,
       "size": 21,
-      "text": "Après cette première correction : 38 % pour chacune des deux cases avec porte, 8 % pour chacune des trois autres."
+      "text": "D devient la position la plus probable, sans certitude. Les quatre probabilités totalisent toujours 100 %."
     },
     {
       "page": 51,
@@ -9596,6 +10496,78 @@
     },
     {
       "page": 52,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Issue"
+    },
+    {
+      "page": 52,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Probabilité × valeur"
+    },
+    {
+      "page": 52,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Vue utile"
+    },
+    {
+      "page": 52,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "0,75 × 8 = 6"
+    },
+    {
+      "page": 52,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Vue partielle"
+    },
+    {
+      "page": 52,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "0,20 × 2 = 0,4"
+    },
+    {
+      "page": 52,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Retour sans image"
+    },
+    {
+      "page": 52,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "0,05 × (-4) = -0,2"
+    },
+    {
+      "page": 52,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -9610,7 +10582,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La récompense affichée à droite, et la nouvelle position."
+      "text": "Trois issues exclusives ; leurs probabilités totalisent 1."
     },
     {
       "page": 52,
@@ -9718,7 +10690,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Le robot est à une case de l'objectif (+10). L'action « est » y mène avec 80 % de chances, dévie avec 10 % vers une case neutre de valeur 4, et avec 10 % vers la fosse (-10). Que vaut cette action ? On néglige le coût du pas."
+      "text": "Un drone photographique choisit une manœuvre dans un simulateur. Elle donne une vue utile de valeur 8 avec probabilité 0,75, une vue partielle de valeur 2 avec 0,20, et un retour sans image de valeur -4 avec 0,05."
     },
     {
       "page": 53,
@@ -9736,7 +10708,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Cas favorable : 0,8 × 10 = 8."
+      "text": "Contribution de la vue utile : 0,75 × 8 = 6."
     },
     {
       "page": 53,
@@ -9754,7 +10726,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Déviation vers la case neutre : 0,1 × 4 = 0,4."
+      "text": "Contribution de la vue partielle : 0,20 × 2 = 0,4."
     },
     {
       "page": 53,
@@ -9772,7 +10744,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Déviation vers la fosse : 0,1 × (-10) = -1."
+      "text": "Contribution du retour sans image : 0,05 × (-4) = -0,2."
     },
     {
       "page": 53,
@@ -9790,7 +10762,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Valeur de l'action : 8 + 0,4 - 1."
+      "text": "Valeur espérée : 6 + 0,4 - 0,2 = 6,2."
     },
     {
       "page": 53,
@@ -9806,14 +10778,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 122.10000000000001,
+      "h": 97.68,
       "size": 18.5,
-      "text": "Le calcul montré est une espérance sur les valeurs des issues, sans coût du pas ni actualisation supplémentaire. Un MDP suppose que l'état contient l'information utile aux transitions."
+      "text": "Exemple simulé. Les valeurs incluent ici les conséquences des issues ; aucun coût ni facteur d’actualisation supplémentaire n’est ajouté."
     },
     {
       "page": 53,
       "x": 826,
-      "y": 410.54,
+      "y": 386.12,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -9822,11 +10794,11 @@
     {
       "page": 53,
       "x": 826,
-      "y": 436.54,
+      "y": 412.12,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Une récompense immédiate suffit-elle à choisir une action près d'un danger ?"
+      "text": "Une seule manœuvre réussie permet-elle de conclure que sa valeur est 8 ?"
     },
     {
       "page": 53,
@@ -9835,7 +10807,7 @@
       "w": 1136,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Valeur : 7,4. Si la fosse était remplacée par une case de valeur 4, on obtiendrait 8,8. Ce danger fait perdre 1,4 point et peut justifier un détour."
+      "text": "Cette manœuvre vaut 6,2 dans le modèle. La comparer demande d’évaluer les autres actions avec la même convention."
     },
     {
       "page": 53,
@@ -9911,6 +10883,42 @@
     },
     {
       "page": 54,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Avant : 2"
+    },
+    {
+      "page": 54,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Cible : 5"
+    },
+    {
+      "page": 54,
+      "x": 68,
+      "y": 460,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Après : 2,75"
+    },
+    {
+      "page": 54,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : valeur estimée · échelle commune de 0 à 5"
+    },
+    {
+      "page": 54,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -9925,7 +10933,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les flèches contournent le mur par le bas."
+      "text": "Le taux α fixe la part de l’écart incorporée à cette mise à jour."
     },
     {
       "page": 54,
@@ -9961,7 +10969,7 @@
       "w": 470,
       "h": 132.0,
       "size": 20,
-      "text": "La valeur d'une action se corrige à partir de l'écart entre une estimation et ce qui est observé. α règle la vitesse de mise à jour ; γ l'importance des gains futurs. L'exemple isole l'actualisation pour rendre visible la préférence pour la proximité."
+      "text": "Le Q-learning corrige une valeur d’action avec une récompense observée et une estimation du futur. α règle l’ampleur de la correction ; γ pondère le futur. Les essais répétés apportent progressivement de l’information."
     },
     {
       "page": 54,
@@ -10031,14 +11039,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "L'objectif vaut 1. À chaque pas d'éloignement, la valeur est multipliée par 0,85. Que vaut une case à 3 pas ?"
+      "text": "Un robot d’inventaire estime Q = 2 pour une action. Un essai donne une récompense r = 1, puis un état dont la meilleure valeur estimée vaut 5. On choisit α = 0,25 et γ = 0,8."
     },
     {
       "page": 55,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10047,16 +11055,16 @@
     {
       "page": 55,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "À 1 pas : 0,85 × 1 = 0,85."
+      "text": "Cible de mise à jour : r + γ × max Q suivante = 1 + 0,8 × 5 = 5."
     },
     {
       "page": 55,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10065,16 +11073,16 @@
     {
       "page": 55,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "À 2 pas : 0,85 × 0,85 = 0,72."
+      "text": "Écart à l’estimation actuelle : 5 - 2 = 3."
     },
     {
       "page": 55,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10083,16 +11091,34 @@
     {
       "page": 55,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "À 3 pas : 0,85 × 0,72 = 0,61."
+      "text": "Correction : α × écart = 0,25 × 3 = 0,75."
+    },
+    {
+      "page": 55,
+      "x": 63,
+      "y": 368.44,
+      "w": 22,
+      "h": 19.8,
+      "size": 15,
+      "text": "4"
+    },
+    {
+      "page": 55,
+      "x": 101,
+      "y": 363.44,
+      "w": 657,
+      "h": 26.0,
+      "size": 20,
+      "text": "Nouvelle estimation : Q = 2 + 0,75 = 2,75."
     },
     {
       "page": 55,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -10101,16 +11127,16 @@
     {
       "page": 55,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Le calcul de 0,85³ illustre une valeur actualisée dans un trajet sans autre récompense. Ce n'est pas, à lui seul, une démonstration d'entraînement par Q-learning."
+      "text": "L’état suivant n’est pas terminal. Les valeurs sont des estimations ; une seule mise à jour ne prouve pas que la politique est optimale."
     },
     {
       "page": 55,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -10119,11 +11145,11 @@
     {
       "page": 55,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
-      "h": 50.160000000000004,
+      "h": 25.080000000000002,
       "size": 19,
-      "text": "Que devient l'intérêt d'un gain lointain lorsque γ se rapproche de zéro ?"
+      "text": "Quelle valeur obtiendrait-on avec α = 1 ?"
     },
     {
       "page": 55,
@@ -10132,7 +11158,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "Plus on s'éloigne, plus la valeur baisse : l'agent préfère donc les chemins courts."
+      "text": "Q passe de 2 à 2,75. Une expérience déplace l’estimation vers la cible sans la remplacer entièrement."
     },
     {
       "page": 55,
@@ -10208,6 +11234,33 @@
     },
     {
       "page": 56,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Meilleure action : 76"
+    },
+    {
+      "page": 56,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Chaque autre action : 6"
+    },
+    {
+      "page": 56,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : % des choix · échelle commune de 0 à 76"
+    },
+    {
+      "page": 56,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -10222,7 +11275,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les barres grises ne grandissent presque plus."
+      "text": "La branche aléatoire comprend les cinq actions."
     },
     {
       "page": 56,
@@ -10328,14 +11381,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Avec ε = 0,2 et trois actions possibles, à quelle fréquence la meilleure action est-elle choisie ?"
+      "text": "Un robot de jardin possède cinq actions autorisées et une seule meilleure action estimée. Avec ε = 0,30, il explore uniformément parmi les cinq actions ; sinon, il exploite."
     },
     {
       "page": 57,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10344,16 +11397,16 @@
     {
       "page": 57,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Dans 80 % des cas, l'agent exploite : il prend la meilleure action."
+      "text": "Exploitation : 70 % des choix vont à la meilleure action."
     },
     {
       "page": 57,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10362,16 +11415,16 @@
     {
       "page": 57,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Dans 20 % des cas, il tire au hasard parmi les trois actions."
+      "text": "Exploration : 30 % répartis entre cinq actions, soit 6 % chacune."
     },
     {
       "page": 57,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10380,34 +11433,16 @@
     {
       "page": 57,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Ce hasard tombe sur la meilleure une fois sur trois : 20 % / 3 = 6,7 %."
-    },
-    {
-      "page": 57,
-      "x": 63,
-      "y": 340.72,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 57,
-      "x": 101,
-      "y": 335.72,
-      "w": 657,
-      "h": 26.0,
-      "size": 20,
-      "text": "Total : 80 % + 6,7 %."
+      "text": "Meilleure action : 70 % + 6 % = 76 %. Chacune des quatre autres : 6 %."
     },
     {
       "page": 57,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -10416,16 +11451,16 @@
     {
       "page": 57,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 48.84,
       "size": 18.5,
-      "text": "Cette formule suppose une unique meilleure action et un tirage uniforme parmi toutes les actions. Explorer en situation réelle exige des actions autorisées et sûres."
+      "text": "Une seule meilleure action, tirage uniforme et ensemble d’actions autorisées fixé."
     },
     {
       "page": 57,
       "x": 826,
-      "y": 358.4,
+      "y": 337.28,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -10434,11 +11469,11 @@
     {
       "page": 57,
       "x": 826,
-      "y": 384.4,
+      "y": 363.28,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Faut-il supprimer toute exploration lorsque l'environnement peut changer ?"
+      "text": "Pourquoi quatre fois 6 % plus 76 % doit-il donner 100 % ?"
     },
     {
       "page": 57,
@@ -10447,7 +11482,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "La meilleure action est choisie dans 86,7 % des cas, les deux autres dans 6,7 % chacune."
+      "text": "La meilleure action reçoit 76 % des choix, pas seulement 70 %. Explorer peut aussi tirer cette action."
     },
     {
       "page": 57,
@@ -10712,6 +11747,60 @@
     },
     {
       "page": 60,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Campagne au même taux"
+    },
+    {
+      "page": 60,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Marge approximative"
+    },
+    {
+      "page": 60,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "225 extraits"
+    },
+    {
+      "page": 60,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "± 5,23 points"
+    },
+    {
+      "page": 60,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "900 extraits"
+    },
+    {
+      "page": 60,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "± 2,61 points"
+    },
+    {
+      "page": 60,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -10726,7 +11815,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La bande bleue réduite à presque un point."
+      "text": "L’intervalle se resserre avec davantage d’observations indépendantes."
     },
     {
       "page": 60,
@@ -10832,14 +11921,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "82 réussites sur 100 simulations. La demi-largeur de l'intervalle à 95 % vaut environ 1,96 × √(p × (1 - p) / n)."
+      "text": "Un outil de transcription réussit 180 cas sur 225 extraits indépendants. On estime un intervalle à 95 % avec p̂ ± 1,96 × √[p̂(1-p̂)/n]."
     },
     {
       "page": 61,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10848,16 +11937,16 @@
     {
       "page": 61,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "p = 0,82 et n = 100. Donc p × (1 - p) = 0,82 × 0,18 = 0,1476."
+      "text": "Fréquence observée : p̂ = 180 / 225 = 0,80."
     },
     {
       "page": 61,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10866,16 +11955,16 @@
     {
       "page": 61,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "0,1476 / 100 = 0,001476, dont la racine carrée vaut 0,0384."
+      "text": "Erreur standard : √(0,80 × 0,20 / 225) ≈ 0,02667."
     },
     {
       "page": 61,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10884,16 +11973,16 @@
     {
       "page": 61,
       "x": 101,
-      "y": 291.72,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "1,96 × 0,0384 = 0,075, soit 7,5 points."
+      "text": "Marge : 1,96 × 0,02667 ≈ 0,05227, soit 5,23 points."
     },
     {
       "page": 61,
       "x": 63,
-      "y": 340.72,
+      "y": 368.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -10902,16 +11991,16 @@
     {
       "page": 61,
       "x": 101,
-      "y": 335.72,
+      "y": 363.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Intervalle : 82 % moins 7,5 points, à 82 % plus 7,5 points."
+      "text": "Intervalle approximatif : [74,8 % ; 85,2 %]. Avec 900 cas au même taux, la marge serait environ 2,61 points."
     },
     {
       "page": 61,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -10920,16 +12009,16 @@
     {
       "page": 61,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
       "h": 97.68,
       "size": 18.5,
-      "text": "L'approximation normale convient mal aux petits effectifs et aux taux proches de 0 ou 1. L'intervalle ne corrige ni un scénario non représentatif ni des essais dépendants."
+      "text": "Approximation normale, cas indépendants et représentatifs. Le niveau de 95 % décrit la couverture de la méthode sur des campagnes répétées."
     },
     {
       "page": 61,
       "x": 826,
-      "y": 358.4,
+      "y": 386.12,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -10938,20 +12027,20 @@
     {
       "page": 61,
       "x": 826,
-      "y": 384.4,
+      "y": 412.12,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "82 réussites sur 100 prouvent-elles que le prochain essai réussira ?"
+      "text": "Que devient cette interprétation si plusieurs extraits viennent du même enregistrement ?"
     },
     {
       "page": 61,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "De 74,5 % à 89,5 %. Avec 400 simulations, la demi-largeur tombe à 3,8 points."
+      "text": "80 % est une estimation accompagnée d’incertitude. Multiplier les essais par quatre divise ici la marge par deux."
     },
     {
       "page": 61,
@@ -11027,6 +12116,78 @@
     },
     {
       "page": 62,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Résolution"
+    },
+    {
+      "page": 62,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "A / B"
+    },
+    {
+      "page": 62,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "300 dpi"
+    },
+    {
+      "page": 62,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "97 % / 95 %"
+    },
+    {
+      "page": 62,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "150 dpi"
+    },
+    {
+      "page": 62,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "92 % / 90 %"
+    },
+    {
+      "page": 62,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "75 dpi"
+    },
+    {
+      "page": 62,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "68 % / 84 %"
+    },
+    {
+      "page": 62,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -11041,7 +12202,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "L'écart entre les deux courbes à droite."
+      "text": "La comparaison porte sur la même dégradation de qualité."
     },
     {
       "page": 62,
@@ -11147,14 +12308,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Résultats d'une campagne sur trois niveaux. Agent A : 99 %, 94 %, 81 %. Agent B : 99 %, 97 %, 35 %. Lequel choisir ?"
+      "text": "Deux lecteurs automatiques de documents sont testés aux résolutions 300, 150 et 75 dpi. A réussit à 97 %, 92 %, 68 % ; B à 95 %, 90 %, 84 %. Le besoin impose au moins 80 % même à 75 dpi."
     },
     {
       "page": 63,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -11163,16 +12324,16 @@
     {
       "page": 63,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Au niveau nominal : égalité, 99 % chacun."
+      "text": "À 300 dpi, A dépasse B de 2 points."
     },
     {
       "page": 63,
       "x": 63,
-      "y": 252.72,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -11181,16 +12342,16 @@
     {
       "page": 63,
       "x": 101,
-      "y": 247.72,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Au niveau dégradé : B fait un peu mieux (97 % contre 94 %)."
+      "text": "À 150 dpi, A garde 2 points d’avance."
     },
     {
       "page": 63,
       "x": 63,
-      "y": 296.72,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -11199,34 +12360,16 @@
     {
       "page": 63,
       "x": 101,
-      "y": 291.72,
-      "w": 657,
-      "h": 26.0,
-      "size": 20,
-      "text": "Au niveau sévère : A perd 13 points, B en perd 62."
-    },
-    {
-      "page": 63,
-      "x": 63,
-      "y": 340.72,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 63,
-      "x": 101,
-      "y": 335.72,
+      "y": 319.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "B s'effondre entre deux niveaux : son comportement devient imprévisible dès que les conditions se durcissent."
+      "text": "À 75 dpi, A tombe à 68 % et échoue au critère. B reste à 84 % et le respecte."
     },
     {
       "page": 63,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -11235,16 +12378,16 @@
     {
       "page": 63,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Le choix de A vaut si le niveau sévère appartient au domaine visé. Une dégradation progressive observée sur trois points ne garantit pas tous les niveaux intermédiaires."
+      "text": "Même jeu de documents aux trois résolutions. Les résultats n’établissent pas une garantie pour tous les scanners et tous les textes."
     },
     {
       "page": 63,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -11253,20 +12396,20 @@
     {
       "page": 63,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Un agent excellent en conditions nominales peut-il être le moins défendable ?"
+      "text": "Le choix pourrait-il changer si les documents à 75 dpi étaient exclus du besoin ?"
     },
     {
       "page": 63,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "On retient A pour les niveaux testés : il conserve 81 % de réussite au niveau sévère, contre 35 % pour B."
+      "text": "B répond au critère annoncé pour les trois résolutions testées. Le meilleur résultat nominal ne suffit pas à choisir."
     },
     {
       "page": 63,
@@ -11342,6 +12485,33 @@
     },
     {
       "page": 64,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Graine 6 419"
+    },
+    {
+      "page": 64,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Configuration + versions"
+    },
+    {
+      "page": 64,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Rejeu de l’essai 218"
+    },
+    {
+      "page": 64,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -11356,7 +12526,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Le tracé rouge s'écarte du bleu dès les premiers pas."
+      "text": "La graine n’est qu’un élément du dossier de reproduction."
     },
     {
       "page": 64,
@@ -11462,14 +12632,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "La simulation n° 3 127 d'une campagne se termine par une collision. Que faut-il avoir enregistré pour l'étudier ?"
+      "text": "L’essai 218 d’un simulateur de jardinage se bloque. Son générateur utilise la graine 6 419. Une modification récente a aussi changé l’ordre des appels au générateur."
     },
     {
       "page": 65,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -11478,16 +12648,16 @@
     {
       "page": 65,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "La graine de cette simulation, pour retrouver les mêmes tirages aléatoires."
+      "text": "Conserver la graine, les paramètres, les données initiales et les versions du simulateur et de l’agent."
     },
     {
       "page": 65,
       "x": 63,
-      "y": 278.72,
+      "y": 306.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -11496,16 +12666,16 @@
     {
       "page": 65,
       "x": 101,
-      "y": 273.72,
+      "y": 301.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Les paramètres : niveau de bruit, glissement, nombre d'obstacles."
+      "text": "Relancer d’abord la version de l’échec avec cette configuration pour retrouver la même séquence."
     },
     {
       "page": 65,
       "x": 63,
-      "y": 322.72,
+      "y": 376.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -11514,34 +12684,16 @@
     {
       "page": 65,
       "x": 101,
-      "y": 317.72,
-      "w": 657,
-      "h": 26.0,
-      "size": 20,
-      "text": "La version du code de l'agent."
-    },
-    {
-      "page": 65,
-      "x": 63,
-      "y": 366.72,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 65,
-      "x": 101,
-      "y": 361.72,
+      "y": 371.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "On relance avec ces trois éléments : l'échec se reproduit à l'identique, et sa trace peut être rejouée étape par étape dans la scène 3D."
+      "text": "Comparer ensuite la version corrigée. La même graine seule ne suffit pas si les tirages sont consommés différemment."
     },
     {
       "page": 65,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -11550,16 +12702,16 @@
     {
       "page": 65,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 122.10000000000001,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Les trois éléments du cours suffisent dans le simulateur déterministe fixé. En général, conserver aussi dépendances, générateurs, données et options de calcul ; certains calculs GPU sont non déterministes."
+      "text": "Le rejeu exact suppose un environnement déterministe. Documenter les dépendances et les éventuelles sources de non-déterminisme."
     },
     {
       "page": 65,
       "x": 826,
-      "y": 382.82,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -11568,11 +12720,11 @@
     {
       "page": 65,
       "x": 826,
-      "y": 408.82,
+      "y": 387.7,
       "w": 402,
-      "h": 75.24000000000001,
+      "h": 50.160000000000004,
       "size": 19,
-      "text": "Deux programmes utilisant la même graine produisent-ils nécessairement le même trajet ?"
+      "text": "Pourquoi archiver aussi les données d’entrée ?"
     },
     {
       "page": 65,
@@ -11581,7 +12733,7 @@
       "w": 1136,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Dans ce simulateur déterministe fixé : graine, paramètres et version permettent de retrouver l’échec et d’en expliquer la trajectoire."
+      "text": "Le rejeu exige une expérience décrite complètement. Une graine identique ne garantit pas des trajectoires identiques entre deux programmes différents."
     },
     {
       "page": 65,
@@ -11846,6 +12998,33 @@
     },
     {
       "page": 68,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Demande + catalogue"
+    },
+    {
+      "page": 68,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Choix admissible"
+    },
+    {
+      "page": 68,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Option de 48 h"
+    },
+    {
+      "page": 68,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -11860,7 +13039,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les lignes 5 à 7 : autonomie, contrôle et qualité, que l'on oublie le plus souvent."
+      "text": "Une proposition devient une action quand l’option est créée."
     },
     {
       "page": 68,
@@ -11966,14 +13145,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 27.720000000000002,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Appliquons la fiche à un filtre antifraude, qui examine chaque paiement d'un organisme et peut le suspendre."
+      "text": "Une médiathèque utilise un agent de réservation. Il peut poser une option de 48 heures sur un exemplaire disponible, mais seul le personnel peut prolonger cette option."
     },
     {
       "page": 69,
       "x": 63,
-      "y": 208.72,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -11982,16 +13161,16 @@
     {
       "page": 69,
       "x": 101,
-      "y": 203.72,
+      "y": 231.44,
       "w": 657,
-      "h": 78.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Ce qu'il perçoit : le montant, le bénéficiaire, l'historique des paiements. Comment il représente : des variables calculées, par exemple l'écart au montant habituel."
+      "text": "Perception : demande du lecteur, disponibilité et règles d’emprunt. Représentation : exemplaire, échéance et état de l’option."
     },
     {
       "page": 69,
       "x": 63,
-      "y": 304.72,
+      "y": 306.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12000,16 +13179,16 @@
     {
       "page": 69,
       "x": 101,
-      "y": 299.72,
+      "y": 301.44,
       "w": 657,
-      "h": 78.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Comment il décide : un modèle statistique produit un score, et une politique d'action fixe les seuils. Sur quoi il agit : il laisse passer, demande un contrôle ou suspend le paiement."
+      "text": "Décision : choisir un exemplaire admissible ou signaler l’absence de disponibilité."
     },
     {
       "page": 69,
       "x": 63,
-      "y": 400.72,
+      "y": 376.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12018,16 +13197,16 @@
     {
       "page": 69,
       "x": 101,
-      "y": 395.72,
+      "y": 371.44,
       "w": 657,
-      "h": 78.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Son autonomie : la suspension est exécutée automatiquement, dans des limites fixées d'avance. Son contrôle : un agent humain lève ou confirme chaque suspension."
+      "text": "Action : créer l’option et sa date d’expiration ; informer le lecteur."
     },
     {
       "page": 69,
       "x": 63,
-      "y": 496.72,
+      "y": 420.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12036,16 +13215,16 @@
     {
       "page": 69,
       "x": 101,
-      "y": 491.72,
+      "y": 415.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Sa qualité : la part des fraudes arrêtées, et la part des paiements réguliers suspendus à tort."
+      "text": "Contrôle : le personnel traite les exceptions. Mesures : réservations correctes et options créées à tort."
     },
     {
       "page": 69,
       "x": 826,
-      "y": 203.72,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -12054,16 +13233,16 @@
     {
       "page": 69,
       "x": 826,
-      "y": 234.72,
+      "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Une conversation n'est ni nécessaire ni suffisante. L'autonomie réelle dépend des permissions, des actions exécutables et des mécanismes de reprise."
+      "text": "Règles fictives de médiathèque. La permission de prolonger reste distincte de la capacité technique."
     },
     {
       "page": 69,
       "x": 826,
-      "y": 358.4,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -12072,20 +13251,20 @@
     {
       "page": 69,
       "x": 826,
-      "y": 384.4,
+      "y": 387.7,
       "w": 402,
-      "h": 50.160000000000004,
+      "h": 75.24000000000001,
       "size": 19,
-      "text": "Qui peut suspendre une action et qui vérifie qu'elle était justifiée ?"
+      "text": "L’agent peut-il prolonger une option simplement parce qu’il sait écrire dans le catalogue ?"
     },
     {
       "page": 69,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 77.22,
-      "size": 19.5,
-      "text": "Le filtre antifraude est un agent : il perçoit, représente, décide et agit, sans aucune conversation. La fiche tient en sept lignes, et elle fait apparaître deux points à ne pas laisser implicites : qui contrôle les suspensions, et comment on mesure les erreurs dans les deux sens."
+      "h": 55.440000000000005,
+      "size": 21,
+      "text": "La fiche distingue les informations, l’action réellement permise, sa limite de 48 heures et le rôle du personnel."
     },
     {
       "page": 69,
@@ -12161,6 +13340,42 @@
     },
     {
       "page": 70,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Erreur 4 % : automatique : 6"
+    },
+    {
+      "page": 70,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Revue : 9"
+    },
+    {
+      "page": 70,
+      "x": 68,
+      "y": 460,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Erreur 12 % : automatique : 18"
+    },
+    {
+      "page": 70,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : € de coût espéré · échelle commune de 0 à 18"
+    },
+    {
+      "page": 70,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -12173,9 +13388,9 @@
       "x": 66,
       "y": 623,
       "w": 634,
-      "h": 39.6,
+      "h": 19.8,
       "size": 15,
-      "text": "Le coût « automatique », qui baisse quand la confiance monte, et le niveau retenu, qui passe de 3 à 4."
+      "text": "La même politique distingue les cas selon le risque estimé."
     },
     {
       "page": 70,
@@ -12281,14 +13496,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 83.16000000000001,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Remboursements de frais. Une erreur exécutée sans contrôle coûte 40 €. La validation humaine d'une décision préparée coûte 2 €, et l'on suppose qu'elle rattrape toutes les erreurs. Deux dossiers arrivent : l'agent annonce 90 % de confiance pour le premier, 98 % pour le second."
+      "text": "Pour une autorisation de prêt d’œuvre, une erreur automatique coûte 150 € dans le modèle. Une revue coûte 9 € et est supposée parfaite. Deux cas ont des probabilités d’erreur mesurées de 4 % et 12 %."
     },
     {
       "page": 71,
       "x": 63,
-      "y": 264.16,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12297,16 +13512,16 @@
     {
       "page": 71,
       "x": 101,
-      "y": 259.16,
+      "y": 231.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Dossier à 90 % : la probabilité d'erreur est de 10 %. Coût espéré en automatique : 0,10 × 40 = 4,00 €."
+      "text": "Premier cas : 0,04 × 150 = 6 €. L’automatique coûte moins que la revue à 9 €."
     },
     {
       "page": 71,
       "x": 63,
-      "y": 334.16,
+      "y": 306.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12315,16 +13530,16 @@
     {
       "page": 71,
       "x": 101,
-      "y": 329.16,
+      "y": 301.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Validation : 2,00 € dans tous les cas. 2,00 € est inférieur à 4,00 € : ce dossier part en validation (niveau 3)."
+      "text": "Second cas : 0,12 × 150 = 18 €. La revue coûte moins."
     },
     {
       "page": 71,
       "x": 63,
-      "y": 404.16,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12333,34 +13548,16 @@
     {
       "page": 71,
       "x": 101,
-      "y": 399.16,
+      "y": 345.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Dossier à 98 % : probabilité d'erreur 2 %. Coût espéré en automatique : 0,02 × 40 = 0,80 €, inférieur à 2,00 €."
-    },
-    {
-      "page": 71,
-      "x": 63,
-      "y": 474.16,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 71,
-      "x": 101,
-      "y": 469.16,
-      "w": 657,
-      "h": 52.0,
-      "size": 20,
-      "text": "Seuil : les deux coûts sont égaux quand p × 40 = 2, soit p = 2 / 40 = 5 % d'erreur, donc 95 % de confiance."
+      "text": "Égalité : 150 × p = 9, donc p = 6 %. Au-dessus, la revue est économiquement préférable."
     },
     {
       "page": 71,
       "x": 826,
-      "y": 259.16,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -12369,16 +13566,16 @@
     {
       "page": 71,
       "x": 826,
-      "y": 290.16,
+      "y": 262.44,
       "w": 402,
-      "h": 122.10000000000001,
+      "h": 97.68,
       "size": 18.5,
-      "text": "Le calcul suppose une confiance calibrée et une revue parfaite. Les niveaux 0 à 5 sont la grille du cours ; le seuil économique doit aussi respecter les règles métier et les droits d'action."
+      "text": "Probabilités calibrées sur des cas comparables, revue supposée parfaite et coûts fictifs. Le calcul économique ne crée aucune permission."
     },
     {
       "page": 71,
       "x": 826,
-      "y": 438.26000000000005,
+      "y": 386.12,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -12387,11 +13584,11 @@
     {
       "page": 71,
       "x": 826,
-      "y": 464.26000000000005,
+      "y": 412.12,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Une confiance annoncée à 98 % vaut-elle une probabilité d'erreur de 2 % ?"
+      "text": "Que change une revue qui laisse passer certaines erreurs ?"
     },
     {
       "page": 71,
@@ -12400,7 +13597,7 @@
       "w": 1136,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Au-dessus de 95 % de confiance, exécution automatique (niveau 4). En dessous, pré-exécution avec validation humaine (niveau 3). Le même système travaille à deux niveaux d'autonomie, selon le dossier."
+      "text": "Dans ce modèle, le cas à 4 % peut être automatisé et celui à 12 % est revu, sous réserve des permissions métier."
     },
     {
       "page": 71,
@@ -12476,6 +13673,33 @@
     },
     {
       "page": 72,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Règles : format"
+    },
+    {
+      "page": 72,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Modèle : catégorie"
+    },
+    {
+      "page": 72,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Optimisation : créneau"
+    },
+    {
+      "page": 72,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -12490,7 +13714,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les pourcentages de chaque case : le LLM n'est le meilleur que sur la première étape."
+      "text": "La technique est choisie selon chaque sous-tâche."
     },
     {
       "page": 72,
@@ -12598,7 +13822,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Refaisons le calcul de la composition, avec les mesures de la démonstration. Étapes : extraire (LLM, 96 %), conformité (règles, 99 %), risque (modèle statistique, 94 %), planifier (optimisation, 99 %)."
+      "text": "Un catalogue patrimonial combine trois étapes séquentielles : contrôler le format par règles (99,5 % ; 0,2 centime ; 4 ms), classer par modèle (92 % ; 0,7 centime ; 30 ms), allouer un créneau par optimisation (98 % ; 0,4 centime ; 90 ms)."
     },
     {
       "page": 73,
@@ -12616,7 +13840,7 @@
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Fiabilité de bout en bout : une réclamation est bien traitée si les quatre étapes réussissent. 0,96 × 0,99 = 0,9504."
+      "text": "Sous indépendance, réussite complète : 0,995 × 0,92 × 0,98 = 0,897092."
     },
     {
       "page": 73,
@@ -12634,7 +13858,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "On poursuit : 0,9504 × 0,94 = 0,8934, puis 0,8934 × 0,99 = 0,8844."
+      "text": "Coût total : 0,2 + 0,7 + 0,4 = 1,3 centime par traitement."
     },
     {
       "page": 73,
@@ -12652,25 +13876,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Coût : 3 + 0,1 + 0,5 + 1 = 4,6 centimes."
-    },
-    {
-      "page": 73,
-      "x": 63,
-      "y": 394.44,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 73,
-      "x": 101,
-      "y": 389.44,
-      "w": 657,
-      "h": 52.0,
-      "size": 20,
-      "text": "Délai : 900 + 5 + 20 + 200 = 1 125 millisecondes, soit environ 1,1 seconde."
+      "text": "Délai séquentiel : 4 + 30 + 90 = 124 ms."
     },
     {
       "page": 73,
@@ -12686,14 +13892,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Le produit de taux marginaux suppose des succès indépendants ; sinon utiliser des taux conditionnels mesurés. La somme des délais décrit ici une exécution séquentielle."
+      "text": "Succès supposés indépendants et exécution séquentielle. Sinon, mesurer les taux conditionnels et la latence de la chaîne réelle."
     },
     {
       "page": 73,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -12702,20 +13908,20 @@
     {
       "page": 73,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Quelle étape exige du langage libre, et laquelle exige une règle exacte ?"
+      "text": "Que manque-t-il au produit des taux si deux étapes échouent sur les mêmes cas ?"
     },
     {
       "page": 73,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 55.440000000000005,
+      "h": 27.720000000000002,
       "size": 21,
-      "text": "88,4 % de réclamations sans erreur, 4,6 centimes, 1,1 seconde. Le tout LLM donnait 60,8 %, 12 centimes et 3,6 secondes : moins bien sur les trois mesures."
+      "text": "Environ 89,7 % de traitements entièrement corrects, pour 1,3 centime et 124 ms selon ces mesures."
     },
     {
       "page": 73,
@@ -12791,6 +13997,78 @@
     },
     {
       "page": 74,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Réparation"
+    },
+    {
+      "page": 74,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Poids 2 / poids 4"
+    },
+    {
+      "page": 74,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "X"
+    },
+    {
+      "page": 74,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "9 / 17"
+    },
+    {
+      "page": 74,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Y"
+    },
+    {
+      "page": 74,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "10 / 14"
+    },
+    {
+      "page": 74,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Z"
+    },
+    {
+      "page": 74,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "8 / 14"
+    },
+    {
+      "page": 74,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -12805,7 +14083,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Le curseur noir, qui traverse les trois zones, et l'action qui change à chaque seuil."
+      "text": "Renforcer la fragilité fait passer X en tête."
     },
     {
       "page": 74,
@@ -12913,7 +14191,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Reprenons le score de priorité de la démonstration, vérifions le classement, puis cherchons ce qu'il faudrait changer pour que le ticket de gravité 5 passe en tête."
+      "text": "Un musée priorise trois réparations avec score = 2 × fragilité + attente en jours. X : fragilité 4, attente 1 ; Y : fragilité 2, attente 6 ; Z : fragilité 3, attente 2."
     },
     {
       "page": 75,
@@ -12929,14 +14207,14 @@
       "x": 101,
       "y": 231.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Ticket A (gravité 4, secteur 2, 1 jour, délai tenu, client courant) : 3 × 4 + 2 × 2 + 1 = 12 + 4 + 1 = 17."
+      "text": "X : 2 × 4 + 1 = 9. Y : 2 × 2 + 6 = 10. Z : 2 × 3 + 2 = 8."
     },
     {
       "page": 75,
       "x": 63,
-      "y": 306.44,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12945,16 +14223,16 @@
     {
       "page": 75,
       "x": 101,
-      "y": 301.44,
+      "y": 275.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Ticket B (gravité 2, secteur 3, 5 jours, délai dépassé, client stratégique) : 6 + 6 + 5 + 4 + 3 = 24."
+      "text": "Avec ce poids, Y passe devant X puis Z."
     },
     {
       "page": 75,
       "x": 63,
-      "y": 376.44,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12963,16 +14241,16 @@
     {
       "page": 75,
       "x": 101,
-      "y": 371.44,
+      "y": 319.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Ticket C (gravité 5, secteur 1, 2 jours, délai tenu, client courant) : 15 + 2 + 2 = 19. Classement : B, C, A."
+      "text": "Avec un poids 4 sur la fragilité : X = 17, Y = 14, Z = 14."
     },
     {
       "page": 75,
       "x": 63,
-      "y": 446.44,
+      "y": 368.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -12981,11 +14259,11 @@
     {
       "page": 75,
       "x": 101,
-      "y": 441.44,
+      "y": 363.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Portons le poids de la gravité de 3 à 6. A : 24 + 4 + 1 = 29. B : 12 + 6 + 5 + 4 + 3 = 30. C : 30 + 2 + 2 = 34. Classement : C, B, A."
+      "text": "X devient prioritaire ; il reste à définir comment départager Y et Z."
     },
     {
       "page": 75,
@@ -13001,14 +14279,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Les échelles des critères comptent autant que les poids. Modifier l'unité d'un critère sans ajuster son poids peut changer la politique à l'insu du concepteur."
+      "text": "Critères et échelles fictifs. Changer l’unité d’attente sans ajuster le poids changerait le classement."
     },
     {
       "page": 75,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -13017,20 +14295,20 @@
     {
       "page": 75,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Le poids de la gravité choisi permet-il vraiment au dossier le plus grave de passer ?"
+      "text": "Quelle règle de départage peut-on annoncer avant de voir les scores ?"
     },
     {
       "page": 75,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 77.22,
-      "size": 19.5,
-      "text": "Avec un poids de 3 sur la gravité, le ticket le plus grave attend derrière un ticket ancien. Avec un poids de 6, il passe en tête, 34 contre 30. Les poids d'une heuristique ne sont pas des détails de réglage : ils disent ce que le service juge prioritaire."
+      "h": 55.440000000000005,
+      "size": 21,
+      "text": "Le poids change la priorité métier et peut créer une égalité. Le score ne décide pas à lui seul comment traiter cette égalité."
     },
     {
       "page": 75,
@@ -13106,6 +14384,78 @@
     },
     {
       "page": 76,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Après contrôle"
+    },
+    {
+      "page": 76,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Nombre"
+    },
+    {
+      "page": 76,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Revus"
+    },
+    {
+      "page": 76,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "18"
+    },
+    {
+      "page": 76,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Automatiques corrects"
+    },
+    {
+      "page": 76,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "156"
+    },
+    {
+      "page": 76,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Automatiques faux"
+    },
+    {
+      "page": 76,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "6"
+    },
+    {
+      "page": 76,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -13118,9 +14468,9 @@
       "x": 66,
       "y": 623,
       "w": 634,
-      "h": 39.6,
+      "h": 19.8,
       "size": 15,
-      "text": "Les points rouges non cerclés : il en reste 3, ce sont les erreurs que les contrôles n'ont pas vues."
+      "text": "Les dossiers revus et les actions automatiques ont des dénominateurs différents."
     },
     {
       "page": 76,
@@ -13228,7 +14578,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Chiffrons ce que les contrôles changent. 100 courriers, 12 extractions fausses. Une action fausse coûte 50 €, une relecture humaine 3 €. Les contrôles bloquent 9 extractions fausses et 4 justes."
+      "text": "Un LLM extrait des métadonnées de 180 entretiens d’archives ; 18 extractions sont fausses. Un contrôle bloque 12 extractions fausses et 6 justes. Une erreur exécutée coûte 30 € ; une revue coûte 2 €."
     },
     {
       "page": 77,
@@ -13244,14 +14594,14 @@
       "x": 101,
       "y": 231.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Sans contrôle : 12 actions fausses sur 100, soit 12 % d'erreurs, et 12 × 50 = 600 €."
+      "text": "Sans contrôle : 18 × 30 = 540 € de coût d’erreurs."
     },
     {
       "page": 77,
       "x": 63,
-      "y": 306.44,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -13260,16 +14610,16 @@
     {
       "page": 77,
       "x": 101,
-      "y": 301.44,
+      "y": 275.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Avec contrôles : 9 + 4 = 13 dossiers bloqués, donc 100 - 13 = 87 dossiers exécutés."
+      "text": "Dossiers bloqués : 12 + 6 = 18. Exécutés automatiquement : 180 - 18 = 162."
     },
     {
       "page": 77,
       "x": 63,
-      "y": 376.44,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -13278,16 +14628,16 @@
     {
       "page": 77,
       "x": 101,
-      "y": 371.44,
+      "y": 345.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Erreurs restantes : 12 - 9 = 3 actions fausses sur 87 exécutées, soit 3,4 %."
+      "text": "Erreurs restantes parmi les exécutés : 18 - 12 = 6, soit 6 / 162 ≈ 3,7 %."
     },
     {
       "page": 77,
       "x": 63,
-      "y": 446.44,
+      "y": 394.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -13296,11 +14646,11 @@
     {
       "page": 77,
       "x": 101,
-      "y": 441.44,
+      "y": 389.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Coût : 3 × 50 + 13 × 3 = 150 + 39 = 189 €."
+      "text": "Avec revue parfaite : 6 × 30 + 18 × 2 = 216 €. Économie : 324 €."
     },
     {
       "page": 77,
@@ -13316,14 +14666,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Les dénominateurs répondent à des questions différentes. Les contrôles réduisent les erreurs observées sans garantir une compréhension correcte de tous les courriers."
+      "text": "Les revues corrigent toutes les erreurs bloquées dans ce calcul. Les coûts et les résultats sont synthétiques."
     },
     {
       "page": 77,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -13332,20 +14682,20 @@
     {
       "page": 77,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Faut-il mesurer les erreurs sur tous les courriers ou sur les actions exécutées ?"
+      "text": "Pourquoi 6 / 180 et 6 / 162 ne décrivent-ils pas la même mesure ?"
     },
     {
       "page": 77,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 55.440000000000005,
+      "h": 27.720000000000002,
       "size": 21,
-      "text": "Le taux d'erreur des actions passe de 12 % à 3,4 % et le coût de 600 € à 189 €, au prix de 13 relectures humaines."
+      "text": "Le coût passe de 540 € à 216 €, avec 18 revues. Le taux de 3,7 % porte sur les 162 actions automatiques."
     },
     {
       "page": 77,
@@ -13421,6 +14771,33 @@
     },
     {
       "page": 78,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Sans contrôle : 81,092"
+    },
+    {
+      "page": 78,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Classification contrôlée : 86,621"
+    },
+    {
+      "page": 78,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : % de réussite complète · échelle commune de 0 à 86,621"
+    },
+    {
+      "page": 78,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -13435,7 +14812,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Le dernier nombre de la rangée : 95,1 au lieu de 77,4."
+      "text": "Le contrôle corrige une partie des erreurs avant leur propagation."
     },
     {
       "page": 78,
@@ -13543,7 +14920,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Une chaîne de trois agents : extraction (90 %), validation métier (98 %), scoring (93 %). On dispose d'un seul contrôle, qui rattrape 80 % des erreurs de l'agent qu'il suit. Où le placer ?"
+      "text": "Une chaîne d’archivage réussit la lecture du format à 97 %, la classification à 88 % et l’indexation à 95 %. Un contrôle unique corrige la moitié des erreurs de l’étape qu’il suit, au même coût quel que soit l’emplacement."
     },
     {
       "page": 79,
@@ -13561,7 +14938,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Sans contrôle : 0,90 × 0,98 × 0,93 = 0,820, soit 82,0 %."
+      "text": "Sans contrôle : 0,97 × 0,88 × 0,95 = 0,81092, soit environ 81,1 %."
     },
     {
       "page": 79,
@@ -13579,7 +14956,7 @@
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Le gain d'un contrôle sur un agent vaut (1 - p) × 0,8. Extraction : 0,10 × 0,8 = 0,08. Validation : 0,02 × 0,8 = 0,016. Scoring : 0,07 × 0,8 = 0,056."
+      "text": "La classification est l’étape la moins fiable. Son contrôle fait passer 0,88 à 0,88 + 0,12 × 0,50 = 0,94."
     },
     {
       "page": 79,
@@ -13595,14 +14972,14 @@
       "x": 101,
       "y": 345.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Le gain est le plus fort sur l'extraction, dont la fiabilité passe à 0,90 + 0,08 = 0,98."
+      "text": "Nouvelle réussite complète : 0,97 × 0,94 × 0,95 = 0,86621."
     },
     {
       "page": 79,
       "x": 63,
-      "y": 420.44,
+      "y": 394.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -13611,11 +14988,11 @@
     {
       "page": 79,
       "x": 101,
-      "y": 415.44,
+      "y": 389.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Nouvelle chaîne : 0,98 × 0,98 × 0,93 = 0,893."
+      "text": "Gain : 0,86621 - 0,81092 = 0,05529, soit environ 5,53 points."
     },
     {
       "page": 79,
@@ -13631,14 +15008,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Le choix de l'exemple suppose le même taux de rattrapage et le même coût pour tous les emplacements, sans erreur introduite par le contrôle."
+      "text": "Étapes indépendantes, même taux de correction, pas d’erreur introduite par la revue et coûts identiques."
     },
     {
       "page": 79,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -13647,11 +15024,11 @@
     {
       "page": 79,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Où placer un contrôle si l'on ne peut en financer qu'un seul ?"
+      "text": "Le choix reste-t-il le même si ce contrôle coûte dix fois plus cher à cet endroit ?"
     },
     {
       "page": 79,
@@ -13660,7 +15037,7 @@
       "w": 1136,
       "h": 27.720000000000002,
       "size": 21,
-      "text": "89,3 % au lieu de 82,0 % : un seul contrôle, placé sur le maillon le plus fragile, fait gagner 7,3 points."
+      "text": "Contrôler la classification porte la réussite à environ 86,6 % dans ce modèle."
     },
     {
       "page": 79,
@@ -13736,6 +15113,33 @@
     },
     {
       "page": 80,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Un classifieur : 20"
+    },
+    {
+      "page": 80,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Majorité de trois : 10,4"
+    },
+    {
+      "page": 80,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : % d’erreurs · échelle commune de 0 à 20"
+    },
+    {
+      "page": 80,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -13750,7 +15154,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les cases rouges, près de quatre fois plus nombreuses qu'à l'étape précédente."
+      "text": "Les deux événements « deux faux » et « trois faux » s’additionnent."
     },
     {
       "page": 80,
@@ -13858,7 +15262,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Trois agents indépendants, chacun avec un taux d'erreur de 10 %. L'arbitre suit la majorité. À quelle fréquence se trompe-t-il ?"
+      "text": "Trois classifieurs d’affiches historiques rendent un avis binaire. Chacun se trompe avec probabilité 20 %, indépendamment des deux autres. La décision suit la majorité."
     },
     {
       "page": 81,
@@ -13876,7 +15280,7 @@
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Le vote est faux si au moins deux agents se trompent."
+      "text": "Majorité fausse : deux ou trois avis faux."
     },
     {
       "page": 81,
@@ -13892,14 +15296,14 @@
       "x": 101,
       "y": 275.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Exactement deux se trompent : il y a 3 façons de choisir celui qui a raison. 3 × 0,1 × 0,1 × 0,9 = 0,027."
+      "text": "Exactement deux faux : 3 × 0,20² × 0,80 = 0,096."
     },
     {
       "page": 81,
       "x": 63,
-      "y": 350.44,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -13908,16 +15312,16 @@
     {
       "page": 81,
       "x": 101,
-      "y": 345.44,
+      "y": 319.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Les trois se trompent : 0,1 × 0,1 × 0,1 = 0,001."
+      "text": "Trois faux : 0,20³ = 0,008."
     },
     {
       "page": 81,
       "x": 63,
-      "y": 394.44,
+      "y": 368.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -13926,11 +15330,11 @@
     {
       "page": 81,
       "x": 101,
-      "y": 389.44,
+      "y": 363.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Total : 0,027 + 0,001 = 0,028."
+      "text": "Total : 0,096 + 0,008 = 0,104, soit 10,4 %."
     },
     {
       "page": 81,
@@ -13946,14 +15350,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 97.68,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Le calcul suppose trois erreurs indépendantes de même probabilité. Mesurer les co-erreurs sur un jeu commun est nécessaire avant de compter sur ce gain."
+      "text": "Décision binaire, même taux d’erreur et erreurs indépendantes. Ces hypothèses doivent être vérifiées sur des cas communs."
     },
     {
       "page": 81,
       "x": 826,
-      "y": 386.12,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -13962,11 +15366,11 @@
     {
       "page": 81,
       "x": 826,
-      "y": 412.12,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Changer le texte d'une consigne suffit-il à rendre deux avis indépendants ?"
+      "text": "Comment repérer des erreurs communes aux trois classifieurs ?"
     },
     {
       "page": 81,
@@ -13975,7 +15379,7 @@
       "w": 1136,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "2,8 % d'erreurs au lieu de 10 %, au prix de trois traitements par dossier. Si deux des agents se trompent sur les mêmes cas, le calcul ne tient plus : le vote se trompe quand ce duo se trompe, soit 10 % du temps."
+      "text": "Le vote passe de 20 % à 10,4 % d’erreurs sous indépendance. Trois copies d’un même système n’apporteraient pas ce gain."
     },
     {
       "page": 81,
@@ -14051,6 +15455,33 @@
     },
     {
       "page": 82,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Prêter : 1,6"
+    },
+    {
+      "page": 82,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Refuser : 0,4"
+    },
+    {
+      "page": 82,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : poids des avis · échelle commune de 0 à 1,6"
+    },
+    {
+      "page": 82,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -14065,7 +15496,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les trois contrôles successifs, et le dernier, en orange, qui modifie la sortie."
+      "text": "Le seuil compare le poids gagnant au poids total."
     },
     {
       "page": 82,
@@ -14173,7 +15604,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Arbitrage pondéré par la confiance, avec escalade si le camp gagnant pèse moins de 70 % du total. Avis reçus : règles « accepter » (0,9), score « accepter » (0,6), LLM « refuser » (0,8)."
+      "text": "Une demande de prêt d’objet reçoit trois avis : « prêter » avec poids 0,85 et 0,75 ; « refuser » avec poids 0,40. Le règlement fictif exige au moins 75 % du poids total pour décider automatiquement."
     },
     {
       "page": 83,
@@ -14189,14 +15620,14 @@
       "x": 101,
       "y": 231.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Vote majoritaire simple : 2 voix pour « accepter », 1 voix pour « refuser ». La majorité accepterait sans discussion."
+      "text": "Poids pour prêter : 0,85 + 0,75 = 1,60. Pour refuser : 0,40."
     },
     {
       "page": 83,
       "x": 63,
-      "y": 306.44,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14205,16 +15636,16 @@
     {
       "page": 83,
       "x": 101,
-      "y": 301.44,
+      "y": 275.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Vote pondéré : « accepter » pèse 0,9 + 0,6 = 1,5. « Refuser » pèse 0,8."
+      "text": "Poids total : 2,00. Part du camp prêter : 1,60 / 2,00 = 80 %."
     },
     {
       "page": 83,
       "x": 63,
-      "y": 350.44,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14223,29 +15654,11 @@
     {
       "page": 83,
       "x": 101,
-      "y": 345.44,
+      "y": 319.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Poids total : 1,5 + 0,8 = 2,3. Part du camp gagnant : 1,5 / 2,3 = 65 %."
-    },
-    {
-      "page": 83,
-      "x": 63,
-      "y": 394.44,
-      "w": 22,
-      "h": 19.8,
-      "size": 15,
-      "text": "4"
-    },
-    {
-      "page": 83,
-      "x": 101,
-      "y": 389.44,
-      "w": 657,
-      "h": 26.0,
-      "size": 20,
-      "text": "Règle d'escalade : 65 % est inférieur au seuil de 70 %."
+      "text": "80 % dépasse le seuil de 75 % : le cas suit la branche automatique, après les contrôles de permission."
     },
     {
       "page": 83,
@@ -14261,14 +15674,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 122.10000000000001,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Une somme de confiances est une règle de décision, pas une probabilité automatiquement calibrée. Vérifier les confiances, les seuils et la capacité de revue humaine."
+      "text": "Poids et seuil fixés par la politique fictive. Une somme de scores ne devient pas automatiquement une confiance calibrée."
     },
     {
       "page": 83,
       "x": 826,
-      "y": 410.54,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -14277,11 +15690,11 @@
     {
       "page": 83,
       "x": 826,
-      "y": 436.54,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Deux voix contre une suffisent-elles lorsque la voix opposée apporte une preuve ?"
+      "text": "Que devient la décision si le poids du refus monte à 1,00 ?"
     },
     {
       "page": 83,
@@ -14290,7 +15703,7 @@
       "w": 1136,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Escalade humaine. Le vote majoritaire aurait accepté le dossier en ignorant qu'un agent, très sûr de lui, y voyait un problème."
+      "text": "L’arbitrage choisit « prêter » dans cet exemple. Les 80 % expriment une part de poids, pas une probabilité prouvée de justesse."
     },
     {
       "page": 83,
@@ -14366,6 +15779,60 @@
     },
     {
       "page": 84,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Passage"
+    },
+    {
+      "page": 84,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Score et information"
+    },
+    {
+      "page": 84,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "P6 : les deux mots"
+    },
+    {
+      "page": 84,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "3 ; prolongation 21 jours"
+    },
+    {
+      "page": 84,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "P2 : prêt seulement"
+    },
+    {
+      "page": 84,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "1 ; autre information"
+    },
+    {
+      "page": 84,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -14380,7 +15847,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La réponse encadrée en vert et sa source."
+      "text": "La recherche choisit un passage ; la génération doit respecter son contenu."
     },
     {
       "page": 84,
@@ -14488,7 +15955,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Un corpus de N = 4 passages. Question : « À combien l'aide est-elle plafonnée ? ». On garde ses mots porteurs de sens : « aide » et « plafonnée ». Le poids d'un mot vaut log₂(N / nombre de passages qui le contiennent)."
+      "text": "Un guide de bibliothèque contient huit passages. La question porte sur la « prolongation du prêt ». « Prêt » figure dans quatre passages, « prolongation » dans deux. Le score additionne log₂(N / fréquence)."
     },
     {
       "page": 85,
@@ -14504,14 +15971,14 @@
       "x": 101,
       "y": 231.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "« Aide » figure dans 2 passages : poids = log₂(4 / 2) = log₂(2) = 1."
+      "text": "Poids de « prêt » : log₂(8 / 4) = 1. Poids de « prolongation » : log₂(8 / 2) = 2."
     },
     {
       "page": 85,
       "x": 63,
-      "y": 280.44,
+      "y": 306.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14520,16 +15987,16 @@
     {
       "page": 85,
       "x": 101,
-      "y": 275.44,
+      "y": 301.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "« Plafonnée » figure dans 1 seul passage : poids = log₂(4 / 1) = log₂(4) = 2."
+      "text": "P6 contient les deux mots : score 3. Il indique une prolongation de 21 jours."
     },
     {
       "page": 85,
       "x": 63,
-      "y": 350.44,
+      "y": 376.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14538,16 +16005,16 @@
     {
       "page": 85,
       "x": 101,
-      "y": 345.44,
+      "y": 371.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Le passage 2 (« L'aide est plafonnée à 40 % du devis ») contient les deux mots : score = 1 + 2 = 3."
+      "text": "P2 contient seulement « prêt » : score 1. Les autres passages n’ont pas un score supérieur à celui de P6."
     },
     {
       "page": 85,
       "x": 63,
-      "y": 420.44,
+      "y": 446.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14556,11 +16023,11 @@
     {
       "page": 85,
       "x": 101,
-      "y": 415.44,
+      "y": 441.44,
       "w": 657,
-      "h": 78.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Le passage 3 (« L'aide est versée après la facture ») ne contient que « aide » : score = 1. Les passages 1 et 4 n'en contiennent aucun : score 0."
+      "text": "Avec k = 1, transmettre P6, puis répondre à partir de son passage et de sa référence."
     },
     {
       "page": 85,
@@ -14576,14 +16043,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 122.10000000000001,
+      "h": 73.26,
       "size": 18.5,
-      "text": "L'exemple utilise un score lexical pédagogique proche de l'IDF. Des variantes utilisent des vecteurs ou un reclassement ; elles gardent deux évaluations distinctes : recherche et réponse."
+      "text": "Score lexical pédagogique, mots normalisés, corpus fictif et règle de départage fixée. La version du document reste déterminante."
     },
     {
       "page": 85,
       "x": 826,
-      "y": 410.54,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -14592,11 +16059,11 @@
     {
       "page": 85,
       "x": 826,
-      "y": 436.54,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Augmenter k améliore-t-il toujours la réponse ?"
+      "text": "Que vérifier si un autre passage porte une règle plus récente ?"
     },
     {
       "page": 85,
@@ -14605,7 +16072,7 @@
       "w": 1136,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Classement : passage 2 (score 3), passage 3 (score 1), puis les deux autres. Avec k = 1, seul le passage 2 est transmis au modèle : c'est celui qui porte la réponse."
+      "text": "P6 fournit le fait utile : 21 jours dans ce règlement fictif. Un bon score de recherche ne dispense pas de vérifier la réponse."
     },
     {
       "page": 85,
@@ -14681,6 +16148,78 @@
     },
     {
       "page": 86,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Résultat"
+    },
+    {
+      "page": 86,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Réservations"
+    },
+    {
+      "page": 86,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Accords favorables"
+    },
+    {
+      "page": 86,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "480 justes + 6 faux"
+    },
+    {
+      "page": 86,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Désaccords à revoir"
+    },
+    {
+      "page": 86,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "188"
+    },
+    {
+      "page": 86,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Accords défavorables"
+    },
+    {
+      "page": 86,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "126"
+    },
+    {
+      "page": 86,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -14695,7 +16234,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La troisième ligne : 4 acceptées à tort, 132 en revue."
+      "text": "486 + 188 + 126 = 800 : toutes les réservations sont comptées."
     },
     {
       "page": 86,
@@ -14801,14 +16340,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 110.88000000000001,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Détaillons la double validation. 1 000 demandes : 800 bonnes, 200 à refuser. Le score accepte 90 % des bonnes et 20 % des demandes à refuser. Les règles acceptent toutes les bonnes et 10 % des demandes à refuser. Leurs erreurs sont indépendantes. Une demande est acceptée si les deux acceptent, refusée si les deux refusent, et revue par un humain sinon."
+      "text": "Deux validations traitent 800 réservations : 600 admissibles et 200 non admissibles. Les règles acceptent toutes les admissibles et 10 % des autres ; le score accepte 80 % des admissibles et 30 % des autres. Un désaccord part en revue."
     },
     {
       "page": 87,
       "x": 63,
-      "y": 291.88,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14817,16 +16356,16 @@
     {
       "page": 87,
       "x": 101,
-      "y": 286.88,
+      "y": 231.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Demandes à refuser acceptées par les deux : 200 × 0,20 × 0,10 = 4."
+      "text": "Non admissibles acceptées par les deux : 200 × 0,10 × 0,30 = 6, contre 60 avec le score seul."
     },
     {
       "page": 87,
       "x": 63,
-      "y": 335.88,
+      "y": 306.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14835,16 +16374,16 @@
     {
       "page": 87,
       "x": 101,
-      "y": 330.88,
+      "y": 301.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Demandes à refuser en désaccord, un seul des deux accepte : 200 × (0,20 × 0,90 + 0,80 × 0,10) = 200 × 0,26 = 52."
+      "text": "Non admissibles en désaccord : 200 × (0,10 × 0,70 + 0,90 × 0,30) = 68."
     },
     {
       "page": 87,
       "x": 63,
-      "y": 405.88,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14853,16 +16392,16 @@
     {
       "page": 87,
       "x": 101,
-      "y": 400.88,
+      "y": 345.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Bonnes demandes : les règles les acceptent toutes, le score en refuse 10 %. Désaccords : 800 × 0,10 = 80. Acceptées par les deux : 720."
+      "text": "Admissibles en désaccord : 600 × 0,20 = 120. Les deux en acceptent 480."
     },
     {
       "page": 87,
       "x": 63,
-      "y": 475.88,
+      "y": 420.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -14871,16 +16410,16 @@
     {
       "page": 87,
       "x": 101,
-      "y": 470.88,
+      "y": 415.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Revue humaine : 52 + 80 = 132 dossiers, soit 13,2 % des demandes."
+      "text": "Charge de revue : 68 + 120 = 188 réservations, soit 23,5 %."
     },
     {
       "page": 87,
       "x": 826,
-      "y": 286.88,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -14889,16 +16428,16 @@
     {
       "page": 87,
       "x": 826,
-      "y": 317.88,
+      "y": 262.44,
       "w": 402,
-      "h": 122.10000000000001,
+      "h": 97.68,
       "size": 18.5,
-      "text": "Les taux d'acceptation de l'exemple sont supposés indépendants conditionnellement à la catégorie bonne ou à refuser. Mesurer la diversité et dimensionner la revue avant déploiement."
+      "text": "Indépendance des décisions conditionnellement à l’admissibilité. Les nombres représentent ici l’application exacte des taux fictifs."
     },
     {
       "page": 87,
       "x": 826,
-      "y": 465.98,
+      "y": 386.12,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -14907,20 +16446,20 @@
     {
       "page": 87,
       "x": 826,
-      "y": 491.98,
+      "y": 412.12,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Le service peut-il absorber les dossiers que le désaccord lui transmet ?"
+      "text": "Que se passe-t-il si le service ne peut relire que 100 réservations ?"
     },
     {
       "page": 87,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 77.22,
-      "size": 19.5,
-      "text": "4 acceptations fautives au lieu de 40 avec le score seul, et 132 dossiers en revue humaine. La double validation convient quand une action fausse coûte cher. Elle suppose deux agents réellement différents : deux copies du même score s'accorderaient sur leurs erreurs."
+      "h": 55.440000000000005,
+      "size": 21,
+      "text": "6 acceptations fautives et 188 revues. Réduire les erreurs automatiques demande ici une capacité de revue importante."
     },
     {
       "page": 87,
@@ -14996,6 +16535,78 @@
     },
     {
       "page": 88,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Couche"
+    },
+    {
+      "page": 88,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Cas de départ"
+    },
+    {
+      "page": 88,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Règles / routage"
+    },
+    {
+      "page": 88,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "9 / 5"
+    },
+    {
+      "page": 88,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Arbitre / parcours"
+    },
+    {
+      "page": 88,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "4 / 2"
+    },
+    {
+      "page": 88,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Total"
+    },
+    {
+      "page": 88,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "20"
+    },
+    {
+      "page": 88,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -15010,7 +16621,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La ligne « Arbitre » : 8 combinaisons, désaccords compris."
+      "text": "Chaque nombre correspond à une responsabilité et à ses branches."
     },
     {
       "page": 88,
@@ -15116,14 +16727,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 83.16000000000001,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Dimensionnons le plan de test d'un système : un moteur de 5 règles à seuil, un routeur à 5 files plus une file par défaut, un arbitre qui reçoit trois avis (conforme ou non conforme), et trois décisions finales possibles (accepter, rejeter, transmettre à un humain)."
+      "text": "Un service d’archivage possède trois règles à seuil, quatre destinations plus une destination par défaut, un arbitre de deux avis binaires et deux issues finales : archiver ou revoir."
     },
     {
       "page": 89,
       "x": 63,
-      "y": 264.16,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15132,16 +16743,16 @@
     {
       "page": 89,
       "x": 101,
-      "y": 259.16,
+      "y": 231.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Tests unitaires des règles : pour chaque règle, un cas sous le seuil, un cas au-dessus, un cas exactement au seuil. 5 × 3 = 15."
+      "text": "Règles : sous, au seuil et au-dessus pour chacune, soit 3 × 3 = 9 tests."
     },
     {
       "page": 89,
       "x": 63,
-      "y": 334.16,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15150,16 +16761,16 @@
     {
       "page": 89,
       "x": 101,
-      "y": 329.16,
+      "y": 275.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Tests unitaires du routeur : un message par file, plus un message qu'aucune règle ne reconnaît. 5 + 1 = 6."
+      "text": "Routage : 4 destinations + le défaut = 5 tests."
     },
     {
       "page": 89,
       "x": 63,
-      "y": 404.16,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15168,16 +16779,16 @@
     {
       "page": 89,
       "x": 101,
-      "y": 399.16,
+      "y": 319.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Tests de l'arbitre : chaque avis prend deux valeurs. 2 × 2 × 2 = 8 combinaisons, dont 2 accords et 6 désaccords."
+      "text": "Arbitre : 2 × 2 = 4 combinaisons d’avis."
     },
     {
       "page": 89,
       "x": 63,
-      "y": 474.16,
+      "y": 368.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15186,16 +16797,16 @@
     {
       "page": 89,
       "x": 101,
-      "y": 469.16,
+      "y": 363.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Tests de bout en bout : un dossier qui doit être accepté, un rejeté, un transmis. 3. Total : 15 + 6 + 8 + 3 = 32."
+      "text": "Deux parcours complets : archiver et revoir. Total : 9 + 5 + 4 + 2 = 20."
     },
     {
       "page": 89,
       "x": 826,
-      "y": 259.16,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -15204,16 +16815,16 @@
     {
       "page": 89,
       "x": 826,
-      "y": 290.16,
+      "y": 262.44,
       "w": 402,
-      "h": 122.10000000000001,
+      "h": 73.26,
       "size": 18.5,
-      "text": "Les 32 cas forment un plan minimal d'illustration, pas une couverture exhaustive. Ajouter conflits de règles, entrées invalides, autorisations, doublons et interruptions selon les exigences."
+      "text": "Plan minimal fictif. Ajouter entrées invalides, erreurs d’outils, permissions, conflits et reprises selon le besoin réel."
     },
     {
       "page": 89,
       "x": 826,
-      "y": 438.26000000000005,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -15222,20 +16833,20 @@
     {
       "page": 89,
       "x": 826,
-      "y": 464.26000000000005,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Que se passe-t-il si le traitement s'interrompt juste après avoir envoyé une action ?"
+      "text": "Quels cas ajouter pour une interruption après une écriture ?"
     },
     {
       "page": 89,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 77.22,
-      "size": 19.5,
-      "text": "32 cas de test. Les 29 premiers portent sur des composants déterministes : on les relance à chaque modification, comme tests de non-régression. Un agent LLM s'évalue autrement, sur un jeu d'évaluation, par un taux d'erreur mesuré."
+      "h": 27.720000000000002,
+      "size": 21,
+      "text": "20 cas de départ pour couvrir ces frontières et branches. Ils ne constituent pas une preuve d’exhaustivité."
     },
     {
       "page": 89,
@@ -15311,6 +16922,78 @@
     },
     {
       "page": 90,
+      "x": 68,
+      "y": 254,
+      "w": 325,
+      "h": 23.76,
+      "size": 18,
+      "text": "Mesure"
+    },
+    {
+      "page": 90,
+      "x": 416,
+      "y": 254,
+      "w": 280,
+      "h": 23.76,
+      "size": 18,
+      "text": "Résultat"
+    },
+    {
+      "page": 90,
+      "x": 68,
+      "y": 313,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Accords faux"
+    },
+    {
+      "page": 90,
+      "x": 416,
+      "y": 313,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "16 / 400 = 4 %"
+    },
+    {
+      "page": 90,
+      "x": 68,
+      "y": 393,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Erreurs évitées"
+    },
+    {
+      "page": 90,
+      "x": 416,
+      "y": 393,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "30"
+    },
+    {
+      "page": 90,
+      "x": 68,
+      "y": 473,
+      "w": 320,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "Coût additionnel"
+    },
+    {
+      "page": 90,
+      "x": 416,
+      "y": 473,
+      "w": 280,
+      "h": 25.080000000000002,
+      "size": 19,
+      "text": "280 €"
+    },
+    {
+      "page": 90,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -15325,7 +17008,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La part rouge de la barre : ce que le modérateur bloque à tort."
+      "text": "La qualité finale et le coût se mesurent sur tout le service."
     },
     {
       "page": 90,
@@ -15431,14 +17114,14 @@
       "x": 52,
       "y": 150,
       "w": 1176,
-      "h": 83.16000000000001,
+      "h": 55.440000000000005,
       "size": 21,
-      "text": "Calculons les indicateurs d'arbitrage de la démonstration, puis ce que l'arbitrage coûte. 1 000 dossiers, trois avis chacun. 800 accords dont 24 faux, 200 désaccords, tous transmis à un humain. Erreurs finales : 100 avec un agent seul, 40 avec arbitre. Un avis supplémentaire coûte 0,05 €, une transmission 4 €."
+      "text": "Sur 500 propositions de catalogue, on observe 400 accords dont 16 faux, et 100 désaccords revus. Les erreurs finales passent de 50 à 20. Deux avis supplémentaires coûtent chacun 0,08 € ; une revue coûte 2 €."
     },
     {
       "page": 91,
       "x": 63,
-      "y": 264.16,
+      "y": 236.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15447,16 +17130,16 @@
     {
       "page": 91,
       "x": 101,
-      "y": 259.16,
+      "y": 231.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Taux d'accord trompeur : 24 / 800 = 3 %."
+      "text": "Accords trompeurs : 16 / 400 = 4 %. Réduction des erreurs : (50 - 20) / 50 = 60 %."
     },
     {
       "page": 91,
       "x": 63,
-      "y": 308.16,
+      "y": 306.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15465,16 +17148,16 @@
     {
       "page": 91,
       "x": 101,
-      "y": 303.16,
+      "y": 301.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Réduction des erreurs finales : (100 - 40) / 100 = 60 %."
+      "text": "Avis supplémentaires : 500 × 2 × 0,08 = 80 €."
     },
     {
       "page": 91,
       "x": 63,
-      "y": 352.16,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15483,16 +17166,16 @@
     {
       "page": 91,
       "x": 101,
-      "y": 347.16,
+      "y": 345.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Coût de la confrontation : deux avis de plus par dossier, 1 000 × 2 × 0,05 = 100 €, plus 200 transmissions à 4 €, soit 800 €. Total : 900 €."
+      "text": "Revues : 100 × 2 = 200 €. Coût additionnel total : 280 €."
     },
     {
       "page": 91,
       "x": 63,
-      "y": 422.16,
+      "y": 394.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15501,16 +17184,16 @@
     {
       "page": 91,
       "x": 101,
-      "y": 417.16,
+      "y": 389.44,
       "w": 657,
       "h": 26.0,
       "size": 20,
-      "text": "Coût par erreur évitée : 900 / 60 = 15 €."
+      "text": "30 erreurs évitées : 280 / 30 ≈ 9,33 € par erreur évitée."
     },
     {
       "page": 91,
       "x": 826,
-      "y": 259.16,
+      "y": 231.44,
       "w": 402,
       "h": 22.44,
       "size": 17,
@@ -15519,16 +17202,16 @@
     {
       "page": 91,
       "x": 826,
-      "y": 290.16,
+      "y": 262.44,
       "w": 402,
       "h": 97.68,
       "size": 18.5,
-      "text": "Le seuil économique de 15 € est propre aux hypothèses de l'exemple. Le coût des erreurs peut varier fortement selon leur nature ; examiner leur distribution et leur gravité."
+      "text": "Résultats observés synthétiques ; les 20 erreurs finales incluent les accords faux. Coûts additionnels hors coûts déjà communs aux deux variantes."
     },
     {
       "page": 91,
       "x": 826,
-      "y": 413.84000000000003,
+      "y": 386.12,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -15537,20 +17220,20 @@
     {
       "page": 91,
       "x": 826,
-      "y": 439.84000000000003,
+      "y": 412.12,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Que manque-t-il à une évaluation qui ne relit que les désaccords ?"
+      "text": "Un gain moyen reste-t-il défendable si les erreurs restantes sont les plus graves ?"
     },
     {
       "page": 91,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 52.800000000000004,
-      "size": 20.0,
-      "text": "L'arbitrage évite 60 erreurs pour 900 €, soit 15 € par erreur évitée. Il se justifie si une erreur coûte plus de 15 €. Et il reste 24 accords faux que personne ne voit : seul un contrôle par sondage des accords permet de les mesurer."
+      "h": 55.440000000000005,
+      "size": 21,
+      "text": "Le coût additionnel vaut environ 9,33 € par erreur évitée. Les accords doivent aussi être contrôlés : 16 sont faux."
     },
     {
       "page": 91,
@@ -15626,6 +17309,33 @@
     },
     {
       "page": 92,
+      "x": 146,
+      "y": 271,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Mesure : 320 lux"
+    },
+    {
+      "page": 92,
+      "x": 146,
+      "y": 379,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "C2 v7 : limite 250"
+    },
+    {
+      "page": 92,
+      "x": 146,
+      "y": 487,
+      "w": 470,
+      "h": 30.360000000000003,
+      "size": 23,
+      "text": "Suspension validée"
+    },
+    {
+      "page": 92,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -15640,7 +17350,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "La ligne « validation », surlignée."
+      "text": "La preuve est liée à la version de la règle et à l’acteur responsable."
     },
     {
       "page": 92,
@@ -15748,7 +17458,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Dossier 2417. Le demandeur conteste le passage en commission. Reconstituons la décision à partir du journal, sans rouvrir le dossier."
+      "text": "Pour le prêt d’une œuvre M-873, le journal indique 320 lux dans la salle prévue, une limite fictive de 250 lux et la règle C2 version 7. Le dossier arrive à 10 h 20 ; la responsable valide la suspension à 11 h 05."
     },
     {
       "page": 93,
@@ -15764,14 +17474,14 @@
       "x": 101,
       "y": 231.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Ligne « règles v12 » : la règle R4 s'est déclenchée, car 23 500 € dépasse le seuil de 20 000 €. Écart : 23 500 - 20 000 = 3 500 €."
+      "text": "Fait utilisé : 320 lux. Dépassement : 320 - 250 = 70 lux."
     },
     {
       "page": 93,
       "x": 63,
-      "y": 306.44,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15780,16 +17490,16 @@
     {
       "page": 93,
       "x": 101,
-      "y": 301.44,
+      "y": 275.44,
       "w": 657,
-      "h": 78.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Ligne « arbitrage » : les règles demandaient la commission, le score de risque (0,31) concluait « accepter ». Les deux avis divergeaient, et l'arbitre a suivi les règles, qui ont priorité sur la conformité."
+      "text": "Décision : suspendre selon C2 version 7, malgré un avis de disponibilité favorable."
     },
     {
       "page": 93,
       "x": 63,
-      "y": 402.44,
+      "y": 350.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15798,16 +17508,16 @@
     {
       "page": 93,
       "x": 101,
-      "y": 397.44,
+      "y": 345.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Ligne « validation » : l'agent V-07 a confirmé à 14 h 02, soit 4 h 48 après la réception de 9 h 14."
+      "text": "Responsabilité : la responsable identifiée confirme à 11 h 05, 45 minutes après réception."
     },
     {
       "page": 93,
       "x": 63,
-      "y": 472.44,
+      "y": 420.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -15816,11 +17526,11 @@
     {
       "page": 93,
       "x": 101,
-      "y": 467.44,
+      "y": 415.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Ligne « réception » : l'empreinte 9f3c permet de vérifier que le devis archivé est bien celui qui a été examiné."
+      "text": "Rattacher la décision au relevé archivé, à sa date et à son empreinte complète pour pouvoir vérifier la pièce exacte."
     },
     {
       "page": 93,
@@ -15836,14 +17546,14 @@
       "x": 826,
       "y": 262.44,
       "w": 402,
-      "h": 122.10000000000001,
+      "h": 73.26,
       "size": 18.5,
-      "text": "La courte empreinte 9f3c est illustrative. Une preuve d'intégrité réelle utilise une empreinte complète et un archivage adapté ; journaliser exige aussi une politique d'accès et de conservation."
+      "text": "Seuil fictif, sans recommandation de conservation. Les traces exigent aussi une politique d’accès et de durée de conservation."
     },
     {
       "page": 93,
       "x": 826,
-      "y": 410.54,
+      "y": 361.7,
       "w": 402,
       "h": 19.8,
       "size": 15,
@@ -15852,11 +17562,11 @@
     {
       "page": 93,
       "x": 826,
-      "y": 436.54,
+      "y": 387.7,
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Une trace qui contient seulement « accepté » permet-elle un recours ?"
+      "text": "Que manque-t-il si le journal conserve seulement la valeur et la décision ?"
     },
     {
       "page": 93,
@@ -15865,7 +17575,7 @@
       "w": 1136,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "La décision est expliquée (R4), datée, attribuée (l'arbitre, puis V-07) et rattachée à une version des règles. Sans les champs « version » et « règles déclenchées », il ne resterait que le mot « commission », sans raison."
+      "text": "La trace relie une mesure, une règle datée, une action et sa validation. « Suspendu » seul ne permettrait pas cette explication."
     },
     {
       "page": 93,
@@ -15941,6 +17651,42 @@
     },
     {
       "page": 94,
+      "x": 68,
+      "y": 256,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Un avis partout : 800"
+    },
+    {
+      "page": 94,
+      "x": 68,
+      "y": 358,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Trois si sensible : 1200"
+    },
+    {
+      "page": 94,
+      "x": 68,
+      "y": 460,
+      "w": 626,
+      "h": 26.400000000000002,
+      "size": 20,
+      "text": "Trois partout : 2400"
+    },
+    {
+      "page": 94,
+      "x": 68,
+      "y": 565,
+      "w": 626,
+      "h": 18.48,
+      "size": 14,
+      "text": "Unité : traitements par jour · échelle commune de 0 à 2400"
+    },
+    {
+      "page": 94,
       "x": 66,
       "y": 600,
       "w": 634,
@@ -15955,7 +17701,7 @@
       "w": 634,
       "h": 19.8,
       "size": 15,
-      "text": "Les deux colonnes : aucune action qui engage le service ne figure à droite."
+      "text": "Les 200 lots sensibles reçoivent chacun deux avis supplémentaires."
     },
     {
       "page": 94,
@@ -16063,7 +17809,7 @@
       "w": 1176,
       "h": 55.440000000000005,
       "size": 21,
-      "text": "Chiffrons le cas de l'analyse de dossiers. 1 000 dossiers par jour, dont 250 à risque élevé. Un agent seul se trompe dans 10 % des cas. Trois agents indépendants et un vote à la majorité se trompent dans 2,8 % des cas."
+      "text": "Un service décrit 800 lots d’archives par jour, dont 200 sensibles. Un avis seul a 20 % d’erreurs ; trois avis indépendants avec majorité ont 10,4 %. On réserve les trois avis aux lots sensibles."
     },
     {
       "page": 95,
@@ -16079,14 +17825,14 @@
       "x": 101,
       "y": 231.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Trois avis pour tous les dossiers : 1 000 × 3 = 3 000 traitements par jour."
+      "text": "Trois avis partout : 800 × 3 = 2 400 traitements."
     },
     {
       "page": 95,
       "x": 63,
-      "y": 306.44,
+      "y": 280.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -16095,16 +17841,16 @@
     {
       "page": 95,
       "x": 101,
-      "y": 301.44,
+      "y": 275.44,
       "w": 657,
-      "h": 52.0,
+      "h": 26.0,
       "size": 20,
-      "text": "Trois avis pour les seuls dossiers à risque : 750 dossiers à un avis et 250 à trois avis. 750 + 250 × 3 = 1 500 traitements."
+      "text": "Politique ciblée : 600 × 1 + 200 × 3 = 1 200 traitements."
     },
     {
       "page": 95,
       "x": 63,
-      "y": 376.44,
+      "y": 324.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -16113,16 +17859,16 @@
     {
       "page": 95,
       "x": 101,
-      "y": 371.44,
+      "y": 319.44,
       "w": 657,
       "h": 52.0,
       "size": 20,
-      "text": "Erreurs sur les 250 dossiers à risque avec un seul avis : 250 × 0,10 = 25."
+      "text": "Sur les 200 lots sensibles : 40 erreurs attendues avec un avis ; 200 × 0,104 = 20,8 avec la majorité."
     },
     {
       "page": 95,
       "x": 63,
-      "y": 446.44,
+      "y": 394.44,
       "w": 22,
       "h": 19.8,
       "size": 15,
@@ -16131,11 +17877,11 @@
     {
       "page": 95,
       "x": 101,
-      "y": 441.44,
+      "y": 389.44,
       "w": 657,
-      "h": 26.0,
+      "h": 52.0,
       "size": 20,
-      "text": "Avec trois avis et un vote : 250 × 0,028 = 7."
+      "text": "Gain attendu : 19,2 erreurs en moins sur les lots sensibles, pour 400 traitements de plus que les 800 avis uniques."
     },
     {
       "page": 95,
@@ -16153,7 +17899,7 @@
       "w": 402,
       "h": 97.68,
       "size": 18.5,
-      "text": "Le gain calculé porte sur les 250 dossiers à risque, pas sur tout le flux. Une erreur de tri peut priver un dossier sensible du contrôle prévu."
+      "text": "Taux fictifs, erreurs indépendantes et tri supposé correct pour le calcul. Mesurer les erreurs du tri et le coût de la revue dans l’usage réel."
     },
     {
       "page": 95,
@@ -16171,16 +17917,16 @@
       "w": 402,
       "h": 50.160000000000004,
       "size": 19,
-      "text": "Comment vérifier que le routeur reconnaît bien les dossiers sensibles ?"
+      "text": "Comment évaluer les lots sensibles que le tri aurait classés ordinaires ?"
     },
     {
       "page": 95,
       "x": 72,
       "y": 570,
       "w": 1136,
-      "h": 77.22,
-      "size": 19.5,
-      "text": "En réservant la diffusion du risque aux dossiers sensibles, on évite 18 erreurs par jour sur ces dossiers pour 500 traitements de plus, au lieu de 2 000. C'est la règle de l'architecture hybride : on décompose partout, on multiplie les avis là où l'enjeu le justifie."
+      "h": 55.440000000000005,
+      "size": 21,
+      "text": "La politique ciblée concentre l’effort : 1 200 traitements au lieu de 2 400. Le gain de 19,2 est une moyenne attendue, pas un compte entier garanti chaque jour."
     },
     {
       "page": 95,
@@ -18421,7 +20167,7 @@
       "w": 550,
       "h": 138.60000000000002,
       "size": 21,
-      "text": "Leçons du module 0, ateliers et notebooks du programme. Le chapitre 7 reprend le support « Systèmes agentiques : une exploration approfondie ». Les situations et chiffres pédagogiques sont synthétiques."
+      "text": "Notions du programme et cas résolus propres à ce PDF. Les scénarios et données diffèrent des exercices en ligne. Le chapitre 7 reprend les concepts du support « Systèmes agentiques : une exploration approfondie ». Les chiffres sont synthétiques."
     },
     {
       "page": 108,
@@ -18439,7 +20185,7 @@
       "w": 560,
       "h": 138.60000000000002,
       "size": 21,
-      "text": "Illustrations de contexte réalisées avec imagegen. Les schémas de mécanismes proviennent des animations du cours ; leurs valeurs sont distinctes, lorsque précisé, de celles des exemples résolus. Les images d’ouverture sont des métaphores visuelles."
+      "text": "Illustrations de contexte réalisées avec imagegen. Les schémas vectoriels sont construits à partir des cas propres à ce PDF et utilisent les mêmes valeurs que l’exemple qui les accompagne. Les ouvertures sont des métaphores visuelles."
     },
     {
       "page": 108,

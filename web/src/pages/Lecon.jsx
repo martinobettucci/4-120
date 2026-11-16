@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { NOTIONS, BLOCS } from '../lecons/notions.js';
+import { RAPPELS } from '../lecons/rappels.js';
 import { marquer, useProgression } from '../lecons/progression.js';
 import Qcm from '../composants/Qcm.jsx';
 import Theorie from '../composants/Theorie.jsx';
 import Definition from '../composants/Definition.jsx';
+import MotsAnimes from '../composants/MotsAnimes.jsx';
 import { ATELIERS } from '../ateliers/index.js';
 
 // Une leçon du module 0. Un bloc 0 pose la notion (définition, origine, liens pour en savoir plus), puis six temps,
@@ -97,7 +99,7 @@ export default function Lecon() {
   const [pari, setPari] = useState(undefined);
   const [demoVue, setDemoVue] = useState(false);
   useEffect(() => { setTemps(0); setPari(undefined); setDemoVue(false); }, [id]);
-  const rappel = i >= 2 ? NOTIONS[i - 2] : null;
+  const rappel = RAPPELS[n.id];
   const bloc = BLOCS.find((b) => b.module === n.module);
   const visible = (k) => tout || temps === k;
   const AtelierCourant = ATELIERS[n.atelier.type];
@@ -119,6 +121,8 @@ export default function Lecon() {
           <h2>0. La notion en bref</h2>
           <p className="conseil">Avant toute mise en situation, voici de quoi il s'agit : ce qu'est la notion, d'où elle vient, à quoi elle sert. La leçon la fait ensuite vivre sur un cas concret.</p>
           <Definition d={n.definition} />
+          <h3>Les bases à comprendre avant de commencer</h3>
+          <MotsAnimes n={n} />
           {!tout && <Suite vers={1} texte="Voir la situation" />}
         </section>
       )}
@@ -128,12 +132,10 @@ export default function Lecon() {
           <h2>1. Situer</h2>
           <p className="accroche">{n.accroche}</p>
           <p className="objectif"><b>Objectif.</b> À la fin de cette leçon, vous saurez {n.objectif}.</p>
-          <h3>Les mots à connaître avant de commencer</h3>
-          <dl className="mots">{n.mots.map(([m, d]) => <div key={m}><dt>{m}</dt><dd>{d}</dd></div>)}</dl>
           {rappel && (
-            <div className="rappel">
-              <p className="conseil">Avant d'avancer, un rappel d'une leçon précédente ({rappel.nom}). Retrouvez la réponse de mémoire : c'est cet effort qui ancre l'apprentissage.</p>
-              <Qcm q={rappel.exercice.q} choix={rappel.exercice.choix} ok={rappel.exercice.ok} etiquette="Rappel" />
+            <div className="rappel" data-testid="rappel-inline">
+              <p><b>Repère utile.</b> {rappel}</p>
+              <button type="button" className="bouton secondaire" onClick={() => setTemps(0)}>Revoir les bases de cette leçon</button>
             </div>
           )}
           {!tout && <Suite vers={2} texte="Je fais ma prédiction" />}

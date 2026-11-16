@@ -20,7 +20,7 @@ export const EXPLICATIONS = {
       },
       {
         choix: "Pesée de contrôle des colis signalés",
-        pourquoi: "Elle ne dépend pas de ce que la caméra a vu : elle confirme 96 % des colis défectueux et n'accepte que 3 % des conformes. C'est cette indépendance qui fait passer la part d'alertes fondées au-dessus de 90 %, pour 0,40 € par colis signalé. Un second passage devant le même détecteur ne servirait à rien : il se tromperait de la même façon.",
+        pourquoi: "Dans ce banc, les erreurs de la pesée sont indépendantes de celles de la caméra : elle confirme 96 % des colis défectueux et signale à tort 3 % des conformes. Cela porte la part d'alertes fondées au-dessus de 90 %, pour 0,40 € par colis signalé. Un second passage devant le même détecteur répète souvent les mêmes erreurs et ne suffit pas à atteindre cet objectif.",
       },
     ],
   },
@@ -311,7 +311,7 @@ export const EXPLICATIONS = {
     lignes: [
       {
         choix: "ε initial de 1",
-        pourquoi: "Au départ, l'agent ne connaît la valeur d'aucun couloir : il doit tous les essayer. Commencer à 1 garantit que chacun est tiré, et que le couloir B est découvert pendant la période d'essai.",
+        pourquoi: "Au départ, l'agent ne connaît la valeur d'aucun couloir. Avec ε = 1, son premier choix se fait au hasard, puis l'exploration diminue progressivement. Ce réglage lui fait découvrir le couloir B dans les essais du banc ; un choix aléatoire ne garantit pas, à lui seul, que tous les couloirs seront visités.",
       },
       {
         choix: "Décroissance de 0,98",

@@ -17,7 +17,7 @@ export const PEDAGOGIE = {
     objectifs: ["Décrire un agent par son environnement, ses capteurs, ses effecteurs et son objectif", "Lire une observation de lidar et en déduire les mouvements possibles", "Programmer une boucle perception, décision, action et l'exécuter pas à pas", "Mettre en évidence l'écart entre état réel et observation, et ses conséquences"],
     prerequis: ['agent', 'lidar', 'etat', 'boucle'],
     suite: ['composantes'],
-    avant: "Avant de lancer l'animation, dessinez de mémoire le schéma d'un agent avec ses deux flux. Vous le comparerez à l'étape 1.",
+    avant: "Repère utile : les capteurs transmettent des observations au système de décision ; les effecteurs exécutent ses actions sur l'environnement. Lancez l'animation pour suivre ces deux flux.",
     mission: [
       { faire: "Chargez « Agent complet, entrepôt de référence », cochez « Vue éclatée du robot » puis cliquez sur « Près du robot ».", question: "Quels composants du robot correspondent aux capteurs, à la décision et aux effecteurs ?", reponse: "Le lidar jaune au sommet est le capteur, le calculateur blanc porte la décision, les roues sont les effecteurs. La batterie fournit l'énergie." },
       { faire: "Revenez à la « Vue d'ensemble », décochez la vue éclatée et avancez de trois étapes avec le bouton « Étape ».", question: "Dans le panneau de droite, que valent les quatre distances du lidar ? Vérifiez-les en comptant les cases sur la scène.", reponse: "Chaque valeur est le nombre de cases jusqu'au premier obstacle. Une valeur de 6 signifie « rien dans la portée de 5 cases »." },
