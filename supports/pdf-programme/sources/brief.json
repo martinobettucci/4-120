@@ -1,0 +1,14 @@
+{
+  "titre": "Les agents autonomes et l’aide à la décision",
+  "reference": "ASCENT 4-130",
+  "auteur": "Martino Bettucci · P2Enjoy SAS",
+  "livrable": "PDF paysage 16:9, support théorique illustré complémentaire au site",
+  "base_url": "https://martinobettucci.github.io/4-120/",
+  "chapitres": ["Décider", "Percevoir et agir", "Architecturer", "Optimiser", "Agir dans l’incertitude", "Tester et valider", "Systèmes agentiques"],
+  "couverture": "Les 39 notions de base, les modules de pratique 1 à 7 et les deux fils rouges : robot d’entrepôt et traitement d’un dossier.",
+  "construction": "Ouvertures pleine page imagegen ; pour chaque notion, théorie illustrée puis exemple commenté ; synthèse et passage à la pratique en fin de chapitre ; sommaire et index cliquables.",
+  "direction": "Bleu P2Enjoy #23468C, bleu nuit #111C35, ivoire #F5F6FA, jaune #D9CF4A, vert #238C33. Typographie éditoriale ample, illustrations immersives, schémas explicatifs précis, pas de catalogue de cartes.",
+  "illustrations": "Imagegen natif utilisé d’abord pour le storyboard, puis pour les illustrations finales. Le storyboard guide les compositions uniquement : ses textes et chiffres fictifs ne constituent pas le contenu pédagogique.",
+  "validation": ["39 notions couvertes", "7 chapitres", "renvois module 0 et modules 1 à 7", "PDF textuel avec hyperliens actifs et signets", "exemples fidèles aux sources locales", "rendu et inspection de toutes les pages", "contrôle des débordements et des glyphes"],
+  "contraintes": ["Travail dans ce projet", "Aucun profil préproduction ou production", "Aucune publication ou opération Git distante"]
+}

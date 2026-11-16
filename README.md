@@ -16,6 +16,7 @@ Site publié : https://martinobettucci.github.io/4-120/
 | Notebooks | `notebooks/` | Un notebook par module, exécutable sur GPU ou CPU, livré exécuté |
 | Bibliothèque Python | `python/ascent_agents/` | Simulateur d'entrepôt, agents, optimisation, incertitude, traces |
 | Documentation | `docs/` | Syllabus, consignes de production, dossier d'architecture, journal |
+| Support PDF illustré | [PDF du programme](output/pdf/ASCENT-4-130-support-illustre.pdf) · [sources et fabrication](supports/pdf-programme/README.md) | Théorie, exemples commentés, illustrations et liens vers les 39 fondamentaux et les sept modules de pratique |
 
 Les trois supports partagent les mêmes exemples et un format commun de traces (`ascent-4130-trace/1`) : une expérience lancée dans un notebook se rejoue dans la scène 3D du site.
 

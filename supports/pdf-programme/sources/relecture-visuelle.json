@@ -1,0 +1,25 @@
+{
+  "document": "output/pdf/ASCENT-4-130-support-illustre.pdf",
+  "sha256": "5623be919a14bd021c8ae56e3c721e5d5fb283165e29984206013e432ebe7520",
+  "date_utc": "2026-11-16T06:37:09.756002+00:00",
+  "pages": 108,
+  "relecture": "Toutes les pages rendues ont été inspectées par l’agent sur planches ; les pages corrigées ont été relues après reconstruction.",
+  "points_controles": [
+    "hiérarchie et lisibilité",
+    "schémas et légendes",
+    "symboles mathématiques",
+    "contraste des ouvertures",
+    "exemples et résultats",
+    "index et navigation"
+  ],
+  "corrections": [
+    "police complémentaire pour flèches, racine et proportionnalité",
+    "ajustement de 63 légendes SVG",
+    "ordre contour puis texte pour le lidar",
+    "contraste progressif derrière les titres de chapitres",
+    "précision des résultats et de leurs hypothèses",
+    "suppression de la page de référence isolée"
+  ],
+  "defauts_visuels_restants_observes": [],
+  "approbation_humaine": false
+}

@@ -1,0 +1,380 @@
+[
+  {
+    "file": "autonomie-1.svg",
+    "text": "Exécution automatique sous contraintes",
+    "old": 11.5,
+    "new": 11.02
+  },
+  {
+    "file": "autonomie-1.svg",
+    "text": "Adaptation continue, supervision distante",
+    "old": 11.5,
+    "new": 10.64
+  },
+  {
+    "file": "autonomie-2.svg",
+    "text": "Exécution automatique sous contraintes",
+    "old": 11.5,
+    "new": 11.02
+  },
+  {
+    "file": "autonomie-2.svg",
+    "text": "Adaptation continue, supervision distante",
+    "old": 11.5,
+    "new": 10.64
+  },
+  {
+    "file": "autonomie-2.svg",
+    "text": "valide avant exécution",
+    "old": 12.0,
+    "new": 11.31
+  },
+  {
+    "file": "autonomie-3.svg",
+    "text": "Exécution automatique sous contraintes",
+    "old": 11.5,
+    "new": 11.02
+  },
+  {
+    "file": "autonomie-3.svg",
+    "text": "Adaptation continue, supervision distante",
+    "old": 11.5,
+    "new": 10.64
+  },
+  {
+    "file": "autonomie-4.svg",
+    "text": "Exécution automatique sous contraintes",
+    "old": 11.5,
+    "new": 11.02
+  },
+  {
+    "file": "autonomie-4.svg",
+    "text": "Adaptation continue, supervision distante",
+    "old": 11.5,
+    "new": 10.64
+  },
+  {
+    "file": "casusage-1.svg",
+    "text": "Modération",
+    "old": 11.5,
+    "new": 10.31
+  },
+  {
+    "file": "casusage-2.svg",
+    "text": "Enrichissement",
+    "old": 9.5,
+    "new": 7.7
+  },
+  {
+    "file": "complexite-1.svg",
+    "text": "Extraction",
+    "old": 12.0,
+    "new": 10.84
+  },
+  {
+    "file": "complexite-1.svg",
+    "text": "Validation",
+    "old": 12.0,
+    "new": 11.02
+  },
+  {
+    "file": "complexite-2.svg",
+    "text": "Extraction",
+    "old": 12.0,
+    "new": 10.84
+  },
+  {
+    "file": "complexite-2.svg",
+    "text": "Validation",
+    "old": 12.0,
+    "new": 11.02
+  },
+  {
+    "file": "complexite-3.svg",
+    "text": "Extraction",
+    "old": 12.0,
+    "new": 10.84
+  },
+  {
+    "file": "complexite-3.svg",
+    "text": "Validation",
+    "old": 12.0,
+    "new": 11.02
+  },
+  {
+    "file": "composantes-3.svg",
+    "text": "2. Comment il représente",
+    "old": 11.5,
+    "new": 10.97
+  },
+  {
+    "file": "composantes-3.svg",
+    "text": "exécution automatique sous contraintes",
+    "old": 11.5,
+    "new": 11.23
+  },
+  {
+    "file": "confiance-1.svg",
+    "text": "100 %",
+    "old": 12.0,
+    "new": 9.87
+  },
+  {
+    "file": "confiance-2.svg",
+    "text": "100 %",
+    "old": 12.0,
+    "new": 9.87
+  },
+  {
+    "file": "confiance-3.svg",
+    "text": "100 %",
+    "old": 12.0,
+    "new": 9.87
+  },
+  {
+    "file": "exploration-3.svg",
+    "text": "37 essais",
+    "old": 12.0,
+    "new": 11.57
+  },
+  {
+    "file": "familles-1.svg",
+    "text": "états et transitions programmés",
+    "old": 11.5,
+    "new": 11.1
+  },
+  {
+    "file": "familles-2.svg",
+    "text": "Coût par décision",
+    "old": 12.0,
+    "new": 11.23
+  },
+  {
+    "file": "familles-3.svg",
+    "text": "Conformité",
+    "old": 12.0,
+    "new": 11.22
+  },
+  {
+    "file": "familles-3.svg",
+    "text": "0,96 × 0,92 × 0,86 × 0,80 = 60,8 %  ·  12 c  ·  3,6 s",
+    "old": 12.5,
+    "new": 11.86
+  },
+  {
+    "file": "familles-3.svg",
+    "text": "Optimisation",
+    "old": 11.5,
+    "new": 9.72
+  },
+  {
+    "file": "familles-3.svg",
+    "text": "0,96 × 0,99 × 0,94 × 0,99 = 88,4 %  ·  4,6 c  ·  1,1 s",
+    "old": 12.5,
+    "new": 11.71
+  },
+  {
+    "file": "familles-3.svg",
+    "text": "La bonne famille se choisit étape par étape, pas une fois pour toutes",
+    "old": 13.0,
+    "new": 12.27
+  },
+  {
+    "file": "gradient-1.svg",
+    "text": "w ← w - 0,25 × pente : plus la pente est forte, plus le pas est grand",
+    "old": 12.0,
+    "new": 11.48
+  },
+  {
+    "file": "gradient-2.svg",
+    "text": "w ← w - 0,25 × pente : plus la pente est forte, plus le pas est grand",
+    "old": 12.0,
+    "new": 11.48
+  },
+  {
+    "file": "gradient-3.svg",
+    "text": "w ← w - 0,25 × pente : plus la pente est forte, plus le pas est grand",
+    "old": 12.0,
+    "new": 11.48
+  },
+  {
+    "file": "implementation-2.svg",
+    "text": "moderator.py",
+    "old": 11.5,
+    "new": 11.16
+  },
+  {
+    "file": "implementation-2.svg",
+    "text": "chaque module consigne sa décision et sa raison avant de passer la main",
+    "old": 12.0,
+    "new": 11.45
+  },
+  {
+    "file": "llm-1.svg",
+    "text": "Courrier reçu (texte libre)",
+    "old": 12.0,
+    "new": 11.61
+  },
+  {
+    "file": "llm-2.svg",
+    "text": "Sans contrôle, chaque extraction fausse devient une action fausse",
+    "old": 13.0,
+    "new": 12.7
+  },
+  {
+    "file": "mdp-4.svg",
+    "text": "récompense",
+    "old": 12.0,
+    "new": 11.14
+  },
+  {
+    "file": "nonllm-2.svg",
+    "text": "Ticket",
+    "old": 11.5,
+    "new": 10.63
+  },
+  {
+    "file": "nonllm-2.svg",
+    "text": "Gravité",
+    "old": 11.5,
+    "new": 9.71
+  },
+  {
+    "file": "nonllm-2.svg",
+    "text": "Secteur",
+    "old": 11.5,
+    "new": 9.68
+  },
+  {
+    "file": "nonllm-2.svg",
+    "text": "Attente",
+    "old": 11.5,
+    "new": 10.31
+  },
+  {
+    "file": "nonllm-3.svg",
+    "text": "Escalade immédiate",
+    "old": 11.0,
+    "new": 9.54
+  },
+  {
+    "file": "patterns-2.svg",
+    "text": "cherche une objection",
+    "old": 10.5,
+    "new": 9.88
+  },
+  {
+    "file": "patterns-2.svg",
+    "text": "Acceptées à tort",
+    "old": 11.5,
+    "new": 10.44
+  },
+  {
+    "file": "patterns-2.svg",
+    "text": "En revue humaine",
+    "old": 11.5,
+    "new": 10.59
+  },
+  {
+    "file": "patterns-3.svg",
+    "text": "Accord des deux ?",
+    "old": 11.5,
+    "new": 10.74
+  },
+  {
+    "file": "patterns-3.svg",
+    "text": "Acceptées à tort",
+    "old": 11.5,
+    "new": 10.44
+  },
+  {
+    "file": "patterns-3.svg",
+    "text": "En revue humaine",
+    "old": 11.5,
+    "new": 10.59
+  },
+  {
+    "file": "reseau-2.svg",
+    "text": "Vibration observée : la cause, puis l'autre effet, deviennent plus probables",
+    "old": 12.0,
+    "new": 11.34
+  },
+  {
+    "file": "reseau-3.svg",
+    "text": "Vibration observée : la cause, puis l'autre effet, deviennent plus probables",
+    "old": 12.0,
+    "new": 11.34
+  },
+  {
+    "file": "reseau-4.svg",
+    "text": "Vibration observée : la cause, puis l'autre effet, deviennent plus probables",
+    "old": 12.0,
+    "new": 11.34
+  },
+  {
+    "file": "risque-1.svg",
+    "text": "décision : conforme",
+    "old": 12.5,
+    "new": 11.13
+  },
+  {
+    "file": "risque-1.svg",
+    "text": "Trois approches différentes traitent le même dossier, un arbitre tranche",
+    "old": 13.0,
+    "new": 11.8
+  },
+  {
+    "file": "risque-2.svg",
+    "text": "Erreurs indépendantes : 3 × 0,1 × 0,1 × 0,9 + 0,1 × 0,1 × 0,1 = 2,8 %",
+    "old": 13.0,
+    "new": 10.4
+  },
+  {
+    "file": "risque-3.svg",
+    "text": "Deux agents jumeaux : vote faux sur 100 dossiers, soit 10 %",
+    "old": 13.0,
+    "new": 11.93
+  },
+  {
+    "file": "routage-1.svg",
+    "text": "Incident technique",
+    "old": 11.0,
+    "new": 10.5
+  },
+  {
+    "file": "routage-2.svg",
+    "text": "Incident technique",
+    "old": 11.0,
+    "new": 10.5
+  },
+  {
+    "file": "routage-2.svg",
+    "text": "Escalade humaine",
+    "old": 11.0,
+    "new": 9.63
+  },
+  {
+    "file": "routage-2.svg",
+    "text": "accord 65 % < 70 %",
+    "old": 10.5,
+    "new": 9.58
+  },
+  {
+    "file": "routage-3.svg",
+    "text": "Incident technique",
+    "old": 11.0,
+    "new": 10.5
+  },
+  {
+    "file": "routage-3.svg",
+    "text": "Escalade humaine",
+    "old": 11.0,
+    "new": 9.63
+  },
+  {
+    "file": "routage-3.svg",
+    "text": "accord 65 % < 70 %",
+    "old": 10.5,
+    "new": 9.58
+  }
+]

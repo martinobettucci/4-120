@@ -1,0 +1,237 @@
+[
+  {
+    "url": "https://en.wikipedia.org/wiki/Recursive_Bayesian_estimation",
+    "status": 200,
+    "final": "https://en.wikipedia.org/wiki/Recursive_Bayesian_estimation"
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Subsumption_architecture",
+    "status": 200,
+    "final": "https://en.wikipedia.org/wiki/Subsumption_architecture"
+  },
+  {
+    "url": "https://en.wikipedia.org/wiki/Three-layer_architecture",
+    "status": 200,
+    "final": "https://en.wikipedia.org/wiki/Three-layer_architecture"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Agent_intelligent",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Agent_intelligent"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Agent_logiciel",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Agent_logiciel"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Algorithme_A*",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Algorithme_A*"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Algorithme_du_gradient",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Algorithme_du_gradient"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Apprentissage_par_renforcement",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Apprentissage_par_renforcement"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Apprentissage_supervis%C3%A9",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Apprentissage_supervis%C3%A9"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Architecture_en_couches",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Architecture_en_couches"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Cas_d'utilisation",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Cas_d'utilisation"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Erreur_de_mesure",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Erreur_de_mesure"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ration_%C3%A0_enrichissement_contextuel",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ration_%C3%A0_enrichissement_contextuel"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Graine_al%C3%A9atoire",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Graine_al%C3%A9atoire"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Grand_mod%C3%A8le_de_langage",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Grand_mod%C3%A8le_de_langage"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Heuristique_(math%C3%A9matiques)",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Heuristique_(math%C3%A9matiques)"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Historique_(informatique)",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Historique_(informatique)"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Intelligence_artificielle_agentique",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Intelligence_artificielle_agentique"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Intervalle_de_confiance",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Intervalle_de_confiance"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Lidar",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Lidar"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Neurone_formel",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Neurone_formel"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Optimisation_combinatoire",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Optimisation_combinatoire"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Patron_de_conception",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Patron_de_conception"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Pr%C3%A9cision_et_rappel",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Pr%C3%A9cision_et_rappel"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_bandit_manchot",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Probl%C3%A8me_du_bandit_manchot"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Processus_de_d%C3%A9cision_markovien",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Processus_de_d%C3%A9cision_markovien"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Programmation_par_contraintes",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Programmation_par_contraintes"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/R%C3%A9seau_bay%C3%A9sien",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/R%C3%A9seau_bay%C3%A9sien"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/R%C3%A9troaction",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/R%C3%A9troaction"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Recuit_simul%C3%A9",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Recuit_simul%C3%A9"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Robustesse_(ing%C3%A9nierie)",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Robustesse_(ing%C3%A9nierie)"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/S%C3%A9paration_des_pr%C3%A9occupations",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/S%C3%A9paration_des_pr%C3%A9occupations"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_recommandation",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Syst%C3%A8me_de_recommandation"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Syst%C3%A8me_expert",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Syst%C3%A8me_expert"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Syst%C3%A8me_multi-agents",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Syst%C3%A8me_multi-agents"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Bayes"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_jury",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_du_jury"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_l'utilit%C3%A9_esp%C3%A9r%C3%A9e",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_l'utilit%C3%A9_esp%C3%A9r%C3%A9e"
+  },
+  {
+    "url": "https://fr.wikipedia.org/wiki/V%C3%A9hicule_autonome",
+    "status": 200,
+    "final": "https://fr.wikipedia.org/wiki/V%C3%A9hicule_autonome"
+  },
+  {
+    "url": "https://martinobettucci.github.io/4-120/",
+    "status": 200,
+    "final": "https://martinobettucci.github.io/4-120/"
+  },
+  {
+    "url": "https://martinobettucci.github.io/4-120/notebooks/01_solutions_ia_decision.html",
+    "status": 200,
+    "final": "https://martinobettucci.github.io/4-120/notebooks/01_solutions_ia_decision.html"
+  },
+  {
+    "url": "https://martinobettucci.github.io/4-120/notebooks/02_agent_environnement.html",
+    "status": 200,
+    "final": "https://martinobettucci.github.io/4-120/notebooks/02_agent_environnement.html"
+  },
+  {
+    "url": "https://martinobettucci.github.io/4-120/notebooks/03_architectures_agents.html",
+    "status": 200,
+    "final": "https://martinobettucci.github.io/4-120/notebooks/03_architectures_agents.html"
+  },
+  {
+    "url": "https://martinobettucci.github.io/4-120/notebooks/04_optimisation.html",
+    "status": 200,
+    "final": "https://martinobettucci.github.io/4-120/notebooks/04_optimisation.html"
+  },
+  {
+    "url": "https://martinobettucci.github.io/4-120/notebooks/05_autonomie_robotique.html",
+    "status": 200,
+    "final": "https://martinobettucci.github.io/4-120/notebooks/05_autonomie_robotique.html"
+  },
+  {
+    "url": "https://martinobettucci.github.io/4-120/notebooks/06_tests_validation.html",
+    "status": 200,
+    "final": "https://martinobettucci.github.io/4-120/notebooks/06_tests_validation.html"
+  },
+  {
+    "url": "https://martinobettucci.github.io/4-120/notebooks/07_systemes_agentiques.html",
+    "status": 200,
+    "final": "https://martinobettucci.github.io/4-120/notebooks/07_systemes_agentiques.html"
+  }
+]
