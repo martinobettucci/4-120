@@ -9,7 +9,7 @@ const erreurs = [];
 try {
 const base = (process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : 'http://localhost:4173').replace(/\/$/, '');
 const video = process.argv.includes('--video');
-const sortie = 'docs/captures';
+const sortie = process.env.E2E_SORTIE || 'docs/captures';
 fs.mkdirSync(sortie, { recursive: true });
 const verifier = (condition, message) => { if (!condition) { erreurs.push(message); console.error('ECHEC :', message); } else console.log('ok    :', message); };
 
@@ -17,7 +17,7 @@ const options = { args: ['--use-angle=swiftshader', '--use-gl=angle', '--enable-
 if (process.env.E2E_SANS_WEBGL === '1') options.args = ['--disable-gpu', '--disable-software-rasterizer', '--disable-webgl', '--disable-3d-apis'];
 // Chromium complet (nouveau mode sans affichage) de préférence : son WebGL logiciel est plus fiable.
 const navigateur = await chromium.launch({ ...options, channel: 'chromium' }).catch(() => chromium.launch(options));
-const contexte = await navigateur.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1, ...(video ? { recordVideo: { dir: sortie, size: { width: 1440, height: 900 } } } : {}) });
+const contexte = await navigateur.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1, reducedMotion: 'reduce', ...(video ? { recordVideo: { dir: sortie, size: { width: 1440, height: 900 } } } : {}) });
 const page = await contexte.newPage();
 page.on('response', (r) => { if (r.status() >= 400) console.error(`HTTP ${r.status()} : ${r.url()}`); });
 page.on('pageerror', (e) => erreurs.push(`Erreur JavaScript : ${e.message}`));
@@ -48,7 +48,13 @@ const nbLecons = await page.locator('.lecon-carte').count();
 verifier(nbLecons === 39, `module 0 : ${nbLecons} leçons au sommaire`);
 await capture('m0-sommaire');
 // Les temps d'une leçon portent leur numéro affiché : 0 pour la notion en bref, 1 à 6 pour les six temps (5 : Construire).
-const allerAuTemps = async (id, k) => { await page.goto(`${base}/#/module/0/${id}`); await page.waitForSelector('.temps'); await page.locator(`.temps button[data-temps="${k}"]`).click(); };
+const explications = () => page.locator('[data-testid=explications] .explication, [data-testid=explication-ligne]');
+const verifierExplications = async () => {
+  if (await page.locator('.atelier .bilan.juste').count()) {
+    verifier(await explications().count() >= 2, `solution saisie expliquée : ${page.url().split('/').pop()}`);
+  }
+};
+const allerAuTemps = async (id, k) => { await verifierExplications(); await page.goto(`${base}/#/module/0/${id}`); await page.waitForSelector('.temps'); await page.locator(`.temps button[data-temps="${k}"]`).click(); };
 await page.goto(`${base}/#/module/0/bayes`);
 await page.waitForSelector('[data-testid=bloc-notion]');
 verifier((await page.locator('[data-testid=bloc-notion] .definition > p').count()) >= 3 && (await page.locator('[data-testid=bloc-notion] .en-savoir-plus a[href*="wikipedia.org/wiki/"]').count()) >= 1, 'leçon : le bloc 0 définit la notion et renvoie vers Wikipédia');
@@ -81,7 +87,7 @@ verifier((await page.locator('.atelier .cahier').count()) === 1, 'atelier : un c
 const premier = await conception.bayes(page);
 verifier(premier.refuse, 'atelier : les conceptions insuffisantes sont exécutées, mesurées et refusées avec un retour ciblé');
 verifier(premier.valide, 'atelier de conception : le dispositif conçu tient le cahier des charges');
-const raisonsDevinée = await page.locator('[data-testid=explications] .explication').count();
+const raisonsDevinée = await page.locator('[data-testid=explications] .explication, [data-testid=explication-ligne]').count();
 verifier(raisonsDevinée >= 3, `atelier de conception : la solution devinée est expliquée ligne par ligne (${raisonsDevinée} lignes)`);
 await page.locator('.page.lecon').screenshot({ path: `${sortie}/lecon-5-construire.jpg`, type: 'jpeg', quality: 82 });
 await page.locator('[data-testid=continuer]').click();
@@ -187,6 +193,7 @@ for (const n of NOTIONS) {
     if (r.refuse && r.valide) construits.add(n.id);
   }
 }
+await verifierExplications();
 verifier(construits.size === NOTIONS.length, `les ${NOTIONS.length} leçons ont chacune leur atelier résolu de bout en bout (${construits.size})`);
 await page.goto(`${base}/#/module/0`);
 const acquises = await page.locator('.lecon-carte.acquise').count();
@@ -194,8 +201,8 @@ verifier(acquises === NOTIONS.length, `module 0 : ${acquises} leçons marquées 
 // Aucun atelier de restitution : ni champs de calcul à remplir, ni lignes à remettre en ordre
 verifier(NOTIONS.every((n) => n.atelier.type !== 'formulaire' && n.atelier.type !== 'parsons'), "aucun atelier ne demande de recopier un calcul ou de remettre des lignes en ordre");
 // Bouton « Voir la solution » : absent avant trois vérifications infructueuses, il applique une conception que la vérification valide
-// et, pour les ateliers de conception, affiche la raison de chaque ligne de la solution.
-let sansSolution = 0; let expliques = 0; const nbConception = NOTIONS.filter((n) => n.atelier.type.startsWith('conception_')).length;
+// et affiche la raison de chaque ligne de la solution.
+let sansSolution = 0; let expliques = 0;
 for (const n of NOTIONS) {
   await allerAuTemps(n.id, 5); await page.waitForSelector('.atelier');
   const bouton = page.locator('[data-testid=verifier]'); const solution = page.locator('[data-testid=solution]');
@@ -204,12 +211,31 @@ for (const n of NOTIONS) {
   await bouton.click();
   const apres = await solution.count(); let reussi = false;
   if (apres === 1) { await solution.click(); await bouton.click(); reussi = (await page.locator('.bilan.juste').count()) === 1; }
-  const lignes = reussi ? await page.locator('[data-testid=explications] .explication').count() : 0;
-  if (n.atelier.type.startsWith('conception_')) { if (lignes >= 2) expliques++; else verifier(false, `atelier « ${n.id} » : solution appliquée sans explication ligne par ligne (${lignes} ligne(s))`); }
+  const lignes = reussi ? await page.locator('[data-testid=explications] .explication, [data-testid=explication-ligne]').count() : 0;
+  if (lignes >= 2) expliques++; else verifier(false, `atelier « ${n.id} » : solution appliquée sans explication ligne par ligne (${lignes} ligne(s))`);
   if (avant !== 0 || apres !== 1 || !reussi) { sansSolution++; verifier(false, `atelier « ${n.id} » : solution proposée après 2 échecs (${avant}), après 3 (${apres}), validée (${reussi})`); }
 }
 verifier(sansSolution === 0, `les ${NOTIONS.length} ateliers proposent « Voir la solution » après trois essais infructueux, et la solution appliquée est validée`);
-verifier(expliques === nbConception, `les ${nbConception} ateliers de conception expliquent leur solution ligne par ligne après application`);
+verifier(expliques === NOTIONS.length, `les ${NOTIONS.length} ateliers expliquent leur solution ligne par ligne après application`);
+// Lots de données : explication accolée à chaque ligne, masquée après modification, puis affichée après nouvelle réussite.
+await allerAuTemps('supervise', 5);
+const supervise = await conception.supervise(page);
+verifier(supervise.valide && await page.locator('.lots-supervise li > [data-testid=explication-ligne]').count() === 7, 'supervisé : sept encadrés accolés aux sept lots après saisie');
+const exportLot = page.locator('.lots-supervise li').filter({ has: page.getByLabel('Export du 2 juillet', { exact: true }) });
+verifier((await exportLot.textContent()).includes('aucune observation indépendante'), 'supervisé : le doublon est expliqué sans prétendre modifier les prédictions du plus proche voisin');
+await page.getByLabel('Export du 2 juillet', { exact: true }).selectOption('train');
+verifier(await explications().count() === 0, 'supervisé : modifier un choix masque les explications périmées');
+await page.locator('[data-testid=verifier]').click();
+verifier(await page.locator('.bilan.juste').count() === 1 && await explications().count() === 7, 'supervisé : une variante valide garde son choix et montre le corrigé de référence');
+await page.getByLabel('Export du 2 juillet', { exact: true }).selectOption('ecarte');
+await page.locator('[data-testid=verifier]').click();
+await page.locator('.lots-supervise').screenshot({ path: `${sortie}/supervise-explications-bureau.jpg`, type: 'jpeg', quality: 85, style: '.entete { visibility: hidden !important; }' });
+await page.setViewportSize({ width: 390, height: 844 });
+verifier(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'supervisé : aucun débordement horizontal sur mobile');
+const position = await exportLot.evaluate((li) => { const saisie = li.querySelector('.lot-saisie').getBoundingClientRect(); const raison = li.querySelector('aside').getBoundingClientRect(); return raison.top >= saisie.bottom; });
+verifier(position, 'supervisé : sur mobile, la raison suit immédiatement sa ligne');
+await exportLot.screenshot({ path: `${sortie}/supervise-explication-mobile.jpg`, type: 'jpeg', quality: 85, style: '.entete { visibility: hidden !important; }' });
+await page.setViewportSize({ width: 1440, height: 900 });
 // Toutes les leçons s'ouvrent en entier : cours, démonstration, atelier
 const ids = await page.evaluate(() => 0).then(async () => { await page.goto(`${base}/#/module/0`); return page.locator('.lecon-carte').evaluateAll((els) => els.map((e) => e.getAttribute('data-lecon'))); });
 for (const id of ids) {

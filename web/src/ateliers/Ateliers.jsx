@@ -9,10 +9,10 @@ export const F = (x, n) => Number(x).toFixed(n).replace('.', ',');
 export const C = { bleu: '#23468C', vert: '#238C33', jaune: '#D9CF4A', rouge: '#F24141', noir: '#0D0D0D', gris: '#8A93A6', orange: '#E07B1A' };
 export const alea = (graine) => { let s = graine; return () => { s = (s * 16807) % 2147483647; return s / 2147483647; }; };
 export const nombre = (x) => parseFloat(String(x).replace(',', '.'));
-export const Bilan = ({ ok, solution, children }) => (
+export const Bilan = ({ ok, solution, inline = false, children }) => (
   <>
     <p className={`bilan ${ok ? 'juste' : 'faux'}`} role="status">{children}</p>
-    {ok && solution && <Explications id={solution} />}
+    {ok && solution && !inline && <Explications id={solution} />}
   </>
 );
 
@@ -65,7 +65,7 @@ export function AtelierRegles({ surReussite }) {
               <tr key={c[4]}><td>{c[4]}</td><td>{c[0]} °C</td><td>{c[1]} %</td><td>{c[2]} m</td><td>{c[3]}</td><td className={res[i][0] === c[3] ? 'ok' : 'ko'}>{res[i][0]} ({res[i][1]}) {res[i][0] === c[3] ? '✓' : '✗'}</td></tr>
             ))}</tbody>
           </table>
-          <Bilan ok={nb === BANC.length}>{nb === BANC.length ? "Les 8 cas passent : votre base de règles respecte le cahier des charges, priorités comprises. Vous venez d'écrire un système expert." : `${nb} cas réussi(s) sur 8. Pour chaque ligne en rouge, repérez la règle qui a répondu (entre parenthèses) : manque-t-il une règle, un seuil est-il inexact, ou une règle passe-t-elle avant une autre plus prioritaire ?`}</Bilan>
+          <Bilan ok={nb === BANC.length} solution="regles">{nb === BANC.length ? "Les 8 cas passent : votre base de règles respecte le cahier des charges, priorités comprises. Vous venez d'écrire un système expert." : `${nb} cas réussi(s) sur 8. Pour chaque ligne en rouge, repérez la règle qui a répondu (entre parenthèses) : manque-t-il une règle, un seuil est-il inexact, ou une règle passe-t-elle avant une autre plus prioritaire ?`}</Bilan>
         </>
       )}
     </div>
@@ -102,7 +102,7 @@ export function AtelierNeurone({ surReussite }) {
           <button className="bouton" onClick={() => { sol.noter(justes === POINTS.length); if (justes === POINTS.length) surReussite(); }} data-testid="verifier">Valider mon neurone</button>
           {sol.bouton(() => { setW1(0.9); setW2(0.6); setB(-0.8); })}
         </div>
-        <Bilan ok={justes === POINTS.length}>{justes} point(s) bien classé(s) sur {POINTS.length}. {justes === POINTS.length ? "Votre neurone sépare les deux classes. C'est exactement ce que l'entraînement fait automatiquement : chercher des poids qui réduisent les erreurs." : 'Un poids positif pousse vers « arrêter » quand la mesure augmente. Le biais déplace la frontière sans la faire tourner.'}</Bilan>
+        <Bilan ok={justes === POINTS.length} solution="neurone">{justes} point(s) bien classé(s) sur {POINTS.length}. {justes === POINTS.length ? "Votre neurone sépare les deux classes. C'est exactement ce que l'entraînement fait automatiquement : chercher des poids qui réduisent les erreurs." : 'Un poids positif pousse vers « arrêter » quand la mesure augmente. Le biais déplace la frontière sans la faire tourner.'}</Bilan>
       </div>
     </div>
   );
@@ -130,7 +130,7 @@ export function AtelierGradient({ surReussite }) {
         <button className="bouton" onClick={() => { setLance(true); sol.noter(ok); if (ok) surReussite(); }} data-testid="verifier">Lancer 20 pas de descente</button>
         {sol.bouton(() => { setTaux(0.3); setLance(false); })}
       </div>
-      {lance && <Bilan ok={ok}>Après 20 pas : w = {Math.abs(fin) > 999 ? 'hors échelle' : F(fin, 2)}. {ok ? 'Convergence atteinte. Vous avez réglé un hyperparamètre : ni trop prudent, ni trop audacieux.' : diverge ? "Chaque pas dépasse le minimum et s'en éloigne davantage : le taux est trop grand, la descente diverge." : Math.abs(taux - 1) < 0.006 ? 'Le paramètre saute indéfiniment d\'un côté à l\'autre du minimum, sans s\'en approcher.' : taux > 0.5 ? 'Le paramètre oscille de part et d\'autre du minimum et se rapproche trop lentement. Réduisez le taux.' : 'Le paramètre avance dans la bonne direction, mais à trop petits pas : 20 pas ne suffisent pas. Augmentez le taux.'}</Bilan>}
+      {lance && <Bilan ok={ok} solution="gradient">Après 20 pas : w = {Math.abs(fin) > 999 ? 'hors échelle' : F(fin, 2)}. {ok ? 'Convergence atteinte. Vous avez réglé un hyperparamètre : ni trop prudent, ni trop audacieux.' : diverge ? "Chaque pas dépasse le minimum et s'en éloigne davantage : le taux est trop grand, la descente diverge." : Math.abs(taux - 1) < 0.006 ? 'Le paramètre saute indéfiniment d\'un côté à l\'autre du minimum, sans s\'en approcher.' : taux > 0.5 ? 'Le paramètre oscille de part et d\'autre du minimum et se rapproche trop lentement. Réduisez le taux.' : 'Le paramètre avance dans la bonne direction, mais à trop petits pas : 20 pas ne suffisent pas. Augmentez le taux.'}</Bilan>}
     </div>
   );
 }
@@ -183,7 +183,7 @@ export function AtelierPiege({ surReussite }) {
         <button className="bouton" onClick={tester} data-testid="verifier">Lancer les deux agents</button>
         {sol.bouton(() => { setMurs(new Set(['6,2', '6,3', '6,4', '5,2', '5,4', '4,2', '4,4'])); setRes(null); })}
       </div>
-      {res && <Bilan ok={!!res.chemin && !res.arrive}>{!res.chemin ? "Aucun chemin n'existe : même un agent planificateur échouerait. Un bon scénario de test doit rester soluble. Ouvrez un passage." : res.arrive ? `L'agent réactif (trait bleu) arrive en ${res.trace.length - 1} pas : ce scénario ne le met pas en défaut. Indice : il lui faut un obstacle qui barre la route directe et dont il ne peut pas sortir en avançant vers l'objectif, par exemple un U ouvert côté départ.` : `Scénario réussi. Un chemin de ${res.chemin.length - 1} pas existe (pointillés verts), mais l'agent réactif tourne en rond (trait bleu). Vous avez conçu un cas de test qui révèle une limite de l'architecture.`}</Bilan>}
+      {res && <Bilan ok={!!res.chemin && !res.arrive} solution="piege">{!res.chemin ? "Aucun chemin n'existe : même un agent planificateur échouerait. Un bon scénario de test doit rester soluble. Ouvrez un passage." : res.arrive ? `L'agent réactif (trait bleu) arrive en ${res.trace.length - 1} pas : ce scénario ne le met pas en défaut. Indice : il lui faut un obstacle qui barre la route directe et dont il ne peut pas sortir en avançant vers l'objectif, par exemple un U ouvert côté départ.` : `Scénario réussi. Un chemin de ${res.chemin.length - 1} pas existe (pointillés verts), mais l'agent réactif tourne en rond (trait bleu). Vous avez conçu un cas de test qui révèle une limite de l'architecture.`}</Bilan>}
     </div>
   );
 }
@@ -225,7 +225,7 @@ export function AtelierContraintes({ surReussite }) {
         {sol.bouton(() => { setCs([{ g: 'A', op: '≠', d: 'B' }, { g: 'A', op: '≠', d: 'C' }, { g: 'B', op: '≠', d: 'C' }, { g: 'A', op: '<', d: 'B' }, { g: 'C', op: '≠', d: '1' }]); setRes(null); })}
       </div>
       {res && (
-        <Bilan ok={!res.enTrop && !res.manquante}>
+        <Bilan ok={!res.enTrop && !res.manquante} solution="contraintes">
           Le solveur trouve {res.trouvees.length} planning(s) qui respectent vos contraintes{res.trouvees.length > 0 && res.trouvees.length <= 4 ? ` : ${res.trouvees.map(dire).join(' ; ')}` : ''}.{' '}
           {res.enTrop ? `Votre modèle est trop permissif : il accepte « ${dire(res.enTrop)} », qui ne respecte pas l'exigence « ${EXIGENCES.find(([, f]) => !f(res.enTrop))[0]} ». Il manque une contrainte.` : res.manquante ? `Votre modèle est trop strict : il refuse « ${dire(res.manquante)} », qui satisfait pourtant toutes les exigences. Une contrainte est de trop ou mal écrite.` : "Ce sont exactement les plannings autorisés par les exigences. Vous avez écrit le modèle, le solveur a fait le reste."}
         </Bilan>
@@ -272,7 +272,7 @@ export function AtelierRecuit({ surReussite }) {
             <line x1="225" x2="425" y1={190 - ((REFERENCE - REFERENCE * 0.9) / (REFERENCE * 1.6)) * 170} y2={190 - ((REFERENCE - REFERENCE * 0.9) / (REFERENCE * 1.6)) * 170} stroke={C.vert} strokeDasharray="4 3" />
             <text x="225" y="12" fontSize="11" fill="var(--texte-doux)">coût au fil des itérations (première graine)</text>
           </svg>
-          <Bilan ok={res.ecart <= 0.08}>Longueur moyenne : {F(res.moy, 2)}, meilleure connue : {F(REFERENCE, 2)}, écart : {F((res.ecart * 100), 1)} %. {res.ecart <= 0.08 ? "Objectif atteint : la température était assez haute pour explorer, et elle a eu le temps de redescendre." : t0 * alpha ** 3000 > 0.05 ? "La température est encore élevée à la fin : la recherche accepte toujours des dégradations et n'a pas eu le temps de se stabiliser. Refroidissez plus vite (α plus petit) ou partez de moins haut." : t0 < 0.2 ? "La température de départ est trop basse : presque aucune dégradation n'est acceptée, la recherche se comporte comme une simple descente et reste dans un minimum local." : "La température chute trop vite : la phase d'exploration est trop courte. Ralentissez le refroidissement (α plus proche de 1)."}</Bilan>
+          <Bilan ok={res.ecart <= 0.08} solution="recuit">Longueur moyenne : {F(res.moy, 2)}, meilleure connue : {F(REFERENCE, 2)}, écart : {F((res.ecart * 100), 1)} %. {res.ecart <= 0.08 ? "Objectif atteint : la température était assez haute pour explorer, et elle a eu le temps de redescendre." : t0 * alpha ** 3000 > 0.05 ? "La température est encore élevée à la fin : la recherche accepte toujours des dégradations et n'a pas eu le temps de se stabiliser. Refroidissez plus vite (α plus petit) ou partez de moins haut." : t0 < 0.2 ? "La température de départ est trop basse : presque aucune dégradation n'est acceptée, la recherche se comporte comme une simple descente et reste dans un minimum local." : "La température chute trop vite : la phase d'exploration est trop courte. Ralentissez le refroidissement (α plus proche de 1)."}</Bilan>
         </>
       )}
     </div>
@@ -320,7 +320,7 @@ export function AtelierPolitique({ surReussite }) {
         {sol.bouton(() => { setPol({ '0,3': 'E', '1,3': 'E', '2,3': 'E', '3,3': 'E', '4,3': 'N', '4,2': 'N', '4,1': 'N', '3,2': 'E', '2,2': 'E', '3,1': 'E', '0,2': 'S', '0,1': 'S', '0,0': 'E', '1,0': 'E', '2,0': 'E', '3,0': 'E' }); setRes(null); })}
       </div>
       {res && (
-        <Bilan ok={!res.incomplet && !res.echec && res.taux >= 0.9}>
+        <Bilan ok={!res.incomplet && !res.echec && res.taux >= 0.9} solution="politique">
           {res.incomplet ? "Une politique doit donner une action dans chaque situation possible : il reste des cases sans flèche (marquées d'un point)." : res.echec ? `Sans aucun aléa, en partant de la case (colonne ${res.echec.de[0] + 1}, ligne ${res.echec.de[1] + 1}), votre politique ${res.echec.fin === 'X' ? 'conduit dans la zone interdite' : "tourne en rond ou bute contre un mur sans jamais atteindre l'objectif"}. Suivez les flèches depuis cette case pour trouver l'erreur.` : `Sans aléa, toutes les cases mènent à l'objectif. Avec glissement, 400 missions depuis le départ : ${Math.round(res.taux * 100)} % de réussite, ${Math.round(res.chutes * 100)} % de chutes dans la zone interdite. ${res.taux >= 0.9 ? "Votre politique est correcte et robuste : elle tient compte de ce qui peut mal tourner, pas seulement du chemin le plus court." : "Votre politique longe la zone interdite : chaque déviation latérale y fait tomber le robot. Une bonne politique tient compte des transitions incertaines. Cherchez un trajet qui s'en tient éloigné."}`}
         </Bilan>
       )}
@@ -366,7 +366,7 @@ export function AtelierRecompenses({ surReussite }) {
           )))}
           {res && <polyline points={res.chemin.map(([x, y]) => `${x * c + c / 2},${y * c + c / 2 + 18}`).join(' ')} fill="none" stroke={C.bleu} strokeWidth="4" strokeLinecap="round" opacity="0.8" />}
         </svg>
-        {res && <Bilan ok={res.arrive && !res.zone}>{!res.arrive ? "La politique apprise ne mène pas à l'objectif (les « ? » signalent des cases où aucune action n'est meilleure qu'une autre). Sans récompense à l'objectif, l'agent n'a aucune raison d'y aller." : res.zone ? "L'agent atteint l'objectif en traversant la zone fragile : c'est le chemin le plus court, et rien dans vos récompenses ne le décourage assez. Il fait exactement ce que vous avez récompensé, pas ce que vous vouliez." : "L'agent contourne la zone fragile et atteint l'objectif. Vous n'avez écrit aucune règle de trajet : le comportement découle entièrement des récompenses que vous avez conçues."}</Bilan>}
+        {res && <Bilan ok={res.arrive && !res.zone} solution="recompenses">{!res.arrive ? "La politique apprise ne mène pas à l'objectif (les « ? » signalent des cases où aucune action n'est meilleure qu'une autre). Sans récompense à l'objectif, l'agent n'a aucune raison d'y aller." : res.zone ? "L'agent atteint l'objectif en traversant la zone fragile : c'est le chemin le plus court, et rien dans vos récompenses ne le décourage assez. Il fait exactement ce que vous avez récompensé, pas ce que vous vouliez." : "L'agent contourne la zone fragile et atteint l'objectif. Vous n'avez écrit aucune règle de trajet : le comportement découle entièrement des récompenses que vous avez conçues."}</Bilan>}
       </div>
     </div>
   );

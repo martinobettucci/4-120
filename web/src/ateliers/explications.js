@@ -2,7 +2,10 @@
 // est validée, que l'apprenant l'ait devinée ou qu'il ait utilisé le bouton « Voir la solution ».
 // Une ligne = une décision de la solution de référence, avec la raison qui la rend exacte.
 // Les textes n'utilisent ni tiret cadratin ni tiret demi-cadratin (contrôle du contenu).
+import { EXPLICATIONS_CONSTRUCTION } from './explications-construction.js';
+
 export const EXPLICATIONS = {
+  ...EXPLICATIONS_CONSTRUCTION,
   // ------------------------------------------------------------------ Module 1
   bayes: {
     intro: "La solution de référence, décision par décision. D'autres dispositifs peuvent tenir le cahier des charges : ce qui compte est la raison de chaque choix.",
@@ -22,7 +25,7 @@ export const EXPLICATIONS = {
     ],
   },
   reseau: {
-    intro: "Les huit flèches possibles, et la raison de chaque choix. Le réseau doit prédire les neuf constats avec le moins de probabilités possible.",
+    intro: "Les huit flèches possibles, et la raison de chaque choix. Le réseau doit prédire les douze constats avec le moins de probabilités possible.",
     lignes: [
       {
         choix: "Sol humide vers patinage",
@@ -79,31 +82,31 @@ export const EXPLICATIONS = {
     intro: "Chaque lot, son rôle et la raison de ce rôle. Les sept lignes forment un jeu d'entraînement qui couvre le terrain et un test que le modèle n'a jamais vu.",
     lignes: [
       {
-        choix: "Tournées de jour : entraînement",
-        pourquoi: "Des situations de jour, étiquetées par la cheffe de quai : c'est la condition majoritaire du terrain, et les étiquettes font autorité. Elles apprennent au modèle ce qu'est un robot qui doit s'arrêter.",
+        id: 'jour', choix: "Tournées de jour : entraînement",
+        pourquoi: "Des situations de jour, étiquetées par la cheffe de quai : elles couvrent une des deux conditions du terrain avec des réponses fiables. Elles permettent d'apprendre quand arrêter ou continuer ; les tournées de nuit complètent cet apprentissage.",
       },
       {
-        choix: "Export du 2 juillet : écarté",
-        pourquoi: "400 situations, 78 % étiquetées « arrêter » : la base des tournées de jour, exportée une seconde fois, avec les mêmes robots, les mêmes dates et les mêmes mesures. Inutile de répéter les mêmes lignes : statistiquement, elles n'apprennent rien de plus que les premières et donnent un poids indu au jour.",
+        id: 'reexport', choix: "Export du 2 juillet : écarté",
+        pourquoi: "Ces 400 situations répètent une partie des tournées de jour : mêmes robots, dates et mesures. Elles n'apportent aucune observation indépendante. Avec le plus proche voisin utilisé ici, les recopier ne change pas les prédictions ; dans le test, elles feraient mesurer la mémorisation plutôt que la généralisation.",
       },
       {
-        choix: "Tournées de nuit : entraînement",
+        id: 'nuit', choix: "Tournées de nuit : entraînement",
         pourquoi: "Le terrain comprend des tournées de nuit, plus froides. Sans exemples nocturnes, le modèle ne saurait pas reconnaître les situations de nuit et se tromperait sur une partie du terrain.",
       },
       {
-        choix: "Semaine calme : écarté",
-        pourquoi: "Une semaine sans incident ne contient presque que des « continuer » : le modèle y apprendrait à ne jamais arrêter. Ses étiquettes ne représentent pas les journées ordinaires.",
+        id: 'calme', choix: "Semaine calme : écarté",
+        pourquoi: "Ce lot contient presque uniquement des « continuer ». Ses étiquettes ne sont pas nécessairement fausses, mais la sélection des situations ne représente pas le terrain ordinaire : elle peut biaiser l'apprentissage et donner un test trop facile pour un modèle qui n'arrête jamais.",
       },
       {
-        choix: "Saisie rapide : écarté",
+        id: 'hate', choix: "Saisie rapide : écarté",
         pourquoi: "Un tiers des « arrêter » y sont saisis « continuer ». Ces étiquettes fausses enseigneraient au modèle à laisser passer des situations dangereuses.",
       },
       {
-        choix: "Entrepôt voisin : écarté",
+        id: 'voisin', choix: "Entrepôt voisin : écarté",
         pourquoi: "Les étiquettes viennent d'un autre entrepôt, au sol plus glissant, où l'on n'arrête pas les robots au même seuil. Elles ne valent pas pour celui-ci.",
       },
       {
-        choix: "Échantillon de contrôle : test",
+        id: 'controle', choix: "Échantillon de contrôle : test",
         pourquoi: "Tiré au hasard sur toute l'année, jour et nuit, et étiqueté séparément par deux expertes : jamais montré à l'entraînement, il mesure ce que le modèle vaut sur des situations qu'il n'a pas vues. C'est le juge honnête de l'exactitude.",
       },
     ],

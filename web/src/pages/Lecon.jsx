@@ -21,6 +21,9 @@ function Demonstration({ n, surFin }) {
   const debut = (i) => (i === 0 ? 0 : n.etapes[i - 1].fin);
   ref.current = { k, t };
   useEffect(() => {
+    if (vues.length === n.etapes.length) surFin();
+  }, [vues, n.etapes.length, surFin]);
+  useEffect(() => {
     if (!lecture) return undefined;
     let dernier = performance.now(); let raf;
     const tic = (m) => {
@@ -29,7 +32,7 @@ function Demonstration({ n, surFin }) {
       const suivant = ref.current.t + dt / n.duree;
       if (suivant >= fin) {
         setT(fin); setLecture(false);
-        setVues((v) => { const nv = v.includes(ref.current.k) ? v : [...v, ref.current.k]; if (nv.length === n.etapes.length) surFin(); return nv; });
+        setVues((v) => v.includes(ref.current.k) ? v : [...v, ref.current.k]);
         return;
       }
       setT(suivant); raf = requestAnimationFrame(tic);

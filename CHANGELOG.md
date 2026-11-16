@@ -2,6 +2,13 @@
 
 Format inspiré de Keep a Changelog. Les versions suivent le versionnage sémantique.
 
+## Non publié
+
+- Explications étendues aux 39 ateliers, y compris les règles, le neurone, les contraintes et les ateliers agentiques. Chaque décision du corrigé a sa raison en regard ; les autres constructions valides restent acceptées.
+- Apprentissage supervisé : sept encadrés directement à côté des sept lots après validation, placés sous leur lot sur mobile, masqués dès qu'un choix change. Le doublon du 2 juillet est expliqué en termes d'information indépendante et de fuite entre entraînement et test.
+- Deux avertissements React corrigés pendant le parcours de validation : fin de démonstration signalée après le rendu, clés distinctes pour les segments sans légende de l’animation d’évaluation.
+- Vérification étendue aux 39 corrigés, aux réponses saisies et aux solutions appliquées, ainsi qu'au rendu mobile et à la disparition des explications après modification.
+
 ## [1.5.0] 2026-11-15
 
 ### Ajouté

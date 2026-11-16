@@ -1,7 +1,7 @@
 // Vérification complète du contenu pédagogique : TOUTES les leçons et TOUS les modules.
 // 1. Structure : champs, étapes, cours, exemple résolu, atelier (de conception, avec sa solution), animation exécutable.
 // 2. Questions : la bonne réponse est bien celle dont le retour l'approuve, aucune autre.
-// 3. Explications : chaque atelier de conception affiche, une fois validé, la raison de chaque ligne de sa solution.
+// 3. Explications : chaque atelier affiche, une fois validé, la raison de chaque ligne de sa solution.
 // 4. Planches : pour chaque leçon, l'image de chaque étape à côté de son commentaire
 //    (docs/captures/planches), à relire d'un coup d'œil avant toute publication.
 // 5. Liens : avec --liens, l'existence de chaque page Wikipédia citée est contrôlée en ligne (hors intégration continue).
@@ -71,9 +71,9 @@ for (const f of fs.readdirSync(path.join(web, 'src/ateliers')).filter((x) => /^A
   const solutions = (source.match(/sol\.bouton\(/g) || []).length;
   if (composants !== solutions) dire(f, `${composants} atelier(s) pour ${solutions} bouton(s) « Voir la solution »`);
 }
-// Explications ligne par ligne : chaque atelier de conception en a une, chaque ligne justifie son choix,
+// Explications ligne par ligne : chaque atelier en a une, chaque ligne justifie son choix,
 // et le bilan de l'atelier les affiche (attribut solution="<type>").
-const conception = NOTIONS.filter((n) => String(n.atelier.type).startsWith('conception_'));
+const conception = NOTIONS;
 const idExplication = (n) => n.atelier.type.replace(/^conception_/, '');
 conception.forEach((n) => {
   const e = EXPLICATIONS[idExplication(n)];
@@ -88,9 +88,9 @@ conception.forEach((n) => {
   if (interdits.test(JSON.stringify(e))) dire(n.id, 'explications : caractère ou mot proscrit');
 });
 const typesConception = new Set(conception.map(idExplication));
-Object.keys(EXPLICATIONS).forEach((k) => { if (!typesConception.has(k)) dire('explications', `entrée sans atelier de conception : ${k}`); });
+Object.keys(EXPLICATIONS).forEach((k) => { if (!typesConception.has(k)) dire('explications', `entrée sans atelier : ${k}`); });
 const annonces = new Set();
-for (const f of fs.readdirSync(path.join(web, 'src/ateliers')).filter((x) => /^AteliersConception.*\.jsx$/.test(x))) {
+for (const f of fs.readdirSync(path.join(web, 'src/ateliers')).filter((x) => /^Ateliers.*\.jsx$/.test(x))) {
   for (const m of fs.readFileSync(path.join(web, 'src/ateliers', f), 'utf8').matchAll(/solution="([^"]+)"/g)) annonces.add(m[1]);
 }
 conception.forEach((n) => { if (!annonces.has(idExplication(n))) dire(n.id, `explications : le bilan de l'atelier ne les affiche pas (solution="${idExplication(n)}")`); });

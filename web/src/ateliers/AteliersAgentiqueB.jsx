@@ -85,7 +85,7 @@ function AtelierDelegation({ surReussite }) {
             <thead><tr><th>Régime</th><th>Dossiers</th><th>Erreurs non rattrapées</th><th>Coût</th></tr></thead>
             <tbody>{ligne('Exécution automatique', res.z.auto)}{ligne('Pré-remplissage validé', res.z.valid)}{ligne('Décision humaine', res.z.humain)}</tbody>
           </table>
-          <Bilan ok={res.ok}>
+          <Bilan ok={res.ok} solution="delegation">
             Coût total : {euros(res.cout)}, soit {F(res.cout / DELEG.n, 2)} € par dossier. Meilleur réglage connu : {F(res.opt.cout / DELEG.n, 2)} € par dossier. Écart : {F(res.ecart * 100, 1)} %. Dossiers exécutés à tort sans regard humain : {F(res.tauxAuto * 100, 2)} % du lot (maximum {F(DELEG.plafond * 100, 1)} %).{' '}
             {res.ok ? "Vos seuils répartissent le travail au moindre coût en tenant l'exigence de sécurité. Vous venez de fixer le niveau d'autonomie du système, dossier par dossier, à partir des coûts et non d'une intuition." : `${res.tauxAuto > DELEG.plafond ? "L'exigence de sécurité n'est pas tenue : trop de décisions fausses partent sans qu'un humain les voie. " : ''}${res.ecart > DELEG.tolerance ? "Le coût dépasse de plus de 5 % le meilleur réglage. " : ''}${res.pistes.join(' ')}`}
           </Bilan>
@@ -161,7 +161,7 @@ function AtelierRouteur({ surReussite }) {
               <tr key={t}><td>{t}</td><td>{attendu}</td><td className={res[i][0] === attendu ? 'ok' : 'ko'}>{res[i][0]} ({res[i][1]}) {res[i][0] === attendu ? '✓' : '✗'}</td></tr>
             ))}</tbody>
           </table>
-          <Bilan ok={tout}>{tout ? `Les ${MESSAGES.length} messages arrivent dans la bonne file. Votre routeur tient en ${regles.length} règles ordonnées et une file par défaut : il est lisible, testable, et chaque orientation se justifie par la règle qui l'a produite.` : `${nb} message(s) bien orienté(s) sur ${MESSAGES.length}. Pour chaque ligne en rouge, regardez la règle qui a répondu (entre parenthèses). ${courts ? 'Une règle au mot-clé vide ou trop court est ignorée. ' : ''}${masque ? "Au moins un message contient deux de vos mots-clés : c'est la règle placée le plus haut qui l'emporte. Revoyez l'ordre, ou choisissez un mot-clé plus précis. " : ''}Si la réponse vient de « défaut », aucun de vos mots-clés ne figure dans le message.`}</Bilan>
+          <Bilan ok={tout} solution="routeur">{tout ? `Les ${MESSAGES.length} messages arrivent dans la bonne file. Votre routeur tient en ${regles.length} règles ordonnées et une file par défaut : il est lisible, testable, et chaque orientation se justifie par la règle qui l'a produite.` : `${nb} message(s) bien orienté(s) sur ${MESSAGES.length}. Pour chaque ligne en rouge, regardez la règle qui a répondu (entre parenthèses). ${courts ? 'Une règle au mot-clé vide ou trop court est ignorée. ' : ''}${masque ? "Au moins un message contient deux de vos mots-clés : c'est la règle placée le plus haut qui l'emporte. Revoyez l'ordre, ou choisissez un mot-clé plus précis. " : ''}Si la réponse vient de « défaut », aucun de vos mots-clés ne figure dans le message.`}</Bilan>
         </>
       )}
     </div>
@@ -239,7 +239,7 @@ function AtelierRag({ surReussite }) {
             <thead><tr><th>Question</th><th>Rang du bon morceau</th><th>Transmis au modèle ?</th></tr></thead>
             <tbody>{res.details.map((d) => <tr key={d.q}><td>{d.q}</td><td>{d.rang}</td><td className={d.trouve ? 'ok' : 'ko'}>{d.trouve ? 'oui ✓' : 'non ✗'}</td></tr>)}</tbody>
           </table>
-          <Bilan ok={res.ok}>
+          <Bilan ok={res.ok} solution="rag">
             {res.nbMorceaux} morceaux indexés. Rappel : {F(res.rappel * 100, 0)} % ({res.details.filter((d) => d.trouve).length} questions sur {QUESTIONS.length}). Contexte moyen : {F(res.contexte, 1)} mots par question (budget {RAG.budget}).{' '}
             {res.ok ? "Objectif atteint : le bon passage arrive au modèle presque à chaque fois, sans noyer la question sous le texte. Vous avez réglé l'étage de recherche, celui dont dépend tout le reste." : `${res.contexte > RAG.budget ? "Le contexte dépasse le budget : des morceaux trop longs ou trop nombreux coûtent cher et diluent la réponse dans du texte sans rapport. " : ''}${rate ? `Exemple d'échec : « ${rate.q} ». Le morceau classé premier vient de la fiche ${rate.premier.m.fiche} et doit son score aux mots communs « ${rate.premier.communs.join(', ')} ». Ces mots distinguent-ils vraiment ce morceau des autres ? Le bon morceau n'est qu'au rang ${rate.rang}.` : ''}`}
           </Bilan>
@@ -309,7 +309,7 @@ function AtelierJournal({ surReussite }) {
             <thead><tr><th>Question de l'auditeur</th><th>Votre journal permet-il de répondre ?</th></tr></thead>
             <tbody>{res.audits.map((a) => <tr key={a.q}><td>{a.q}</td><td className={a.manque.length ? 'ko' : 'ok'}>{a.manque.length ? `non ✗ : il manque « ${a.manque.join(' », « ')} »` : 'oui ✓'}</td></tr>)}</tbody>
           </table>
-          <Bilan ok={res.ok}>
+          <Bilan ok={res.ok} solution="journal">
             {AUDITS.length - res.sans} question(s) sur {AUDITS.length} trouvent leur réponse. Enregistrement : {res.cout} unité(s) sur {JOURNAL.budget}.{' '}
             {res.ok ? "Votre schéma de journal répond à tout l'audit, tient dans le budget et ne contient aucune donnée personnelle. Chaque décision du système peut être expliquée, datée et attribuée." : `${res.perso.length ? `Minimisation non respectée : « ${res.perso.join(' », « ')} ». Aucune question d'audit n'exige cette donnée en clair. Cherchez un champ qui prouve la même chose sans rien révéler du demandeur. ` : ''}${res.cout > JOURNAL.budget ? 'Le budget de stockage est dépassé : retirez ce qui ne sert à aucune question. ' : ''}${res.sans ? "Pour chaque ligne en rouge, le tableau nomme l'information absente." : ''}`}
           </Bilan>

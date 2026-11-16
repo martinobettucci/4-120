@@ -176,7 +176,7 @@ export function Implementation(t) {
 // Trois journaux, trois familles d'indicateurs : routage, arbitrage, modération.
 export function Evaluation(t) {
   const ph = t < 0.3 ? 0 : t < 0.62 ? 1 : 2;
-  const barre = (parts, total) => { let x = 20; return parts.map(([n, coul, lib]) => { const w = (n / total) * 400; const g = <g key={lib}><rect x={x} y="40" width={w} height="30" fill={coul} />{w > 50 && lib && <text x={x + w / 2} y="60" textAnchor="middle" fontSize="11.5" fontWeight="700" fill={coul === COUL.jaune ? '#0D0D0D' : '#fff'}>{lib}</text>}</g>; x += w; return g; }); };
+  const barre = (parts, total) => { let x = 20; return parts.map(([n, coul, lib], i) => { const w = (n / total) * 400; const g = <g key={i}><rect x={x} y="40" width={w} height="30" fill={coul} />{w > 50 && lib && <text x={x + w / 2} y="60" textAnchor="middle" fontSize="11.5" fontWeight="700" fill={coul === COUL.jaune ? '#0D0D0D' : '#fff'}>{lib}</text>}</g>; x += w; return g; }); };
   const lignes = (l, debut) => l.map(([a, b], i) => <g key={a} opacity={seuil(t, debut + i * 0.05, debut + i * 0.05 + 0.04)}><text x="20" y={104 + i * 26} fontSize="12.5" fill="var(--texte)">{a}</text><text x="420" y={104 + i * 26} textAnchor="end" fontSize="13" fontWeight="700" fill="var(--texte)">{b}</text></g>);
   return (
     <Cadre>

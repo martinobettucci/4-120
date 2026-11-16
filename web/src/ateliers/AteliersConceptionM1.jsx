@@ -3,6 +3,7 @@
 // le système l'exécute sur des données simulées et le confronte à un cahier des charges.
 // La logique de chaque atelier est exportée à part, pour être étalonnée et testée sans navigateur.
 import { useState } from 'react';
+import { ExplicationLigne } from './Explications.jsx';
 import { F, C, alea, Bilan } from './Ateliers.jsx';
 import { useSolution } from './Solution.jsx';
 
@@ -316,11 +317,14 @@ export function AtelierSupervise({ surReussite }) {
         <ul><li>Au moins 90 % d'exactitude sur le terrain : 2 000 situations du mois prochain, de jour comme de nuit, que vous ne voyez pas.</li><li>Une estimation honnête : l'exactitude mesurée sur votre test s'écarte d'au plus 2 points de celle du terrain.</li><li>Un test qui départage : un modèle qui donnerait toujours la même réponse y obtient au plus 65 %.</li></ul>
       </div>
       <p>Chaque situation est décrite par deux mesures, la vibration et la température du moteur, et étiquetée « continuer » ou « arrêter ». Le modèle est volontairement simple : il retient ses exemples d'entraînement et répond comme l'exemple le plus proche. Affectez chaque lot.</p>
-      <ol className="regles-edit">
+      {res?.ok && <p className="conseil" role="status">Votre répartition respecte les exigences. À côté de chaque lot, le corrigé explique le choix de référence ; une autre répartition peut aussi réussir.</p>}
+      <ol className={`regles-edit lots-supervise${res?.ok ? ' avec-explications' : ''}`}>
         {Object.entries(LOTS).map(([id, [nom, description, exemples]]) => (
-          <li key={id}><b>{nom}</b> {milliers(exemples.length)} situations, {pct(part(exemples, (e) => e.y), 0)} étiquetées « arrêter »
+          <li key={id}><div className="lot-saisie"><b>{nom}</b> {milliers(exemples.length)} situations, {pct(part(exemples, (e) => e.y), 0)} étiquetées « arrêter »
             <select value={aff[id]} onChange={(e) => { setAff({ ...aff, [id]: e.target.value }); setRes(null); }} aria-label={nom}>{Object.entries(ROLES).map(([k, t]) => <option key={k} value={k}>{t}</option>)}</select>
             <span className="conseil">{description}</span>
+            </div>
+            {res?.ok && <ExplicationLigne id="supervise" ligne={id} />}
           </li>
         ))}
       </ol>
@@ -337,7 +341,7 @@ export function AtelierSupervise({ surReussite }) {
             {verdict(res.tests.honnete, `Exactitude mesurée sur votre test : ${pct(res.exTest)}, soit ${F(Math.abs(res.ecart) * 100, 1)} point(s) ${res.ecart >= 0 ? 'au-dessus' : 'en dessous'} du terrain (maximum 2)`)}
             {verdict(res.tests.departage, `Un modèle qui répondrait toujours « ${res.arrets > 0.5 ? 'arrêter' : 'continuer'} » obtiendrait ${pct(res.paresseux)} sur votre test (maximum 65 %)`)}
           </tbody></table>
-          <Bilan ok={res.ok} solution="supervise">{res.ok ? `Votre test annonce ${pct(res.exTest)} et le terrain donne ${pct(res.exTerrain)}. Vous savez choisir les jeux de données d'un entraînement : des exemples fiables qui couvrent les conditions du terrain pour apprendre, et, pour mesurer, des situations jamais vues qui lui ressemblent.` : [
+          <Bilan ok={res.ok} solution="supervise" inline>{res.ok ? `Votre test annonce ${pct(res.exTest)} et le terrain donne ${pct(res.exTerrain)}. Vous savez choisir les jeux de données d'un entraînement : des exemples fiables qui couvrent les conditions du terrain pour apprendre, et, pour mesurer, des situations jamais vues qui lui ressemblent.` : [
             res.communs > 0 && `${milliers(res.communs)} situations de votre test figurent aussi dans l'entraînement : le modèle les connaît par cœur, et le test annonce ${pct(res.exTest)} quand le terrain donne ${pct(res.exTerrain)}. Relisez la description des lots : lesquels contiennent les mêmes situations ?`,
             !res.tests.terrain && (res.exJour - res.exNuit > 0.08 ? `Sur le terrain, le modèle atteint ${pct(res.exJour)} de jour mais ${pct(res.exNuit)} de nuit. Quelles conditions manquent à vos lots d'entraînement ?` : `Sur le terrain, le modèle se trompe de jour comme de nuit : il répète des étiquettes qui ne valent pas pour cet entrepôt. Parmi vos lots d'entraînement, lesquels ont des étiquettes douteuses, ou viennent d'ailleurs ?`),
             !res.communs && res.tests.terrain && !res.tests.honnete && (res.ecart > 0 ? "Votre test flatte le modèle. Ses situations ressemblent-elles à celles du terrain, de jour comme de nuit ?" : "Votre test annonce nettement moins que le terrain : ce sont ses étiquettes qui sont en cause, pas le modèle. Ont-elles été saisies avec soin, et dans cet entrepôt ?"),

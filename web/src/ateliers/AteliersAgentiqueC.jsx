@@ -60,7 +60,7 @@ export function AtelierPriorisation({ surReussite }) {
             <thead><tr><th>Exigence</th><th>Scores</th><th>Votre file</th></tr></thead>
             <tbody>{res.exigences.map((e, i) => <tr key={e.a + e.b}><td>{i + 1}. {e.a} avant {e.b}</td><td>{res.sc[e.a]} contre {res.sc[e.b]}</td><td className={e.ok ? 'ok' : 'ko'}>{e.ok ? 'respectée ✓' : 'non respectée ✗'}</td></tr>)}</tbody>
           </table>
-          <Bilan ok={res.ok}>{res.ok ? "Les 7 exigences sont respectées. Vos poids ne sont pas un réglage technique : ils écrivent la politique de priorité du service, et chacun peut la vérifier sur la file." : `${res.exigences.filter((e) => e.ok).length} exigence(s) respectée(s) sur 7. Première exigence non tenue : ${manque.a} doit passer avant ${manque.b}. ${manque.piste}`}</Bilan>
+          <Bilan ok={res.ok} solution="priorisation">{res.ok ? "Les 7 exigences sont respectées. Vos poids ne sont pas un réglage technique : ils écrivent la politique de priorité du service, et chacun peut la vérifier sur la file." : `${res.exigences.filter((e) => e.ok).length} exigence(s) respectée(s) sur 7. Première exigence non tenue : ${manque.a} doit passer avant ${manque.b}. ${manque.piste}`}</Bilan>
         </>
       )}
     </div>
@@ -125,7 +125,7 @@ export function AtelierPatrons({ surReussite }) {
             {ligne(r.tests.trace, `Décision retraçable étape par étape : ${r.tests.trace ? 'oui' : 'non'}`)}
             {ligne(r.tests.reprise, `Point unique de contrôle et de relance : ${r.tests.reprise ? 'oui' : 'non'}`)}
           </tbody></table>
-          <Bilan ok={r.ok}>{r.ok ? "Les cinq exigences sont tenues. Vous avez retenu une organisation pour ce qu'elle garantit, et un seul pattern de robustesse, celui que le coût d'une erreur justifiait. Ajouter les autres aurait saturé la revue humaine." : [
+          <Bilan ok={r.ok} solution="patrons">{r.ok ? "Les cinq exigences sont tenues. Vous avez retenu une organisation pour ce qu'elle garantit, et un seul pattern de robustesse, celui que le coût d'une erreur justifiait. Ajouter les autres aurait saturé la revue humaine." : [
             !r.tests.fautives && "Trop d'acceptations fautives : le score seul laisse passer 20 % des demandes à refuser. Quel pattern n'agit que si deux agents différents s'accordent ?",
             r.tests.fautives && !r.tests.revue && "La revue humaine dépasse 15 % : chaque pattern de robustesse y envoie des dossiers. Lequel de vos patterns n'est pas nécessaire pour tenir l'objectif d'acceptations fautives ?",
             !r.tests.delai && "Le délai dépasse 5 secondes : additionnez ce que chaque pattern ajoute au traitement.",

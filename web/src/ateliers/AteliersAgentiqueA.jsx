@@ -70,7 +70,7 @@ export function AtelierComposition({ surReussite }) {
             {ligne(r.delai <= 1500, `Délai : ${F(r.delai / 1000, 2)} seconde(s)`)}
             {ligne(r.justif && r.errConf <= 0.0201, `Conformité : ${r.justif ? 'justifiable' : 'non justifiable'}, ${F(r.errConf * 100, 0)} erreur(s) sur 100`)}
           </tbody></table>
-          <Bilan ok={r.ok}>{r.ok ? "Votre agent respecte les quatre exigences. Vous n'avez pas choisi « la meilleure famille » : vous avez attribué à chaque étape celle qui lui convient. C'est un agent hybride." : [
+          <Bilan ok={r.ok} solution="composition">{r.ok ? "Votre agent respecte les quatre exigences. Vous n'avez pas choisi « la meilleure famille » : vous avez attribué à chaque étape celle qui lui convient. C'est un agent hybride." : [
             !(r.justif && r.errConf <= 0.0201) && "Une décision réglementaire se justifie critère par critère : quelle famille applique des critères écrits tels quels ?",
             r.fiab < 0.8 && `Les exactitudes se multiplient. Votre maillon le plus faible est « ${r.faible[1]} » (${F(EXACT_COMPO[r.faible[0]][choix[r.faible[0]]] * 100, 0)} %) : relisez sa ligne dans le tableau.`,
             r.cout > 6.0001 && "Le coût dépasse le budget : chaque étape confiée au LLM coûte 3 centimes. Où son aptitude au langage est-elle réellement nécessaire ?",
@@ -135,7 +135,7 @@ export function AtelierControles({ surReussite }) {
                 <td className={res[i].juste ? 'ok' : 'ko'}>{res[i].bloque ? `bloqué (C${res[i].par + 1})` : 'exécuté'} {res[i].juste ? '✓' : '✗'}</td></tr>
             ))}</tbody>
           </table>
-          <Bilan ok={nb === CAS_LLM.length}>{nb === CAS_LLM.length ? "Les 10 cas passent : aucune extraction fausse n'atteint le versement, et aucun dossier sain n'est bloqué. Le LLM lit, vos règles décident de ce qui peut être exécuté." : `${nb} cas correct(s) sur 10. Pour chaque ligne en rouge : un dossier exécuté à tort signale un contrôle manquant, à chercher dans les règles métier ; un dossier bloqué à tort signale un contrôle trop sévère, dont le numéro est entre parenthèses.`}</Bilan>
+          <Bilan ok={nb === CAS_LLM.length} solution="controles">{nb === CAS_LLM.length ? "Les 10 cas passent : aucune extraction fausse n'atteint le versement, et aucun dossier sain n'est bloqué. Le LLM lit, vos règles décident de ce qui peut être exécuté." : `${nb} cas correct(s) sur 10. Pour chaque ligne en rouge : un dossier exécuté à tort signale un contrôle manquant, à chercher dans les règles métier ; un dossier bloqué à tort signale un contrôle trop sévère, dont le numéro est entre parenthèses.`}</Bilan>
         </>
       )}
     </div>
@@ -180,7 +180,7 @@ export function AtelierPipeline({ surReussite }) {
         <button className="bouton" onClick={() => { setTeste(true); sol.noter(r.ok); if (r.ok) surReussite(); }} data-testid="verifier">Évaluer ma chaîne</button>
         {sol.bouton(() => { setCt([false, true, false, true, true]); setTeste(false); })}
       </div>
-      {teste && <Bilan ok={r.ok}>Fiabilité de bout en bout : {r.eff.map((x) => F(x, 3)).join(' × ')} = {F(r.fiab * 100, 1)} %. Délai : 5 × 2 s + {r.nb} × 1 s = {r.delai} s. {r.ok ? "Objectif atteint dans le délai. Vous avez placé les contrôles là où ils rapportent le plus, au lieu de tout contrôler." : r.delai > 13 ? "Le délai est dépassé : tous les contrôles ne se valent pas. Calculez ce que chacun fait gagner et gardez les plus utiles." : r.nb < 3 ? `Sans contrôle, les fiabilités se multiplient et la chaîne perd des dossiers à chaque agent. Il vous reste du délai pour ${3 - r.nb} contrôle(s).` : "Le délai est tenu, mais la fiabilité reste sous 90 %. Un contrôle fait gagner (1 - p) × 0,8 sur son agent : l'un des vôtres protège un agent déjà très fiable."}</Bilan>}
+      {teste && <Bilan ok={r.ok} solution="pipeline">Fiabilité de bout en bout : {r.eff.map((x) => F(x, 3)).join(' × ')} = {F(r.fiab * 100, 1)} %. Délai : 5 × 2 s + {r.nb} × 1 s = {r.delai} s. {r.ok ? "Objectif atteint dans le délai. Vous avez placé les contrôles là où ils rapportent le plus, au lieu de tout contrôler." : r.delai > 13 ? "Le délai est dépassé : tous les contrôles ne se valent pas. Calculez ce que chacun fait gagner et gardez les plus utiles." : r.nb < 3 ? `Sans contrôle, les fiabilités se multiplient et la chaîne perd des dossiers à chaque agent. Il vous reste du délai pour ${3 - r.nb} contrôle(s).` : "Le délai est tenu, mais la fiabilité reste sous 90 %. Un contrôle fait gagner (1 - p) × 0,8 sur son agent : l'un des vôtres protège un agent déjà très fiable."}</Bilan>}
     </div>
   );
 }
@@ -230,7 +230,7 @@ export function AtelierArbitre({ surReussite }) {
         {sol.bouton(() => { setPoids([2, 1, 1]); setAccord(75); setRes(null); })}
       </div>
       {res && (
-        <Bilan ok={res.ok}>
+        <Bilan ok={res.ok} solution="arbitre">
           Décisions automatiques fausses : {res.erreurs}. Dossiers transmis à un humain : {res.humain} ({F(res.charge * 100, 1)} %). Coût moyen : ({res.erreurs} × 60 € + {res.humain} × 4 €) / 1 000 = {F(res.cout, 2)} € par dossier.{' '}
           {res.ok ? "Les deux contraintes sont tenues. Votre arbitre ne compte pas des voix : il pèse des avis selon ce qu'ils apportent d'indépendant, et il passe la main quand le désaccord est réel." : res.charge > 0.15 ? "L'équipe humaine est saturée. Tous les désaccords ne se valent pas : quand un seul décideur s'oppose aux deux autres, qui a le plus souvent raison ? Regardez les taux d'erreur, puis réservez l'humain aux désaccords qui restent indécidables." : res.humain === 0 ? `L'arbitre décide toujours seul, et ${res.erreurs} décisions fausses coûtent trop cher. Le modèle statistique et le LLM rendent le même avis dans ${F(stats.acc[2] * 100, 1)} % des cas et se trompent ensemble sur ${stats.ensemble} dossiers : leur accord ne vaut pas deux avis indépendants.` : "Le coût reste trop élevé : trop de décisions automatiques fausses. Repérez quel camp l'emporte quand le moteur de règles s'oppose aux deux autres, et demandez-vous si ce cas se tranche sans humain."}
         </Bilan>
